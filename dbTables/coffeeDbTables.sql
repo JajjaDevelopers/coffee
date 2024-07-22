@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `clients`
+--
+
+DROP TABLE IF EXISTS `clients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clients` (
+  `client_id` int NOT NULL AUTO_INCREMENT,
+  `client_type` varchar(45) NOT NULL COMMENT 'Whether Supplier or Buyer',
+  `name` varchar(200) NOT NULL,
+  `contact_person` varchar(45) NOT NULL,
+  `parish_id` int DEFAULT NULL,
+  `telephone_1` varchar(17) DEFAULT NULL,
+  `telephone_2` varchar(17) DEFAULT NULL,
+  `email_1` varchar(100) DEFAULT NULL,
+  `email_2` varchar(100) DEFAULT NULL,
+  `category_id` int DEFAULT NULL COMMENT 'Exporter, Local',
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Suppliers who supply coffee. Can be registered as groups, associations, coops etc';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clients`
+--
+
+LOCK TABLES `clients` WRITE;
+/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `coffee_category`
 --
 
@@ -123,13 +154,7 @@ DROP TABLE IF EXISTS `deliveries`;
 CREATE TABLE `deliveries` (
   `grn` int NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `suplier_id` varchar(45) NOT NULL,
-  `grade_id` varchar(45) NOT NULL,
-  `qty` varchar(45) NOT NULL,
-  `store_id` varchar(45) NOT NULL,
-  `mc` decimal(10,2) NOT NULL,
-  `bags` int NOT NULL,
-  `staff_id` int DEFAULT NULL,
+  `client_id` varchar(45) NOT NULL,
   `quality_remarks` varchar(100) DEFAULT NULL,
   `delivery_person` varchar(50) DEFAULT NULL,
   `truck_no` varchar(10) DEFAULT NULL,
@@ -137,6 +162,7 @@ CREATE TABLE `deliveries` (
   `time_prepared` datetime DEFAULT NULL,
   `approved_by` int DEFAULT NULL COMMENT 'Staff Id who approved',
   `time_approved` datetime DEFAULT NULL,
+  `reference` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`grn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Deliveries by suppliers';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -208,7 +234,6 @@ DROP TABLE IF EXISTS `inventory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventory` (
-  `id` int NOT NULL AUTO_INCREMENT,
   `transaction` varchar(45) NOT NULL,
   `transaction_id` int NOT NULL,
   `trans_date` date NOT NULL,
@@ -216,10 +241,13 @@ CREATE TABLE `inventory` (
   `item_no` int NOT NULL,
   `grade_id` varchar(15) NOT NULL,
   `store_id` varchar(45) NOT NULL,
-  `qty_in` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `qty_out` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `price_ugx` decimal(10,2) DEFAULT '0.00',
-  PRIMARY KEY (`id`)
+  `qty_in` decimal(10,2) DEFAULT '0.00',
+  `qty_out` decimal(10,2) DEFAULT '0.00',
+  `currency_id` varchar(15) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT '0.00',
+  `exch_rate` decimal(10,4) DEFAULT NULL,
+  `moisture` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`transaction`,`transaction_id`,`item_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='For storing inventory transactions ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -257,6 +285,35 @@ LOCK TABLES `parishes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sales`
+--
+
+DROP TABLE IF EXISTS `sales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sales` (
+  `sale_no` int NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `client_id` varchar(45) NOT NULL,
+  `prepared_by` int DEFAULT NULL COMMENT 'Staff Id who prepared',
+  `time_prepared` datetime DEFAULT NULL,
+  `approved_by` int DEFAULT NULL COMMENT 'Staff Id who approved',
+  `time_approved` datetime DEFAULT NULL,
+  `reference` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`sale_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Sales to buyers';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales`
+--
+
+LOCK TABLES `sales` WRITE;
+/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stores`
 --
 
@@ -282,33 +339,60 @@ LOCK TABLES `stores` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `transaction_types`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
+DROP TABLE IF EXISTS `transaction_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliers` (
-  `supplier_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `contact_person` varchar(45) NOT NULL,
-  `parish_id` int DEFAULT NULL,
-  `telephone_1` varchar(17) DEFAULT NULL,
-  `telephone_2` varchar(17) DEFAULT NULL,
-  `email_1` varchar(100) DEFAULT NULL,
-  `email_2` varchar(100) DEFAULT NULL,
-  `category_id` int DEFAULT NULL,
-  PRIMARY KEY (`supplier_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Suppliers who supply coffee. Can be registered as groups, associations, coops etc';
+CREATE TABLE `transaction_types` (
+  `transaction_type_id` int NOT NULL AUTO_INCREMENT,
+  `transaction_name` varchar(45) NOT NULL,
+  `transaction_code` varchar(2) NOT NULL,
+  `comment` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`transaction_type_id`),
+  UNIQUE KEY `transaction_name_UNIQUE` (`transaction_name`),
+  UNIQUE KEY `transaction_code_UNIQUE` (`transaction_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Categories of transactions such as sales, purchases, returns stc';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `transaction_types`
 --
 
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+LOCK TABLES `transaction_types` WRITE;
+/*!40000 ALTER TABLE `transaction_types` DISABLE KEYS */;
+INSERT INTO `transaction_types` VALUES (1,'Purchases','PI',NULL),(2,'Sales','SI',NULL);
+/*!40000 ALTER TABLE `transaction_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `valuations`
+--
+
+DROP TABLE IF EXISTS `valuations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `valuations` (
+  `valuation_id` int NOT NULL AUTO_INCREMENT,
+  `valuation_date` date NOT NULL,
+  `client_id` int NOT NULL,
+  `grn` varchar(45) DEFAULT NULL,
+  `prepared_by` int DEFAULT NULL,
+  `time_prepared` datetime DEFAULT NULL,
+  `approved_by` int DEFAULT NULL,
+  `time_approved` datetime DEFAULT NULL,
+  PRIMARY KEY (`valuation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Final valuations ';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `valuations`
+--
+
+LOCK TABLES `valuations` WRITE;
+/*!40000 ALTER TABLE `valuations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `valuations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -320,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-22  1:14:04
+-- Dump completed on 2024-07-22 23:23:02
