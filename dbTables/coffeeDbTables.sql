@@ -55,6 +55,7 @@ DROP TABLE IF EXISTS `coffee_category`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `coffee_category` (
   `category_id` int NOT NULL AUTO_INCREMENT,
+  `fpo` int NOT NULL COMMENT 'Farmer Producer Organisation',
   `category_name` varchar(45) NOT NULL,
   `type_id` int NOT NULL COMMENT 'Can be Robusta or Arabica',
   PRIMARY KEY (`category_id`)
@@ -81,7 +82,7 @@ CREATE TABLE `coffee_types` (
   `type_id` int NOT NULL AUTO_INCREMENT,
   `type_name` varchar(45) NOT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +91,7 @@ CREATE TABLE `coffee_types` (
 
 LOCK TABLES `coffee_types` WRITE;
 /*!40000 ALTER TABLE `coffee_types` DISABLE KEYS */;
+INSERT INTO `coffee_types` VALUES (1,'Robusta'),(2,'Arabica'),(3,'None');
 /*!40000 ALTER TABLE `coffee_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +204,30 @@ INSERT INTO `districts` VALUES (000,'None','None'),(001,'NORTH','Abim'),(002,'NO
 UNLOCK TABLES;
 
 --
+-- Table structure for table `grade_groups`
+--
+
+DROP TABLE IF EXISTS `grade_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `grade_groups` (
+  `group_id` int NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Grade groups such as high grades, low grades, undergrades, wastes';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `grade_groups`
+--
+
+LOCK TABLES `grade_groups` WRITE;
+/*!40000 ALTER TABLE `grade_groups` DISABLE KEYS */;
+INSERT INTO `grade_groups` VALUES (1,'High Grades'),(2,'Low Grades'),(3,'Undergrades'),(4,'Wastes & Losses');
+/*!40000 ALTER TABLE `grade_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `grades`
 --
 
@@ -211,6 +237,7 @@ DROP TABLE IF EXISTS `grades`;
 CREATE TABLE `grades` (
   `grade_id` int NOT NULL AUTO_INCREMENT,
   `grade_name` varchar(50) NOT NULL,
+  `grade_code` varchar(7) DEFAULT NULL COMMENT 'Grade Code',
   `category_id` int NOT NULL,
   `unit` varchar(10) DEFAULT 'Kg',
   PRIMARY KEY (`grade_id`)
@@ -404,4 +431,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-22 23:23:02
+-- Dump completed on 2024-07-24 23:36:16
