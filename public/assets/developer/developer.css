@@ -1,0 +1,104 @@
+  /* Reset default margin and padding */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* margin:5px; */
+  }
+
+  /* Navbar styles */
+  .navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar .brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .navbar nav ul {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .navbar nav ul li {
+    margin-right: 20px;
+  }
+
+  .navbar nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Container styles */
+  .container2 {
+    display: flex;
+    height: 100vh;
+  }
+
+  /*Media queries */
+@media(max-width: 768px) {
+  .sidebar {
+  left: 0;
+  }
+  .content {
+  margin-left: 0;
+  }
+  }
+
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    padding-top: 60px;
+  }
+
+  .sidebar ul {
+    list-style-type: none;
+  }
+
+  .sidebar ul li {
+    padding: 10px;
+  }
+
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .toggle-btn {
+    position: absolute;
+    left: 230px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+  }
+
+  /* Content styles */
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+
+  /* Footer styles */
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
