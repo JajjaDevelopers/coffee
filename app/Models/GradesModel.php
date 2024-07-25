@@ -31,6 +31,32 @@ class GradesModel extends Model
         return $query->getResultArray();
     }
 
+    // Add categories
+    public function addCategory($data)
+    {
+        $builder = $this->db->table("coffee_category");
+        return $builder->insert($data);
+    }
+
+    // Quantity according to category
+    public function categoryQtyBalance($fpo, $category = "all")
+    {
+        if ($category == "all") {
+            $categoryFilter = "";
+        } else {
+            $categoryFilter = "AND coffee_category.category_id='{$category}'";
+        }
+
+        $query = $this->db->query("SELECT category_id, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            WHERE coffee_category.fpo = '{$fpo}' {$categoryFilter}
+            GROUP BY category_id");
+
+        return $query->getResultArray();
+    }
+
 
 
     // 

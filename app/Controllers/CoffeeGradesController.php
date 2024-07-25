@@ -31,8 +31,29 @@ class CoffeeGradesController extends BaseController
     // Get coffee grades
     public function getCoffeeCategories()
     {
-        $data["categories"] = $this->gradesModel->getCoffeeCategories($this->fpo);
+        $categories = $this->gradesModel->getCoffeeCategories($this->fpo);
+        for ($x = 0; $x < count($categories); $x++) {
+            $categories[$x]["qty"] = $this->gradesModel->categoryQtyBalance($this->fpo, $categories[$x]["category_id"])[0]["balance"];
+        }
+        $data["categories"] = $categories;
         return $this->response->setJSON($data);
     }
-    // 
+    // Add categories
+    public function addCategory()
+    {
+        $coffeeType = $this->request->getPost("coffeeType");
+        $categoryname = $this->request->getPost("categoryName");
+        $data = [
+            "fpo" => $this->fpo,
+            "category_name" => $categoryname,
+            "type_id" => $coffeeType
+        ];
+        $addCategory = $this->gradesModel->addCategory($data);
+        if ($addCategory) {
+            $sms["sms"] = "success";
+        } else {
+            $sms["sms"] = "fail";
+        }
+        return $this->response->setJSON($sms);
+    }
 }

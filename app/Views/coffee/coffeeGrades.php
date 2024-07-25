@@ -65,7 +65,7 @@
               </div>
               <br>
               <div class="row">
-                <table class='table  table-striped' id="gradeCategoriesTable" style="width:100%;">
+                <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
                   <thead style='color:white'>
                     <tr class='text-white'>
                       <th>Category Name</th>

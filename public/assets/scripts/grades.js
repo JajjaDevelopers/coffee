@@ -12,11 +12,14 @@ $(document).ready(function () {
       columns: [
         { data: "category_name" },
         { data: "type_name" },
-        { data: "type_name" },
+        { data: "qty" },
         { data: "type_name" },
       ],
     });
   }
+  getGradeCategories(); //Get Categories on load
+
+  // Adding Grade categories
   $(document).on("click", "#addGradeCategoryBtn", function (e) {
     e.preventDefault();
     $.ajax({
@@ -35,7 +38,25 @@ $(document).ready(function () {
     });
     $("#addCategoryModal").modal("show");
   });
-  getGradeCategories();
+
+  //   Save Category
+  $(document).on("click", "#saveCategoryBtn", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/coffee/addCategory",
+      data: {
+        coffeeType: $("#addCatCoffeeType").val(),
+        categoryName: $("#addCatName").val(),
+      },
+      dataType: "json",
+      success: function (response) {
+        var sms = response.sms;
+        $("#gradeCategoriesTable").DataTable().ajax.reload();
+        $("#addCategoryModal").modal("hide");
+      },
+    });
+  });
 
   //
 });
