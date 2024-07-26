@@ -57,6 +57,17 @@ class GradesModel extends Model
         return $query->getResultArray();
     }
 
+    // Get Grades
+    public function getGrades($fpo)
+    {
+        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
+            FROM grades
+            LEFT JOIN coffee_category USING (category_id)
+            LEFT JOIN grade_groups USING (group_id)
+            WHERE coffee_category.fpo = 1");
+        return $query->getResultArray();
+    }
+
 
 
     // 

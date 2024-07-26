@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  //class subjects
+  //Grade categories
   function getGradeCategories() {
     $("#gradeCategoriesTable").DataTable({
       destroy: true,
@@ -57,6 +57,28 @@ $(document).ready(function () {
       },
     });
   });
+
+  //Grades
+  function getGrade() {
+    $("#gradesListTable").DataTable({
+      destroy: true,
+      ajax: {
+        method: "post",
+        url: "/grades/gradesList",
+        data: {},
+        dataSrc: "gradesList",
+      },
+      columns: [
+        { data: "grade_code" },
+        { data: "grade_name" },
+        { data: "category_name" },
+        { data: "group_name" },
+        { data: "group_name" },
+        { data: "unit" },
+      ],
+    });
+  }
+  getGrade();
 
   //
 });

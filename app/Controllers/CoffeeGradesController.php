@@ -56,4 +56,13 @@ class CoffeeGradesController extends BaseController
         }
         return $this->response->setJSON($sms);
     }
+
+    // Get grades list
+    public function getGrades()
+    {
+        $grades = $this->gradesModel->getGrades($this->fpo);
+    }
+
+
+    // 
 }
