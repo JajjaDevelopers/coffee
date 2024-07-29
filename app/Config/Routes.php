@@ -8,17 +8,20 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
- //login
-$routes->get('/',[AuthController::class,'index']);
-$routes->get('/logout',[AuthController::class,'logout']);
-$routes->post('login',[AuthController::class,'login']);
+//login
+$routes->get('/', [AuthController::class, 'index']);
+$routes->get('/logout', [AuthController::class, 'logout']);
+$routes->post('login', [AuthController::class, 'login']);
 // Grade Categories
 // $routes->get('/', 'DashboardController::index');
 
-$routes->get('/home',[DashboardController::class,'index']);
+$routes->get('/home', [DashboardController::class, 'index']);
 $routes->get('/admin/coffee-grades', 'CoffeeGradesController::coffeeGrades');
 $routes->post('/grades/categories', 'CoffeeGradesController::getCoffeeCategories');
 $routes->post('/coffee/types', 'CoffeeGradesController::getCoffeeTypes');
 $routes->post('/coffee/addCategory', 'CoffeeGradesController::addCategory');
 // Grades
 $routes->post('/grades/gradesList', 'CoffeeGradesController::getGrades');
+$routes->post('/grades/addGrade', 'CoffeeGradesController::addGrade');
+// Groups
+$routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');

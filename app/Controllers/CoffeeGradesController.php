@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Controllers\Traits\CommonData;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
 
+
 class CoffeeGradesController extends BaseController
 {
+    use CommonData;
     protected $fpo;
     public $gradesModel;
     public function __construct()
@@ -17,9 +20,11 @@ class CoffeeGradesController extends BaseController
     }
     public function coffeeGrades()
     {
-        $data['pageTitle'] = "Coffee Grades";
-        $data['coffeeTypes'] = $this->gradesModel->getCoffeeTypes();
-        return view('coffee/coffeeGrades', $data);
+        // $data['pageTitle'] = "Coffee Grades";
+        $page_title = "Coffee Grades";
+        $commonData = $this->commonData();
+        $coffeeTypes = $this->gradesModel->getCoffeeTypes();
+        return view('coffee/coffeeGrades', compact('page_title', 'commonData', 'coffeeTypes'));
     }
     // Get Coffee Types
     public function getCoffeeTypes()
@@ -67,6 +72,32 @@ class CoffeeGradesController extends BaseController
             $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
         }
         $data["gradesList"] = $grades;
+        return $this->response->setJSON($data);
+    }
+
+    // Get coffee groups
+    public function gradeGroupsList()
+    {
+        $data["groupsList"] = $this->gradesModel->gradeGroupsList($this->fpo);
+        return $this->response->setJSON($data);
+    }
+
+    // Add grade
+    public function addGrade()
+    {
+        $grdData = [
+            "grade_code" => $this->request->getPost("grdCode"),
+            "grade_name" => $this->request->getPost("grdName"),
+            "category_id" => $this->request->getPost("grdCatId"),
+            "unit" => $this->request->getPost("grdUnit"),
+            "group_id" => $this->request->getPost("grdGroup")
+        ];
+        $addGrade = $this->gradesModel->addGrade($grdData);
+        if ($addGrade) {
+            $data["sms"] = "success";
+        } else {
+            $data["sms"] = "fail";
+        }
         return $this->response->setJSON($data);
     }
 

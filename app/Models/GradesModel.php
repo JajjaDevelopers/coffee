@@ -88,6 +88,22 @@ class GradesModel extends Model
         return $query->getResultArray();
     }
 
+    // Get coffee groups
+    public function gradeGroupsList($fpo)
+    {
+        $builder = $this->db->table("grade_groups");
+        $builder->select();
+        $builder->where("fpo", $fpo);
+        return $builder->get()->getResultArray();
+    }
+
+    // Add grade
+    public function addGrade($data)
+    {
+        $builder = $this->db->table("grades");
+        return $builder->insert($data);
+    }
+
 
 
     // 

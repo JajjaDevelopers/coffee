@@ -44,7 +44,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" id='closeCatModal'>Close</button>
-          <button id='saveCategoryBtn' type="button" class="btn btn-success addBtn">Save</button>
+          <button id='saveGradeBtn' type="button" class="btn btn-success addBtn">Save</button>
         </div>
       </div>
 

@@ -1,4 +1,22 @@
 $(document).ready(function () {
+  // Grade groups options
+  function gradeGroupsOptions(selectId) {
+    $.ajax({
+      type: "post",
+      url: "/grades/groupsList",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        const catList = response.groupsList;
+        var options = "<option value='0'>Groups</option>";
+        for (var x = 0; x < catList.length; x++) {
+          options += `<option value="${catList[x].group_id}">${catList[x].group_name}</option>`;
+        }
+        $(`#${selectId}`).html(options);
+      },
+    });
+  }
+
   // category options
   function gradeCategoryOptions(selectId) {
     $.ajax({
@@ -87,6 +105,7 @@ $(document).ready(function () {
   $(document).on("click", "#addGradeBtn", function (e) {
     e.preventDefault();
     gradeCategoryOptions("addGradeCategory");
+    gradeGroupsOptions("addGradeGroup");
     $("#addGradeModal").modal("show");
   });
   function getGrade() {
@@ -115,6 +134,28 @@ $(document).ready(function () {
     });
   }
   getGrade();
+
+  // Save Grade
+  $(document).on("click", "#saveGradeBtn", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/grades/addGrade",
+      data: {
+        grdCode: $("#addGradeCode").val(),
+        grdName: $("#addGradeName").val(),
+        grdCatId: $("#addGradeCategory").val(),
+        grdUnit: $("#addGradeUnit").val(),
+        grdGroup: $("#addGradeGroup").val(),
+      },
+      dataType: "json",
+      success: function (response) {
+        var sms = response.sms;
+        $("#gradesListTable").DataTable().ajax.reload();
+        $("#addGradeModal").modal("hide");
+      },
+    });
+  });
 
   //
 });

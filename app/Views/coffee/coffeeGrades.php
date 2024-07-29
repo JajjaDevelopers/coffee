@@ -1,4 +1,7 @@
 <?= $this->extend('partials/main') ?>
+<?= $this->section('title') ?>
+<?= $page_title ?>
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/grades/addCategoryModal.php'); ?>
 <?= $this->include('/includes/grades/addGradeModal.php'); ?>
