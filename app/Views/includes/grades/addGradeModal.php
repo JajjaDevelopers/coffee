@@ -4,24 +4,40 @@
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Add Coffee Grade Category</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Add Coffee Grade</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
           <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
             <div class="row">
-              <div class="col-12">
-                <label for="addCatCoffeeType" class="form-label">Coffee Type</label>
-                <select class="form-control form-control-sm form-select" id='addCatCoffeeType'>
-                </select>
+              <div class="col-sm-12 col-md-9">
+                <label for="addGradeName" class="form-label">Grade Name</label>
+                <input class="form-control form-control-sm" id='addGradeName'>
+              </div>
+              <div class="col-sm-12 col-md-3">
+                <label for="addGradeCode" class="form-label">Code</label>
+                <input class="form-control form-control-sm" id='addGradeCode' placeholder="Grade Code">
               </div>
             </div>
             <br>
             <div class="row">
-              <div class="col-12">
-                <label for="addCatName" class="form-label">Category Name</label>
-                <input class="form-control form-control-sm" id='addCatName'>
+              <div class="col-sm-12 col-md-9">
+                <label for="addGradeCategory" class="form-label">Category</label>
+                <select class="form-control form-control-sm form-select" id='addGradeCategory'>
+                </select>
+              </div>
+              <div class="col-sm-12 col-md-3">
+                <label for="addGradeUnit" class="form-label">Unit</label>
+                <input class="form-control form-control-sm" id='addGradeUnit' value="Kg">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-md-9">
+                <label for="addGradeGroup" class="form-label">Group</label>
+                <select class="form-control form-control-sm form-select" id='addGradeGroup'>
+                </select>
               </div>
             </div>
           </form>

@@ -1,4 +1,22 @@
 $(document).ready(function () {
+  // category options
+  function gradeCategoryOptions(selectId) {
+    $.ajax({
+      type: "post",
+      url: "/grades/categories",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        const catList = response.categories;
+        var options = "<option value='0'>Categories</option>";
+        for (var x = 0; x < catList.length; x++) {
+          options += `<option value="${catList[x].category_id}">${catList[x].category_name}</option>`;
+        }
+        $(`#${selectId}`).html(options);
+      },
+    });
+  }
+
   //Grade categories
   function getGradeCategories() {
     $("#gradeCategoriesTable").DataTable({
@@ -13,7 +31,13 @@ $(document).ready(function () {
         { data: "category_name" },
         { data: "type_name" },
         { data: "qty" },
-        { data: "type_name" },
+        {
+          render: function (data, type, row, meta) {
+            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-md btn-info">
+                            <i class="la la-eye"></i>
+                        </button>`;
+          },
+        },
       ],
     });
   }
@@ -59,6 +83,12 @@ $(document).ready(function () {
   });
 
   //Grades
+  // Adding Grade
+  $(document).on("click", "#addGradeBtn", function (e) {
+    e.preventDefault();
+    gradeCategoryOptions("addGradeCategory");
+    $("#addGradeModal").modal("show");
+  });
   function getGrade() {
     $("#gradesListTable").DataTable({
       destroy: true,
@@ -71,10 +101,16 @@ $(document).ready(function () {
       columns: [
         { data: "grade_code" },
         { data: "grade_name" },
-        { data: "category_name" },
         { data: "group_name" },
         { data: "group_name" },
         { data: "unit" },
+        {
+          render: function (data, type, row, meta) {
+            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-sm btn-info">
+                        <i class="la la-eye"></i>
+                    </button>`;
+          },
+        },
       ],
     });
   }

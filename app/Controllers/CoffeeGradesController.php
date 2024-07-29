@@ -61,6 +61,13 @@ class CoffeeGradesController extends BaseController
     public function getGrades()
     {
         $grades = $this->gradesModel->getGrades($this->fpo);
+        for ($x = 0; $x < count($grades); $x++) {
+            // fetch grade balances
+            $gradeId = $grades[$x]["grade_id"];
+            $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
+        }
+        $data["gradesList"] = $grades;
+        return $this->response->setJSON($data);
     }
 
 

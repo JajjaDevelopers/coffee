@@ -35,32 +35,34 @@
               <h5><strong>Coffee Grades</strong></h5>
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
-                  <button class="btn btn-sm" style='background-color:green;color:white' id='addAccountBtn'>
-                    <strong>+ Add Grade </strong>
+                  <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeBtn'>
+                    <strong>+ New Grade </strong>
                   </button>
                 </div>
               </div>
               <br>
-              <table id="gradesListTable" class='table table-sm table-hover'>
-                <thead>
-                  <tr>
-                    <th>Code</th>
-                    <th>Grade Name</th>
-                    <th>Category</th>
-                    <th>Group</th>
-                    <th>Available</th>
-                    <th>Unit</th>
-                  </tr>
-                </thead>
+              <div class="dataTables_wrapper no-footer">
+                <table id="gradesListTable" class='table table-sm table-hover'>
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Grade Name</th>
+                      <th>Group</th>
+                      <th>Available</th>
+                      <th>Unit</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
 
-              </table>
+                </table>
+              </div>
             </div>
             <!-- recent receipts tab pane -->
             <div class="container tab-pane fade border p-3" id="categoriesTabPane" role="tabpane" aria-labelledby="categoriesTab">
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
-                    <strong>+ Add Category</strong>
+                    <strong>+ New Category</strong>
                   </button>
                 </div>
               </div>
@@ -85,7 +87,7 @@
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
-                    <strong>+ Add Category</strong>
+                    <strong>+ New Category</strong>
                   </button>
                 </div>
               </div>
