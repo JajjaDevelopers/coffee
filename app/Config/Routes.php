@@ -1,12 +1,21 @@
 <?php
 
+use App\Controllers\AuthController;
+use App\Controllers\DashboardController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
  * @var RouteCollection $routes
  */
+
+ //login
+$routes->get('/',[AuthController::class,'index']);
+$routes->get('/logout',[AuthController::class,'logout']);
+$routes->post('login',[AuthController::class,'login']);
 // Grade Categories
-$routes->get('/', 'DashboardController::index');
+// $routes->get('/', 'DashboardController::index');
+
+$routes->get('/home',[DashboardController::class,'index']);
 $routes->get('/admin/coffee-grades', 'CoffeeGradesController::coffeeGrades');
 $routes->post('/grades/categories', 'CoffeeGradesController::getCoffeeCategories');
 $routes->post('/coffee/types', 'CoffeeGradesController::getCoffeeTypes');

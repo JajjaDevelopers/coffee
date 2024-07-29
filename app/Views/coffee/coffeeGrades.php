@@ -1,4 +1,4 @@
-<?= $this->extend('dashboard/main') ?>
+<?= $this->extend('partials/main') ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/grades/addCategoryModal.php'); ?>
 <?= $this->include('/includes/grades/addGradeModal.php'); ?>
