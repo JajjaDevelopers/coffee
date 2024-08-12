@@ -42,7 +42,7 @@
   <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
   <meta name="author" content="ThemePixels">
 
-  <title><?=$this->renderSection('title')?></title>
+  <title><?= $this->renderSection('title') ?></title>
 
   <!-- vendor css -->
   <link href="<?= base_url('dashboard/lib/fontawesome-free/css/all.min.css') ?>" rel="stylesheet">
@@ -62,7 +62,7 @@
   <div class="az-sidebar">
     <div class="az-sidebar-header">
       <a href="index.html">
-        <h3 class="text-success"><strong>Nucafe Grading Limited</strong></h3>
+        <h3 class="text-success"><strong>LOGO</strong></h3>
       </a>
     </div><!-- az-sidebar-header -->
     <!-- <div class="az-sidebar-loggedin">
@@ -83,87 +83,17 @@
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i>Apps &amp; Pages</a>
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Sales</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item">
-              <a href="app-mail.html" class="nav-sub-link">Mailbox</a>
-            </li>
-            <li class="nav-sub-item">
-              <a href="app-chat.html" class="nav-sub-link">Chat</a>
-            </li>
-            <li class="nav-sub-item">
-              <a href="app-calendar.html" class="nav-sub-link">Calendar</a>
-            </li>
-            <li class="nav-sub-item">
-              <a href="app-contacts.html" class="nav-sub-link">Contacts</a>
-            </li>
-            <li class="nav-sub-item"><a href="page-profile.html" class="nav-sub-link">Profile</a></li>
-            <li class="nav-sub-item"><a href="page-invoice.html" class="nav-sub-link">Invoice</a></li>
-            <li class="nav-sub-item"><a href="page-signin.html" class="nav-sub-link">Sign In</a></li>
-            <li class="nav-sub-item"><a href="page-signup.html" class="nav-sub-link">Sign Up</a></li>
-            <li class="nav-sub-item"><a href="page-404.html" class="nav-sub-link">Page 404</a></li>
+            <li class="nav-sub-item"><a href="/sales/sales-reports" class="nav-sub-link">Sales Reports</a></li>
+            <li class="nav-sub-item"><a href="/sales/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i>UI Elements</a>
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Supplies</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="elem-accordion.html" class="nav-sub-link">Accordion</a></li>
-            <li class="nav-sub-item"><a href="elem-alerts.html" class="nav-sub-link">Alerts</a></li>
-            <li class="nav-sub-item"><a href="elem-avatar.html" class="nav-sub-link">Avatar</a></li>
-            <li class="nav-sub-item"><a href="elem-badge.html" class="nav-sub-link">Badge</a></li>
-            <li class="nav-sub-item"><a href="elem-breadcrumbs.html" class="nav-sub-link">Breadcrumbs</a></li>
-            <li class="nav-sub-item"><a href="elem-buttons.html" class="nav-sub-link">Buttons</a></li>
-            <li class="nav-sub-item"><a href="elem-cards.html" class="nav-sub-link">Cards</a></li>
-            <li class="nav-sub-item"><a href="elem-carousel.html" class="nav-sub-link">Carousel</a></li>
-            <li class="nav-sub-item"><a href="elem-collapse.html" class="nav-sub-link">Collapse</a></li>
-            <li class="nav-sub-item"><a href="elem-dropdown.html" class="nav-sub-link">Dropdown</a></li>
-            <li class="nav-sub-item"><a href="elem-icons.html" class="nav-sub-link">Icons</a></li>
-            <li class="nav-sub-item"><a href="elem-images.html" class="nav-sub-link">Images</a></li>
-            <li class="nav-sub-item"><a href="elem-list-group.html" class="nav-sub-link">List Group</a></li>
-            <li class="nav-sub-item"><a href="elem-media-object.html" class="nav-sub-link">Media Object</a></li>
-            <li class="nav-sub-item"><a href="elem-modals.html" class="nav-sub-link">Modals</a></li>
-            <li class="nav-sub-item"><a href="elem-navigation.html" class="nav-sub-link">Navigation</a></li>
-            <li class="nav-sub-item"><a href="elem-pagination.html" class="nav-sub-link">Pagination</a></li>
-            <li class="nav-sub-item"><a href="elem-popover.html" class="nav-sub-link">Popover</a></li>
-            <li class="nav-sub-item"><a href="elem-progress.html" class="nav-sub-link">Progress</a></li>
-            <li class="nav-sub-item"><a href="elem-spinners.html" class="nav-sub-link">Spinners</a></li>
-            <li class="nav-sub-item"><a href="elem-toast.html" class="nav-sub-link">Toast</a></li>
-            <li class="nav-sub-item"><a href="elem-tooltip.html" class="nav-sub-link">Tooltip</a></li>
-          </ul>
-        </li><!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Forms</a>
-          <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="form-elements.html" class="nav-sub-link">Form Elements</a></li>
-            <li class="nav-sub-item"><a href="form-layouts.html" class="nav-sub-link">Form Layouts</a></li>
-            <li class="nav-sub-item"><a href="form-validation.html" class="nav-sub-link">Form Validation</a></li>
-            <li class="nav-sub-item"><a href="form-wizards.html" class="nav-sub-link">Form Wizards</a></li>
-            <li class="nav-sub-item"><a href="form-editor.html" class="nav-sub-link">WYSIWYG Editor</a></li>
-          </ul>
-        </li><!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Charts</a>
-          <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="chart-morris.html" class="nav-sub-link">Morris Charts</a></li>
-            <li class="nav-sub-item"><a href="chart-flot.html" class="nav-sub-link">Flot Charts</a></li>
-            <li class="nav-sub-item"><a href="chart-chartjs.html" class="nav-sub-link">ChartJS</a></li>
-            <li class="nav-sub-item"><a href="chart-sparkline.html" class="nav-sub-link">Sparkline</a></li>
-            <li class="nav-sub-item"><a href="chart-peity.html" class="nav-sub-link">Peity</a></li>
-          </ul>
-        </li><!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-map"></i>Maps</a>
-          <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="map-google.html" class="nav-sub-link">Google Maps</a></li>
-            <li class="nav-sub-item"><a href="map-leaflet.html" class="nav-sub-link">Leaflet</a></li>
-            <li class="nav-sub-item"><a href="map-vector.html" class="nav-sub-link">Vector Maps</a></li>
-          </ul>
-        </li><!-- nav-item -->
-        <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-tabs-outline"></i>Tables</a>
-          <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="table-basic.html" class="nav-sub-link">Basic Tables</a></li>
-            <li class="nav-sub-item"><a href="table-data.html" class="nav-sub-link">Data Tables</a></li>
+            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Deliveries</a></li>
+            <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
@@ -242,7 +172,7 @@
                   <img src="https://via.placeholder.com/500" alt="">
                 </div><!-- az-img-user -->
                 <h6>''</h6>
-                <span><?=$commonData['user']['name']?></span>
+                <span><?= $commonData['user']['name'] ?></span>
               </div><!-- az-header-profile -->
 
               <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
@@ -284,37 +214,37 @@
 
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script>
-     $(function () {
-     'use strict'
+    $(function() {
+      'use strict'
 
-     $('.az-sidebar .with-sub').on('click', function (e) {
-     e.preventDefault();
-     $(this).parent().toggleClass('show');
-     $(this).parent().siblings().removeClass('show');
-     })
+      $('.az-sidebar .with-sub').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent().toggleClass('show');
+        $(this).parent().siblings().removeClass('show');
+      })
 
-     $(document).on('click touchstart', function (e) {
-     e.stopPropagation();
+      $(document).on('click touchstart', function(e) {
+        e.stopPropagation();
 
-     // closing of sidebar menu when clicking outside of it
-     if (!$(e.target).closest('.az-header-menu-icon').length) {
-     var sidebarTarg = $(e.target).closest('.az-sidebar').length;
-     if (!sidebarTarg) {
-     $('body').removeClass('az-sidebar-show');
-     }
-     }
-     });
+        // closing of sidebar menu when clicking outside of it
+        if (!$(e.target).closest('.az-header-menu-icon').length) {
+          var sidebarTarg = $(e.target).closest('.az-sidebar').length;
+          if (!sidebarTarg) {
+            $('body').removeClass('az-sidebar-show');
+          }
+        }
+      });
 
 
-     $('#azSidebarToggle').on('click', function (e) {
-     e.preventDefault();
+      $('#azSidebarToggle').on('click', function(e) {
+        e.preventDefault();
 
-     if (window.matchMedia('(min-width: 992px)').matches) {
-     $('body').toggleClass('az-sidebar-hide');
-     } else {
-     $('body').toggleClass('az-sidebar-show');
-     }
-     })
+        if (window.matchMedia('(min-width: 992px)').matches) {
+          $('body').toggleClass('az-sidebar-hide');
+        } else {
+          $('body').toggleClass('az-sidebar-show');
+        }
+      })
     })
   </script>
   <!--placeholder for our extra scripts-->

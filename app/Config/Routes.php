@@ -25,3 +25,10 @@ $routes->post('/grades/gradesList', 'CoffeeGradesController::getGrades');
 $routes->post('/grades/addGrade', 'CoffeeGradesController::addGrade');
 // Groups
 $routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');
+
+// Suppliers and Purchases
+$routes->get('/suppliers', 'SuppliersController::index');
+$routes->post('/suppliers/list', 'SuppliersController::suppliersList');
+$routes->get('/deliveries', 'SuppliersController::deliveriesView');
+$routes->post('/suppliers/deliveries', 'SuppliersController::deliveries');
+$routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
