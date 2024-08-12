@@ -17,25 +17,52 @@ $(document).ready(function () {
   //   });
   // }
 
-  // category options
-  // function gradeCategoryOptions(selectId) {
-  //   $.ajax({
-  //     type: "post",
-  //     url: "/grades/categories",
-  //     data: "data",
-  //     dataType: "json",
-  //     success: function (response) {
-  //       const catList = response.categories;
-  //       var options = "<option value='0'>Categories</option>";
-  //       for (var x = 0; x < catList.length; x++) {
-  //         options += `<option value="${catList[x].category_id}">${catList[x].category_name}</option>`;
-  //       }
-  //       $(`#${selectId}`).html(options);
-  //     },
-  //   });
-  // }
+  // New delivery
+  $(document).on("click", ".addDeliveryBtn", function (e) {
+    $("#newDeliveryModal").modal("show");
+    return;
+    $.ajax({
+      type: "post",
+      url: "/grades/categories",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        const catList = response.categories;
+        var options = "<option value='0'>Categories</option>";
+        for (var x = 0; x < catList.length; x++) {
+          options += `<option value="${catList[x].category_id}">${catList[x].category_name}</option>`;
+        }
+        $(`#${selectId}`).html(options);
+      },
+    });
+  });
 
-  //Grade categories
+  // Add new valuation rows
+  var numberOfRows = 1;
+  $(document).on("click", "#valRowAddBtn", function (e) {
+    e.preventDefault();
+    numberOfRows += 1; //Increment by 1
+    var rowStr = `<tr rowNo="${numberOfRows}" id="valRow${numberOfRows}">
+                    <td><input rowNo="${numberOfRows}" id="valCode${numberOfRows}" class="form-control form-control-xs" readonly></td>
+                    <td><input rowNo="${numberOfRows}" id="valGrade${numberOfRows}" class="form-control form-control-xs"></td>
+                    <td><input rowNo="${numberOfRows}" id="valUnit${numberOfRows}" class="form-control form-control-xs text-center" readonly></td>
+                    <td><input rowNo="${numberOfRows}" id="valQty${numberOfRows}" class="form-control form-control-xs text-end"></td>
+                    <td><input rowNo="${numberOfRows}" id="valPx${numberOfRows}" class="form-control form-control-xs text-end"></td>
+                    <td><input rowNo="${numberOfRows}" id="valAmt${numberOfRows}" class="form-control form-control-xs text-end" readonly></td>
+                    <td>
+                      <button rowNo="${numberOfRows}" type="button" id="valAmt${numberOfRows}" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
+                    </td>
+                  </tr>`;
+    $("#valTBody").append(rowStr);
+  });
+
+  // Remove valuation rows
+  $(document).on("click", ".rowRemoveBtn", function (e) {
+    var selectedRowNo = Number($(this).attr("rowNo"));
+    $(`#valRow${selectedRowNo}`).remove();
+  });
+
+  //Get deliveries
   function deliveries() {
     $("#deliveriesTable").DataTable({
       destroy: true,

@@ -3,7 +3,7 @@
 <?= $page_title ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<?= $this->include('/includes/suppliers/addSupplierModal.php'); ?>
+<?= $this->include('/includes/suppliers/newDeliveryModal.php'); ?>
 <?= $this->include('/includes/generalcss.php'); ?>
 <div class="az-content-body">
   <br>
@@ -31,7 +31,7 @@
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='addSupplierBtn'>
-                    <strong>+ New Delivery </strong>
+                    <strong>+ New Valuation </strong>
                   </button>
                 </div>
               </div>
@@ -43,7 +43,7 @@
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white'>
-                    <strong>+ New Delivery</strong>
+                    <strong>+ New Valuation</strong>
                   </button>
                 </div>
               </div>
