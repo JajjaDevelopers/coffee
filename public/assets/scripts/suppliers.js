@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Grade groups options
+  // Grade groups options.
   // function gradeGroupsOptions(selectId) {
   //   $.ajax({
   //     type: "post",

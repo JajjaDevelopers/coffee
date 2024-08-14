@@ -27,7 +27,7 @@
           </div>
           <div class="row tab-content">
             <!-- collection tab pane -->
-            <div class="card container tab-pane fade border p-3 show active" id="gradesTabPane" role="tabpane" aria-labelledby="gradesTab" style='border-top-style: outset;border-top-width: thick;border-top-color:blue;'>
+            <div class="tab-pane fade border p-3 show active" id="gradesTabPane" role="tabpane" aria-labelledby="gradesTab" style='border-top-style: outset;border-top-width: thick;border-top-color:blue;'>
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='addSupplierBtn'>
@@ -38,8 +38,8 @@
               <h5><strong>Summary of Deliveries</strong></h5>
               <br>
             </div>
-            <!-- recent receipts tab pane -->
-            <div class="container tab-pane fade border p-3" id="categoriesTabPane" role="tabpane" aria-labelledby="categoriesTab">
+            <!-- recent deliveries tab pane -->
+            <div class="tab-pane fade border p-3" id="categoriesTabPane" role="tabpane" aria-labelledby="categoriesTab">
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white'>
