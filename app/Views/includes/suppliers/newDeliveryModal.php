@@ -34,7 +34,10 @@
                 <label for="addSupplierCategory" class="form-label">Supplier:</label>
               </div>
               <div class="col-sm-12 col-md-6">
-                <input class="form-control form-control-sm" id='addSupplierCategory' placeholder="Supplier">
+                <select class="form-select form-control form-control-sm supplierSelect" id='addSupplierCategory' placeholder="Supplier">
+                  <option>Kasaali</option>
+                  <option>Rubanga</option>
+                </select>
               </div>
               <div class="col-sm-4 col-md-1">
                 <label for="addSupplierCategory" class="form-label">GRN:</label>

@@ -212,6 +212,7 @@
   <script src="<?= base_url('dashboard/lib/jqvmap/jquery.vmap.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
 
+
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script>
     $(function() {
