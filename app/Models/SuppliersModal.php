@@ -26,7 +26,7 @@ class SuppliersModal extends Model
     }
 
 
-    // Get grade categories
+    // Get recent deliveries
     public function deliveries($fpo, $fromDate, $toDate, $supplier = "all")
     {
         if ($supplier == "all") {
@@ -45,12 +45,15 @@ class SuppliersModal extends Model
         return $query->getResultArray();
     }
 
-    // Add categories
-    // public function addCategory($data)
-    // {
-    //     $builder = $this->db->table("coffee_category");
-    //     return $builder->insert($data);
-    // }
+    // New delivery valuation
+    public function newDeliveryValuation($data)
+    {
+        $builder = $this->db->table("coffee_category");
+        $status = $builder->insert($data);
+        if ($status) {
+            return $this->db->insertID();
+        }
+    }
 
     // Quantity according to category
     // public function categoryQtyBalance($fpo, $category = "all")

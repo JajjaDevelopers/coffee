@@ -82,18 +82,43 @@ class SuppliersController extends BaseController
         return $this->response->setJSON($sms);
     }
 
-    // Get grades list
-    // public function getGrades()
-    // {
-    //     $grades = $this->gradesModel->getGrades($this->fpo);
-    //     for ($x = 0; $x < count($grades); $x++) {
-    //         // fetch grade balances
-    //         $gradeId = $grades[$x]["grade_id"];
-    //         $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
-    //     }
-    //     $data["gradesList"] = $grades;
-    //     return $this->response->setJSON($data);
-    // }
+    // New delivery valuation
+    public function newDeliveryValuation()
+    {
+        $date = $this->request->getPost("date");
+        $supplier = $this->request->getPost("supplier");
+        $currency = $this->request->getPost("currency");
+        $exch_rate = $this->request->getPost("exch_rate");
+        $mc = $this->request->getPost("mc");
+        $deliverySummaryData = [
+            "fpo" => $this->fpo,
+            "quality_remarks" => $this->request->getPost("quality_remarks"),
+            "delivery_person" => $this->request->getPost("delivery_person"),
+            "truck_no" => $this->request->getPost("truck_no"),
+            "prepared_by" => $this->commonData()["user"]["id"], //request->getPost("prepared_by"),
+            "time_prepared" => $this->request->getPost("time_prepared"),
+            "reference" => $this->request->getPost("reference"),
+        ];
+        // Update delivery valuation summary
+        $summaryGrn = $this->suppliersModel->newDeliveryValuation($deliverySummaryData);
+        // Update the inventory on successful summary confirmation
+        if ($summaryGrn) {
+            $inventoryDetails = [
+                "transaction_type_id" => 1,
+                "transaction_id" => $summaryGrn,
+                "trans_date" => $date,
+                "client_id" => $supplier,
+                "item_no",
+                "grade_id",
+                "store_id",
+                "qty_in",
+                "currency_id" => $currency,
+                "price",
+                "exch_rate" => $exch_rate,
+                "moisture" => $mc,
+            ];
+        }
+    }
 
     // Get coffee groups
     // public function gradeGroupsList()
