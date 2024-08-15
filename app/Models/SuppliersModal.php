@@ -55,24 +55,12 @@ class SuppliersModal extends Model
         }
     }
 
-    // Quantity according to category
-    // public function categoryQtyBalance($fpo, $category = "all")
-    // {
-    //     if ($category == "all") {
-    //         $categoryFilter = "";
-    //     } else {
-    //         $categoryFilter = "AND coffee_category.category_id='{$category}'";
-    //     }
-
-    //     $query = $this->db->query("SELECT category_id, category_name, sum(qty_in) - sum(qty_out) AS balance
-    //         FROM inventory
-    //         RIGHT JOIN grades USING (grade_id)
-    //         RIGHT JOIN coffee_category USING (category_id)
-    //         WHERE coffee_category.fpo = '{$fpo}' {$categoryFilter}
-    //         GROUP BY category_id");
-
-    //     return $query->getResultArray();
-    // }
+    // Inventory update on delivery valuation
+    public function inventoryValuationUpdate($data)
+    {
+        $builder = $this->db->table("inventory");
+        return $builder->insertBatch($data);
+    }
 
     // Get Grades
     // public function getGrades($fpo)

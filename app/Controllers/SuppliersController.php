@@ -90,6 +90,8 @@ class SuppliersController extends BaseController
         $currency = $this->request->getPost("currency");
         $exch_rate = $this->request->getPost("exch_rate");
         $mc = $this->request->getPost("mc");
+        $store = $this->request->getPost("store");
+        $items = $this->request->getPost("items");
         $deliverySummaryData = [
             "fpo" => $this->fpo,
             "quality_remarks" => $this->request->getPost("quality_remarks"),
@@ -103,20 +105,33 @@ class SuppliersController extends BaseController
         $summaryGrn = $this->suppliersModel->newDeliveryValuation($deliverySummaryData);
         // Update the inventory on successful summary confirmation
         if ($summaryGrn) {
-            $inventoryDetails = [
-                "transaction_type_id" => 1,
-                "transaction_id" => $summaryGrn,
-                "trans_date" => $date,
-                "client_id" => $supplier,
-                "item_no",
-                "grade_id",
-                "store_id",
-                "qty_in",
-                "currency_id" => $currency,
-                "price",
-                "exch_rate" => $exch_rate,
-                "moisture" => $mc,
-            ];
+            $inventoryDetailsData = []; //Batch initialisation
+            for ($x = 0; $x < count($items); $x++) {
+                // Line inventory item 
+                $inventoryItem = [
+                    "transaction_type_id" => 1,
+                    "transaction_id" => $summaryGrn,
+                    "trans_date" => $date,
+                    "client_id" => $supplier,
+                    "item_no" => $x + 1,
+                    "grade_id" => $items[$x]["grdId"],
+                    "store_id" => $store,
+                    "qty_in" => $items[$x]["grdQty"],
+                    "currency_id" => $currency,
+                    "price" => $items[$x]["grdPx"],
+                    "exch_rate" => $exch_rate,
+                    "moisture" => $mc,
+                ];
+                array_push($inventoryDetailsData, $inventoryItem);
+            }
+            // Updating inventory
+            $inventoryUpdate = $this->suppliersModel->inventoryValuationUpdate($inventoryDetailsData);
+            if ($inventoryUpdate) {
+                $status["sms"] = "success";
+            } else {
+                $status["sms"] = "fail";
+            }
+            return $this->response->setJSON($status);
         }
     }
 
