@@ -1,21 +1,21 @@
 $(document).ready(function () {
   // Grade groups options.
-  // function gradeGroupsOptions(selectId) {
-  //   $.ajax({
-  //     type: "post",
-  //     url: "/grades/groupsList",
-  //     data: "data",
-  //     dataType: "json",
-  //     success: function (response) {
-  //       const catList = response.groupsList;
-  //       var options = "<option value='0'>Groups</option>";
-  //       for (var x = 0; x < catList.length; x++) {
-  //         options += `<option value="${catList[x].group_id}">${catList[x].group_name}</option>`;
-  //       }
-  //       $(`#${selectId}`).html(options);
-  //     },
-  //   });
-  // }
+  function gradeGroupsOptions(selectId) {
+    $.ajax({
+      type: "post",
+      url: "/grades/groupsList",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        const catList = response.groupsList;
+        var options = "<option value='0'>Groups</option>";
+        for (var x = 0; x < catList.length; x++) {
+          options += `<option value="${catList[x].group_id}">${catList[x].group_name}</option>`;
+        }
+        $(`#${selectId}`).html(options);
+      },
+    });
+  }
 
   // New delivery
   $(document).on("click", ".addDeliveryBtn", function (e) {
@@ -98,23 +98,23 @@ $(document).ready(function () {
   });
 
   //   Save Category
-  // $(document).on("click", "#saveCategoryBtn", function (e) {
-  //   e.preventDefault();
-  //   $.ajax({
-  //     type: "post",
-  //     url: "/coffee/addCategory",
-  //     data: {
-  //       coffeeType: $("#addCatCoffeeType").val(),
-  //       categoryName: $("#addCatName").val(),
-  //     },
-  //     dataType: "json",
-  //     success: function (response) {
-  //       var sms = response.sms;
-  //       $("#gradeCategoriesTable").DataTable().ajax.reload();
-  //       $("#addCategoryModal").modal("hide");
-  //     },
-  //   });
-  // });
+  $(document).on("click", "#saveCategoryBtn", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/coffee/addCategory",
+      data: {
+        coffeeType: $("#addCatCoffeeType").val(),
+        categoryName: $("#addCatName").val(),
+      },
+      dataType: "json",
+      success: function (response) {
+        var sms = response.sms;
+        $("#gradeCategoriesTable").DataTable().ajax.reload();
+        $("#addCategoryModal").modal("hide");
+      },
+    });
+  });
 
   //Grades
   // Adding Grade

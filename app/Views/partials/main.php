@@ -51,6 +51,10 @@
   <link href="<?= base_url('dashboard/lib/morris.js/morris.css') ?>" rel="stylesheet">
   <link href="<?= base_url('dashboard/lib/flag-icon-css/css/flag-icon.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('dashboard/lib/jqvmap/jqvmap.min.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('select2/dist/css/select2.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('dashboard/lib/lightslider/css/lightslider.min.css') ?>" rel="stylesheet">
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
@@ -205,14 +209,18 @@
 
   <script src="<?= base_url('dashboard/lib/jquery/jquery.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+
   <script src="<?= base_url('dashboard/lib/ionicons/ionicons.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/jquery-sparkline/jquery.sparkline.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/raphael/raphael.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/morris.js/morris.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/jqvmap/jquery.vmap.min.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
-
-
+  <script src="<?= base_url('/select2\dist\js\select2.js') ?>"></script>
+  <script src="<?= base_url('dashboard/lib/lightslider/js/lightslider.min.js') ?>"></script>
+  <!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script>
     $(function() {
@@ -246,6 +254,23 @@
           $('body').toggleClass('az-sidebar-show');
         }
       })
+
+      //tabs
+      $('#navComplex').lightSlider({
+          autoWidth: true,
+          pager: false,
+          slideMargin: 3
+        });
+
+        $('.az-nav-tabs .tab-link').on('click', function(e) {
+          e.preventDefault();
+          $(this).addClass('active');
+          $(this).parent().siblings().find('.tab-link').removeClass('active');
+
+          var target = $(this).attr('href');
+          $(target).addClass('active');
+          $(target).siblings().removeClass('active');
+        })
     })
   </script>
   <!--placeholder for our extra scripts-->

@@ -5,36 +5,23 @@
 <?= $this->section('content') ?>
 <?= $this->include('/includes/grades/addCategoryModal.php'); ?>
 <?= $this->include('/includes/grades/addGradeModal.php'); ?>
-<?= $this->include('/includes/generalcss.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="row row-sm mg-b-15 mg-sm-b-20">
     <div class="container-fluid" style="height: fit-content;">
-      <div class=" container card">
-        <div class="card-body">
-          <div class="row">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="gradesTab" data-bs-toggle="tab" data-bs-target="#gradesTabPane" type="button" role="tab" aria-controls="newReceiptTabPane" aria-selected="true">
-                  Grades
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="categoriesTab" data-bs-toggle="tab" data-bs-target="#categoriesTabPane" type="button" role="tab" aria-controls="categoriesTabPane" aria-selected="false">
-                  Categories
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="groupsTab" data-bs-toggle="tab" data-bs-target="#groupsTabPane" type="button" role="tab" aria-controls="groupsTabPane" aria-selected="false">
-                  Groups
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="row tab-content">
-            <!-- collection tab pane -->
-            <div class="card container tab-pane fade border p-3 show active" id="gradesTabPane" role="tabpane" aria-labelledby="gradesTab" style='border-top-style: outset;border-top-width: thick;border-top-color:blue;'>
-
+      <div class="card bd-0 wd-280 wd-sm-500 wd-md-700 wd-xl-850">
+        <div class="card-header card-header-tab">
+          <div class="az-nav-tabs">
+            <div id="navComplex">
+              <div class="tab-item"><a href="#azTab1" class="tab-link active">Grades</a></div>
+              <div class="tab-item"><a href="#azTab2" class="tab-link">Categories</a></div>
+              <div class="tab-item"><a href="#azTab3" class="tab-link">Groups</a></div>
+            </div>
+          </div><!-- az-nav-complex -->
+        </div><!-- card-header -->
+        <div class="card-body bd bd-t-0 pd-xl-25">
+          <div class="az-tab-content">
+            <div id="azTab1" class="az-tab-pane active">
               <h5><strong>Coffee Grades</strong></h5>
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
@@ -60,8 +47,7 @@
                 </table>
               </div>
             </div>
-            <!-- recent receipts tab pane -->
-            <div class="container tab-pane fade border p-3" id="categoriesTabPane" role="tabpane" aria-labelledby="categoriesTab">
+            <div id="azTab2" class="az-tab-pane">
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
@@ -85,8 +71,7 @@
                 </table>
               </div>
             </div>
-            <!-- cash refund tab pane -->
-            <div class="container tab-pane fade border p-3" id="groupsTabPane" role="tabpane" aria-labelledby="groupsTab">
+            <div id="azTab3" class="az-tab-pane">
               <div class="row">
                 <div style='display:flex;justify-content:flex-end'>
                   <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
@@ -110,16 +95,14 @@
                 </table>
               </div>
             </div>
-
-          </div>
-        </div>
-      </div>
+          </div><!-- az-tab-content -->
+        </div><!-- card-body -->
+      </div><!-- card -->
     </div>
   </div><!-- row -->
 </div><!-- az-content-body -->
 <?= $this->endSection() ?>
 <!---scripts-->
 <?= $this->section('scripts') ?>
-<?= $this->include('/includes/generalscripts') ?>
 <script src="<?= base_url('assets/scripts/grades.js') ?>"></script>
 <?= $this->endSection() ?>
