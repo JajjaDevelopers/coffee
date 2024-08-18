@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
 use App\Models\SuppliersModal;
+use CodeIgniter\I18n\Time;
 
 
 class SuppliersController extends BaseController
@@ -23,6 +24,7 @@ class SuppliersController extends BaseController
     }
     public function index()
     {
+
         $page_title = "Suppliers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
@@ -38,10 +40,12 @@ class SuppliersController extends BaseController
     // Deliveries Page
     public function deliveriesView()
     {
+        $timeNow = Time::now();
+        $dateToday = $timeNow->toLocalizedString('dd-MM-yyyy');
         $page_title = "Suppliers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('suppliers/deliveriesView', compact('page_title', 'commonData', 'coffeeTypes'));
+        return view('suppliers/deliveriesView', compact('page_title', 'commonData', 'dateToday'));
     }
 
 

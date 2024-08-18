@@ -24,7 +24,7 @@
                     <label for="addSupplierName" class="form-label">Date:</label>
                   </div>
                   <div class="col-sm-8 col-md-5">
-                    <input type="date" class="form-control form-control-sm" id='addSupplierName'>
+                    <input type="date" value="<?= $dateToday ?>" class="form-control form-control-sm" id='addSupplierName'>
                   </div>
                 </div>
               </div>

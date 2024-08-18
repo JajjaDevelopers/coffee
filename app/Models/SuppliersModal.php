@@ -62,16 +62,16 @@ class SuppliersModal extends Model
         return $builder->insertBatch($data);
     }
 
-    // Get Grades
-    // public function getGrades($fpo)
-    // {
-    //     $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
-    //         FROM grades
-    //         LEFT JOIN coffee_category USING (category_id)
-    //         LEFT JOIN grade_groups USING (group_id)
-    //         WHERE coffee_category.fpo = '{$fpo}'");
-    //     return $query->getResultArray();
-    // }
+    // Get Purchases
+    public function getGrades($fpo)
+    {
+        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
+            FROM grades
+            LEFT JOIN coffee_category USING (category_id)
+            LEFT JOIN grade_groups USING (group_id)
+            WHERE coffee_category.fpo = '{$fpo}'");
+        return $query->getResultArray();
+    }
 
     // Quantity according to category
     // public function gradeQtyBalance($fpo, $grade = "all")

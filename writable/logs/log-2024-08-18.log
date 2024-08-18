@@ -1,0 +1,185 @@
+INFO - 2024-08-18 07:26:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 07:26:51 --> ErrorException: Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Views\includes\suppliers\newDeliveryModal.php on line 27.
+ 1 APPPATH\Views\includes\suppliers\newDeliveryModal.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php', 27)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('/includes/suppliers/newDeliveryModal.php', null, true)
+ 5 APPPATH\Views\suppliers\deliveriesView.php(6): CodeIgniter\View\View->include('/includes/suppliers/newDeliveryModal.php')
+ 6 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php')
+ 7 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 9 APPPATH\Controllers\SuppliersController.php(44): view('suppliers/deliveriesView', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+11 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+12 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 07:27:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 07:27:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 07:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 07:27:13 --> ErrorException: Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Views\includes\suppliers\newDeliveryModal.php on line 27.
+ 1 APPPATH\Views\includes\suppliers\newDeliveryModal.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php', 27)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('/includes/suppliers/newDeliveryModal.php', null, true)
+ 5 APPPATH\Views\suppliers\deliveriesView.php(6): CodeIgniter\View\View->include('/includes/suppliers/newDeliveryModal.php')
+ 6 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php')
+ 7 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 9 APPPATH\Controllers\SuppliersController.php(44): view('suppliers/deliveriesView', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+11 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+12 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 07:32:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 07:32:05 --> ErrorException: Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Views\includes\suppliers\newDeliveryModal.php on line 27.
+ 1 APPPATH\Views\includes\suppliers\newDeliveryModal.php(27): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php', 27)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\includes\\suppliers\\newDeliveryModal.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(487): CodeIgniter\View\View->render('/includes/suppliers/newDeliveryModal.php', null, true)
+ 5 APPPATH\Views\suppliers\deliveriesView.php(6): CodeIgniter\View\View->include('/includes/suppliers/newDeliveryModal.php')
+ 6 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php')
+ 7 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 9 APPPATH\Controllers\SuppliersController.php(46): view('suppliers/deliveriesView', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+11 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+12 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 07:46:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 07:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 07:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:05:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 08:05:08 --> ErrorException: Undefined variable $dateTOday
+[Method: GET, Route: deliveries]
+in APPPATH\Views\suppliers\deliveriesView.php on line 3.
+ 1 APPPATH\Views\suppliers\deliveriesView.php(3): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateTOday', 'C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php', 3)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 5 APPPATH\Controllers\SuppliersController.php(46): view('suppliers/deliveriesView', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 08:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 08:05:20 --> ErrorException: Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Views\suppliers\deliveriesView.php on line 3.
+ 1 APPPATH\Views\suppliers\deliveriesView.php(3): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php', 3)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\deliveriesView.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 5 APPPATH\Controllers\SuppliersController.php(46): view('suppliers/deliveriesView', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 08:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:07:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:07:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:12:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:12:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:18:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:32:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:33:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:33:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:49:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:52:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:52:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:56:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 08:57:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 08:59:31 --> TypeError: DateTimeImmutable::createFromFormat(): Argument #2 ($datetime) must be of type string, CodeIgniter\I18n\Time given
+[Method: GET, Route: deliveries]
+in SYSTEMPATH\I18n\TimeTrait.php on line 252.
+ 1 SYSTEMPATH\I18n\TimeTrait.php(252): DateTimeImmutable::createFromFormat('dd-M-yyyy', Object(CodeIgniter\I18n\Time))
+ 2 APPPATH\Controllers\SuppliersController.php(43): CodeIgniter\I18n\Time::createFromFormat('dd-M-yyyy', Object(CodeIgniter\I18n\Time))
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 09:01:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:02:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:09:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:09:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:09:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:09:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:24:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:26:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:28:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 09:28:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 12:40:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 12:40:53 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: home]
+in APPPATH\Views\dashboard\index.php on line 8.
+ 1 APPPATH\Views\dashboard\index.php(8): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\wamp64\\www\\coffee\\app\\Views\\dashboard\\index.php', 8)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\dashboard\\index.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('dashboard/index', [], true)
+ 5 APPPATH\Controllers\DashboardController.php(17): view('dashboard/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 12:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 12:41:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 13:00:42 --> ErrorException: compact(): Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Controllers\SuppliersController.php on line 47.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'compact(): Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\SuppliersController.php', 47)
+ 2 APPPATH\Controllers\SuppliersController.php(47): compact('page_title', 'commonData', 'dateToday')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 13:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:00:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:00:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 13:00:54 --> ErrorException: compact(): Undefined variable $dateToday
+[Method: GET, Route: deliveries]
+in APPPATH\Controllers\SuppliersController.php on line 47.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'compact(): Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\SuppliersController.php', 47)
+ 2 APPPATH\Controllers\SuppliersController.php(47): compact('page_title', 'commonData', 'dateToday')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 13:05:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:06:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:07:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 13:07:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 16:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 16:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 16:47:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 16:47:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
