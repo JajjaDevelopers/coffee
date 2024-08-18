@@ -91,7 +91,7 @@ class SuppliersController extends BaseController
         $exch_rate = $this->request->getPost("exch_rate");
         $mc = $this->request->getPost("mc");
         $store = $this->request->getPost("store");
-        $items = $this->request->getPost("items");
+        $items = $this->request->getPost("items"); //Array of items
         $deliverySummaryData = [
             "fpo" => $this->fpo,
             "quality_remarks" => $this->request->getPost("quality_remarks"),
