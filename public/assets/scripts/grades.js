@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+  //select 2
+  $(".addCoffeeGradeCategory").select2({
+    dropdownParent: $('#addGradeModal')
+});
   // Grade groups options
   function gradeGroupsOptions(selectId) {
     $.ajax({
