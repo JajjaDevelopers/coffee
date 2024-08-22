@@ -68,13 +68,15 @@ class GradesModel extends Model
         return $query->getResultArray();
     }
 
-    // Quantity according to category
+    // Quantity according to grade
     public function gradeQtyBalance($fpo, $grade = "all")
     {
         if ($grade == "all") {
             $gradeFilter = "";
+            $limitFilter = "";
         } else {
             $gradeFilter = "AND grades.grade_id='{$grade}'";
+            $limitFilter = "LIMIT 1";
         }
 
         $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
@@ -83,7 +85,7 @@ class GradesModel extends Model
             RIGHT JOIN coffee_category USING (category_id)
             JOIN grade_groups ON grades.group_id = grade_groups.group_id
             WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter}
-            GROUP BY category_id");
+            GROUP BY grade_id {$limitFilter}");
 
         return $query->getResultArray();
     }

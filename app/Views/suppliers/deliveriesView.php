@@ -48,53 +48,51 @@
           </div>
         </div>
         <br>
+        <table class='table table-sm dataTable table-striped' id="deliveriesTable" style="width:100%;">
+          <thead style='color:white'>
+            <tr class='text-white'>
+              <th style="width: 100px;">Date</th>
+              <th style="width: 50px;">GRN</th>
+              <th>Supplier</th>
+              <th>Store</th>
+              <th>Grade</th>
+              <th style="width: 50px;">Moisture</th>
+              <th style="width: 100px;">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div id="cashrefund" class="tab-pane">
         <div class="row">
-          <table class='table dataTable table-striped' id="deliveriesTable" style="width:100%;">
+          <div style='display:flex;justify-content:flex-end'>
+            <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
+              <strong>+ New Category</strong>
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
             <thead style='color:white'>
               <tr class='text-white'>
-                <th>Date</th>
-                <th>GRN</th>
-                <th>Supplier</th>
-                <th>Store</th>
-                <th>Grade</th>
-                <th>Moisture</th>
-                <th>Quantity</th>
+                <th>Category Name</th>
+                <th>Coffee Type</th>
+                <th>Available</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
             </tbody>
           </table>
         </div>
-      </div>
-      <div id="cashrefund" class="tab-pane">
-          <div class="row">
-            <div style='display:flex;justify-content:flex-end'>
-              <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
-                <strong>+ New Category</strong>
-              </button>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
-              <thead style='color:white'>
-                <tr class='text-white'>
-                  <th>Category Name</th>
-                  <th>Coffee Type</th>
-                  <th>Available</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
       </div><!-- tab-pane -->
-      </div><!-- card-body -->
-    </div><!-- card -->
-  </div><!-- az-content-body -->
-  <?= $this->endSection() ?>
-  <!---scripts-->
-  <?= $this->section('scripts') ?>
-  <script src="<?= base_url('assets/scripts/suppliers.js') ?>"></script>
-  <?= $this->endSection() ?>
+    </div><!-- card-body -->
+  </div><!-- card -->
+</div><!-- az-content-body -->
+<?= $this->endSection() ?>
+<!---scripts-->
+<?= $this->section('scripts') ?>
+<script src="<?= base_url('assets/scripts/suppliers.js') ?>"></script>
+<?= $this->endSection() ?>

@@ -4854,3 +4854,185 @@ WHERE `fpo` = :fpo:', [...], false)
 11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 13 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-08-18 17:09:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:10:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:11:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:19:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:26:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-18 17:26:48 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:187
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(187): mysqli->real_connect('localhost', 'root', '', 'coffee', 3306, '', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\wamp64\www\coffee\app\Models\GradesModel.php(21): CodeIgniter\Database\BaseConnection->query('SELECT type_id,...')
+#4 C:\wamp64\www\coffee\app\Controllers\CoffeeGradesController.php(26): App\Models\GradesModel->getCoffeeTypes()
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->coffeeGrades()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: NO) in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\wamp64\www\coffee\app\Models\GradesModel.php(21): CodeIgniter\Database\BaseConnection->query('SELECT type_id,...')
+#3 C:\wamp64\www\coffee\app\Controllers\CoffeeGradesController.php(26): App\Models\GradesModel->getCoffeeTypes()
+#4 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->coffeeGrades()
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#8 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#9 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#10 {main}
+CRITICAL - 2024-08-18 17:26:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: NO)
+[Method: GET, Route: admin/coffee-grades]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(616): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\GradesModel.php(21): CodeIgniter\Database\BaseConnection->query('SELECT type_id, type_name FROM coffee_types')
+ 3 APPPATH\Controllers\CoffeeGradesController.php(26): App\Models\GradesModel->getCoffeeTypes()
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->coffeeGrades()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:27:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:30:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:33:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:34:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:36:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:37:00 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:37:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:37:05 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:37:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:37:30 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:37:46 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:38:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:38:25 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:39:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:39:47 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-18 17:40:07 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:43:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:43:15 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:43:30 --> ErrorException: Undefined variable $dateToday
+[Method: GET, Route: suppliers]
+in APPPATH\Views\suppliers\suppliers.php on line 3.
+ 1 APPPATH\Views\suppliers\suppliers.php(3): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dateToday', 'C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\suppliers.php', 3)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\suppliers\\suppliers.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/suppliers', [], true)
+ 5 APPPATH\Controllers\SuppliersController.php(31): view('suppliers/suppliers', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:43:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:43:42 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:43:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-18 17:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-18 17:45:36 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-18 17:45:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,9 +1,9 @@
 $(document).ready(function () {
-
   //select 2
   $(".addCoffeeGradeCategory").select2({
-    dropdownParent: $('#addGradeModal')
-});
+    dropdownParent: $("#addGradeModal"),
+  });
+
   // Grade groups options
   function gradeGroupsOptions(selectId) {
     $.ajax({
@@ -126,7 +126,7 @@ $(document).ready(function () {
         { data: "grade_code" },
         { data: "grade_name" },
         { data: "group_name" },
-        { data: "group_name" },
+        { data: "balance" },
         { data: "unit" },
         {
           render: function (data, type, row, meta) {

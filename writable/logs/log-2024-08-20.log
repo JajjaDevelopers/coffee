@@ -1,0 +1,224 @@
+INFO - 2024-08-20 17:55:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 17:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 17:56:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 17:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 17:56:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 17:57:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:10:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:10:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:18:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:19:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:20:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-20 18:20:11 --> mysqli_sql_exception: Incorrect DATE value: '' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(44): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(58): App\Models\SuppliersModal->deliveries(1, '', '', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveries()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-20 18:20:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: ''
+[Method: POST, Route: suppliers/deliveries]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(44): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 2 APPPATH\Controllers\SuppliersController.php(58): App\Models\SuppliersModal->deliveries(1, '', '', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveries()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-20 18:20:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: ''
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 3 APPPATH\Models\SuppliersModal.php(44): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 4 APPPATH\Controllers\SuppliersController.php(58): App\Models\SuppliersModal->deliveries(1, '', '', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveries()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-20 18:20:11 --> [Caused by] mysqli_sql_exception: Incorrect DATE value: ''
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 4 APPPATH\Models\SuppliersModal.php(44): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 5 APPPATH\Controllers\SuppliersController.php(58): App\Models\SuppliersModal->deliveries(1, '', '', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveries()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:24:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:27:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 18:28:26 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:30:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:37:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 18:37:54 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:39:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:41:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 18:41:19 --> ErrorException: Undefined array key "balance"
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "balance"', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:44:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:47:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:49:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 18:49:14 --> ErrorException: Undefined array key "balance"
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 74.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(74): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "balance"', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 74)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:50:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:51:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 18:51:36 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 18:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:54:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 18:54:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:05:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:07:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:08:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:09:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-20 19:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 19:16:27 --> ErrorException: Undefined array key "balance"
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "balance"', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 19:17:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 19:17:09 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-20 19:20:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-20 19:20:30 --> ErrorException: Undefined array key 0
+[Method: POST, Route: grades/gradesList]
+in APPPATH\Controllers\CoffeeGradesController.php on line 72.
+ 1 APPPATH\Controllers\CoffeeGradesController.php(72): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'C:\\wamp64\\www\\coffee\\app\\Controllers\\CoffeeGradesController.php', 72)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

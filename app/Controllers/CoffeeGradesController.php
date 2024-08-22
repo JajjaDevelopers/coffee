@@ -71,7 +71,7 @@ class CoffeeGradesController extends BaseController
             $gradeId = $grades[$x]["grade_id"];
             $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
         }
-        $data["gradesList"] = $grades;
+        $data["gradesList"] =  $grades;
         return $this->response->setJSON($data);
     }
 
