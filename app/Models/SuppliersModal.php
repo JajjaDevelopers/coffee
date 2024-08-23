@@ -16,12 +16,17 @@ class SuppliersModal extends Model
     }
 
     // Coffee Types
-    public function suppliersList($fpo)
+    public function suppliersList($fpo, $searchStr = "")
     {
+        if ($searchStr == "") {
+            $searchFilter = "";
+        } else {
+            $searchFilter = "AND (name like '%{$searchStr}%')";
+        }
         $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
             FROM clients
             LEFT JOIN client_categories USING (category_id)
-            WHERE client_type = 'S' AND fpo = '{$fpo}'");
+            WHERE client_type = 'S' AND fpo = '{$fpo}' {$searchFilter}");
         return $query->getResultArray();
     }
 

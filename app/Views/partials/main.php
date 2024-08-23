@@ -57,6 +57,8 @@
 
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
+
 
 </head>
 
@@ -220,6 +222,7 @@
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
+  <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
   <script>
     $(function() {
       'use strict'

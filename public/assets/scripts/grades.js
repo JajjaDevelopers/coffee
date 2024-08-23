@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  //select 2
+  //select category
   $(".addCoffeeGradeCategory").select2({
     dropdownParent: $("#addGradeModal"),
   });

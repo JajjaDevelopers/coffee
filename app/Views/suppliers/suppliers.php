@@ -1,6 +1,5 @@
 <?= $this->extend('partials/main') ?>
 <?= $this->section('title') ?>
-<?= $dateToday ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/suppliers/addSupplierModal.php'); ?>

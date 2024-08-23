@@ -116,11 +116,10 @@ $(document).ready(function () {
     });
   });
 
-  //Grades
-  // Adding Grade
+  // Adding supplier
   $(document).on("click", "#addSupplierBtn", function (e) {
     e.preventDefault();
-    gradeCategoryOptions("addGradeCategory");
+    // gradeCategoryOptions("addGradeCategory");
     gradeGroupsOptions("addGradeGroup");
     $("#addSupplierModal").modal("show");
   });
@@ -177,6 +176,24 @@ $(document).ready(function () {
         $("#addSupplierModal").modal("hide");
       },
     });
+  });
+
+  //select supplier
+  $("#addDeliverySupplier").select2({
+    dropdownParent: $("#newDeliveryModal"),
+    ajax: {
+      delay: 250,
+      url: "/suppliers/list",
+      data: function (params) {
+        var query = {
+          search: params.term,
+        };
+        return query;
+      },
+      dataType: "json",
+      placeholder: "Search for supplier",
+      minimumInputLength: 3,
+    },
   });
 
   //

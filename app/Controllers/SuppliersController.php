@@ -33,7 +33,22 @@ class SuppliersController extends BaseController
     // Get Suppliers List
     public function suppliersList()
     {
-        $data["suppliers"] = $this->suppliersModel->suppliersList($this->fpo);
+        $searchStr = $this->request->getPost("searchKey");
+        $data["suppliers"] = $this->suppliersModel->suppliersList($this->fpo, $searchStr);
+        return $this->response->setJSON($data);
+    }
+
+    // Select search customers
+    public function searchSuppliers()
+    {
+        $searchStr = $this->request->getGet("search");
+        $list = [];
+        $suppliers = $this->suppliersModel->suppliersList($this->fpo, $searchStr);
+        for ($x = 0; $x < count($suppliers); $x++) {
+            $list[$x]["id"] = $suppliers[$x]["client_id"];
+            $list[$x]["text"] = $suppliers[$x]["name"];
+        }
+        $data["results"] = $list;
         return $this->response->setJSON($data);
     }
 

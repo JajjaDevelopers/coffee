@@ -1,6 +1,6 @@
 <!-- Adding new category -->
 <div id="addGradeModal" class="modal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header">
         <h6 class="modal-title">Add Coffee Grades</h6>
@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-9">
               <label for="addGradeCategory" class="form-label">Category</label>
-              <select class="form-control form-control-sm form-select addCoffeeGradeCategory" id='addGradeCategory'>
+              <select class="form-control form-control-sm form-select addCoffeeGradeCategory" id='addGradeCategory' style="width: 200px;">
                 <option value=''>Select</option>
               </select>
             </div>
