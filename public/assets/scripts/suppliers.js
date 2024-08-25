@@ -39,27 +39,52 @@ $(document).ready(function () {
 
   // Add new valuation rows
   var numberOfRows = 1;
+  var valuationTotal = 0;
   $(document).on("click", "#valRowAddBtn", function (e) {
     e.preventDefault();
     numberOfRows += 1; //Increment by 1
     var rowStr = `<tr rowNo="${numberOfRows}" id="valRow${numberOfRows}">
                     <td><input rowNo="${numberOfRows}" id="valCode${numberOfRows}" class="form-control form-control-xs" readonly></td>
-                    <td><input rowNo="${numberOfRows}" id="valGrade${numberOfRows}" class="form-control form-control-xs"></td>
+                    <td>
+                      <select rowNo="${numberOfRows}" id="valGrade${numberOfRows}" class="form-select form-control form-control-sm valGradeName" style="width: 300px;">
+                      </select>
+                    </td>
+                    <td><input type="number" rowNo="${numberOfRows}" id="valQty${numberOfRows}" class="form-control form-control-xs text-end valuationQtyPx" value="1" min="0"></td>
                     <td><input rowNo="${numberOfRows}" id="valUnit${numberOfRows}" class="form-control form-control-xs text-center" readonly></td>
-                    <td><input rowNo="${numberOfRows}" id="valQty${numberOfRows}" class="form-control form-control-xs text-end"></td>
-                    <td><input rowNo="${numberOfRows}" id="valPx${numberOfRows}" class="form-control form-control-xs text-end"></td>
-                    <td><input rowNo="${numberOfRows}" id="valAmt${numberOfRows}" class="form-control form-control-xs text-end" readonly></td>
+                    <td><input type="number" rowNo="${numberOfRows}" id="valPx${numberOfRows}" class="form-control form-control-xs text-end valuationQtyPx" value="0" min="0"></td>
+                    <td><input rowNo="${numberOfRows}" id="valAmt${numberOfRows}" class="form-control form-control-xs text-end" value="0" readonly></td>
                     <td>
                       <button rowNo="${numberOfRows}" type="button" id="valAmt${numberOfRows}" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
                     </td>
                   </tr>`;
     $("#valTBody").append(rowStr);
+
+    // Grade name select2
+    $(".valGradeName").select2({
+      dropdownParent: $("#newDeliveryModal"),
+      ajax: {
+        delay: 250,
+        url: "/grades/search",
+        data: function (params) {
+          var query = {
+            search: params.term,
+          };
+          return query;
+        },
+        dataType: "json",
+        placeholder: "Select Grade",
+        minimumInputLength: 3,
+      },
+    });
   });
 
   // Remove valuation rows
   $(document).on("click", ".rowRemoveBtn", function (e) {
-    var selectedRowNo = Number($(this).attr("rowNo"));
-    $(`#valRow${selectedRowNo}`).remove();
+    var rowNo = Number($(this).attr("rowNo"));
+    var total = Number($(`#valAmt${rowNo}`).val()); //Removed item total
+    $(`#valRow${rowNo}`).remove();
+    valuationTotal -= total;
+    $("#valTotal").val(valuationTotal);
   });
 
   //Get deliveries
@@ -194,6 +219,57 @@ $(document).ready(function () {
       placeholder: "Search for supplier",
       minimumInputLength: 3,
     },
+  });
+
+  // Grade name select2
+  $(".valGradeName").select2({
+    dropdownParent: $("#newDeliveryModal"),
+    ajax: {
+      delay: 250,
+      url: "/grades/search",
+      data: function (params) {
+        var query = {
+          search: params.term,
+        };
+        return query;
+      },
+      dataType: "json",
+      placeholder: "Select Grade",
+      minimumInputLength: 3,
+    },
+  });
+
+  // Selected grade details
+  $(document).on("change", ".valGradeName", function (e) {
+    e.preventDefault();
+    var selectedGrade = $(this).val();
+    var rowNo = $(this).attr("rowNo");
+    $.ajax({
+      type: "post",
+      url: "/grades/gradesList",
+      data: {
+        gradeId: selectedGrade,
+      },
+      dataType: "json",
+      success: function (response) {
+        var grade = response.gradesList[0];
+        $(`#valCode${rowNo}`).val(grade.grade_code);
+        $(`#valUnit${rowNo}`).val(grade.unit);
+      },
+    });
+  });
+
+  // Change valuation price or quantity
+
+  $(document).on("change", ".valuationQtyPx", function (e) {
+    e.preventDefault();
+    var rowNo = $(this).attr("rowNo"); //Item row number changed
+    var price = Number($(`#valPx${rowNo}`).val()); //Changed item price
+    var qty = Number($(`#valQty${rowNo}`).val()); //Changed item qty
+    var total = Number(price * qty);
+    valuationTotal += total;
+    $(`#valAmt${rowNo}`).val(total);
+    $("#valTotal").val(valuationTotal);
   });
 
   //

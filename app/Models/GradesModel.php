@@ -58,18 +58,23 @@ class GradesModel extends Model
     }
 
     // Get Grades
-    public function getGrades($fpo)
-    {
-        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
-            FROM grades
-            LEFT JOIN coffee_category USING (category_id)
-            LEFT JOIN grade_groups USING (group_id)
-            WHERE coffee_category.fpo = '{$fpo}'");
-        return $query->getResultArray();
-    }
+    // public function getGrades($fpo, $searchStr = "")
+    // {
+    //     if ($searchStr == "") {
+    //         $searchFilter = "";
+    //     } else {
+    //         $searchFilter = "AND grade_name = '{$searchStr}'";
+    //     }
+    //     $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
+    //         FROM grades
+    //         LEFT JOIN coffee_category USING (category_id)
+    //         LEFT JOIN grade_groups USING (group_id)
+    //         WHERE coffee_category.fpo = '{$fpo}' {$searchFilter}");
+    //     return $query->getResultArray();
+    // }
 
-    // Quantity according to grade
-    public function gradeQtyBalance($fpo, $grade = "all")
+    // Quantity according to grade //gradeQtyBalance
+    public function getGrades($fpo, $grade = "all", $searchStr = "")
     {
         if ($grade == "all") {
             $gradeFilter = "";
@@ -78,13 +83,18 @@ class GradesModel extends Model
             $gradeFilter = "AND grades.grade_id='{$grade}'";
             $limitFilter = "LIMIT 1";
         }
+        if ($searchStr == "") {
+            $searchFilter = "";
+        } else {
+            $searchFilter = "AND grade_name LIKE '%{$searchStr}%'";
+        }
 
-        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+        $query = $this->db->query("SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
             FROM inventory
             RIGHT JOIN grades USING (grade_id)
             RIGHT JOIN coffee_category USING (category_id)
             JOIN grade_groups ON grades.group_id = grade_groups.group_id
-            WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter}
+            WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter} {$searchFilter}
             GROUP BY grade_id {$limitFilter}");
 
         return $query->getResultArray();

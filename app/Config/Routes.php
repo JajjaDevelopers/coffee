@@ -23,6 +23,7 @@ $routes->post('/coffee/addCategory', 'CoffeeGradesController::addCategory');
 // Grades
 $routes->post('/grades/gradesList', 'CoffeeGradesController::getGrades');
 $routes->post('/grades/addGrade', 'CoffeeGradesController::addGrade');
+$routes->get('/grades/search', 'CoffeeGradesController::searchGrades');
 // Groups
 $routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');
 

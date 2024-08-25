@@ -65,13 +65,29 @@ class CoffeeGradesController extends BaseController
     // Get grades list
     public function getGrades()
     {
-        $grades = $this->gradesModel->getGrades($this->fpo);
-        for ($x = 0; $x < count($grades); $x++) {
-            // fetch grade balances
-            $gradeId = $grades[$x]["grade_id"];
-            $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
-        }
+        $gradeId = $this->request->getPost("gradeId");
+        $grades = $this->gradesModel->getGrades($this->fpo, $gradeId);
+
+        // for ($x = 0; $x < count($grades); $x++) {
+        //     // fetch grade balances
+        //     $gradeId = $grades[$x]["grade_id"];
+        //     $grades[$x]["balance"] = $this->gradesModel->gradeQtyBalance($this->fpo, $gradeId)[0]["balance"];
+        // }
         $data["gradesList"] =  $grades;
+        return $this->response->setJSON($data);
+    }
+
+    // Search grades
+    public function searchGrades()
+    {
+        $searchKey = $this->request->getGet("search");
+        $list = [];
+        $grades = $this->gradesModel->getGrades($this->fpo, "all", $searchKey);
+        for ($x = 0; $x < count($grades); $x++) {
+            $list[$x]["id"] = $grades[$x]["grade_id"];
+            $list[$x]["text"] = $grades[$x]["grade_name"];
+        }
+        $data["results"] = $list;
         return $this->response->setJSON($data);
     }
 

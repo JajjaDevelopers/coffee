@@ -61,10 +61,10 @@
           <table class="table table-sm table-bordered">
             <thead>
               <tr>
-                <th style="width: 100px;">Code</th>
+                <th style="width: 150px;">Code</th>
                 <th>Grade</th>
+                <th style="width: 150px;">Quantity</th>
                 <th style="width: 100px;">Unit</th>
-                <th style="width: 150px;">Qty</th>
                 <th style="width: 150px;">Price</th>
                 <th style="width: 200px;">Amount</th>
                 <th style="width: 20px;">Action</th>
@@ -73,14 +73,32 @@
             <tbody id="valTBody">
               <tr rowNo="1" id="valrow1">
                 <td><input rowNo="1" id="valCode1" class="form-control form-control-xs" readonly></td>
-                <td><input rowNo="1" id="valGrade1" class="form-control form-control-xs"></td>
+                <td>
+                  <select rowNo="1" id="valGrade1" class="form-select form-control form-control-sm valGradeName" style="width: 300px;">
+                  </select>
+                </td>
+                <td><input type="number" rowNo="1" id="valQty1" class="form-control form-control-xs text-end valuationQtyPx" value="1" min="0"></td>
                 <td><input rowNo="1" id="valUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input rowNo="1" id="valQty1" class="form-control form-control-xs text-end"></td>
-                <td><input rowNo="1" id="valPx1" class="form-control form-control-xs text-end"></td>
-                <td><input rowNo="1" id="valAmt1" class="form-control form-control-xs text-end" readonly></td>
+                <td><input type="number" rowNo="1" id="valPx1" class="form-control form-control-xs text-end valuationQtyPx" value="0" min="0"></td>
+                <td><input rowNo="1" id="valAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
               </tr>
             </tbody>
           </table>
+          <div id="valuationSummary">
+            <div class="row">
+              <div class="col-md-9"></div>
+              <div class="col-sm-12 col-md-3">
+                <table class="table table-sm table-bordered">
+                  <tbody id="valTBody">
+                    <tr rowNo="1" id="valrow1">
+                      <td>Total:</td>
+                      <td><input id="valTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
