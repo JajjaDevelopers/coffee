@@ -40,6 +40,7 @@ $(document).ready(function () {
   // Add new valuation rows
   var numberOfRows = 1;
   var valuationTotal = 0;
+  var valuationItemIds = [1]; //Store item ids in key-value pairs
   $(document).on("click", "#valRowAddBtn", function (e) {
     e.preventDefault();
     numberOfRows += 1; //Increment by 1
@@ -57,9 +58,13 @@ $(document).ready(function () {
                       <button rowNo="${numberOfRows}" type="button" id="valAmt${numberOfRows}" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
                     </td>
                   </tr>`;
+    // Add another row
     $("#valTBody").append(rowStr);
 
-    // Grade name select2
+    // Add Id to valuation Ids list
+    valuationItemIds.push(numberOfRows);
+
+    // Grade name select2 initiation on the new row item
     $(".valGradeName").select2({
       dropdownParent: $("#newDeliveryModal"),
       ajax: {
@@ -82,9 +87,18 @@ $(document).ready(function () {
   $(document).on("click", ".rowRemoveBtn", function (e) {
     var rowNo = Number($(this).attr("rowNo"));
     var total = Number($(`#valAmt${rowNo}`).val()); //Removed item total
-    $(`#valRow${rowNo}`).remove();
     valuationTotal -= total;
+    $(`#valRow${rowNo}`).remove();
     $("#valTotal").val(valuationTotal);
+    // Remove from the item id list
+    var temporaryItemIds = [];
+    var removedItem = rowNo;
+    for (var x = 0; x < valuationItemIds.length; x++) {
+      if (valuationItemIds[x] != removedItem) {
+        temporaryItemIds.push(valuationItemIds[x]); //Add item in the new array
+      }
+    }
+    valuationItemIds = temporaryItemIds;
   });
 
   //Get deliveries
@@ -270,6 +284,34 @@ $(document).ready(function () {
     valuationTotal += total;
     $(`#valAmt${rowNo}`).val(total);
     $("#valTotal").val(valuationTotal);
+  });
+
+  // Save Valuation
+  $(document).on("click", "#saveValuationBtn", function (e) {
+    e.preventDefault();
+    var gradeIds = [];
+    var gradeQtys = [];
+    var gradePxs = [];
+    for (var x = 0; x < valuationItemIds.length; x++) {
+      // Compile data for saving the valuation
+      gradeIds.push($(`#valGrade${valuationItemIds[x]}`).val());
+      gradeQtys.push($(`#valQty${valuationItemIds[x]}`).val());
+      gradePxs.push($(`#valPx${valuationItemIds[x]}`).val());
+    }
+    $.ajax({
+      type: "post",
+      url: "/delivery/saveValuation",
+      data: {
+        date: $("#newValuationDate").val(),
+        supplier: $("#addDeliverySupplier").val(),
+        grn: $("#newValuationGrn").val(),
+        items: gradeIds,
+        quantities: gradeQtys,
+        prices: gradePxs,
+      },
+      dataType: "json",
+      success: function (response) {},
+    });
   });
 
   //

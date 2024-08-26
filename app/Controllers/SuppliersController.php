@@ -154,12 +154,52 @@ class SuppliersController extends BaseController
         }
     }
 
-    // Get coffee groups
-    // public function gradeGroupsList()
-    // {
-    //     $data["groupsList"] = $this->gradesModel->gradeGroupsList($this->fpo);
-    //     return $this->response->setJSON($data);
-    // }
+    // Save new valuation
+    public function newValuation()
+    {
+        $date = $this->request->getPost("date");
+        $supplier = $this->request->getPost("supplier");
+        $grn = $this->request->getPost("grn");
+        $items = $this->request->getPost("items");
+        $quantities = $this->request->getPost("quantities");
+        $prices = $this->request->getPost("prices");
+        $valuationSummaryData = [
+            "valuation_date" => $date,
+            "client_id" => $supplier,
+            "grn" => $grn,
+            "prepared_by" => 1, //To be changed to reflect the current user
+        ];
+        // Save summary and obtain valuation Id
+        $valuationId = $this->suppliersModel->newValuationSummary($valuationSummaryData);
+        // Update Inventory
+        if ($valuationId) {
+            $inventoryData = [];
+            for ($x = 0; $x < count($items); $x++) {
+                $itemData = [
+                    "transaction_type_id" => 1,
+                    "transaction_id" => $valuationId,
+                    "trans_date" => $date,
+                    "client_id" => $supplier,
+                    "item_no" => $x + 1,
+                    "grade_id" => $items[$x],
+                    "store_id" => 1, //To be updated to include store on the valuation
+                    "qty_in" => $quantities[$x],
+                    "currency_id" => 1, //To be updated to capture the actual currency
+                    "price" => $prices[$x],
+                    "exch_rate" => 1, //To be updated to capture the actual rate
+                ];
+                array_push($inventoryData, $itemData);
+            }
+            // save items in the inventory
+            $saveDetails = $this->suppliersModel->newValuationInventoryItems($inventoryData);
+            if ($saveDetails) {
+                $sms["status"] = "Success";
+            } else {
+                $sms["status"] = "Fail";
+            }
+            return $this->response->setJSON($sms);
+        }
+    }
 
     // Add grade
     // public function addGrade()

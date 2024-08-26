@@ -22,27 +22,27 @@
               </div>
               <div class="row">
                 <div class="col-sm-4 col-md-4">
-                  <label for="addSupplierName" class="form-label">Date:</label>
+                  <label for="newValuationDate" class="form-label">Date:</label>
                 </div>
                 <div class="col-sm-8 col-md-5">
-                  <input type="date" class="form-control form-control-sm" id='addSupplierName'>
+                  <input type="date" class="form-control form-control-sm" id='newValuationDate'>
                 </div>
               </div>
             </div>
           </div>
           <div class="row" style="margin-top: 10px;">
             <div class="col-sm-12 col-md-2">
-              <label for="addSupplierCategory" class="form-label">Supplier:</label>
+              <label for="addDeliverySupplier" class="form-label">Supplier:</label>
             </div>
             <div class="col-sm-12 col-md-6">
               <select class="form-select form-control form-control-sm" id='addDeliverySupplier' style="width: 400px;">
               </select>
             </div>
             <div class="col-sm-4 col-md-1">
-              <label for="addSupplierCategory" class="form-label text-right">GRN:</label>
+              <label for="newValuationGrn" class="form-label text-right">GRN:</label>
             </div>
             <div class="col-sm-8 col-md-3">
-              <input class="form-control form-control-sm" id='addSupplierCategory' placeholder="GRN">
+              <input class="form-control form-control-sm" id='newValuationGrn' placeholder="GRN">
             </div>
           </div>
           <hr>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-sm-5">
               <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm addDeliveryBtn" style='background-color:brown;color:white' id='valRowAddBtn'>
+                <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='valRowAddBtn'>
                   <strong>+ Add Row </strong>
                 </button>
               </div>
@@ -102,7 +102,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSupplierBtn' type="button" class="btn btn-indigo addBtn">Save changes</button>
+        <button id='saveValuationBtn' type="button" class="btn btn-indigo addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>

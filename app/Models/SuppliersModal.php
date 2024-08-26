@@ -98,14 +98,20 @@ class SuppliersModal extends Model
     //     return $query->getResultArray();
     // }
 
-    // Get coffee groups
-    // public function gradeGroupsList($fpo)
-    // {
-    //     $builder = $this->db->table("grade_groups");
-    //     $builder->select();
-    //     $builder->where("fpo", $fpo);
-    //     return $builder->get()->getResultArray();
-    // }
+    // Save new valuation summary
+    public function newValuationSummary($data)
+    {
+        $valuationSummary = $this->db->table("valuations");
+        $valuationSummary->insert($data);
+        return $this->db->insertID();
+    }
+
+    // Save new valuation items in inventory
+    public function newValuationInventoryItems($data)
+    {
+        $builder = $this->db->table("inventory");
+        return $builder->insertBatch($data);
+    }
 
     // Add grade
     public function addSupplier($data)

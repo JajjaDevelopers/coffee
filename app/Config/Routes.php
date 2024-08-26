@@ -34,3 +34,4 @@ $routes->get('/suppliers/list', 'SuppliersController::searchSuppliers');
 $routes->get('/deliveries', 'SuppliersController::deliveriesView');
 $routes->post('/suppliers/deliveries', 'SuppliersController::deliveries');
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
+$routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
