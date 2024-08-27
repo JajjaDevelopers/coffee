@@ -20,21 +20,6 @@ $(document).ready(function () {
   // New delivery
   $(document).on("click", ".addDeliveryBtn", function (e) {
     $("#newDeliveryModal").modal("show");
-    return;
-    $.ajax({
-      type: "post",
-      url: "/grades/categories",
-      data: "data",
-      dataType: "json",
-      success: function (response) {
-        const catList = response.categories;
-        var options = "<option value='0'>Categories</option>";
-        for (var x = 0; x < catList.length; x++) {
-          options += `<option value="${catList[x].category_id}">${catList[x].category_name}</option>`;
-        }
-        $(`#${selectId}`).html(options);
-      },
-    });
   });
 
   // Add new valuation rows
@@ -107,7 +92,7 @@ $(document).ready(function () {
       destroy: true,
       ajax: {
         method: "post",
-        url: "/suppliers/deliveries",
+        url: "/suppliers/deliveryValuations",
         data: {
           fromDate: $("#fromDate").val(),
           toDate: $("#toDate").val(),
@@ -119,7 +104,6 @@ $(document).ready(function () {
         { data: "trans_date" },
         { data: "grn" },
         { data: "name" },
-        { data: "store_name" },
         { data: "grade_name" },
         { data: "moisture" },
         { data: "qty" },
@@ -305,12 +289,15 @@ $(document).ready(function () {
         date: $("#newValuationDate").val(),
         supplier: $("#addDeliverySupplier").val(),
         grn: $("#newValuationGrn").val(),
+        moisture: $("#newValuationMc").val(),
         items: gradeIds,
         quantities: gradeQtys,
         prices: gradePxs,
       },
       dataType: "json",
-      success: function (response) {},
+      success: function (response) {
+        $("#newDeliveryModal").modal("hide");
+      },
     });
   });
 

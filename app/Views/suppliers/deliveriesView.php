@@ -11,7 +11,6 @@
       <nav class="nav nav-tabs">
         <a class="nav-link active" data-toggle="tab" href="#summary">Summary</a>
         <a class="nav-link" data-toggle="tab" href="#recentdeliveries">Recent Deliveries</a>
-        <a class="nav-link" data-toggle="tab" href="#cashrefund">Cash Refund</a>
       </nav>
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">
@@ -19,7 +18,7 @@
         <div class="row">
           <div style='display:flex;justify-content:flex-end'>
             <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='addSupplierBtn'>
-              <strong>+ New Valuation </strong>
+              <strong>+ New Delivery Valuation </strong>
             </button>
           </div>
         </div>
@@ -29,7 +28,7 @@
         <div class="row">
           <div style='display:flex;justify-content:flex-end'>
             <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white'>
-              <strong>+ New Valuation</strong>
+              <strong>+ New Delivery Valuation</strong>
             </button>
           </div>
         </div>
@@ -48,13 +47,12 @@
           </div>
         </div>
         <br>
-        <table class='table table-sm dataTable table-striped' id="deliveriesTable" style="width:100%;">
+        <table class='table table-sm table-bordered' id="deliveriesTable" style="width:100%;">
           <thead style='color:white'>
             <tr class='text-white'>
-              <th style="width: 100px;">Date</th>
+              <th style="width: 80px;">Date</th>
               <th style="width: 50px;">GRN</th>
               <th>Supplier</th>
-              <th>Store</th>
               <th>Grade</th>
               <th style="width: 50px;">Moisture</th>
               <th style="width: 100px;">Quantity</th>

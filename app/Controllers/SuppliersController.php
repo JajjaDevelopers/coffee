@@ -64,13 +64,13 @@ class SuppliersController extends BaseController
     }
 
 
-    // Previous deliveries
-    public function deliveries()
+    // Previous delivery valuation
+    public function deliveryValuations()
     {
         $fromDate = $this->request->getPost("fromDate");
         $toDate = $this->request->getPost("toDate");
         $suppplier = $this->request->getPost("supplier");
-        $deliveries = $this->suppliersModel->deliveries($this->fpo, $fromDate, $toDate, $suppplier);
+        $deliveries = $this->suppliersModel->deliveryValuations($this->fpo, $fromDate, $toDate, $suppplier);
         $data["deliveries"] = $deliveries;
         return $this->response->setJSON($data);
     }
@@ -160,6 +160,7 @@ class SuppliersController extends BaseController
         $date = $this->request->getPost("date");
         $supplier = $this->request->getPost("supplier");
         $grn = $this->request->getPost("grn");
+        $moisture = $this->request->getPost("moisture");
         $items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
@@ -167,6 +168,7 @@ class SuppliersController extends BaseController
             "valuation_date" => $date,
             "client_id" => $supplier,
             "grn" => $grn,
+            "fpo" => $this->fpo,
             "prepared_by" => 1, //To be changed to reflect the current user
         ];
         // Save summary and obtain valuation Id
@@ -187,6 +189,7 @@ class SuppliersController extends BaseController
                     "currency_id" => 1, //To be updated to capture the actual currency
                     "price" => $prices[$x],
                     "exch_rate" => 1, //To be updated to capture the actual rate
+                    "moisture" => $moisture,
                 ];
                 array_push($inventoryData, $itemData);
             }

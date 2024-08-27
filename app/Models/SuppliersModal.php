@@ -32,21 +32,31 @@ class SuppliersModal extends Model
 
 
     // Get recent deliveries
-    public function deliveries($fpo, $fromDate, $toDate, $supplier = "all")
+    public function deliveryValuations($fpo, $fromDate, $toDate, $supplier = "all")
     {
         if ($supplier == "all") {
             $supplierFilter = "";
         } else {
             $supplierFilter = "AND client_id = '{$supplier}'";
         }
-        $query = $this->db->query("SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+        // Date controls
+        if ($fromDate == "" && $toDate == "") {
+            $dateFilter = "";
+        } elseif ($fromDate == "" && $toDate != "") {
+            $dateFilter = "AND trans_date < '{$toDate}' ";
+        } elseif ($fromDate != "" && $toDate == "") {
+            $dateFilter = "AND trans_date > '{$fromDate}' ";
+        } else {
+            $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
+        }
+        $query = $this->db->query("SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
             FROM inventory
             JOIN clients USING (client_id)
             JOIN grades USING (grade_id)
             LEFT JOIN stores USING (store_id)
-            LEFT JOIN deliveries ON inventory.transaction_id = deliveries.grn
-            WHERE transaction_type_id = '1' AND deliveries.fpo = '{$fpo}'
-            {$supplierFilter} AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}'");
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = '1' AND valuations.fpo = '{$fpo}'
+            {$supplierFilter} {$dateFilter}");
         return $query->getResultArray();
     }
 

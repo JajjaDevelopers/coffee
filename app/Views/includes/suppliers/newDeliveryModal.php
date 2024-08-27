@@ -11,8 +11,8 @@
       <div class="modal-body">
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
           <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <div class="row">
+            <div class="col-sm-12 col-md-7">
+              <div class="row" style="display: none;">
                 <div class="col-sm-4 col-md-4">
                   <label for="addSupplierName" class="form-label">VAL No:</label>
                 </div>
@@ -21,28 +21,39 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-4 col-md-4">
+                <div class="col-sm-6 col-md-2">
                   <label for="newValuationDate" class="form-label">Date:</label>
                 </div>
-                <div class="col-sm-8 col-md-5">
-                  <input type="date" class="form-control form-control-sm" id='newValuationDate'>
+                <div class="col-sm-6 col-md-3">
+                  <input type="date" class="form-control form-control-sm date" id='newValuationDate'>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-6 col-md-2">
+                  <label for="addDeliverySupplier" class="form-label">Supplier:</label>
+                </div>
+                <div class="col-sm-6 col-md-8">
+                  <select class="form-select form-control form-control-sm" id='addDeliverySupplier' style="width: 100%;">
+                  </select>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-6 col-md-2">
+                  <label for="newValuationGrn" class="form-label">GRN:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <input class="form-control form-control-sm" id='newValuationGrn' placeholder="GRN">
+                </div>
+                <div class="col-sm-6 col-md-2">
+                  <label for="newValuationMc" class="form-label">Moisture:</label>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                  <input class="form-control form-control-sm" id='newValuationMc' placeholder="%">
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row" style="margin-top: 10px;">
-            <div class="col-sm-12 col-md-2">
-              <label for="addDeliverySupplier" class="form-label">Supplier:</label>
-            </div>
-            <div class="col-sm-12 col-md-6">
-              <select class="form-select form-control form-control-sm" id='addDeliverySupplier' style="width: 400px;">
-              </select>
-            </div>
-            <div class="col-sm-4 col-md-1">
-              <label for="newValuationGrn" class="form-label text-right">GRN:</label>
-            </div>
-            <div class="col-sm-8 col-md-3">
-              <input class="form-control form-control-sm" id='newValuationGrn' placeholder="GRN">
+            <div class="col-sm-12 col-md-4">
+
             </div>
           </div>
           <hr>

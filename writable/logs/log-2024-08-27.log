@@ -1,0 +1,941 @@
+INFO - 2024-08-27 16:20:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-08-27 16:20:34 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: deliveries]
+in APPPATH\Views\partials\main.php on line 180.
+ 1 APPPATH\Views\partials\main.php(180): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php', 180)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(250): CodeIgniter\View\View->render('partials/main', [], true)
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('suppliers/deliveriesView', [], true)
+ 6 APPPATH\Controllers\SuppliersController.php(63): view('suppliers/deliveriesView', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveriesView()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-27 16:20:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:26:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:33:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-27 16:33:49 --> mysqli_sql_exception: Unknown column 'deliveries.fpo' in 'where clause' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:33:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'deliveries.fpo' in 'where clause'
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:33:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'deliveries.fpo' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:33:49 --> [Caused by] mysqli_sql_exception: Unknown column 'deliveries.fpo' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND deliveries.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-27 16:41:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 16:45:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-27 16:49:14 --> mysqli_sql_exception: Unknown column 'transactio_id' in 'group statement' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:49:14 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'transactio_id' in 'group statement'
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:49:14 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'transactio_id' in 'group statement'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:49:14 --> [Caused by] mysqli_sql_exception: Unknown column 'transactio_id' in 'group statement'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-08-27 16:49:23 --> mysqli_sql_exception: Unknown column 'transactio_id' in 'group statement' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:49:23 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'transactio_id' in 'group statement'
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:49:23 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'transactio_id' in 'group statement'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:49:23 --> [Caused by] mysqli_sql_exception: Unknown column 'transactio_id' in 'group statement'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transactio_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-08-27 16:50:30 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grade_id' at line 9 in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:50:30 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grade_id' at line 9
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:50:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:50:30 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id grade_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-08-27 16:50:58 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'THEN grade_id' at line 9 in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:50:58 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'THEN grade_id' at line 9
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:50:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'THEN grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:50:58 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'THEN grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id THEN grade_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-08-27 16:51:28 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9 in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:51:28 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:51:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:51:28 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2024-08-27 16:53:42 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9 in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 16:53:42 --> CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:53:42 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 16:53:42 --> [Caused by] mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY grade_id' at line 9
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'2024-07-01\' AND \'2024-08-27\'
+            GROUP BY transaction_id GROUP BY grade_id')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '2024-07-01', '2024-08-27', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-27 16:57:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:09:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:10:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:14:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:18:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:26:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:27:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:33:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:44:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:53:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:54:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:55:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:56:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 17:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 18:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-08-27 18:10:48 --> mysqli_sql_exception: Incorrect DATE value: '' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '', '', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-08-27 18:10:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: ''
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '', '', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 18:10:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: ''
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 3 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '', '', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-08-27 18:10:48 --> [Caused by] mysqli_sql_exception: Incorrect DATE value: ''
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 4 APPPATH\Models\SuppliersModal.php(49): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'\' AND \'\'')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '', '', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-08-27 18:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-08-27 18:19:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
