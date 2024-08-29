@@ -8,33 +8,40 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
 use App\Models\SuppliersModal;
 use CodeIgniter\I18n\Time;
+use App\Models\GeneralModal;
+use App\Models\BuyersModel;
 
 
-class SuppliersController extends BaseController
+class BuyersController extends BaseController
 {
     use CommonData;
     protected $fpo;
     public $gradesModel;
     public $suppliersModel;
+    public $generalModel;
+    public $buyersModel;
+
     public function __construct()
     {
         $this->fpo = 1; //shall be made dynamic based on login details
         $this->gradesModel = new GradesModel;
         $this->suppliersModel = new SuppliersModal;
+        $this->generalModel = new GeneralModal;
+        $this->buyersModel = new BuyersModel;
     }
-    public function index()
+    public function buyers()
     {
 
-        $page_title = "Suppliers";
+        $page_title = "Buyers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('suppliers/suppliers', compact('page_title', 'commonData', 'coffeeTypes'));
+        return view('buyers/buyers', compact('page_title', 'commonData', 'coffeeTypes'));
     }
-    // Get Suppliers List
-    public function suppliersList()
+    // Get Buyers List
+    public function buyersList()
     {
         $searchStr = $this->request->getPost("searchKey");
-        $data["suppliers"] = $this->suppliersModel->clientsList($this->fpo, "S", $searchStr);
+        $data["buyersList"] = $this->suppliersModel->clientsList($this->fpo, "B", $searchStr);
         return $this->response->setJSON($data);
     }
 
@@ -43,10 +50,24 @@ class SuppliersController extends BaseController
     {
         $searchStr = $this->request->getGet("search");
         $list = [];
-        $suppliers = $this->suppliersModel->clientsList($this->fpo, $searchStr);
+        $suppliers = $this->suppliersModel->suppliersList($this->fpo, $searchStr);
         for ($x = 0; $x < count($suppliers); $x++) {
             $list[$x]["id"] = $suppliers[$x]["client_id"];
             $list[$x]["text"] = $suppliers[$x]["name"];
+        }
+        $data["results"] = $list;
+        return $this->response->setJSON($data);
+    }
+
+    // Get countries list
+    public function countriesList()
+    {
+        $list = [];
+        $search = $this->request->getGet("search");
+        $countries = $this->generalModel->countriesList($search);
+        for ($x = 0; $x < count($countries); $x++) {
+            $list[$x]["id"] = $countries[$x]["country_id"];
+            $list[$x]["text"] = $countries[$x]["country_name"];
         }
         $data["results"] = $list;
         return $this->response->setJSON($data);
@@ -75,25 +96,14 @@ class SuppliersController extends BaseController
         return $this->response->setJSON($data);
     }
     // Add categories
-    public function addSupplier()
+    public function addBuyer()
     {
-        $data = [
-            "fpo" => $this->fpo,
-            "client_type" => "S",
-            "name" => $this->request->getPost("supplierName"),
-            "contact_person" => $this->request->getPost("contactPerson"),
-            "district" => $this->request->getPost("supplierDistrict"),
-            "telephone_1" => $this->request->getPost("supplierTel1"),
-            "telephone_2" => $this->request->getPost("supplierTel2"),
-            "email_1" => $this->request->getPost("supplierEmail"),
-            "category_id" => $this->request->getPost("supplierCategory"),
-            "currency_id" => $this->request->getPost("supplierCurrency"),
-            "role" => $this->request->getPost("conatctRole"),
-            "subcounty" => $this->request->getPost("supplierSubcounty"),
-            "street" => $this->request->getPost("supplierStreet"),
-        ];
-        $addSupplier = $this->suppliersModel->addSupplier($data);
-        if ($addSupplier) {
+        $buyerData = $this->request->getPost("buyerInfo");
+        $buyerData["fpo"] = $this->fpo;
+        $buyerData["client_type"] = "B";
+
+        $addBuyer = $this->buyersModel->addBuyer($buyerData);
+        if ($addBuyer) {
             $sms["sms"] = "success";
         } else {
             $sms["sms"] = "fail";

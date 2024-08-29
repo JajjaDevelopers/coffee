@@ -35,3 +35,12 @@ $routes->get('/deliveries', 'SuppliersController::deliveriesView');
 $routes->post('/suppliers/deliveryValuations', 'SuppliersController::deliveryValuations');
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
 $routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
+
+// Buyers and Sales/
+$routes->get('/buyers', 'BuyersController::buyers');
+$routes->post('/buyers/buyersList', 'BuyersController::buyersList');
+$routes->post('/buyers/addBuyer', 'BuyersController::addBuyer');
+
+
+// General
+$routes->get('/admin/countriesList', 'BuyersController::countriesList');

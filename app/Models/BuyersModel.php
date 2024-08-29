@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SuppliersModal extends Model
+class BuyersModel extends Model
 {
 
     protected $db;
@@ -23,11 +23,9 @@ class SuppliersModal extends Model
         } else {
             $searchFilter = "AND (name like '%{$searchStr}%')";
         }
-        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
-            role, subcounty, street, country_name
+        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
             FROM clients
             LEFT JOIN client_categories USING (category_id)
-            LEFT JOIN countries USING (country_id)
             WHERE client_type = '{$clientType}' AND fpo = '{$fpo}' {$searchFilter}");
         return $query->getResultArray();
     }
@@ -126,7 +124,7 @@ class SuppliersModal extends Model
     }
 
     // Add grade
-    public function addSupplier($data)
+    public function addBuyer($data)
     {
         $builder = $this->db->table("clients");
         return $builder->insert($data);
