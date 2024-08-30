@@ -74,14 +74,14 @@ class BuyersController extends BaseController
     }
 
     // Deliveries Page
-    public function deliveriesView()
+    public function salesPage()
     {
         $timeNow = Time::now();
         $dateToday = $timeNow->toLocalizedString('dd-MM-yyyy');
-        $page_title = "Suppliers";
+        $page_title = "Sales";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('suppliers/deliveriesView', compact('page_title', 'commonData', 'dateToday'));
+        return view('buyers/salesView', compact('page_title', 'commonData', 'dateToday'));
     }
 
 

@@ -40,6 +40,7 @@ $routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
 $routes->get('/buyers', 'BuyersController::buyers');
 $routes->post('/buyers/buyersList', 'BuyersController::buyersList');
 $routes->post('/buyers/addBuyer', 'BuyersController::addBuyer');
+$routes->get('/sales', 'BuyersController::salesPage');
 
 
 // General

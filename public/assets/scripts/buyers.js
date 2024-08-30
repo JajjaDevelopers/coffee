@@ -66,8 +66,20 @@ $(document).ready(function () {
         },
       },
       dataType: "json",
-      success: function (response) {},
+      success: function (response) {
+        var status = response.sms;
+        if (status == "success") {
+          $("#addBuyerModal").modal("hide");
+          $("#buyersTable").DataTable().ajax.reload();
+        }
+      },
     });
+  });
+
+  // Add new Sales Report
+  $(document).on("click", ".addSalesReportBtn", function (e) {
+    e.preventDefault();
+    $("#newSalesReportModal").modal("show");
   });
 
   //
