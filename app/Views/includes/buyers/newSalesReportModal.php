@@ -98,17 +98,17 @@
                 <th style="width: 20px;">Action</th>
               </tr>
             </thead>
-            <tbody id="valTBody">
-              <tr rowNo="1" id="valrow1">
-                <td><input rowNo="1" id="valCode1" class="form-control form-control-xs" readonly></td>
+            <tbody id="salesTBody">
+              <tr rowNo="1" id="salesRow1">
+                <td><input rowNo="1" id="salesCode1" class="form-control form-control-xs" readonly></td>
                 <td>
-                  <select rowNo="1" id="valGrade1" class="form-select form-control form-control-sm valGradeName" style="width: 300px;">
+                  <select rowNo="1" id="salesGrade1" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
                   </select>
                 </td>
-                <td><input type="number" rowNo="1" id="valQty1" class="form-control form-control-xs text-end valuationQtyPx" value="1" min="0"></td>
-                <td><input rowNo="1" id="valUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input type="number" rowNo="1" id="valPx1" class="form-control form-control-xs text-end valuationQtyPx" value="0" min="0"></td>
-                <td><input rowNo="1" id="valAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
+                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesuationQtyPx" salesue="1" min="0"></td>
+                <td><input rowNo="1" id="salesUnit1" class="form-control form-control-xs text-center" readonly></td>
+                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesuationQtyPx" salesue="0" min="0"></td>
+                <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" salesue="0" readonly></td>
               </tr>
             </tbody>
           </table>

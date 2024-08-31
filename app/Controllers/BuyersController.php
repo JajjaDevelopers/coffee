@@ -46,11 +46,11 @@ class BuyersController extends BaseController
     }
 
     // Select search customers
-    public function searchSuppliers()
+    public function searchBuyers()
     {
         $searchStr = $this->request->getGet("search");
         $list = [];
-        $suppliers = $this->suppliersModel->suppliersList($this->fpo, $searchStr);
+        $suppliers = $this->buyersModel->clientsList($this->fpo, "B", $searchStr);
         for ($x = 0; $x < count($suppliers); $x++) {
             $list[$x]["id"] = $suppliers[$x]["client_id"];
             $list[$x]["text"] = $suppliers[$x]["name"];

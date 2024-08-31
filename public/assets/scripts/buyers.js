@@ -16,6 +16,44 @@ $(document).ready(function () {
       minimumInputLength: 3,
     },
   });
+
+  //
+  //select Buyer
+  $("#addSalesBuyer").select2({
+    dropdownParent: $("#newSalesReportModal"),
+    ajax: {
+      delay: 250,
+      url: "/buyers/search",
+      data: function (params) {
+        var query = {
+          search: params.term,
+        };
+        return query;
+      },
+      dataType: "json",
+      placeholder: "Search for supplier",
+      minimumInputLength: 3,
+    },
+  });
+
+  // Grade name select2
+  $(".salesGradeName").select2({
+    dropdownParent: $("#newSalesReportModal"),
+    ajax: {
+      delay: 250,
+      url: "/grades/search",
+      data: function (params) {
+        var query = {
+          search: params.term,
+        };
+        return query;
+      },
+      dataType: "json",
+      placeholder: "Select Grade",
+      minimumInputLength: 3,
+    },
+  });
+
   //Get deliveries
   function buyersList() {
     $("#buyersTable").DataTable({
@@ -81,6 +119,9 @@ $(document).ready(function () {
     e.preventDefault();
     $("#newSalesReportModal").modal("show");
   });
+
+  // Sales Report Details
+  var salesItemsNo = 1;
 
   //
 });

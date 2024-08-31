@@ -43,7 +43,7 @@ class SuppliersController extends BaseController
     {
         $searchStr = $this->request->getGet("search");
         $list = [];
-        $suppliers = $this->suppliersModel->clientsList($this->fpo, $searchStr);
+        $suppliers = $this->suppliersModel->clientsList($this->fpo, "S", $searchStr);
         for ($x = 0; $x < count($suppliers); $x++) {
             $list[$x]["id"] = $suppliers[$x]["client_id"];
             $list[$x]["text"] = $suppliers[$x]["name"];
