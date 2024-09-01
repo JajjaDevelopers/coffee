@@ -42,7 +42,7 @@
                   <label for="newSalesRef" class="form-label">REF:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <input class="form-control form-control-sm" id='newSalesRef' placeholder="GRN">
+                  <input class="form-control form-control-sm" id='newSalesRef' placeholder="REF">
                 </div>
                 <div class="col-sm-6 col-md-2">
                   <label for="newSalesMC" class="form-label">Moisture:</label>
@@ -105,9 +105,9 @@
                   <select rowNo="1" id="salesGrade1" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
                   </select>
                 </td>
-                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesuationQtyPx" salesue="1" min="0"></td>
+                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesuationQtyPx" value="1" min="0"></td>
                 <td><input rowNo="1" id="salesUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesuationQtyPx" salesue="0" min="0"></td>
+                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesuationQtyPx" value="0" min="0"></td>
                 <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" salesue="0" readonly></td>
               </tr>
             </tbody>
@@ -117,7 +117,7 @@
               <div class="col-md-9"></div>
               <div class="col-sm-12 col-md-3">
                 <table class="table table-sm table-bordered">
-                  <tbody id="valTBody">
+                  <tbody id="salesTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
                       <td><input id="valTotal" class="form-control form-control-xs text-end" value="0" readonly></td>

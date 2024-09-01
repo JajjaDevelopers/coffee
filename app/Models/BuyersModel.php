@@ -23,9 +23,11 @@ class BuyersModel extends Model
         } else {
             $searchFilter = "AND (name like '%{$searchStr}%')";
         }
-        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, 
+            category_name, role, subcounty, street, curency_code
             FROM clients
             LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN currencies USING (currency_id)
             WHERE client_type = '{$clientType}' AND fpo = '{$fpo}' {$searchFilter}");
         return $query->getResultArray();
     }

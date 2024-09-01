@@ -41,7 +41,8 @@ class BuyersController extends BaseController
     public function buyersList()
     {
         $searchStr = $this->request->getPost("searchKey");
-        $data["buyersList"] = $this->suppliersModel->clientsList($this->fpo, "B", $searchStr);
+        $clientId = $this->request->getPost("buyer");
+        $data["buyersList"] = $this->suppliersModel->clientsList($this->fpo, "B", $searchStr, $clientId);
         return $this->response->setJSON($data);
     }
 
