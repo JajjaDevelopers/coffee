@@ -42,6 +42,7 @@ $routes->post('/buyers/buyersList', 'BuyersController::buyersList');
 $routes->get('/buyers/search', 'BuyersController::searchBuyers');
 $routes->post('/buyers/addBuyer', 'BuyersController::addBuyer');
 $routes->get('/sales', 'BuyersController::salesPage');
+$routes->get('/sales/saveSalesReport', 'BuyersController::saveSalesReport');
 
 
 // General

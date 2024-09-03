@@ -105,10 +105,10 @@
                   <select rowNo="1" id="salesGrade1" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
                   </select>
                 </td>
-                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesuationQtyPx" value="1" min="0"></td>
+                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
                 <td><input rowNo="1" id="salesUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesuationQtyPx" value="0" min="0"></td>
-                <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" salesue="0" readonly></td>
+                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
+                <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
               </tr>
             </tbody>
           </table>
@@ -120,7 +120,7 @@
                   <tbody id="salesTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
-                      <td><input id="valTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                      <td><input id="salesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>
@@ -130,7 +130,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveValuationBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveSalesReportBtn' type="button" class="btn btn-indigo addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>

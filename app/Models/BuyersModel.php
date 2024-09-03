@@ -110,11 +110,11 @@ class BuyersModel extends Model
     //     return $query->getResultArray();
     // }
 
-    // Save new valuation summary
-    public function newValuationSummary($data)
+    // Save new sales report summary
+    public function saveSalesReport($data)
     {
-        $valuationSummary = $this->db->table("valuations");
-        $valuationSummary->insert($data);
+        $salesReportSummary = $this->db->table("sales");
+        $salesReportSummary->insert($data);
         return $this->db->insertID();
     }
 

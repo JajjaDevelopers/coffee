@@ -258,7 +258,6 @@ $(document).ready(function () {
   });
 
   // Change valuation price or quantity
-
   $(document).on("change", ".valuationQtyPx", function (e) {
     e.preventDefault();
     var rowNo = $(this).attr("rowNo"); //Item row number changed

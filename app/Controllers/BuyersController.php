@@ -169,21 +169,21 @@ class BuyersController extends BaseController
     public function newValuation()
     {
         $date = $this->request->getPost("date");
-        $supplier = $this->request->getPost("supplier");
-        $grn = $this->request->getPost("grn");
+        $buyer = $this->request->getPost("buyer");
+        $ref = $this->request->getPost("ref");
         $moisture = $this->request->getPost("moisture");
         $items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
-        $valuationSummaryData = [
-            "valuation_date" => $date,
-            "client_id" => $supplier,
-            "grn" => $grn,
+        $salesReportData = [
+            "date" => $date,
+            "client_id" => $buyer,
+            "grn" => $buyer,
             "fpo" => $this->fpo,
             "prepared_by" => 1, //To be changed to reflect the current user
         ];
         // Save summary and obtain valuation Id
-        $valuationId = $this->suppliersModel->newValuationSummary($valuationSummaryData);
+        $valuationId = $this->buyersModel->saveSalesReport($salesReportData);
         // Update Inventory
         if ($valuationId) {
             $inventoryData = [];
@@ -192,7 +192,7 @@ class BuyersController extends BaseController
                     "transaction_type_id" => 1,
                     "transaction_id" => $valuationId,
                     "trans_date" => $date,
-                    "client_id" => $supplier,
+                    "client_id" => $buyer,
                     "item_no" => $x + 1,
                     "grade_id" => $items[$x],
                     "store_id" => 1, //To be updated to include store on the valuation
