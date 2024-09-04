@@ -22,15 +22,15 @@
           </div>
         </div>
         <br>
-        <table class='table table-sm table-bordered' id="buyersTable" style="width:100%;">
+        <table class='table table-sm table-bordered' id="salesReportsTable" style="width:100%;">
           <thead style='color:white'>
             <tr>
-              <th>Report No.</th>
               <th>Date</th>
+              <th>Report No.</th>
               <th>Buyer</th>
               <th>Qty (Kg)</th>
               <th>Currency </th>
-              <th>Value</th>
+              <th>Total Value</th>
             </tr>
           </thead>
           <tbody>

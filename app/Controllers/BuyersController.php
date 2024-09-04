@@ -86,14 +86,14 @@ class BuyersController extends BaseController
     }
 
 
-    // Previous delivery valuation
-    public function deliveryValuations()
+    // Previous sales reports
+    public function salesReports()
     {
         $fromDate = $this->request->getPost("fromDate");
         $toDate = $this->request->getPost("toDate");
-        $suppplier = $this->request->getPost("supplier");
-        $deliveries = $this->suppliersModel->deliveryValuations($this->fpo, $fromDate, $toDate, $suppplier);
-        $data["deliveries"] = $deliveries;
+        $buyer = $this->request->getPost("buyer");
+        $deliveries = $this->buyersModel->salesReportsList($this->fpo, $fromDate, $toDate, $buyer);
+        $data["salesReports"] = $deliveries;
         return $this->response->setJSON($data);
     }
     // Add categories
@@ -166,7 +166,7 @@ class BuyersController extends BaseController
     }
 
     // Save new valuation
-    public function newValuation()
+    public function newSalesReport()
     {
         $date = $this->request->getPost("date");
         $buyer = $this->request->getPost("buyer");
@@ -175,29 +175,30 @@ class BuyersController extends BaseController
         $items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
+        $currency = $this->suppliersModel->clientsList($this->fpo, "B", "", $buyer)[0]["currency_id"];
         $salesReportData = [
             "date" => $date,
-            "client_id" => $buyer,
-            "grn" => $buyer,
             "fpo" => $this->fpo,
-            "prepared_by" => 1, //To be changed to reflect the current user
+            "client_id" => $buyer,
+            "prepared_by" => 1, //To be updated to reflect the current user
+            "reference" => $ref
         ];
-        // Save summary and obtain valuation Id
-        $valuationId = $this->buyersModel->saveSalesReport($salesReportData);
+        // Save summary and obtain sales report Id
+        $salesReportId = $this->buyersModel->saveSalesReportSummary($salesReportData);
         // Update Inventory
-        if ($valuationId) {
+        if ($salesReportId) {
             $inventoryData = [];
             for ($x = 0; $x < count($items); $x++) {
                 $itemData = [
-                    "transaction_type_id" => 1,
-                    "transaction_id" => $valuationId,
+                    "transaction_type_id" => 2,
+                    "transaction_id" => $salesReportId,
                     "trans_date" => $date,
                     "client_id" => $buyer,
                     "item_no" => $x + 1,
                     "grade_id" => $items[$x],
                     "store_id" => 1, //To be updated to include store on the valuation
-                    "qty_in" => $quantities[$x],
-                    "currency_id" => 1, //To be updated to capture the actual currency
+                    "qty_out" => $quantities[$x],
+                    "currency_id" => $currency, //To be updated to capture the actual currency
                     "price" => $prices[$x],
                     "exch_rate" => 1, //To be updated to capture the actual rate
                     "moisture" => $moisture,
@@ -205,7 +206,7 @@ class BuyersController extends BaseController
                 array_push($inventoryData, $itemData);
             }
             // save items in the inventory
-            $saveDetails = $this->suppliersModel->newValuationInventoryItems($inventoryData);
+            $saveDetails = $this->buyersModel->newSalesReportInventoryItems($inventoryData);
             if ($saveDetails) {
                 $sms["status"] = "Success";
             } else {

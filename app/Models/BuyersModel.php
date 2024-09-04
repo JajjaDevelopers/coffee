@@ -33,13 +33,13 @@ class BuyersModel extends Model
     }
 
 
-    // Get recent deliveries
-    public function deliveryValuations($fpo, $fromDate, $toDate, $supplier = "all")
+    // Get recent sales reports
+    public function salesReportsList($fpo, $fromDate, $toDate, $buyer = "all")
     {
-        if ($supplier == "all") {
-            $supplierFilter = "";
+        if ($buyer == "all") {
+            $buyerFilter = "";
         } else {
-            $supplierFilter = "AND client_id = '{$supplier}'";
+            $buyerFilter = "AND client_id = '{$buyer}'";
         }
         // Date controls
         if ($fromDate == "" && $toDate == "") {
@@ -51,14 +51,17 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
         }
-        $query = $this->db->query("SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+        $query = $this->db->query("SELECT trans_date, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
+            sum(qty_out*price*exch_rate) AS value, curency_code AS currency
             FROM inventory
             JOIN clients USING (client_id)
             JOIN grades USING (grade_id)
             LEFT JOIN stores USING (store_id)
-            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
-            WHERE transaction_type_id = '1' AND valuations.fpo = '{$fpo}'
-            {$supplierFilter} {$dateFilter}");
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            WHERE transaction_type_id = '2' AND sales.fpo = '{$fpo}'
+            {$buyerFilter} {$dateFilter}
+            GROUP BY transaction_id");
         return $query->getResultArray();
     }
 
@@ -111,15 +114,15 @@ class BuyersModel extends Model
     // }
 
     // Save new sales report summary
-    public function saveSalesReport($data)
+    public function saveSalesReportSummary($data)
     {
         $salesReportSummary = $this->db->table("sales");
         $salesReportSummary->insert($data);
         return $this->db->insertID();
     }
 
-    // Save new valuation items in inventory
-    public function newValuationInventoryItems($data)
+    // Save new sales report items in inventory
+    public function newSalesReportInventoryItems($data)
     {
         $builder = $this->db->table("inventory");
         return $builder->insertBatch($data);

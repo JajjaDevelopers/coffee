@@ -36,6 +36,32 @@ $(document).ready(function () {
     },
   });
 
+  // Get previous sales reports
+  function salesReportsList() {
+    $("#salesReportsTable").DataTable({
+      destroy: true,
+      ajax: {
+        method: "post",
+        url: "/sales/salesReports",
+        data: {
+          fromDate: $("#fromDate").val(),
+          toDate: $("#toDate").val(),
+          buyer: "all",
+        },
+        dataSrc: "salesReports",
+      },
+      columns: [
+        { data: "trans_date" },
+        { data: "sales_report_no" },
+        { data: "name" },
+        { data: "qty" },
+        { data: "currency" },
+        { data: "value" },
+      ],
+    });
+  }
+  salesReportsList();
+
   // Get buyer infor on changing the buyer
   $(document).on("change", "#addSalesBuyer", function (e) {
     e.preventDefault();
@@ -160,7 +186,7 @@ $(document).ready(function () {
   });
 
   // Sales Report Details
-  // Add new valuation rows
+  // Add new sales report rows
   var salesItemsNo = 1;
   var salesReportTotal = 0;
   var salesReportItemIds = [1]; //Store item row numbers
@@ -267,6 +293,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         $("#newSalesReportModal").modal("hide");
+        $("#salesReportsTable").DataTable().ajax.reload();
       },
     });
   });
