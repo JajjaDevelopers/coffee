@@ -51,7 +51,7 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
         }
-        $query = $this->db->query("SELECT trans_date, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
+        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
             sum(qty_out*price*exch_rate) AS value, curency_code AS currency
             FROM inventory
             JOIN clients USING (client_id)

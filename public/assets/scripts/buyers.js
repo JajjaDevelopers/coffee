@@ -56,7 +56,17 @@ $(document).ready(function () {
         { data: "name" },
         { data: "qty" },
         { data: "currency" },
-        { data: "value" },
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.value);
+            return `
+            <a href="#" sId="${
+              row.sales_id
+            }" class="salesReportValue" style="color: blue; text-align: right; border:none" value="">
+              <span style="text-align: end">${value.toLocaleString()}</span>
+            </a>`;
+          },
+        },
       ],
     });
   }
@@ -296,6 +306,12 @@ $(document).ready(function () {
         $("#salesReportsTable").DataTable().ajax.reload();
       },
     });
+  });
+
+  // Previewing the
+  $(document).on("click", ".salesReportValue", function (e) {
+    e.preventDefault();
+    $("#newSalesReportModal").modal("show");
   });
 
   //
