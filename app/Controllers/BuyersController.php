@@ -216,24 +216,36 @@ class BuyersController extends BaseController
         }
     }
 
-    // Add grade
-    // public function addGrade()
-    // {
-    //     $grdData = [
-    //         "grade_code" => $this->request->getPost("grdCode"),
-    //         "grade_name" => $this->request->getPost("grdName"),
-    //         "category_id" => $this->request->getPost("grdCatId"),
-    //         "unit" => $this->request->getPost("grdUnit"),
-    //         "group_id" => $this->request->getPost("grdGroup")
-    //     ];
-    //     $addGrade = $this->gradesModel->addGrade($grdData);
-    //     if ($addGrade) {
-    //         $data["sms"] = "success";
-    //     } else {
-    //         $data["sms"] = "fail";
-    //     }
-    //     return $this->response->setJSON($data);
-    // }
+    // Edit sales Report Data
+    public function editSalesReportData()
+    {
+        $sId = $this->request->getPost("sId");
+        $salesData = $this->buyersModel->salesReportData($this->fpo, $sId, "", "", "");
+        $data["reportNo"] = $salesData[0]["sales_report_no"];
+        $data["salesDate"] = $salesData[0]["date"];
+        $data["buyerId"] = $salesData[0]["client_id"];
+        $data["buyerName"] = $salesData[0]["name"];
+        $data["ref"] = $salesData[0]["reference"];
+        $data["mc"] = $salesData[0]["moisture"];
+        $data["currencyId"] = $salesData[0]["currency_id"];
+        $data["currencyCode"] = $salesData[0]["curency_code"];
+        $data["fxRate"] = $salesData[0]["exch_rate"];
+        $items = [];
+        for ($x = 0; $x < count($salesData); $x++) {
+            $itm = [
+                "rowNo" => $x + 1,
+                "code" => $salesData[$x]["grade_code"],
+                "gradeId" => $salesData[$x]["grade_id"],
+                "gradeName" => $salesData[$x]["grade_name"],
+                "qty" => $salesData[$x]["qty_out"],
+                "unit" => $salesData[$x]["unit"],
+                "price" => $salesData[$x]["price"],
+            ];
+            array_push($items, $itm);
+        }
+        $data["items"] = $items;
+        return $this->response->setJSON($data);
+    }
 
 
     // 

@@ -65,14 +65,42 @@ class BuyersModel extends Model
         return $query->getResultArray();
     }
 
-    // New delivery valuation
-    public function newDeliveryValuation($data)
+    // Sales Report Data
+    public function salesReportData($fpo, $salesId = "", $buyer = "", $dateFrom = "", $dateTo = "")
     {
-        $builder = $this->db->table("coffee_category");
-        $status = $builder->insert($data);
-        if ($status) {
-            return $this->db->insertID();
+        // Filter controls
+        // Sales Id
+        if ($salesId == "") {
+            $salesIdFilter = "";
+        } else {
+            $salesIdFilter = "AND inventory.transaction_id = '{$salesId}'";
         }
+        // Buyer
+        if ($buyer == "") {
+            $buyerFilter = "";
+        } else {
+            $buyerFilter = "AND inventory.client_id = '{$buyer}'";
+        }
+        // Date
+        if ($dateFrom == "" && $dateTo == "") {
+            $dateFilter = "";
+        } else if ($dateFrom == "" && $dateTo != "") {
+            $dateFilter = "AND trans_date <= '{$dateTo}'";
+        } else if ($dateFrom != "" && $dateTo == "") {
+            $dateFilter = "AND trans_date >= '{$dateFrom}'";
+        } else {
+            $dateFilter = "AND trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}' ";
+        }
+        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, reference,
+            item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, exch_rate, moisture, curency_code
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}");
+        return $query->getResultArray();
     }
 
     // Inventory update on delivery valuation

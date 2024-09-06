@@ -44,6 +44,7 @@ $routes->post('/buyers/addBuyer', 'BuyersController::addBuyer');
 $routes->get('/sales', 'BuyersController::salesPage');
 $routes->post('/sales/saveSalesReport', 'BuyersController::newSalesReport');
 $routes->post('/sales/salesReports', 'BuyersController::salesReports');
+$routes->post('/saleReport/editData', 'BuyersController::editSalesReportData');
 
 
 

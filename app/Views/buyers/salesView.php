@@ -4,6 +4,7 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/buyers/newSalesReportModal.php'); ?>
+<?= $this->include('/includes/buyers/editSalesReportModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0">

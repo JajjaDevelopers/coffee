@@ -311,7 +311,48 @@ $(document).ready(function () {
   // Previewing the
   $(document).on("click", ".salesReportValue", function (e) {
     e.preventDefault();
-    $("#newSalesReportModal").modal("show");
+    const salesId = $(this).attr("sId");
+    // Get sales report infomation
+    $.ajax({
+      type: "post",
+      url: "/saleReport/editData",
+      data: {
+        sId: salesId,
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#editSalesReportNo").text(response.reportNo);
+        $("#editSalesDate").val(response.salesDate);
+        $("#editSalesBuyer").val(response.buyerId);
+        $("#editSalesRef").val(response.ref);
+        $("#editSalesMC").val(response.mc);
+        $("#editSalesCurrency").val(response.currencyId);
+        $("#editSalesFx").val(response.fxRate);
+        $("#editSalesFx").val();
+        // Items
+        var rowStr = "";
+        const items = response.items;
+        for (var x = 0; x < items.length; x++) {
+          var rowNo = response.rowNo;
+          rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
+                    <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
+                    <td>
+                      <select rowNo="${rowNo}" id="salesGrade${rowNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
+                      </select>
+                    </td>
+                    <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
+                    <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly></td>
+                    <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
+                    <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="0" readonly></td>
+                    <td>
+                      <button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>
+                    </td>
+                  </tr>`;
+          $("#editSalesTBody").append(rowStr);
+        }
+      },
+    });
+    $("#editSalesReportModal").modal("show");
   });
 
   //
