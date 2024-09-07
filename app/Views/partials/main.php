@@ -91,8 +91,8 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Sales</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/sales/sales-reports" class="nav-sub-link">Sales Reports</a></li>
-            <li class="nav-sub-item"><a href="/sales/buyers" class="nav-sub-link">Buyers</a></li>
+            <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales</a></li>
+            <li class="nav-sub-item"><a href="/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">

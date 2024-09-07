@@ -1,0 +1,109 @@
+INFO - 2024-09-01 07:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:19:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:42:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:45:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-01 07:49:24 --> mysqli_sql_exception: Unknown column 'curency_code' in 'field list' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT client_i...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_i...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_i...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(36): CodeIgniter\Database\BaseConnection->query('SELECT client_i...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(45): App\Models\SuppliersModal->clientsList(1, 'B', '', '6')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->buyersList()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-09-01 07:49:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'curency_code' in 'field list'
+[Method: POST, Route: buyers/buyersList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(36): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 2 APPPATH\Controllers\BuyersController.php(45): App\Models\SuppliersModal->clientsList(1, 'B', '', '6')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->buyersList()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-01 07:49:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'curency_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 3 APPPATH\Models\SuppliersModal.php(36): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 4 APPPATH\Controllers\BuyersController.php(45): App\Models\SuppliersModal->clientsList(1, 'B', '', '6')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->buyersList()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-01 07:49:24 --> [Caused by] mysqli_sql_exception: Unknown column 'curency_code' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 4 APPPATH\Models\SuppliersModal.php(36): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN countries USING (country_id)
+            WHERE client_type = \'B\' AND fpo = \'1\'  AND client_id = \'6\'')
+ 5 APPPATH\Controllers\BuyersController.php(45): App\Models\SuppliersModal->clientsList(1, 'B', '', '6')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->buyersList()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-01 07:52:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:53:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:54:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:54:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 07:57:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:17:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:18:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:45:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:52:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-01 08:56:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

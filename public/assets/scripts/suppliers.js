@@ -327,7 +327,6 @@ $('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
   });
 
   // Change valuation price or quantity
-
   $(document).on("change", ".valuationQtyPx", function (e) {
     e.preventDefault();
     var rowNo = $(this).attr("rowNo"); //Item row number changed

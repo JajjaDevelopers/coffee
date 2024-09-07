@@ -16,17 +16,25 @@ class SuppliersModal extends Model
     }
 
     // Coffee Types
-    public function suppliersList($fpo, $searchStr = "")
+    public function clientsList($fpo, $clientType, $searchStr = "", $clientId = "all")
     {
         if ($searchStr == "") {
             $searchFilter = "";
         } else {
             $searchFilter = "AND (name like '%{$searchStr}%')";
         }
-        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+        if ($clientId == "all") {
+            $clientFilter = "";
+        } else {
+            $clientFilter = "AND client_id = '{$clientId}'";
+        }
+        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, 
+            role, subcounty, street, country_name, currency_id, curency_code
             FROM clients
             LEFT JOIN client_categories USING (category_id)
-            WHERE client_type = 'S' AND fpo = '{$fpo}' {$searchFilter}");
+            LEFT JOIN countries USING (country_id)
+            LEFT JOIN currencies USING (currency_id)
+            WHERE client_type = '{$clientType}' AND fpo = '{$fpo}' {$searchFilter} {$clientFilter}");
         return $query->getResultArray();
     }
 

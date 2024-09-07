@@ -1,0 +1,169 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class BuyersModel extends Model
+{
+
+    protected $db;
+
+
+    public function __construct()
+    {
+        $this->db = \Config\Database::connect();
+    }
+
+    // Coffee Types
+    public function clientsList($fpo, $clientType, $searchStr = "")
+    {
+        if ($searchStr == "") {
+            $searchFilter = "";
+        } else {
+            $searchFilter = "AND (name like '%{$searchStr}%')";
+        }
+        $query = $this->db->query("SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, 
+            category_name, role, subcounty, street, curency_code
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            LEFT JOIN currencies USING (currency_id)
+            WHERE client_type = '{$clientType}' AND fpo = '{$fpo}' {$searchFilter}");
+        return $query->getResultArray();
+    }
+
+
+    // Get recent sales reports
+    public function salesReportsList($fpo, $fromDate, $toDate, $buyer = "all")
+    {
+        if ($buyer == "all") {
+            $buyerFilter = "";
+        } else {
+            $buyerFilter = "AND client_id = '{$buyer}'";
+        }
+        // Date controls
+        if ($fromDate == "" && $toDate == "") {
+            $dateFilter = "";
+        } elseif ($fromDate == "" && $toDate != "") {
+            $dateFilter = "AND trans_date < '{$toDate}' ";
+        } elseif ($fromDate != "" && $toDate == "") {
+            $dateFilter = "AND trans_date > '{$fromDate}' ";
+        } else {
+            $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
+        }
+        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
+            sum(qty_out*price*exch_rate) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            WHERE transaction_type_id = '2' AND sales.fpo = '{$fpo}'
+            {$buyerFilter} {$dateFilter}
+            GROUP BY transaction_id");
+        return $query->getResultArray();
+    }
+
+    // Sales Report Data
+    public function salesReportData($fpo, $salesId = "", $buyer = "", $dateFrom = "", $dateTo = "")
+    {
+        // Filter controls
+        // Sales Id
+        if ($salesId == "") {
+            $salesIdFilter = "";
+        } else {
+            $salesIdFilter = "AND inventory.transaction_id = '{$salesId}'";
+        }
+        // Buyer
+        if ($buyer == "") {
+            $buyerFilter = "";
+        } else {
+            $buyerFilter = "AND inventory.client_id = '{$buyer}'";
+        }
+        // Date
+        if ($dateFrom == "" && $dateTo == "") {
+            $dateFilter = "";
+        } else if ($dateFrom == "" && $dateTo != "") {
+            $dateFilter = "AND trans_date <= '{$dateTo}'";
+        } else if ($dateFrom != "" && $dateTo == "") {
+            $dateFilter = "AND trans_date >= '{$dateFrom}'";
+        } else {
+            $dateFilter = "AND trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}' ";
+        }
+        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, reference,
+            item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, exch_rate, moisture, curency_code
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}");
+        return $query->getResultArray();
+    }
+
+    // Inventory update on delivery valuation
+    public function inventoryValuationUpdate($data)
+    {
+        $builder = $this->db->table("inventory");
+        return $builder->insertBatch($data);
+    }
+
+    // Get Purchases
+    public function getGrades($fpo)
+    {
+        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
+            FROM grades
+            LEFT JOIN coffee_category USING (category_id)
+            LEFT JOIN grade_groups USING (group_id)
+            WHERE coffee_category.fpo = '{$fpo}'");
+        return $query->getResultArray();
+    }
+
+    // Quantity according to category
+    // public function gradeQtyBalance($fpo, $grade = "all")
+    // {
+    //     if ($grade == "all") {
+    //         $gradeFilter = "";
+    //     } else {
+    //         $gradeFilter = "AND grades.grade_id='{$grade}'";
+    //     }
+
+    //     $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+    //         FROM inventory
+    //         RIGHT JOIN grades USING (grade_id)
+    //         RIGHT JOIN coffee_category USING (category_id)
+    //         JOIN grade_groups ON grades.group_id = grade_groups.group_id
+    //         WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter}
+    //         GROUP BY category_id");
+
+    //     return $query->getResultArray();
+    // }
+
+    // Save new sales report summary
+    public function saveSalesReportSummary($data)
+    {
+        $salesReportSummary = $this->db->table("sales");
+        $salesReportSummary->insert($data);
+        return $this->db->insertID();
+    }
+
+    // Save new sales report items in inventory
+    public function newSalesReportInventoryItems($data)
+    {
+        $builder = $this->db->table("inventory");
+        return $builder->insertBatch($data);
+    }
+
+    // Add grade
+    public function addBuyer($data)
+    {
+        $builder = $this->db->table("clients");
+        return $builder->insert($data);
+    }
+
+
+
+    // 
+}
