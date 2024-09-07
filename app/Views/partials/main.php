@@ -223,6 +223,10 @@
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
+  <!-- Moment.js for DateTime handling -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <!-- Date Range Picker -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <script>
     $(function() {
       'use strict'
@@ -272,6 +276,26 @@
         $(target).addClass('active');
         $(target).siblings().removeClass('active');
       })
+      //date range
+      // date-range-settings.js
+      var dateRangeSettings = {
+        startDate: moment().subtract(6, 'days'),
+        endDate: moment(),
+        ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'This Year': [moment().startOf('year'), moment()],
+          'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+          'Custom Range': [null, null]
+        },
+        alwaysShowCalendars: true,
+        locale: {
+          format: 'MM/DD/YYYY'
+        }
+      };
     })
   </script>
   <!--placeholder for our extra scripts-->

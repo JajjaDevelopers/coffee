@@ -86,6 +86,20 @@ $(document).ready(function () {
     valuationItemIds = temporaryItemIds;
   });
 
+  //date range filtering
+  $('#date_range_filter').daterangepicker(
+    dateRangeSettings,
+    function(start, end) {
+        $('#date_range_filter').val(start.format('MM/DD/YYYY') + ' ~ ' + end
+            .format('MM/DD/YYYY'));
+        // table.ajax.reload();
+    }
+);
+$('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
+    $('#date_range_filter').val('');
+    //table.ajax.reload();
+});
+
   //Get deliveries
   function deliveries() {
     $("#deliveriesTable").DataTable({

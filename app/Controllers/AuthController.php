@@ -19,12 +19,14 @@ class AuthController extends BaseController
      */
     public function login()
     {
+       
         $session = session();
         $userModel = new UsersModel();
 
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $user = $userModel->where('email', $email)->first();
+        
 
         if ($user) {
         $pass = $user['password'];
@@ -40,11 +42,12 @@ class AuthController extends BaseController
         return redirect()->to('/home');
         } else {
         $session->setFlashdata('msg', 'Wrong Credentials.');
-        return redirect()->to('/login');
+        return redirect()->to('/');
         }
+   
         } else {
         $session->setFlashdata('msg', 'Email does not exist.');
-        return redirect()->to('/');
+            return redirect()->to('/');
         }
     }
 
