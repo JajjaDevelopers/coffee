@@ -39,7 +39,7 @@
   <meta property="og:image:height" content="600">
 
   <!-- Meta -->
-  <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+  <meta name="description" content="Coffee Tracking System">
   <meta name="author" content="ThemePixels">
 
   <title><?= $this->renderSection('title') ?></title>
@@ -53,8 +53,9 @@
   <link href="<?= base_url('dashboard/lib/jqvmap/jqvmap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('dashboard/lib/lightslider/css/lightslider.min.css') ?>" rel="stylesheet">
   <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.css" />
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
   <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
@@ -219,8 +220,14 @@
   <script src="<?= base_url('dashboard/lib/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
   <script src="<?= base_url('dashboard/lib/lightslider/js/lightslider.min.js') ?>"></script>
   <!-- DataTables JS -->
-  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
   <!-- Moment.js for DateTime handling -->
@@ -278,24 +285,24 @@
       })
       //date range
       // date-range-settings.js
-      var dateRangeSettings = {
-        startDate: moment().subtract(6, 'days'),
-        endDate: moment(),
-        ranges: {
-          'Today': [moment(), moment()],
-          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month': [moment().startOf('month'), moment().endOf('month')],
-          'This Year': [moment().startOf('year'), moment()],
-          'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
-          'Custom Range': [null, null]
-        },
-        alwaysShowCalendars: true,
-        locale: {
-          format: 'MM/DD/YYYY'
-        }
-      };
+      // var dateRangeSettings = {
+      //   startDate: moment().subtract(6, 'days'),
+      //   endDate: moment(),
+      //   ranges: {
+      //     'Today': [moment(), moment()],
+      //     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      //     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      //     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      //     'This Month': [moment().startOf('month'), moment().endOf('month')],
+      //     'This Year': [moment().startOf('year'), moment()],
+      //     'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+      //     'Custom Range': [null, null]
+      //   },
+      //   alwaysShowCalendars: true,
+      //   locale: {
+      //     format: 'MM/DD/YYYY'
+      //   }
+      // };
     })
   </script>
   <!--placeholder for our extra scripts-->

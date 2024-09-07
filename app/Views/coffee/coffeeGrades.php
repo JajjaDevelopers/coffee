@@ -10,93 +10,90 @@
   <div class="row row-sm mg-b-15 mg-sm-b-20">
     <div class="container-fluid" style="height: fit-content;">
       <div class="card bd-0 wd-280 wd-sm-500 wd-md-700 wd-xl-850">
-        <div class="card-header card-header-tab">
-          <div class="az-nav-tabs">
-            <div id="navComplex">
-              <div class="tab-item"><a href="#azTab1" class="tab-link active">Grades</a></div>
-              <div class="tab-item"><a href="#azTab2" class="tab-link">Categories</a></div>
-              <div class="tab-item"><a href="#azTab3" class="tab-link">Groups</a></div>
-            </div>
-          </div><!-- az-nav-complex -->
+        <div class="card-header bg-gray-400 bd-b-0-f pd-b-0">
+          <nav class="nav nav-tabs">
+            <a class="nav-link active" data-toggle="tab" href="#grades">Grades</a>
+            <a class="nav-link" data-toggle="tab" href="#categories">Categories</a>
+            <a class="nav-link" data-toggle="tab" href="#groups">Groups</a>
+          </nav>
         </div><!-- card-header -->
-        <div class="card-body bd bd-t-0 pd-xl-25">
-          <div class="az-tab-content">
-            <div id="azTab1" class="az-tab-pane active">
-              <h5><strong>Coffee Grades</strong></h5>
-              <div class="row">
-                <div style='display:flex;justify-content:flex-end'>
-                  <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeBtn'>
-                    <strong>+ New Grade </strong>
-                  </button>
-                </div>
+        <div class="card-body bd bd-t-0 tab-content">
+          <div id="grades" class="tab-pane active show">
+            <h5><strong>Coffee Grades</strong></h5>
+            <div class="row">
+              <div style='display:flex;justify-content:flex-end'>
+                <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeBtn'>
+                  <strong>+ New Grade </strong>
+                </button>
               </div>
-              <br>
-              <div class="dataTables_wrapper no-footer">
-                <table id="gradesListTable" class='table table-sm table-hover'>
-                  <thead>
-                    <tr>
-                      <th>Code</th>
-                      <th>Grade Name</th>
-                      <th>Group</th>
-                      <th>Available</th>
-                      <th>Unit</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
+            </div>
+            <br>
+            <div class="dataTables_wrapper no-footer">
+              <table id="gradesListTable" class='table table-sm table-hover'>
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Grade Name</th>
+                    <th>Group</th>
+                    <th>Available</th>
+                    <th>Unit</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
 
-                </table>
+              </table>
+            </div>
+          </div><!-- tab-pane -->
+          <div id="categories" class="tab-pane">
+            <div class="row">
+              <div style='display:flex;justify-content:flex-end'>
+                <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
+                  <strong>+ New Category</strong>
+                </button>
               </div>
             </div>
-            <div id="azTab2" class="az-tab-pane">
-              <div class="row">
-                <div style='display:flex;justify-content:flex-end'>
-                  <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
-                    <strong>+ New Category</strong>
-                  </button>
-                </div>
+            <br>
+              <div>
+              <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
+                <thead style='color:white'>
+                  <tr class='text-white'>
+                    <th>Category Name</th>
+                    <th>Coffee Type</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
               </div>
-              <br>
-              <div class="row">
-                <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
-                  <thead style='color:white'>
-                    <tr class='text-white'>
-                      <th>Category Name</th>
-                      <th>Coffee Type</th>
-                      <th>Available</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div id="azTab3" class="az-tab-pane">
-              <div class="row">
-                <div style='display:flex;justify-content:flex-end'>
-                  <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
-                    <strong>+ New Category</strong>
-                  </button>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
-                  <thead style='color:white'>
-                    <tr class='text-white'>
-                      <th>Category Name</th>
-                      <th>Coffee Type</th>
-                      <th>Available</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
+          </div>
+          <div id="groups" class="tab-pane">
+            <div class="row">
+              <div style='display:flex;justify-content:flex-end'>
+                <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
+                  <strong>+ New Category</strong>
+                </button>
               </div>
             </div>
-          </div><!-- az-tab-content -->
+            <br>
+            <div class="row">
+              <table class='table dataTable table-striped' id="gradeCategoriesTable" style="width:100%;">
+                <thead style='color:white'>
+                  <tr class='text-white'>
+                    <th>Category Name</th>
+                    <th>Coffee Type</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- tab-pane -->
         </div><!-- card-body -->
+
       </div><!-- card -->
     </div>
   </div><!-- row -->
@@ -105,4 +102,4 @@
 <!---scripts-->
 <?= $this->section('scripts') ?>
 <script src="<?= base_url('assets/scripts/grades.js') ?>"></script>
-<?= $this->endSection() ?>
+<?= $this->endSection()?>

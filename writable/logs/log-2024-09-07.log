@@ -1,0 +1,1443 @@
+CRITICAL - 2024-09-07 19:29:47 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "widgets/login.php"
+[Method: GET, Route: /]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('widgets/login.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('widgets/login', [], true)
+ 3 APPPATH\Controllers\AuthController.php(14): view('widgets/login')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AuthController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 19:49:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 19:50:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 19:50:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 19:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 19:51:27 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 19:51:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 19:51:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 19:51:27 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 19:57:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 19:57:58 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 19:57:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 19:57:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 19:57:58 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:01:08 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:01:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:08 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:01:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:01:28 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:01:28 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:28 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:28 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:01:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:01:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:01:39 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:01:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:01:39 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:02:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:14:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:14:32 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:14:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:14:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:14:32 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:15:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:15:30 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:15:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:15:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:15:30 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:18:17 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:18:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:18:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:18:17 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:19:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:19:09 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:19:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:19:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:19:09 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:27:33 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:27:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:27:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:27:33 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:29:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:29:18 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:29:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:29:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:29:18 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:32:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:32:18 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:32:18 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:32:18 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:32:18 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:33:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:33:41 --> mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause' in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:33:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+[Method: POST, Route: grades/gradesList]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:33:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:33:41 --> [Caused by] mysqli_sql_exception: Unknown column 'grades.group_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 4 APPPATH\Models\GradesModel.php(92): CodeIgniter\Database\BaseConnection->query('SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM inventory
+            RIGHT JOIN grades USING (grade_id)
+            RIGHT JOIN coffee_category USING (category_id)
+            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+            WHERE coffee_category.fpo = \'1\' AND grades.grade_id=\'\' 
+            GROUP BY grade_id LIMIT 1')
+ 5 APPPATH\Controllers\CoffeeGradesController.php(69): App\Models\GradesModel->getGrades(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\CoffeeGradesController->getGrades()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CoffeeGradesController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:33:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:37:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-07 20:37:07 --> mysqli_sql_exception: Table 'coffee.client_categories' doesn't exist in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT client_i...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_i...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_i...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Models\SuppliersModal.php(26): CodeIgniter\Database\BaseConnection->query('SELECT client_i...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\SuppliersController.php(37): App\Models\SuppliersModal->suppliersList(1, NULL)
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->suppliersList()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-07 20:37:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.client_categories' doesn't exist
+[Method: POST, Route: suppliers/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(26): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 2 APPPATH\Controllers\SuppliersController.php(37): App\Models\SuppliersModal->suppliersList(1, null)
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->suppliersList()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:37:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.client_categories' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 3 APPPATH\Models\SuppliersModal.php(26): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 4 APPPATH\Controllers\SuppliersController.php(37): App\Models\SuppliersModal->suppliersList(1, null)
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->suppliersList()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-07 20:37:07 --> [Caused by] mysqli_sql_exception: Table 'coffee.client_categories' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 4 APPPATH\Models\SuppliersModal.php(26): CodeIgniter\Database\BaseConnection->query('SELECT client_id, name, contact_person, district, telephone_1, telephone_2, email_1, category_name, role, subcounty, street
+            FROM clients
+            LEFT JOIN client_categories USING (category_id)
+            WHERE client_type = \'S\' AND fpo = \'1\' ')
+ 5 APPPATH\Controllers\SuppliersController.php(37): App\Models\SuppliersModal->suppliersList(1, null)
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->suppliersList()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-07 20:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:42:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:44:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-07 20:48:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
