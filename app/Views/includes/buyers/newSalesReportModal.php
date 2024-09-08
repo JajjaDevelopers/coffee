@@ -33,7 +33,7 @@
                   <label for="addSalesBuyer" class="form-label">Buyer:</label>
                 </div>
                 <div class="col-sm-6 col-md-8">
-                  <select class="form-select form-control form-control-sm" id='addSalesBuyer' style="width: 100%;">
+                  <select class="form-select form-control form-control-sm salesBuyer" id='addSalesBuyer' style="width: 100%;">
                   </select>
                 </div>
               </div>
@@ -76,11 +76,11 @@
           <hr>
           <div class="row" style="margin-bottom: 5px;">
             <div class="col-sm-7">
-              <h6>Details</h6>
+              <h6>Sales Report Items</h6>
             </div>
             <div class="col-sm-5">
               <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='salesRowAddBtn'>
+                <button class="btn btn-sm salesRowAddBtn" style='background-color:green;color:white' id='salesRowAddBtn' mode="new">
                   <strong>+ Add Row </strong>
                 </button>
               </div>
@@ -118,8 +118,8 @@
               <div class="col-sm-12 col-md-3">
                 <table class="table table-sm table-bordered">
                   <tbody id="salesTBody">
-                    <tr rowNo="1" id="valrow1">
-                      <td>Total:</td>
+                    <tr>
+                      <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
                       <td><input id="salesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
                     </tr>
                   </tbody>

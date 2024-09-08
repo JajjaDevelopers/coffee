@@ -18,23 +18,27 @@ $(document).ready(function () {
   });
 
   //
-  //select Buyer
-  $("#addSalesBuyer").select2({
-    dropdownParent: $("#newSalesReportModal"),
-    ajax: {
-      delay: 250,
-      url: "/buyers/search",
-      data: function (params) {
-        var query = {
-          search: params.term,
-        };
-        return query;
+  //Select Sales Report Buyer
+  function setSalesBuyerInput(buyerInput, parentContainer) {
+    $(`#${buyerInput}`).select2({
+      dropdownParent: $(`#${parentContainer}`),
+      ajax: {
+        delay: 250,
+        url: "/buyers/search",
+        data: function (params) {
+          var query = {
+            search: params.term,
+          };
+          return query;
+        },
+        dataType: "json",
+        placeholder: "Search for supplier",
+        minimumInputLength: 3,
       },
-      dataType: "json",
-      placeholder: "Search for supplier",
-      minimumInputLength: 3,
-    },
-  });
+    });
+  }
+  setSalesBuyerInput("addSalesBuyer", "newSalesReportModal"); //Buyer on new sales report
+  setSalesBuyerInput("editSalesBuyer", "editSalesReportModal"); //Buyer on editing of sales report
 
   // Get previous sales reports
   function salesReportsList() {
@@ -92,22 +96,7 @@ $(document).ready(function () {
   });
 
   // Grade name select2
-  $(".salesGradeName").select2({
-    dropdownParent: $("#newSalesReportModal"),
-    ajax: {
-      delay: 250,
-      url: "/grades/search",
-      data: function (params) {
-        var query = {
-          search: params.term,
-        };
-        return query;
-      },
-      dataType: "json",
-      placeholder: "Select Grade",
-      minimumInputLength: 3,
-    },
-  });
+  setGradeNameInput("salesGradeName", "newSalesReportModal");
 
   // Getting grade info on change
   $(document).on("change", ".salesGradeName", function (e) {
@@ -192,16 +181,37 @@ $(document).ready(function () {
   // Add new Sales Report
   $(document).on("click", ".addSalesReportBtn", function (e) {
     e.preventDefault();
+    salesItemsNo = 1;
     $("#newSalesReportModal").modal("show");
   });
+
+  // Grade Name select input
+  function setGradeNameInput(gradeNameInputClass, parentContainer) {
+    $(`.${gradeNameInputClass}`).select2({
+      dropdownParent: $(`#${parentContainer}`),
+      ajax: {
+        delay: 250,
+        url: "/grades/search",
+        data: function (params) {
+          var query = {
+            search: params.term,
+          };
+          return query;
+        },
+        dataType: "json",
+        placeholder: "Select Grade",
+        minimumInputLength: 3,
+      },
+    });
+  }
 
   // Sales Report Details
   // Add new sales report rows
   var salesItemsNo = 1;
   var salesReportTotal = 0;
-  var salesReportItemIds = [1]; //Store item row numbers
-  $(document).on("click", "#salesRowAddBtn", function (e) {
-    e.preventDefault();
+  var salesReportItemIds = [1]; //Store item row numbers for new sales report
+  // New rows
+  function addSalesRows(tableTBody, parentContainer) {
     salesItemsNo += 1; //Increment by 1
     var rowStr = `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
                     <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" class="form-control form-control-xs" readonly></td>
@@ -218,28 +228,47 @@ $(document).ready(function () {
                     </td>
                   </tr>`;
     // Add another row
-    $("#salesTBody").append(rowStr);
-
+    $(`#${tableTBody}`).append(rowStr);
     // Add Id to valuation Ids list
     salesReportItemIds.push(salesItemsNo);
-
     // Grade name select2 initiation on the new row item
-    $(".salesGradeName").select2({
-      dropdownParent: $("#newSalesReportModal"),
-      ajax: {
-        delay: 250,
-        url: "/grades/search",
-        data: function (params) {
-          var query = {
-            search: params.term,
-          };
-          return query;
-        },
-        dataType: "json",
-        placeholder: "Select Grade",
-        minimumInputLength: 3,
-      },
-    });
+    setGradeNameInput("salesGradeName", `${parentContainer}`);
+  }
+
+  // Initiate row addition
+  $(document).on("click", ".salesRowAddBtn", function (e) {
+    e.preventDefault();
+    if ($(this).attr("mode") == "edit") {
+      var parentContainer = "editSalesReportModal";
+      var tBody = "editSalesTBody";
+    } else {
+      var parentContainer = "newSalesReportModal";
+      var tBody = "salesTBody";
+    }
+    addSalesRows(tBody, parentContainer);
+    // salesItemsNo += 1; //Increment by 1
+    // var rowStr = `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
+    //                 <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" class="form-control form-control-xs" readonly></td>
+    //                 <td>
+    //                   <select rowNo="${salesItemsNo}" id="salesGrade${salesItemsNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
+    //                   </select>
+    //                 </td>
+    //                 <td><input type="number" rowNo="${salesItemsNo}" id="salesQty${salesItemsNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
+    //                 <td><input rowNo="${salesItemsNo}" id="salesUnit${salesItemsNo}" class="form-control form-control-xs text-center" readonly></td>
+    //                 <td><input type="number" rowNo="${salesItemsNo}" id="salesPx${salesItemsNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
+    //                 <td><input rowNo="${salesItemsNo}" id="salesAmt${salesItemsNo}" class="form-control form-control-xs text-end" value="0" readonly></td>
+    //                 <td>
+    //                   <button rowNo="${salesItemsNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>
+    //                 </td>
+    //               </tr>`;
+    // // Add another row
+    // $("#salesTBody").append(rowStr);
+
+    // // Add Id to valuation Ids list
+    // salesReportItemIds.push(salesItemsNo);
+
+    // // Grade name select2 initiation on the new row item
+    // setGradeNameInput("salesGradeName", "newSalesReportModal");
   });
 
   // Remove Sales Report rows
@@ -311,6 +340,8 @@ $(document).ready(function () {
   // Previewing the
   $(document).on("click", ".salesReportValue", function (e) {
     e.preventDefault();
+    // clear current items
+    $("#editSalesTBody").html("");
     const salesId = $(this).attr("sId");
     // Get sales report infomation
     $.ajax({
@@ -321,35 +352,46 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        // Buyer Details
+        var buyerName = `<option value"${response.buyerId}">${response.buyerName}</option>`;
         $("#editSalesReportNo").text(response.reportNo);
         $("#editSalesDate").val(response.salesDate);
-        $("#editSalesBuyer").val(response.buyerId);
+        $("#editSalesBuyer").html(buyerName);
         $("#editSalesRef").val(response.ref);
         $("#editSalesMC").val(response.mc);
-        $("#editSalesCurrency").val(response.currencyId);
+        $("#editSalesCurrency").val(response.currencyCode);
         $("#editSalesFx").val(response.fxRate);
-        $("#editSalesFx").val();
+        $("#editSalesReportTotal").val(response.salesTotal);
         // Items
         var rowStr = "";
         const items = response.items;
         for (var x = 0; x < items.length; x++) {
-          var rowNo = response.rowNo;
+          var rowNo = items[x].rowNo;
+          if (rowNo == 1) {
+            var removeBtn = "";
+          } else {
+            var removeBtn = `<button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
+            salesReportItemIds.push(rowNo);
+            salesItemsNo += 1;
+          }
           rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
                     <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
                     <td>
                       <select rowNo="${rowNo}" id="salesGrade${rowNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
+                        <option value="${items[x].gradeId}">${items[x].gradeName}</option>
                       </select>
                     </td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly></td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="0" readonly></td>
+                    <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].qty}" min="0"></td>
+                    <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly value="${items[x].unit}"></td>
+                    <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].price}" min="0"></td>
+                    <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="${items[x].amount}" readonly></td>
                     <td>
-                      <button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>
+                      ${removeBtn}
                     </td>
                   </tr>`;
-          $("#editSalesTBody").append(rowStr);
         }
+        $("#editSalesTBody").append(rowStr);
+        setGradeNameInput("salesGradeName", "editSalesReportModal");
       },
     });
     $("#editSalesReportModal").modal("show");

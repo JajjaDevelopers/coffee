@@ -13,13 +13,9 @@
           <div class="row">
             <div class="col-sm-12 col-md-7">
               <div class="row">
-                <div class="col-sm-1 col-md-4">
-                  <label for="editSalesReportNo" class="form-label">SN:</label>
-                </div>
-                <div class="col-sm-8 col-md-5">
-                  <label for="editSalesReportNo" class="form-label text-danger"><strong>00001</strong></label>
-                </div>
+                <h5 id="editSalesReportNo" class="form-label" style="color: red;"><strong></strong></h5>
               </div>
+              <br>
               <div class="row">
                 <div class="col-sm-6 col-md-2">
                   <label for="editSalesDate" class="form-label">Date:</label>
@@ -33,7 +29,7 @@
                   <label for="editSalesBuyer" class="form-label">Buyer:</label>
                 </div>
                 <div class="col-sm-6 col-md-8">
-                  <select class="form-select form-control form-control-sm" id='editSalesBuyer' style="width: 100%;">
+                  <select class="form-select form-control form-control-sm salesBuyer" id='editSalesBuyer' style="width: 100%;">
                   </select>
                 </div>
               </div>
@@ -76,11 +72,11 @@
           <hr>
           <div class="row" style="margin-bottom: 5px;">
             <div class="col-sm-7">
-              <h6>Details</h6>
+              <h6>Sales Report Items</h6>
             </div>
             <div class="col-sm-5">
               <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='salesRowAddBtn'>
+                <button class="btn btn-sm salesRowAddBtn" style='background-color:green; color:white' id='editSalesRowAddBtn' mode="edit">
                   <strong>+ Add Row </strong>
                 </button>
               </div>
@@ -108,9 +104,9 @@
               <div class="col-sm-12 col-md-3">
                 <table class="table table-sm table-bordered">
                   <tbody id="salesTBody">
-                    <tr rowNo="1" id="valrow1">
-                      <td>Total:</td>
-                      <td><input id="salesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                    <tr>
+                      <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
+                      <td><input id="editSalesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>

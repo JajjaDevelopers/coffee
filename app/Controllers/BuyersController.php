@@ -231,19 +231,26 @@ class BuyersController extends BaseController
         $data["currencyCode"] = $salesData[0]["curency_code"];
         $data["fxRate"] = $salesData[0]["exch_rate"];
         $items = [];
+        $grandTotal = 0;
         for ($x = 0; $x < count($salesData); $x++) {
+            $qty = $salesData[$x]["qty_out"];
+            $price = $salesData[$x]["price"];
+            $amount = $qty * $price;
             $itm = [
                 "rowNo" => $x + 1,
                 "code" => $salesData[$x]["grade_code"],
                 "gradeId" => $salesData[$x]["grade_id"],
                 "gradeName" => $salesData[$x]["grade_name"],
-                "qty" => $salesData[$x]["qty_out"],
+                "qty" => $qty,
                 "unit" => $salesData[$x]["unit"],
-                "price" => $salesData[$x]["price"],
+                "price" => $price,
+                "amount" => $amount,
             ];
+            $grandTotal += $amount;
             array_push($items, $itm);
         }
         $data["items"] = $items;
+        $data["salesTotal"] = $grandTotal;
         return $this->response->setJSON($data);
     }
 
