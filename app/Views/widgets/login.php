@@ -64,9 +64,14 @@
             <div class="az-signin-header">
                 <h2>Welcome back!</h2>
                 <h4>Please sign in to continue</h4>
+                <?php if (session()->getFlashdata('msg')): ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('msg') ?>
+                    </div>
+                <?php endif; ?>
 
                 <form id="loginform" method="post"
-                action="<?= site_url('login') ?>">
+                    action="<?= site_url('login') ?>">
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Enter your email" name="email" placeholder="Email" required>
@@ -79,7 +84,7 @@
                 </form>
             </div><!-- az-signin-header -->
             <div class="az-signin-footer">
-                <p><a href="">Forgot password?</a></p>
+                <p><a href="<?=site_url('password-reset/request')?>">Forgot password?</a></p>
                 <!-- <p>Don't have an account? <a href="page-signup.html">Create an Account</a></p> -->
             </div><!-- az-signin-footer -->
         </div><!-- az-card-signin -->

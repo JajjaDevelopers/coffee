@@ -2,6 +2,7 @@
 
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
+use App\Controllers\PasswordReset;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -12,6 +13,13 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', [AuthController::class, 'index']);
 $routes->get('/logout', [AuthController::class, 'logout']);
 $routes->post('/login', [AuthController::class, 'login']);
+
+//password reset
+$routes->get('/password-reset/request', [PasswordReset::class,'request']);
+$routes->post('/password-reset/send-reset-link', 'PasswordReset::sendResetLink');
+$routes->get('/password-reset/reset/(:segment)', 'PasswordReset::reset/$1');
+$routes->post('/password-reset/update-password', 'PasswordReset::updatePassword');
+
 // Grade Categories
 // $routes->get('/', 'DashboardController::index');
 
