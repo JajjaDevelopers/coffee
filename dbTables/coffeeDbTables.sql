@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `client_categories`
+--
+
+DROP TABLE IF EXISTS `client_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `client_categories` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `fpo_id` int NOT NULL,
+  `category_name` varchar(50) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `client_categories`
+--
+
+LOCK TABLES `client_categories` WRITE;
+/*!40000 ALTER TABLE `client_categories` DISABLE KEYS */;
+INSERT INTO `client_categories` VALUES (1,1,'Association','Associations comprised of farmer groups or individual farmers'),(2,1,'Cooperative','A company made up of farmer associations'),(3,1,'Exporter','A local company exporting coffee'),(4,1,'Importer','A foreign company to which coffee is exported'),(5,1,'Roaster','A large scale roaster abroad'),(6,1,'Trader','A local company mainly trading in coffee');
+/*!40000 ALTER TABLE `client_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `clients`
 --
 
@@ -24,17 +50,24 @@ DROP TABLE IF EXISTS `clients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clients` (
   `client_id` int NOT NULL AUTO_INCREMENT,
-  `client_type` varchar(45) NOT NULL COMMENT 'Whether Supplier or Buyer',
+  `fpo` int NOT NULL,
+  `client_type` varchar(1) NOT NULL COMMENT 'Whether Supplier or Buyer. S for Supplier and B for Buyer',
   `name` varchar(200) NOT NULL,
   `contact_person` varchar(45) NOT NULL,
-  `parish_id` int DEFAULT NULL,
+  `district` varchar(50) DEFAULT NULL,
   `telephone_1` varchar(17) DEFAULT NULL,
   `telephone_2` varchar(17) DEFAULT NULL,
   `email_1` varchar(100) DEFAULT NULL,
   `email_2` varchar(100) DEFAULT NULL,
   `category_id` int DEFAULT NULL COMMENT 'Exporter, Local',
+  `currency_id` int DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL COMMENT 'The role of the contact person',
+  `country_id` int DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `subcounty` varchar(50) DEFAULT NULL,
+  `street` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Suppliers who supply coffee. Can be registered as groups, associations, coops etc';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Suppliers who supply coffee. Can be registered as groups, associations, coops etc';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +76,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+INSERT INTO `clients` VALUES (1,1,'S','Mabira Coffee Farmers Association','Kabimba Adams','Mukono','0706053465','0782363573','isaacwasukira@gmail.com',NULL,1,1,'Manager',1,NULL,'Mabira','Katosi Road'),(2,1,'S','Kabonera Coffee Farmers Association','Kabimba Adams','Mukono','0706053465','0782363573','isaacwasukira@gmail.com',NULL,0,1,'Manager',1,NULL,'Mabira','Katosi Road'),(3,1,'S','Lwamagwa CFA','Kato','Mpigi','07845451545','85965556','kato@lwmagwa.com',NULL,2,1,'Manager',1,NULL,'','Masaka Road'),(4,1,'B','Carico Cafe','Isaac Wasukira',NULL,'7845124152','254152415','test@gmail.com',NULL,3,1,'Manager',1,'Nairobi',NULL,'1'),(5,1,'B','Cafe River SPA','Marco',NULL,'+12 4152 25632','+12 4521 23584 ','caferiver@gmail.com',NULL,5,1,'CEO',1,'Inter Milan',NULL,'1'),(6,1,'B','EFICO','Daniels',NULL,'+13 4152 25632','+13 4521 23584 ','efico@gmail.com',NULL,4,2,'Operations Manager',2,'Inter Milan',NULL,'2');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +93,7 @@ CREATE TABLE `coffee_category` (
   `category_name` varchar(45) NOT NULL,
   `type_id` int NOT NULL COMMENT 'Can be Robusta or Arabica',
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Coffee categories';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Coffee categories';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +102,7 @@ CREATE TABLE `coffee_category` (
 
 LOCK TABLES `coffee_category` WRITE;
 /*!40000 ALTER TABLE `coffee_category` DISABLE KEYS */;
+INSERT INTO `coffee_category` VALUES (9,1,'Natural Robusta Coffee',1),(10,1,'Washed Robusta Coffee',1),(11,1,'Wastes and Losses',3),(12,1,'Washed Arabica Coffee',2);
 /*!40000 ALTER TABLE `coffee_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +117,7 @@ CREATE TABLE `coffee_types` (
   `type_id` int NOT NULL AUTO_INCREMENT,
   `type_name` varchar(45) NOT NULL,
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +128,33 @@ LOCK TABLES `coffee_types` WRITE;
 /*!40000 ALTER TABLE `coffee_types` DISABLE KEYS */;
 INSERT INTO `coffee_types` VALUES (1,'Robusta'),(2,'Arabica'),(3,'None');
 /*!40000 ALTER TABLE `coffee_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `companies`
+--
+
+DROP TABLE IF EXISTS `companies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `companies` (
+  `company_id` int NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(45) NOT NULL,
+  `contact_person` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `telephone` varchar(45) NOT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Companies using this system';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `companies`
+--
+
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (1,'NUCAFE','Mercy Kemigisha','mercy.kemigisha@nucafe.org','07887878787');
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,7 +169,7 @@ CREATE TABLE `counties` (
   `district_id` int NOT NULL,
   `county_name` varchar(45) NOT NULL,
   PRIMARY KEY (`county_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +195,7 @@ CREATE TABLE `countries` (
   `country_name` varchar(100) DEFAULT NULL,
   `country_rank` int DEFAULT NULL,
   PRIMARY KEY (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,6 +209,32 @@ INSERT INTO `countries` VALUES (1,'Africa','Uganda',1),(2,'Africa','Algeria',2),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `currencies`
+--
+
+DROP TABLE IF EXISTS `currencies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `currencies` (
+  `currency_id` int NOT NULL AUTO_INCREMENT,
+  `currency_name` varchar(45) NOT NULL,
+  `curency_code` varchar(4) NOT NULL,
+  `symbol` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`currency_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Currencies';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `currencies`
+--
+
+LOCK TABLES `currencies` WRITE;
+/*!40000 ALTER TABLE `currencies` DISABLE KEYS */;
+INSERT INTO `currencies` VALUES (1,'Uganda Shillings','UGX','Shs'),(2,'United States Dollar','USD','$'),(3,'Euros','EUR','€');
+/*!40000 ALTER TABLE `currencies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `deliveries`
 --
 
@@ -155,18 +243,17 @@ DROP TABLE IF EXISTS `deliveries`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deliveries` (
   `grn` int NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `client_id` varchar(45) NOT NULL,
+  `fpo` int NOT NULL,
   `quality_remarks` varchar(100) DEFAULT NULL,
   `delivery_person` varchar(50) DEFAULT NULL,
   `truck_no` varchar(10) DEFAULT NULL,
-  `prepared_by` int DEFAULT NULL COMMENT 'Staff Id who prepared',
-  `time_prepared` datetime DEFAULT NULL,
-  `approved_by` int DEFAULT NULL COMMENT 'Staff Id who approved',
+  `prepared_by` int DEFAULT '0' COMMENT 'Staff Id who prepared',
+  `time_prepared` datetime DEFAULT CURRENT_TIMESTAMP,
+  `approved_by` int DEFAULT '0' COMMENT 'Staff Id who approved',
   `time_approved` datetime DEFAULT NULL,
   `reference` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`grn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Deliveries by suppliers';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Deliveries by suppliers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +262,7 @@ CREATE TABLE `deliveries` (
 
 LOCK TABLES `deliveries` WRITE;
 /*!40000 ALTER TABLE `deliveries` DISABLE KEYS */;
+INSERT INTO `deliveries` VALUES (1,1,'Mositure is okay','Kato Chrisesto','UAJ 237K',1,NULL,2,NULL,'DN7856');
 /*!40000 ALTER TABLE `deliveries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +278,7 @@ CREATE TABLE `districts` (
   `region` varchar(25) DEFAULT NULL,
   `district_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`district_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,9 +300,11 @@ DROP TABLE IF EXISTS `grade_groups`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `grade_groups` (
   `group_id` int NOT NULL AUTO_INCREMENT,
+  `fpo` varchar(45) NOT NULL,
   `group_name` varchar(50) NOT NULL,
+  `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='Grade groups such as high grades, low grades, undergrades, wastes';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Grade groups such as high grades, low grades, undergrades, wastes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +313,7 @@ CREATE TABLE `grade_groups` (
 
 LOCK TABLES `grade_groups` WRITE;
 /*!40000 ALTER TABLE `grade_groups` DISABLE KEYS */;
-INSERT INTO `grade_groups` VALUES (1,'High Grades'),(2,'Low Grades'),(3,'Undergrades'),(4,'Wastes & Losses');
+INSERT INTO `grade_groups` VALUES (1,'1','High Grades',NULL),(2,'1','Low Grades',NULL),(3,'1','Undergrades',NULL),(4,'1','Wastes & Losses',NULL);
 /*!40000 ALTER TABLE `grade_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,12 +326,13 @@ DROP TABLE IF EXISTS `grades`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `grades` (
   `grade_id` int NOT NULL AUTO_INCREMENT,
-  `grade_name` varchar(50) NOT NULL,
   `grade_code` varchar(7) DEFAULT NULL COMMENT 'Grade Code',
+  `grade_name` varchar(50) NOT NULL,
   `category_id` int NOT NULL,
   `unit` varchar(10) DEFAULT 'Kg',
+  `group_id` int DEFAULT NULL,
   PRIMARY KEY (`grade_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Coffee grades ';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Coffee grades ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,6 +341,7 @@ CREATE TABLE `grades` (
 
 LOCK TABLES `grades` WRITE;
 /*!40000 ALTER TABLE `grades` DISABLE KEYS */;
+INSERT INTO `grades` VALUES (1,'NRSC18','Natural Robusta Screen 1800',9,'Kg',1),(2,'NRSC17','Natual Robusta Screen 1700',9,'Kg',1),(3,'NRSC15','Natural Robusta Screen 1500',9,'Kg',1),(4,'NRSC12','Natural Robusta Screen 1200',9,'Kg',1),(5,'WUGAA','Washed Arabica AA',12,'Kg',1),(11,'','',0,'Kg',0);
 /*!40000 ALTER TABLE `grades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +353,7 @@ DROP TABLE IF EXISTS `inventory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventory` (
-  `transaction` varchar(45) NOT NULL,
+  `transaction_type_id` int NOT NULL COMMENT 'Whether Purchase, Sale, Return etc',
   `transaction_id` int NOT NULL,
   `trans_date` date NOT NULL,
   `client_id` int NOT NULL,
@@ -274,8 +366,8 @@ CREATE TABLE `inventory` (
   `price` decimal(10,2) DEFAULT '0.00',
   `exch_rate` decimal(10,4) DEFAULT NULL,
   `moisture` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`transaction`,`transaction_id`,`item_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='For storing inventory transactions ';
+  PRIMARY KEY (`transaction_type_id`,`transaction_id`,`item_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='For storing inventory transactions ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +376,37 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (1,1,'2024-08-22',1,1,'1','1',60000.00,0.00,'1',8700.00,1.0000,12.30),(1,5,'2024-08-26',2,1,'1','1',100.00,0.00,'1',4500.00,1.0000,NULL),(1,5,'2024-08-26',2,2,'2','1',350.00,0.00,'1',5000.00,1.0000,NULL),(1,6,'2024-08-01',3,1,'5','1',140.00,0.00,'1',5000.00,1.0000,13.50),(1,6,'2024-08-01',3,2,'4','1',40.00,0.00,'1',6500.00,1.0000,13.50),(1,6,'2024-08-01',3,3,'2','1',60.00,0.00,'1',8700.00,1.0000,13.50),(1,7,'2024-08-26',2,1,'3','1',1230.00,0.00,'1',5600.00,1.0000,12.90),(1,7,'2024-08-26',2,2,'2','1',4100.00,0.00,'1',6500.00,1.0000,12.90),(1,7,'2024-08-26',2,3,'1','1',230.00,0.00,'1',15000.00,1.0000,12.90),(2,1,'2024-09-04',5,1,'1','1',0.00,100.00,'1',12000.00,1.0000,13.50),(2,1,'2024-09-04',5,2,'2','1',0.00,200.00,'1',8500.00,1.0000,13.50),(2,2,'2024-08-29',4,1,'2','1',0.00,1000.00,'1',10000.00,1.0000,12.00),(2,2,'2024-08-29',4,2,'1','1',0.00,2000.00,'1',15000.00,1.0000,12.00),(2,3,'2024-08-27',6,1,'4','1',0.00,100.00,'2',6800.00,1.0000,0.00),(2,3,'2024-08-27',6,2,'2','1',0.00,250.00,'2',7500.00,1.0000,0.00),(2,3,'2024-08-27',6,3,'3','1',0.00,5600.00,'2',9000.00,1.0000,0.00),(2,4,'2024-09-04',4,1,'1','1',0.00,100.00,'1',4500.00,1.0000,12.00),(2,4,'2024-09-04',4,2,'2','1',0.00,700.00,'1',5800.00,1.0000,12.00),(2,4,'2024-09-04',4,3,'4','1',0.00,600.00,'1',8000.00,1.0000,12.00);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `version` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `class` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `group` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `namespace` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `time` int NOT NULL,
+  `batch` int unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2024-07-29-155108','App\\Database\\Migrations\\CreateUsersTable','default','App',1722277904,1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -299,7 +421,7 @@ CREATE TABLE `parishes` (
   `name` varchar(50) NOT NULL,
   `county_id` varchar(45) NOT NULL,
   PRIMARY KEY (`parish_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Parishes in Counties';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Parishes in Counties';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,16 +441,18 @@ DROP TABLE IF EXISTS `sales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sales` (
-  `sale_no` int NOT NULL AUTO_INCREMENT,
+  `sales_id` int NOT NULL AUTO_INCREMENT,
+  `fpo` int NOT NULL,
+  `sales_report_no` varchar(45) DEFAULT NULL,
   `date` date NOT NULL,
   `client_id` varchar(45) NOT NULL,
   `prepared_by` int DEFAULT NULL COMMENT 'Staff Id who prepared',
-  `time_prepared` datetime DEFAULT NULL,
+  `time_prepared` datetime DEFAULT CURRENT_TIMESTAMP,
   `approved_by` int DEFAULT NULL COMMENT 'Staff Id who approved',
   `time_approved` datetime DEFAULT NULL,
   `reference` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`sale_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Sales to buyers';
+  PRIMARY KEY (`sales_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Sales to buyers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,6 +461,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+INSERT INTO `sales` VALUES (1,1,'S2024/0001','2024-09-04','5',1,'2024-09-04 21:36:15',NULL,NULL,'S0010'),(2,1,NULL,'2024-08-29','4',1,'2024-09-04 22:23:49',NULL,NULL,'S28399'),(3,1,NULL,'2024-08-27','6',1,'2024-09-05 21:32:06',NULL,NULL,''),(4,1,NULL,'2024-09-04','4',1,'2024-09-06 00:04:50',NULL,NULL,'Sk3652');
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +478,7 @@ CREATE TABLE `stores` (
   `location` varchar(45) NOT NULL,
   `manager` varchar(45) NOT NULL,
   PRIMARY KEY (`store_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Stores where coffee is stored';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores where coffee is stored';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,6 +487,7 @@ CREATE TABLE `stores` (
 
 LOCK TABLES `stores` WRITE;
 /*!40000 ALTER TABLE `stores` DISABLE KEYS */;
+INSERT INTO `stores` VALUES (1,'Main Warehouse','Factory Premises','Scovia');
 /*!40000 ALTER TABLE `stores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +506,7 @@ CREATE TABLE `transaction_types` (
   PRIMARY KEY (`transaction_type_id`),
   UNIQUE KEY `transaction_name_UNIQUE` (`transaction_name`),
   UNIQUE KEY `transaction_code_UNIQUE` (`transaction_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='Categories of transactions such as sales, purchases, returns stc';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Categories of transactions such as sales, purchases, returns stc';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,6 +520,39 @@ INSERT INTO `transaction_types` VALUES (1,'Purchases','PI',NULL),(2,'Sales','SI'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `company_id` int NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,1,'Mr.','Jajja','Guga','devjajja@gmail.com','$2y$10$49xWqsVCg/Sj8oSKQR0UuOIV8rFykBrD.ZmTK/vH5E83KMnUdgRxC','2024-07-29 18:35:05','2024-07-29 18:35:05',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `valuations`
 --
 
@@ -403,14 +562,15 @@ DROP TABLE IF EXISTS `valuations`;
 CREATE TABLE `valuations` (
   `valuation_id` int NOT NULL AUTO_INCREMENT,
   `valuation_date` date NOT NULL,
+  `fpo` int NOT NULL,
   `client_id` int NOT NULL,
   `grn` varchar(45) DEFAULT NULL,
   `prepared_by` int DEFAULT NULL,
-  `time_prepared` datetime DEFAULT NULL,
+  `time_prepared` datetime DEFAULT CURRENT_TIMESTAMP,
   `approved_by` int DEFAULT NULL,
   `time_approved` datetime DEFAULT NULL,
   PRIMARY KEY (`valuation_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Final valuations ';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Final valuations ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,6 +579,7 @@ CREATE TABLE `valuations` (
 
 LOCK TABLES `valuations` WRITE;
 /*!40000 ALTER TABLE `valuations` DISABLE KEYS */;
+INSERT INTO `valuations` VALUES (1,'2024-08-27',1,1,'4123',1,NULL,NULL,NULL),(2,'2024-08-27',1,1,'4123',1,'2024-08-26 22:38:14',NULL,NULL),(3,'2024-08-27',1,1,'4123',1,'2024-08-26 22:50:32',NULL,NULL),(4,'2024-08-27',1,1,'4123',1,'2024-08-26 22:50:43',NULL,NULL),(5,'2024-08-26',1,2,'2341',1,'2024-08-26 23:14:40',NULL,NULL),(6,'2024-08-01',1,3,'5412, 3652',1,'2024-08-27 20:35:14',NULL,NULL),(7,'2024-08-26',1,2,'963',1,'2024-08-27 21:10:38',NULL,NULL);
 /*!40000 ALTER TABLE `valuations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -431,4 +592,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-24 23:36:16
+-- Dump completed on 2024-09-08 21:17:10
