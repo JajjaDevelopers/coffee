@@ -74,9 +74,9 @@ class GradesModel extends Model
     // }
 
     // Quantity according to grade //gradeQtyBalance
-    public function getGrades($fpo, $grade = "all", $searchStr = "")
+    public function getGrades($fpo, $grade = "", $searchStr = "")
     {
-        if ($grade == "all") {
+        if ($grade == "") {
             $gradeFilter = "";
             $limitFilter = "";
         } else {
@@ -89,11 +89,11 @@ class GradesModel extends Model
             $searchFilter = "AND grade_name LIKE '%{$searchStr}%'";
         }
 
-        $query = $this->db->query("SELECT grade_id, grade_code, unit, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
-            FROM inventory
-            RIGHT JOIN grades USING (grade_id)
-            RIGHT JOIN coffee_category USING (category_id)
-            JOIN grade_groups ON grades.group_id = grade_groups.group_id
+        $query = $this->db->query("SELECT grade_id, grade_code, unit, grade_name, category_name, group_name, sum(qty_in) - sum(qty_out) AS balance
+            FROM grades
+            LEFT JOIN inventory USING (grade_id)
+            LEFT JOIN coffee_category USING (category_id)
+            LEFT JOIN grade_groups USING (group_id)
             WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter} {$searchFilter}
             GROUP BY grade_id {$limitFilter}");
 
