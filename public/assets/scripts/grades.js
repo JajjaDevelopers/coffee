@@ -62,6 +62,24 @@ $(document).ready(function () {
           },
         },
       ],
+      dom: 'Bfrtip',  // Specify the placement of buttons
+      buttons: [
+        {
+          extend: 'csvHtml5',
+          text: 'Export CSV',
+          titleAttr: 'Export CSV'
+        },
+        {
+          extend: 'excelHtml5',
+          text: 'Export Excel',
+          titleAttr: 'Export Excel'
+        },
+        {
+          extend: 'pdfHtml5',
+          text: 'Export PDF',
+          titleAttr: 'Export PDF'
+        }
+      ]
     });
   }
   getGradeCategories(); //Get Categories on load
@@ -136,6 +154,24 @@ $(document).ready(function () {
           },
         },
       ],
+      dom: 'Bfrtip',  // Specify the placement of buttons
+      buttons: [
+        {
+          extend: 'csvHtml5',
+          text: 'Export CSV',
+          titleAttr: 'Export CSV'
+        },
+        {
+          extend: 'excelHtml5',
+          text: 'Export Excel',
+          titleAttr: 'Export Excel'
+        },
+        {
+          extend: 'pdfHtml5',
+          text: 'Export PDF',
+          titleAttr: 'Export PDF'
+        }
+      ]
     });
   }
   getGrade();

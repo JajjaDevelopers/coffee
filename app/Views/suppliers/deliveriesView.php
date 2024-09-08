@@ -25,15 +25,17 @@
         <h5><strong>Summary of Deliveries</strong></h5>
       </div><!-- tab-pane -->
       <div id="recentdeliveries" class="tab-pane">
-        <div class="row">
-          <div style='display:flex;justify-content:flex-end'>
+        <div class="row d-flex justify-content-between align-items-center">
+          <!-- Date Range Filter -->
+          <?= $this->include('includes/filters/daterange_filter.php') ?>
+
+          <!-- Button aligned to the right -->
+          <div>
             <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white'>
               <strong>+ New Delivery Valuation</strong>
             </button>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-5 col-md-2">
+          <!-- <div class="col-sm-5 col-md-2">
             <label for="fromDate" class="form-label">From Date</label>
             <input type="date" class="form-control form-control-sm" id="fromDate">
           </div>
@@ -44,8 +46,10 @@
           <div class="col-sm-2 col-md-1">
             <br>
             <button class="btn btn-sm btn-success" id='deliveriesGetBtn'>Get</button>
-          </div>
+          </div> -->
         </div>
+
+
         <br>
         <table class='table table-sm table-bordered' id="deliveriesTable" style="width:100%;">
           <thead style='color:white'>

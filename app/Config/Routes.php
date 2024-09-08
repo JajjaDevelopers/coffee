@@ -11,7 +11,7 @@ use CodeIgniter\Router\RouteCollection;
 //login
 $routes->get('/', [AuthController::class, 'index']);
 $routes->get('/logout', [AuthController::class, 'logout']);
-$routes->post('login', [AuthController::class, 'login']);
+$routes->post('/login', [AuthController::class, 'login']);
 // Grade Categories
 // $routes->get('/', 'DashboardController::index');
 

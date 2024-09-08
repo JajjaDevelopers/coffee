@@ -1,97 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Member Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?=base_url('login/images/icons/favicon.ico')?>"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/vendor/bootstrap/css/bootstrap.min.css')?>">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/fonts/font-awesome-4.7.0/css/font-awesome.min.css')?>">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/vendor/animate/animate.css')?>">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/vendor/css-hamburgers/hamburgers.min.css')?>">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/vendor/select2/select2.min.css')?>">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/css/util.css')?>">
-	<link rel="stylesheet" type="text/css" href="<?=base_url('login/css/main.css')?>">
-<!--===============================================================================================-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130582519-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130582519-1');
+    </script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Azia">
+    <meta name="twitter:description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="twitter:image" content="http://themepixels.me/azia/img/azia-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/azia">
+    <meta property="og:title" content="Azia">
+    <meta property="og:description" content="Responsive Bootstrap 4 Dashboard Template">
+
+    <meta property="og:image" content="http://themepixels.me/azia/img/azia-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/azia/img/azia-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="ThemePixels">
+
+    <title>Login</title>
+
+    <!-- vendor css -->
+
+    <link href="<?= base_url('dashboard/lib/fontawesome-free/css/all.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('dashboard/lib/ionicons/css/ionicons.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('dashboard/lib/typicons.font/typicons.css') ?>" rel="stylesheet">
+
+
+    <!-- azia CSS -->
+    <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
+
 </head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-				<form class="login100-form validate-form" id="loginform" method="post"
-					action="<?= site_url('login') ?>">
-					<span class="login100-form-title">
-						Member Login
-					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email" required>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+<body class="az-body">
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" placeholder="Password" required>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<button  type='submit' class="login100-form-btn">
-							Login
-						</button>
-					</div>
+    <div class="az-signin-wrapper">
+        <div class="az-card-signin">
+            <!-- <h1 class="az-logo">az<span>i</span>a</h1> -->
+            <div class="az-signin-header">
+                <h2>Welcome back!</h2>
+                <h4>Please sign in to continue</h4>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Username / Password?
-						</a>
-					</div>
+                <form id="loginform" method="post"
+                action="<?= site_url('login') ?>">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="Enter your email" name="email" placeholder="Email" required>
+                    </div><!-- form-group -->
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Enter your password" name="password" placeholder="Password" required>
+                    </div><!-- form-group -->
+                    <button type='submit' class="btn btn-az-primary btn-block">Sign In</button>
+                </form>
+            </div><!-- az-signin-header -->
+            <div class="az-signin-footer">
+                <p><a href="">Forgot password?</a></p>
+                <!-- <p>Don't have an account? <a href="page-signup.html">Create an Account</a></p> -->
+            </div><!-- az-signin-footer -->
+        </div><!-- az-card-signin -->
+    </div><!-- az-signin-wrapper -->
 
-					<!-- <div class="text-center p-t-136">
-						<a class="txt2" href="#">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div> -->
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	
+    <script src="<?= base_url('dashboard/lib/jquery/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('dashboard/lib/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
+    <script src="<?= base_url('dashboard/lib/ionicons/ionicons.js') ?>"></script>
+    <script>
+        $(function() {
+            'use strict'
 
-	
-<!--===============================================================================================-->	
-	<script src="<?=base_url('vendor/jquery/jquery-3.2.1.min.js')?>"></script>
-<!--===============================================================================================-->
-	<script src="<?=base_url('vendor/bootstrap/js/popper.js')?>"></script>
-	<script src="<?=base_url('vendor/bootstrap/js/bootstrap.min.js')?>"></script>
-<!--===============================================================================================-->
-	<script src="<?=base_url('vendor/select2/select2.min.js')?>"></script>
-<!--===============================================================================================-->
-	<script src="<?=base_url('vendor/tilt/tilt.jquery.min.js')?>"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="<?=base_url('js/main.js')?>"></script>
-
+        });
+    </script>
 </body>
+
 </html>

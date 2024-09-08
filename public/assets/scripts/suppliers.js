@@ -1,4 +1,23 @@
 $(document).ready(function () {
+  //date range settings
+  var dateRangeSettings = {
+    startDate: moment().subtract(6, 'days'),
+    endDate: moment(),
+    ranges: {
+      'Today': [moment(), moment()],
+      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+      'This Month': [moment().startOf('month'), moment().endOf('month')],
+      'This Year': [moment().startOf('year'), moment()],
+      'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+      'Custom Range': [null, null]
+    },
+    alwaysShowCalendars: true,
+    locale: {
+      format: 'MM/DD/YYYY'
+    }
+  };
   // Grade groups options.
   function gradeGroupsOptions(selectId) {
     $.ajax({
@@ -86,6 +105,20 @@ $(document).ready(function () {
     valuationItemIds = temporaryItemIds;
   });
 
+  //date range filtering
+  $('#date_range_filter').daterangepicker(
+    dateRangeSettings,
+    function(start, end) {
+        $('#date_range_filter').val(start.format('MM/DD/YYYY') + ' ~ ' + end
+            .format('MM/DD/YYYY'));
+        // table.ajax.reload();
+    }
+);
+$('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
+    $('#date_range_filter').val('');
+    //table.ajax.reload();
+});
+
   //Get deliveries
   function deliveries() {
     $("#deliveriesTable").DataTable({
@@ -108,6 +141,24 @@ $(document).ready(function () {
         { data: "moisture" },
         { data: "qty" },
       ],
+      dom: 'Bfrtip',  // Specify the placement of buttons
+      buttons: [
+        {
+          extend: 'csvHtml5',
+          text: 'Export CSV',
+          titleAttr: 'Export CSV'
+        },
+        {
+          extend: 'excelHtml5',
+          text: 'Export Excel',
+          titleAttr: 'Export Excel'
+        },
+        {
+          extend: 'pdfHtml5',
+          text: 'Export PDF',
+          titleAttr: 'Export PDF'
+        }
+      ]
     });
   }
 
@@ -169,6 +220,24 @@ $(document).ready(function () {
           },
         },
       ],
+      dom: 'Bfrtip',  // Specify the placement of buttons
+      buttons: [
+        {
+          extend: 'csvHtml5',
+          text: 'Export CSV',
+          titleAttr: 'Export CSV'
+        },
+        {
+          extend: 'excelHtml5',
+          text: 'Export Excel',
+          titleAttr: 'Export Excel'
+        },
+        {
+          extend: 'pdfHtml5',
+          text: 'Export PDF',
+          titleAttr: 'Export PDF'
+        }
+      ]
     });
   }
   suppliersList();
