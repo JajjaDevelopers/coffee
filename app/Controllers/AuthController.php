@@ -46,7 +46,7 @@ class AuthController extends BaseController
         }
    
         } else {
-        $session->setFlashdata('msg', 'Email does not exist.');
+        $session->setFlashdata('msg', 'Password or Email Invalid.');
             return redirect()->to('/');
         }
     }
