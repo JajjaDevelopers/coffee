@@ -181,7 +181,11 @@ $(document).ready(function () {
   // Add new Sales Report
   $(document).on("click", ".addSalesReportBtn", function (e) {
     e.preventDefault();
-    salesItemsNo = 1;
+    salesItemsNo = 0; //Reset number of rows to zero
+    $("#salesReportTotal").val(0); //reset total to 0
+    $("#salesTBody").html(""); //Remove avalable rows before adding new ones
+    $("#editSalesTBody").html(""); //Remove avalable rows from the editing table
+    addSalesRows("salesTBody", "newSalesReportModal");
     $("#newSalesReportModal").modal("show");
   });
 
@@ -207,12 +211,17 @@ $(document).ready(function () {
 
   // Sales Report Details
   // Add new sales report rows
-  var salesItemsNo = 1;
+  var salesItemsNo = 0;
   var salesReportTotal = 0;
   var salesReportItemIds = [1]; //Store item row numbers for new sales report
   // New rows
   function addSalesRows(tableTBody, parentContainer) {
     salesItemsNo += 1; //Increment by 1
+    if (salesItemsNo == 1) {
+      var rowRemoveBtn = "";
+    } else {
+      var rowRemoveBtn = `<button rowNo="${salesItemsNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
+    }
     var rowStr = `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
                     <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" class="form-control form-control-xs" readonly></td>
                     <td>
@@ -224,7 +233,7 @@ $(document).ready(function () {
                     <td><input type="number" rowNo="${salesItemsNo}" id="salesPx${salesItemsNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
                     <td><input rowNo="${salesItemsNo}" id="salesAmt${salesItemsNo}" class="form-control form-control-xs text-end" value="0" readonly></td>
                     <td>
-                      <button rowNo="${salesItemsNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>
+                      ${rowRemoveBtn}
                     </td>
                   </tr>`;
     // Add another row

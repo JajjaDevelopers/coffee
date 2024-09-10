@@ -99,7 +99,7 @@
               </tr>
             </thead>
             <tbody id="salesTBody">
-              <tr rowNo="1" id="salesRow1">
+              <!-- <tr rowNo="1" id="salesRow1">
                 <td><input rowNo="1" id="salesCode1" class="form-control form-control-xs" readonly></td>
                 <td>
                   <select rowNo="1" id="salesGrade1" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
@@ -109,7 +109,7 @@
                 <td><input rowNo="1" id="salesUnit1" class="form-control form-control-xs text-center" readonly></td>
                 <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
                 <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
           <div id="valuationSummary">
