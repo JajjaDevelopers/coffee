@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header" style="background-color: darkgreen; color: white;">
-        <h6 class="modal-title" style="color: white;">SALES REPORT</h6>
+        <h6 class="modal-title" style="color: white;">NEW SALES REPORT</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -99,17 +99,6 @@
               </tr>
             </thead>
             <tbody id="salesTBody">
-              <!-- <tr rowNo="1" id="salesRow1">
-                <td><input rowNo="1" id="salesCode1" class="form-control form-control-xs" readonly></td>
-                <td>
-                  <select rowNo="1" id="salesGrade1" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
-                  </select>
-                </td>
-                <td><input type="number" rowNo="1" id="salesQty1" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
-                <td><input rowNo="1" id="salesUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input type="number" rowNo="1" id="salesPx1" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
-                <td><input rowNo="1" id="salesAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
-              </tr> -->
             </tbody>
           </table>
           <div id="valuationSummary">
@@ -120,7 +109,7 @@
                   <tbody id="salesTBody">
                     <tr>
                       <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
-                      <td><input id="salesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                      <td><input id="salesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>

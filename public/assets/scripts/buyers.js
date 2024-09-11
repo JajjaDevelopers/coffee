@@ -182,6 +182,8 @@ $(document).ready(function () {
   $(document).on("click", ".addSalesReportBtn", function (e) {
     e.preventDefault();
     salesItemsNo = 0; //Reset number of rows to zero
+    salesReportTotal = 0;
+    salesReportItemIds = [];
     $("#salesReportTotal").val(0); //reset total to 0
     $("#salesTBody").html(""); //Remove avalable rows before adding new ones
     $("#editSalesTBody").html(""); //Remove avalable rows from the editing table
@@ -213,7 +215,7 @@ $(document).ready(function () {
   // Add new sales report rows
   var salesItemsNo = 0;
   var salesReportTotal = 0;
-  var salesReportItemIds = [1]; //Store item row numbers for new sales report
+  var salesReportItemIds = []; //Store item row numbers for new sales report
   // New rows
   function addSalesRows(tableTBody, parentContainer) {
     salesItemsNo += 1; //Increment by 1
@@ -255,29 +257,6 @@ $(document).ready(function () {
       var tBody = "salesTBody";
     }
     addSalesRows(tBody, parentContainer);
-    // salesItemsNo += 1; //Increment by 1
-    // var rowStr = `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
-    //                 <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" class="form-control form-control-xs" readonly></td>
-    //                 <td>
-    //                   <select rowNo="${salesItemsNo}" id="salesGrade${salesItemsNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
-    //                   </select>
-    //                 </td>
-    //                 <td><input type="number" rowNo="${salesItemsNo}" id="salesQty${salesItemsNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="1" min="0"></td>
-    //                 <td><input rowNo="${salesItemsNo}" id="salesUnit${salesItemsNo}" class="form-control form-control-xs text-center" readonly></td>
-    //                 <td><input type="number" rowNo="${salesItemsNo}" id="salesPx${salesItemsNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
-    //                 <td><input rowNo="${salesItemsNo}" id="salesAmt${salesItemsNo}" class="form-control form-control-xs text-end" value="0" readonly></td>
-    //                 <td>
-    //                   <button rowNo="${salesItemsNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>
-    //                 </td>
-    //               </tr>`;
-    // // Add another row
-    // $("#salesTBody").append(rowStr);
-
-    // // Add Id to valuation Ids list
-    // salesReportItemIds.push(salesItemsNo);
-
-    // // Grade name select2 initiation on the new row item
-    // setGradeNameInput("salesGradeName", "newSalesReportModal");
   });
 
   // Remove Sales Report rows
@@ -286,7 +265,7 @@ $(document).ready(function () {
     var rowNo = Number($(this).attr("rowNo"));
     var total = Number($(`#salesAmt${rowNo}`).val()); //Removed item amount
     salesReportTotal -= total;
-    $("#salesReportTotal").val(salesReportTotal);
+    $(".salesReportTotal").val(salesReportTotal);
     // Remove from the item id list
     var temporaryItemIds = [];
     for (var x = 0; x < salesReportItemIds.length; x++) {
@@ -309,7 +288,7 @@ $(document).ready(function () {
     var total = Number(price * qty);
     salesReportTotal += total - changedAmount;
     $(`#salesAmt${rowNo}`).val(total);
-    $("#salesReportTotal").val(salesReportTotal);
+    $(`.salesReportTotal`).val(salesReportTotal);
   });
 
   // Save Sales Report
@@ -349,6 +328,8 @@ $(document).ready(function () {
   // Previewing the
   $(document).on("click", ".salesReportValue", function (e) {
     e.preventDefault();
+    salesItemsNo = 0; //Reset number of items to zero
+    salesReportItemIds = []; //Clear the row ids
     // clear current items
     $("#editSalesTBody").html("");
     const salesId = $(this).attr("sId");
@@ -370,7 +351,9 @@ $(document).ready(function () {
         $("#editSalesMC").val(response.mc);
         $("#editSalesCurrency").val(response.currencyCode);
         $("#editSalesFx").val(response.fxRate);
-        $("#editSalesReportTotal").val(response.salesTotal);
+        var transactionTotal = Number(response.salesTotal);
+        $("#editSalesReportTotal").val(transactionTotal);
+        salesReportTotal = transactionTotal;
         // Items
         var rowStr = "";
         const items = response.items;
@@ -380,9 +363,10 @@ $(document).ready(function () {
             var removeBtn = "";
           } else {
             var removeBtn = `<button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
-            salesReportItemIds.push(rowNo);
-            salesItemsNo += 1;
           }
+          salesReportItemIds.push(rowNo);
+          salesItemsNo += 1;
+          // Row strings
           rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
                     <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
                     <td>
@@ -404,6 +388,39 @@ $(document).ready(function () {
       },
     });
     $("#editSalesReportModal").modal("show");
+  });
+
+  // Saving adjusted saless report
+  $(document).on("click", "#saveSalesReportEditBtn", function (e) {
+    e.preventDefault();
+    var gradeIds = [];
+    var gradeQtys = [];
+    var gradePxs = [];
+    for (var x = 0; x < salesReportItemIds.length; x++) {
+      // Compile data for saving the valuation
+      gradeIds.push($(`#salesGrade${salesReportItemIds[x]}`).val());
+      gradeQtys.push($(`#salesQty${salesReportItemIds[x]}`).val());
+      gradePxs.push($(`#salesPx${salesReportItemIds[x]}`).val());
+    }
+    $.ajax({
+      type: "post",
+      url: "/salesReport/saveAdjusted",
+      data: {
+        buyer: $("#addSalesBuyer").val(),
+        ref: $("#newSalesRef").val(),
+        moisture: $("#newSalesMC").val(),
+        currency: $("#addSalesCurrency").val(),
+        fxRate: $("#addSalesFx").val(),
+        items: gradeIds,
+        quantities: gradeQtys,
+        prices: gradePxs,
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#editSalesReportModal").modal("hide");
+        $("#salesReportsTable").DataTable().ajax.reload();
+      },
+    });
   });
 
   //

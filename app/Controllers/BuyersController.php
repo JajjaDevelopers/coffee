@@ -254,6 +254,9 @@ class BuyersController extends BaseController
         return $this->response->setJSON($data);
     }
 
+    // Save adjusted sales report
+    public function saveAdjustedSalesReport() {}
+
 
     // 
 }

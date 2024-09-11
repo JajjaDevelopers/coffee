@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header" style="background-color: darkgreen; color: white;">
-        <h6 class="modal-title" style="color: white;">SALES REPORT</h6>
+        <h6 class="modal-title" style="color: white;">SALES REPORT ADJUSTMENT</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,7 +21,7 @@
                   <label for="editSalesDate" class="form-label">Date:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input type="date" class="form-control form-control-sm date" id='editSalesDate'>
+                  <input type="date" class="form-control form-control-sm date" id='editSalesDate' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
@@ -106,7 +106,7 @@
                   <tbody id="salesTBody">
                     <tr>
                       <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
-                      <td><input id="editSalesReportTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                      <td><input id="editSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>
@@ -116,7 +116,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveSalesReportEditBtn' type="button" class="btn btn-indigo addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>
