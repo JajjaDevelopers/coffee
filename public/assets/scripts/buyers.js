@@ -332,7 +332,9 @@ $(document).ready(function () {
     salesReportItemIds = []; //Clear the row ids
     // clear current items
     $("#editSalesTBody").html("");
+    $("#salesTBody").html("");
     const salesId = $(this).attr("sId");
+    $("#salesReportEditId").val(salesId);
     // Get sales report infomation
     $.ajax({
       type: "post",
@@ -402,10 +404,12 @@ $(document).ready(function () {
       gradeQtys.push($(`#salesQty${salesReportItemIds[x]}`).val());
       gradePxs.push($(`#salesPx${salesReportItemIds[x]}`).val());
     }
+
     $.ajax({
       type: "post",
       url: "/salesReport/saveAdjusted",
       data: {
+        salesId: $("#salesReportEditId").val(),
         buyer: $("#addSalesBuyer").val(),
         ref: $("#newSalesRef").val(),
         moisture: $("#newSalesMC").val(),

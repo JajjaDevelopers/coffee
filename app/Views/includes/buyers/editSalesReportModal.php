@@ -16,6 +16,7 @@
                 <h5 id="editSalesReportNo" class="form-label" style="color: red;"><strong></strong></h5>
               </div>
               <br>
+              <input id="salesReportEditId" style="display: none;" readonly>
               <div class="row">
                 <div class="col-sm-6 col-md-2">
                   <label for="editSalesDate" class="form-label">Date:</label>
@@ -116,7 +117,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportEditBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveSalesReportEditBtn' type="button" class="btn btn-indigo">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>
