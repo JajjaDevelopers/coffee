@@ -1,0 +1,124 @@
+INFO - 2024-09-15 09:03:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 09:03:26 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: sales]
+in APPPATH\Views\partials\main.php on line 181.
+ 1 APPPATH\Views\partials\main.php(181): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php', 181)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(250): CodeIgniter\View\View->render('partials/main', [], true)
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('buyers/salesView', [], true)
+ 6 APPPATH\Controllers\BuyersController.php(85): view('buyers/salesView', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesPage()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 09:03:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:03:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:03:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:03:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:03:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:04:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:08:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:08:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:09:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:11:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 09:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 10:25:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 10:37:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 10:42:44 --> TypeError: CodeIgniter\Database\BaseBuilder::hasOperator(): Argument #1 ($str) must be of type string, int given, called in C:\wamp64\www\coffee\system\Database\BaseBuilder.php on line 793
+[Method: POST, Route: salesReport/saveAdjusted]
+in SYSTEMPATH\Database\BaseBuilder.php on line 3418.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(793): CodeIgniter\Database\BaseBuilder->hasOperator(1)
+ 2 SYSTEMPATH\Database\BaseBuilder.php(709): CodeIgniter\Database\BaseBuilder->whereHaving('QBWhere', '1', null, 'AND ', true)
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2487): CodeIgniter\Database\BaseBuilder->where('1')
+ 4 APPPATH\Models\BuyersModel.php(128): CodeIgniter\Database\BaseBuilder->update([...], '1')
+ 5 APPPATH\Controllers\BuyersController.php(276): App\Models\BuyersModel->saveAdjustedSalesReport('1', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->saveAdjustedSalesReport()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 10:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 10:46:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 10:47:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 11:35:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 11:36:38 --> TypeError: CodeIgniter\Database\BaseBuilder::setBind(): Argument #1 ($key) must be of type string, int given, called in C:\wamp64\www\coffee\system\Database\BaseBuilder.php on line 1562
+[Method: POST, Route: salesReport/saveAdjusted]
+in SYSTEMPATH\Database\BaseBuilder.php on line 3499.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1562): CodeIgniter\Database\BaseBuilder->setBind(0, [...], true)
+ 2 SYSTEMPATH\Database\BaseBuilder.php(2311): CodeIgniter\Database\BaseBuilder->set([...], '', true)
+ 3 APPPATH\Models\BuyersModel.php(137): CodeIgniter\Database\BaseBuilder->insert([...])
+ 4 APPPATH\Controllers\BuyersController.php(295): App\Models\BuyersModel->saveAdjustedSalesReport('4', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->saveAdjustedSalesReport()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 11:38:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 11:38:30 --> TypeError: CodeIgniter\Database\BaseBuilder::setBind(): Argument #1 ($key) must be of type string, int given, called in C:\wamp64\www\coffee\system\Database\BaseBuilder.php on line 1562
+[Method: POST, Route: salesReport/saveAdjusted]
+in SYSTEMPATH\Database\BaseBuilder.php on line 3499.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1562): CodeIgniter\Database\BaseBuilder->setBind(0, [...], true)
+ 2 SYSTEMPATH\Database\BaseBuilder.php(2311): CodeIgniter\Database\BaseBuilder->set([...], '', true)
+ 3 APPPATH\Models\BuyersModel.php(137): CodeIgniter\Database\BaseBuilder->insert([...])
+ 4 APPPATH\Controllers\BuyersController.php(295): App\Models\BuyersModel->saveAdjustedSalesReport('2', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->saveAdjustedSalesReport()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 11:38:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 18:19:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 18:19:36 --> ErrorException: Trying to access array offset on value of type null
+[Method: GET, Route: sales]
+in APPPATH\Views\partials\main.php on line 181.
+ 1 APPPATH\Views\partials\main.php(181): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php', 181)
+ 2 SYSTEMPATH\View\View.php(234): include('C:\\wamp64\\www\\coffee\\app\\Views\\partials\\main.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(250): CodeIgniter\View\View->render('partials/main', [], true)
+ 5 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('buyers/salesView', [], true)
+ 6 APPPATH\Controllers\BuyersController.php(85): view('buyers/salesView', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesPage()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 20:55:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-15 20:55:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-09-15 20:55:36 --> Error: Class "APP\Models\BuyersModel" not found
+[Method: GET, Route: home]
+in APPPATH\Controllers\DashboardController.php on line 20.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\DashboardController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-15 20:56:31 --> Error: Class "APP\Models\BuyersModel" not found
+[Method: GET, Route: home]
+in APPPATH\Controllers\DashboardController.php on line 20.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\DashboardController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-09-15 20:56:33 --> Error: Class "APP\Models\BuyersModel" not found
+[Method: GET, Route: home]
+in APPPATH\Controllers\DashboardController.php on line 20.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\DashboardController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(500): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-09-15 20:59:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

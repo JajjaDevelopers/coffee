@@ -58,3 +58,6 @@ $routes->post('/salesReport/saveAdjusted', 'BuyersController::saveAdjustedSalesR
 
 // General
 $routes->get('/admin/countriesList', 'BuyersController::countriesList');
+
+// Dashboard Metrics
+$routes->post('/sales/salesByType', 'DashboardController::previousSales');

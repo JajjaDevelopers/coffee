@@ -76,7 +76,7 @@ $(document).ready(function () {
   }
   salesReportsList();
 
-  // Get buyer infor on changing the buyer
+  // Get buyer info on changing the buyer
   $(document).on("change", "#addSalesBuyer", function (e) {
     e.preventDefault();
     var buyer = $(this).val();
@@ -345,7 +345,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         // Buyer Details
-        var buyerName = `<option value"${response.buyerId}">${response.buyerName}</option>`;
+        var buyerName = `<option value="${response.buyerId}">${response.buyerName}</option>`;
         $("#editSalesReportNo").text(response.reportNo);
         $("#editSalesDate").val(response.salesDate);
         $("#editSalesBuyer").html(buyerName);
@@ -410,11 +410,11 @@ $(document).ready(function () {
       url: "/salesReport/saveAdjusted",
       data: {
         salesId: $("#salesReportEditId").val(),
-        buyer: $("#addSalesBuyer").val(),
-        ref: $("#newSalesRef").val(),
-        moisture: $("#newSalesMC").val(),
-        currency: $("#addSalesCurrency").val(),
-        fxRate: $("#addSalesFx").val(),
+        buyer: $("#editSalesBuyer").val(),
+        ref: $("#editSalesRef").val(),
+        moisture: $("#editSalesMC").val(),
+        currency: $("#editSalesCurrency").val(),
+        fxRate: $("#editSalesFx").val(),
         items: gradeIds,
         quantities: gradeQtys,
         prices: gradePxs,
