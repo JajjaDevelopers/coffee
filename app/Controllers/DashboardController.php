@@ -40,7 +40,28 @@ class DashboardController extends BaseController
         $currentPeriod = $builder->getResultArray()[0];
         $dateFrom = new Time($currentPeriod["start_date"]);
         $dateTo = new Time($currentPeriod["end_date"]);
-        $data["currentDate"] = new Time("now");
+        // Getting months
+        $secondMonth = $dateFrom->addMonths(0);
+        $monthlySales = [];
+        for ($x = 0; $x < 12; $x++) {
+            $details["month"] = $dateFrom->addMonths($x)->getMonth();
+            $monthStart = $dateFrom->addMonths($x)->toDateString();
+            $monthEnd = $dateFrom->addMonths($x + 1)->subDays(1)->toDateString();
+            $monthSales = $this->buyersModel->previousSales($this->fpo, $monthStart, $monthEnd, "");
+            $qty = 0;
+            $value = 0;
+            for ($i = 0; $i < count($monthSales); $i++) {
+                $qty += $monthSales[$i]["salesQty"];
+                $value += $monthSales[$i]["salesValue"];
+            }
+            $details['actualSalesQty'] = $qty;
+            $details['actualSalesValue'] = $value;
+
+            array_push($monthlySales, $details);
+        }
+        $now = new Time("now");
+        $data["currentDate"] = $secondMonth->toDateString();
+        $data["allMonths"] = $monthlySales;
         $allSales = $this->buyersModel->previousSales($this->fpo, $dateFrom, $dateTo, "");
         // Categorizing sales by coffee type
         $robustaQty = 0;

@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `accounting_years`
+--
+
+DROP TABLE IF EXISTS `accounting_years`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `accounting_years` (
+  `acc_year_id` int NOT NULL AUTO_INCREMENT,
+  `fpo` int NOT NULL COMMENT 'The company Id',
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  PRIMARY KEY (`acc_year_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Accounting years for companies and fpos';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accounting_years`
+--
+
+LOCK TABLES `accounting_years` WRITE;
+/*!40000 ALTER TABLE `accounting_years` DISABLE KEYS */;
+INSERT INTO `accounting_years` VALUES (1,1,'2023-10-01','2024-09-30');
+/*!40000 ALTER TABLE `accounting_years` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `client_categories`
 --
 
@@ -341,7 +367,7 @@ CREATE TABLE `grades` (
 
 LOCK TABLES `grades` WRITE;
 /*!40000 ALTER TABLE `grades` DISABLE KEYS */;
-INSERT INTO `grades` VALUES (1,'NRSC18','Natural Robusta Screen 1800',9,'Kg',1),(2,'NRSC17','Natual Robusta Screen 1700',9,'Kg',1),(3,'NRSC15','Natural Robusta Screen 1500',9,'Kg',1),(4,'NRSC12','Natural Robusta Screen 1200',9,'Kg',1),(5,'WUGAA','Washed Arabica AA',12,'Kg',1),(11,'','',0,'Kg',0);
+INSERT INTO `grades` VALUES (1,'NRSC18','Natural Robusta Screen 1800',9,'Kg',1),(2,'NRSC17','Natual Robusta Screen 1700',9,'Kg',1),(3,'NRSC15','Natural Robusta Screen 1500',9,'Kg',1),(4,'NRSC12','Natural Robusta Screen 1200',9,'Kg',1),(5,'WUGAA','Washed Arabica AA',12,'Kg',1);
 /*!40000 ALTER TABLE `grades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +402,7 @@ CREATE TABLE `inventory` (
 
 LOCK TABLES `inventory` WRITE;
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES (1,1,'2024-08-22',1,1,'1','1',60000.00,0.00,'1',8700.00,1.0000,12.30),(1,5,'2024-08-26',2,1,'1','1',100.00,0.00,'1',4500.00,1.0000,NULL),(1,5,'2024-08-26',2,2,'2','1',350.00,0.00,'1',5000.00,1.0000,NULL),(1,6,'2024-08-01',3,1,'5','1',140.00,0.00,'1',5000.00,1.0000,13.50),(1,6,'2024-08-01',3,2,'4','1',40.00,0.00,'1',6500.00,1.0000,13.50),(1,6,'2024-08-01',3,3,'2','1',60.00,0.00,'1',8700.00,1.0000,13.50),(1,7,'2024-08-26',2,1,'3','1',1230.00,0.00,'1',5600.00,1.0000,12.90),(1,7,'2024-08-26',2,2,'2','1',4100.00,0.00,'1',6500.00,1.0000,12.90),(1,7,'2024-08-26',2,3,'1','1',230.00,0.00,'1',15000.00,1.0000,12.90),(2,1,'2024-09-04',5,1,'1','1',0.00,100.00,'1',12000.00,1.0000,13.50),(2,1,'2024-09-04',5,2,'2','1',0.00,200.00,'1',8500.00,1.0000,13.50),(2,2,'2024-08-29',4,1,'2','1',0.00,1000.00,'1',10000.00,1.0000,12.00),(2,2,'2024-08-29',4,2,'1','1',0.00,2000.00,'1',15000.00,1.0000,12.00),(2,3,'2024-08-27',6,1,'4','1',0.00,100.00,'2',6800.00,1.0000,0.00),(2,3,'2024-08-27',6,2,'2','1',0.00,250.00,'2',7500.00,1.0000,0.00),(2,3,'2024-08-27',6,3,'3','1',0.00,5600.00,'2',9000.00,1.0000,0.00),(2,4,'2024-09-04',4,1,'1','1',0.00,100.00,'1',4500.00,1.0000,12.00),(2,4,'2024-09-04',4,2,'2','1',0.00,700.00,'1',5800.00,1.0000,12.00),(2,4,'2024-09-04',4,3,'4','1',0.00,600.00,'1',8000.00,1.0000,12.00);
+INSERT INTO `inventory` VALUES (1,1,'2024-08-22',1,1,'1','1',60000.00,0.00,'1',8700.00,1.0000,12.30),(1,5,'2024-08-26',2,1,'1','1',100.00,0.00,'1',4500.00,1.0000,NULL),(1,5,'2024-08-26',2,2,'2','1',350.00,0.00,'1',5000.00,1.0000,NULL),(1,6,'2024-08-01',3,1,'5','1',140.00,0.00,'1',5000.00,1.0000,13.50),(1,6,'2024-08-01',3,2,'4','1',40.00,0.00,'1',6500.00,1.0000,13.50),(1,6,'2024-08-01',3,3,'2','1',60.00,0.00,'1',8700.00,1.0000,13.50),(1,7,'2024-08-26',2,1,'3','1',1230.00,0.00,'1',5600.00,1.0000,12.90),(1,7,'2024-08-26',2,2,'2','1',4100.00,0.00,'1',6500.00,1.0000,12.90),(1,7,'2024-08-26',2,3,'1','1',230.00,0.00,'1',15000.00,1.0000,12.90),(2,1,'2024-09-04',5,1,'1','1',0.00,100.00,'1',12000.00,1.0000,13.50),(2,1,'2024-09-04',5,2,'2','1',0.00,200.00,'1',8500.00,1.0000,13.50),(2,3,'2024-08-27',6,1,'4','1',0.00,100.00,'2',6800.00,1.0000,0.00),(2,3,'2024-08-27',6,2,'2','1',0.00,250.00,'2',7500.00,1.0000,0.00),(2,3,'2024-08-27',6,3,'3','1',0.00,5600.00,'2',9000.00,1.0000,0.00),(2,5,'2024-09-10',6,1,'1','1',0.00,1.00,'2',100.00,1.0000,12.00),(2,5,'2024-09-10',6,2,'2','1',0.00,1.00,'2',500.00,1.0000,12.00),(2,5,'2024-09-10',6,3,'5','1',0.00,120.00,'2',8000.00,1.0000,12.00);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +422,7 @@ CREATE TABLE `migrations` (
   `time` int NOT NULL,
   `batch` int unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +431,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2024-07-29-155108','App\\Database\\Migrations\\CreateUsersTable','default','App',1722277904,1);
+INSERT INTO `migrations` VALUES (1,'2024-07-29-155108','App\\Database\\Migrations\\CreateUsersTable','default','App',1722277904,1),(2,'2024-09-08-174522','App\\Database\\Migrations\\CreatePasswordResetsTable','default','App',1725828760,2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,6 +460,32 @@ LOCK TABLES `parishes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` VALUES (1,'devjajja@gmail.com','c1e5a5b86ead1a46683fc4b117d519288f0737d4f7ae4a029dc1cac45891b8dab18d13a817cfdb66b351f2ad16485ee5a8e5','2024-09-08 20:53:23');
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sales`
 --
 
@@ -446,13 +498,14 @@ CREATE TABLE `sales` (
   `sales_report_no` varchar(45) DEFAULT NULL,
   `date` date NOT NULL,
   `client_id` varchar(45) NOT NULL,
+  `market` varchar(45) DEFAULT 'Local' COMMENT 'Whether Local or Export Sale',
   `prepared_by` int DEFAULT NULL COMMENT 'Staff Id who prepared',
   `time_prepared` datetime DEFAULT CURRENT_TIMESTAMP,
   `approved_by` int DEFAULT NULL COMMENT 'Staff Id who approved',
   `time_approved` datetime DEFAULT NULL,
   `reference` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Sales to buyers';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Sales to buyers';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -461,7 +514,7 @@ CREATE TABLE `sales` (
 
 LOCK TABLES `sales` WRITE;
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,1,'S2024/0001','2024-09-04','5',1,'2024-09-04 21:36:15',NULL,NULL,'S0010'),(2,1,NULL,'2024-08-29','4',1,'2024-09-04 22:23:49',NULL,NULL,'S28399'),(3,1,NULL,'2024-08-27','6',1,'2024-09-05 21:32:06',NULL,NULL,''),(4,1,NULL,'2024-09-04','4',1,'2024-09-06 00:04:50',NULL,NULL,'Sk3652');
+INSERT INTO `sales` VALUES (1,1,'S2024/0001','2024-09-04','5','Local',1,'2024-09-04 21:36:15',NULL,NULL,'Just Ref'),(2,1,'SR0001','2024-08-29','5','Local',1,'2024-09-04 22:23:49',NULL,NULL,'S28399'),(3,1,NULL,'2024-08-27','6','Local',1,'2024-09-05 21:32:06',NULL,NULL,''),(4,1,'SR0001','2024-09-04','5','Export',1,'2024-09-06 00:04:50',NULL,NULL,'Final Sale'),(5,1,NULL,'2024-09-10','6','Export',1,'2024-09-09 23:42:32',NULL,NULL,'Changed');
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,4 +645,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-08 21:17:10
+-- Dump completed on 2024-09-18  0:38:30
