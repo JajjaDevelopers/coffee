@@ -8,6 +8,7 @@ use App\Controllers\Traits\CommonData;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 use App\Models\BuyersModel;
+use App\Controllers\GeneralController;
 
 
 class DashboardController extends BaseController
@@ -16,12 +17,14 @@ class DashboardController extends BaseController
     protected $fpo;
     protected $db;
     public $buyersModel;
+    public $generalFunctions;
 
     public function __construct()
     {
         $this->fpo = 1;
         $this->db = \Config\Database::connect();
         $this->buyersModel = new BuyersModel;
+        $this->generalFunctions = new GeneralController;
     }
 
     public function index()
@@ -34,19 +37,21 @@ class DashboardController extends BaseController
     // Annual Sales by coffee type
     public function previousSales()
     {
-        $builder = $this->db->query("SELECT acc_year_id, fpo, start_date, end_date
-                    FROM accounting_years WHERE acc_year_id =(SELECT max(acc_year_id))
-                    AND fpo = '{$this->fpo}'");
-        $currentPeriod = $builder->getResultArray()[0];
+        $currentPeriod = $this->generalFunctions->currentAccountingPeriod();
         $dateFrom = new Time($currentPeriod["start_date"]);
         $dateTo = new Time($currentPeriod["end_date"]);
         // Getting months
         $secondMonth = $dateFrom->addMonths(0);
         $monthlySales = [];
+        $cummulativeSales = 0;
         for ($x = 0; $x < 12; $x++) {
-            $details["month"] = $dateFrom->addMonths($x)->getMonth();
+            $monthNumber = $dateFrom->addMonths($x)->getMonth();
+            $details["month"] = $this->generalFunctions->monthNames()[$monthNumber] . " " . $dateFrom->addMonths($x)->getYear();
+            // Query starting date
             $monthStart = $dateFrom->addMonths($x)->toDateString();
+            // Query ending date
             $monthEnd = $dateFrom->addMonths($x + 1)->subDays(1)->toDateString();
+            // Querying based on the date range
             $monthSales = $this->buyersModel->previousSales($this->fpo, $monthStart, $monthEnd, "");
             $qty = 0;
             $value = 0;
@@ -56,6 +61,8 @@ class DashboardController extends BaseController
             }
             $details['actualSalesQty'] = $qty;
             $details['actualSalesValue'] = $value;
+            $cummulativeSales += $value;
+            $details["cummulativeSalesValue"] = $cummulativeSales;
 
             array_push($monthlySales, $details);
         }
@@ -106,6 +113,7 @@ class DashboardController extends BaseController
         $data["localValue"] = $localValue;
         $data["exportQty"] = $exportQty;
         $data["exportValue"] = $exportValue;
+        $data["quarters"] = $this->generalFunctions->quarterlyPeriods();
         // $data["sales"] = $allSales;
         return $this->response->setJSON($data);
     }
