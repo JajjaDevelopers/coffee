@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+
 use App\Controllers\Traits\CommonData;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -112,57 +113,12 @@ class BuyersController extends BaseController
         return $this->response->setJSON($sms);
     }
 
-    // New delivery valuation
-    public function newDeliveryValuation()
+    // Previous Sales 
+    public function previousSales()
     {
-        $date = $this->request->getPost("date");
-        $supplier = $this->request->getPost("supplier");
-        $currency = $this->request->getPost("currency");
-        $exch_rate = $this->request->getPost("exch_rate");
-        $mc = $this->request->getPost("mc");
-        $store = $this->request->getPost("store");
-        $items = $this->request->getPost("items"); //Array of items
-        $deliverySummaryData = [
-            "fpo" => $this->fpo,
-            "quality_remarks" => $this->request->getPost("quality_remarks"),
-            "delivery_person" => $this->request->getPost("delivery_person"),
-            "truck_no" => $this->request->getPost("truck_no"),
-            "prepared_by" => $this->commonData()["user"]["id"], //request->getPost("prepared_by"),
-            "time_prepared" => $this->request->getPost("time_prepared"),
-            "reference" => $this->request->getPost("reference"),
-        ];
-        // Update delivery valuation summary
-        $summaryGrn = $this->suppliersModel->newDeliveryValuation($deliverySummaryData);
-        // Update the inventory on successful summary confirmation
-        if ($summaryGrn) {
-            $inventoryDetailsData = []; //Batch initialisation
-            for ($x = 0; $x < count($items); $x++) {
-                // Line inventory item 
-                $inventoryItem = [
-                    "transaction_type_id" => 1,
-                    "transaction_id" => $summaryGrn,
-                    "trans_date" => $date,
-                    "client_id" => $supplier,
-                    "item_no" => $x + 1,
-                    "grade_id" => $items[$x]["grdId"],
-                    "store_id" => $store,
-                    "qty_in" => $items[$x]["grdQty"],
-                    "currency_id" => $currency,
-                    "price" => $items[$x]["grdPx"],
-                    "exch_rate" => $exch_rate,
-                    "moisture" => $mc,
-                ];
-                array_push($inventoryDetailsData, $inventoryItem);
-            }
-            // Updating inventory
-            $inventoryUpdate = $this->suppliersModel->inventoryValuationUpdate($inventoryDetailsData);
-            if ($inventoryUpdate) {
-                $status["sms"] = "success";
-            } else {
-                $status["sms"] = "fail";
-            }
-            return $this->response->setJSON($status);
-        }
+        // $buyer = $this->request->getPost("buyer");
+        $allSales = $this->buyersModel->previousSales($this->fpo, "", '2024-01-01', '2024-12-31');
+        return $this->response->setJSON($allSales);
     }
 
     // Save new valuation
@@ -257,7 +213,7 @@ class BuyersController extends BaseController
     // Save adjusted sales report
     public function saveAdjustedSalesReport()
     {
-        $salesId = $this->request->getPost("salesId ");
+        $salesId = $this->request->getPost("salesId");
         $buyer = $this->request->getPost("buyer");
         $ref = $this->request->getPost("ref");
         $moisture = $this->request->getPost("moisture");
@@ -267,13 +223,32 @@ class BuyersController extends BaseController
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
 
-        $summaryData = [
-            "sales_report_no" => "SR000-",
+        $updateData["summaryData"] = [
+            "sales_report_no" => "SR0001",
             "client_id" => $buyer,
             "prepared_by" => 1, //To be changed to match the current user
             "reference" => $ref
         ];
-        $updateSummary = $this->buyersModel->saveAdjustedSalesReport($salesId, $summaryData);
+        // Inventory update
+        $inventoryItems = [];
+        for ($x = 0; $x < count($items); $x++) {
+            $item = [
+                "transaction_type_id" => 2,
+                "transaction_id" => $salesId,
+                "client_id" => $buyer,
+                "item_no" => $x + 1,
+                "grade_id" => $items[$x],
+                "store_id" => 1, //To be adjusted to match the actual store
+                "qty_out" => $quantities[$x],
+                "currency_id" => $currency,
+                "price" => $prices[$x],
+                "exch_rate" => $fxRate,
+                "moisture" => $moisture
+            ];
+            array_push($inventoryItems, $item);
+        }
+        $updateData["inventoryData"] = $inventoryItems;
+        $updateSummary = $this->buyersModel->saveAdjustedSalesReport($salesId, $updateData);
         if ($updateSummary) {
             $data["sms"] = "Success";
         } else {

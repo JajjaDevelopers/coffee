@@ -257,9 +257,12 @@
 </div><!-- az-content-body -->
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
+<!-- Metrics Data -->
+<script src="<?= base_url('assets/scripts/dashboard.js') ?>"></script>
 <script>
   /* ----------------------------------- */
   /* Dashboard content */
+
   $(document).ready(function() {
     $('#compositeline').sparkline('html', {
       lineColor: '#cecece',

@@ -111,21 +111,40 @@ class BuyersModel extends Model
     }
 
     // Get Purchases
-    public function getGrades($fpo)
+    public function previousSales($fpo, $dateFrom, $dateTo, $buyer = "")
     {
-        $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, unit, group_name
-            FROM grades
+        if ($buyer == "") {
+            $buyerFilter = "";
+        } else {
+            $buyerFilter = "AND inventory.client_id = '{$buyer}'";
+        }
+        $query = $this->db->query("SELECT qty_out AS salesQty, (qty_out * price * exch_rate) AS salesValue, type_name, market
+            FROM inventory
+            JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN grades USING (grade_id)
             LEFT JOIN coffee_category USING (category_id)
-            LEFT JOIN grade_groups USING (group_id)
-            WHERE coffee_category.fpo = '{$fpo}'");
+            LEFT JOIN coffee_types USING (type_id)
+            WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$buyerFilter}
+            AND inventory.trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}'");
         return $query->getResultArray();
     }
 
     public function saveAdjustedSalesReport($salesId, $dataSet)
     {
-        $builder = $this->db->table("sales");
-        $builder->where("sales_id", $salesId);
-        return $builder->update($dataSet);
+        $summaryBuilder = $this->db->table("sales");
+        $summaryBuilder->where("sales_id", $salesId);
+        $salesSummary = $summaryBuilder->update($dataSet["summaryData"]);
+        if ($salesSummary) {
+            $inventoryBuilder = $this->db->table("inventory");
+            // Remove current sales Id items from the inventory
+            $inventoryBuilder->where("transaction_type_id", 2);
+            $inventoryBuilder->where("transaction_id", $salesId);
+            $deleteExisting = $inventoryBuilder->delete();
+            // Update stock items
+            if ($deleteExisting) {
+                return $inventoryBuilder->insert($dataSet["inventoryData"]);
+            }
+        }
     }
 
     // Save new sales report summary
