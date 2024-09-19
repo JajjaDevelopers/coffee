@@ -96,25 +96,24 @@ class SuppliersModal extends Model
         return $query->getResultArray();
     }
 
-    // Quantity according to category
-    // public function gradeQtyBalance($fpo, $grade = "all")
-    // {
-    //     if ($grade == "all") {
-    //         $gradeFilter = "";
-    //     } else {
-    //         $gradeFilter = "AND grades.grade_id='{$grade}'";
-    //     }
-
-    //     $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
-    //         FROM inventory
-    //         RIGHT JOIN grades USING (grade_id)
-    //         RIGHT JOIN coffee_category USING (category_id)
-    //         JOIN grade_groups ON grades.group_id = grade_groups.group_id
-    //         WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter}
-    //         GROUP BY category_id");
-
-    //     return $query->getResultArray();
-    // }
+    // Get Sales
+    public function previousPurchases($fpo, $dateFrom, $dateTo, $supplier = "")
+    {
+        if ($supplier == "") {
+            $supplierFilter = "";
+        } else {
+            $supplierFilter = "AND inventory.client_id = '{$supplier}'";
+        }
+        $query = $this->db->query("SELECT qty_in AS purchaseQty, (qty_in * price * exch_rate) AS purchaseValue, type_name
+            FROM inventory
+            JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            LEFT JOIN grades USING (grade_id)
+            LEFT JOIN coffee_category USING (category_id)
+            LEFT JOIN coffee_types USING (type_id)
+            WHERE valuations.fpo = '{$fpo}' AND inventory.transaction_type_id = 1 {$supplierFilter}
+            AND inventory.trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}'");
+        return $query->getResultArray();
+    }
 
     // Save new valuation summary
     public function newValuationSummary($data)

@@ -62,7 +62,6 @@ class GeneralController extends BaseController
     // Quarterly dates breakdown.
     public function quarterlyPeriods()
     {
-        // 1st Quarter
         $months = 3;
         $q = 1;
         $quarters = [];
@@ -70,12 +69,11 @@ class GeneralController extends BaseController
         while ($q <= 4) {
             $endDate = $startDate->addMonths($months)->subDays(1);
             array_push($quarters, [
-                "quarter" => $q,
+                "quarter" => "Q" . $q,
                 "startDate" => $startDate->toDateString(),
                 "endDate" => $endDate->toDateString()
             ]);
             $q++;
-            // $months += 3;
             $startDate = $endDate->addDays(1);
         }
         return $quarters;
