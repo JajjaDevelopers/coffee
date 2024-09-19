@@ -15,7 +15,7 @@ $routes->get('/logout', [AuthController::class, 'logout']);
 $routes->post('/login', [AuthController::class, 'login']);
 
 //password reset
-$routes->get('/password-reset/request', [PasswordReset::class,'request']);
+$routes->get('/password-reset/request', [PasswordReset::class, 'request']);
 $routes->post('/password-reset/send-reset-link', 'PasswordReset::sendResetLink');
 $routes->get('/password-reset/reset/(:segment)', 'PasswordReset::reset/$1');
 $routes->post('/password-reset/update-password', 'PasswordReset::updatePassword');
@@ -53,7 +53,7 @@ $routes->get('/sales', 'BuyersController::salesPage');
 $routes->post('/sales/saveSalesReport', 'BuyersController::newSalesReport');
 $routes->post('/sales/salesReports', 'BuyersController::salesReports');
 $routes->post('/saleReport/editData', 'BuyersController::editSalesReportData');
-
+$routes->post('/salesReport/saveAdjusted', 'BuyersController::saveAdjustedSalesReport');
 
 
 // General

@@ -254,6 +254,34 @@ class BuyersController extends BaseController
         return $this->response->setJSON($data);
     }
 
+    // Save adjusted sales report
+    public function saveAdjustedSalesReport()
+    {
+        $salesId = $this->request->getPost("salesId ");
+        $buyer = $this->request->getPost("buyer");
+        $ref = $this->request->getPost("ref");
+        $moisture = $this->request->getPost("moisture");
+        $currency = $this->request->getPost("currency");
+        $fxRate = $this->request->getPost("fxRate");
+        $items = $this->request->getPost("items");
+        $quantities = $this->request->getPost("quantities");
+        $prices = $this->request->getPost("prices");
+
+        $summaryData = [
+            "sales_report_no" => "SR000-",
+            "client_id" => $buyer,
+            "prepared_by" => 1, //To be changed to match the current user
+            "reference" => $ref
+        ];
+        $updateSummary = $this->buyersModel->saveAdjustedSalesReport($salesId, $summaryData);
+        if ($updateSummary) {
+            $data["sms"] = "Success";
+        } else {
+            $data["sms"] = "Fail";
+        }
+        return $this->response->setJSON($data);
+    }
+
 
     // 
 }

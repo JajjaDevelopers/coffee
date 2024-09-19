@@ -105,8 +105,8 @@ $(document).ready(function () {
     valuationItemIds = temporaryItemIds;
   });
 
-  //date range filtering
-  $('#date_range_filter').daterangepicker(
+//date range filtering
+$('#date_range_filter').daterangepicker(
     dateRangeSettings,
     function(start, end) {
         $('#date_range_filter').val(start.format('MM/DD/YYYY') + ' ~ ' + end

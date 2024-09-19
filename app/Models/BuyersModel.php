@@ -121,25 +121,12 @@ class BuyersModel extends Model
         return $query->getResultArray();
     }
 
-    // Quantity according to category
-    // public function gradeQtyBalance($fpo, $grade = "all")
-    // {
-    //     if ($grade == "all") {
-    //         $gradeFilter = "";
-    //     } else {
-    //         $gradeFilter = "AND grades.grade_id='{$grade}'";
-    //     }
-
-    //     $query = $this->db->query("SELECT grade_id, grade_code, grade_name, category_name, sum(qty_in) - sum(qty_out) AS balance
-    //         FROM inventory
-    //         RIGHT JOIN grades USING (grade_id)
-    //         RIGHT JOIN coffee_category USING (category_id)
-    //         JOIN grade_groups ON grades.group_id = grade_groups.group_id
-    //         WHERE coffee_category.fpo = '{$fpo}' {$gradeFilter}
-    //         GROUP BY category_id");
-
-    //     return $query->getResultArray();
-    // }
+    public function saveAdjustedSalesReport($salesId, $dataSet)
+    {
+        $builder = $this->db->table("sales");
+        $builder->where("sales_id", $salesId);
+        return $builder->update($dataSet);
+    }
 
     // Save new sales report summary
     public function saveSalesReportSummary($data)
