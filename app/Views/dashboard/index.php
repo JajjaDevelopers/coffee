@@ -3,13 +3,37 @@
 <?= $page_title ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
+<style>
+        .morris-hover.morris-default-style {
+            border-radius: 10px;
+        }
+        .x-axis-labels {
+            transform: rotate(-45deg);
+            text-anchor: end !important;
+        }
+        #legend {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .legend-color-box {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
 <div class="az-content-header d-block d-md-flex">
   <div>
     <h2 class="az-content-title tx-24 mg-b-5 mg-b-lg-8">Hi, <?= $commonData['user']['name'] ?>, Welcome Back!</h2>
-    <p class="mg-b-0">Your Monitoring Dashboard.</p>
+    <p class="mg-b-0">Main Dashboard.</p>
   </div>
   <div class="az-dashboard-header-right">
-    <div>
+    <!-- <div>
       <label class="tx-13">Customer Ratings</label>
       <div class="az-star">
         <i class="typcn typcn-star active"></i>
@@ -27,13 +51,13 @@
     <div>
       <label class="tx-13">All Sales (Offline)</label>
       <h5>932,210</h5>
-    </div>
+    </div> -->
   </div><!-- az-dashboard-header-right -->
 </div><!-- az-content-header -->
 <div class="az-content-body">
   <div class="card card-dashboard-seven">
     <div class="card-header">
-      <div class="row row-sm">
+      <!-- <div class="row row-sm">
         <div class="col-6 col-md-4 col-xl">
           <div class="media">
             <div><i class="icon ion-ios-calendar"></i></div>
@@ -43,7 +67,7 @@
                 <span>Sept 01, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl">
           <div class="media">
@@ -54,7 +78,7 @@
                 <span>Sept 30, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl mg-t-15 mg-md-t-0">
           <div class="media">
@@ -65,7 +89,7 @@
                 <span>Revenue</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl mg-t-15 mg-xl-t-0">
           <div class="media">
@@ -76,7 +100,7 @@
                 <span>All Customers</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-md-4 col-xl mg-t-15 mg-xl-t-0">
           <div class="media">
@@ -87,9 +111,9 @@
                 <span>All Transactions</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
-      </div><!-- row -->
+      </div> -->
     </div><!-- card-header -->
     <div class="card-body">
       <div class="row row-sm">
@@ -159,101 +183,29 @@
         <div id="morrisBar1" class="ht-200 ht-lg-250 wd-100p"></div>
       </div><!-- card -->
     </div><!-- col -->
-    <div class="col-lg-6 col-xl-5 mg-t-20 mg-lg-t-0">
-      <div class="card card-dashboard-map-one">
-        <label class="az-content-label">Sales Revenue by Customers in USA</label>
-        <span class="d-block mg-b-20">Sales Performance of all states in the United States</span>
-        <div id="vmap2" class="vmap-wrapper"></div>
+    <div class="col-lg-6 col-xl-7">
+      <div class="card card-dashboard-six">
+        <div class="card-header">
+          <div>
+            <h2 class="az-content-label">Acctual Vs Projected </h2>
+          </div>
+          <div id="legend">
+          </div>
+        </div><!-- card-header -->
+        <div id="morris-line-chart" class="ht-200 ht-lg-250 wd-100p"></div>
       </div><!-- card -->
-    </div><!-- col -->
-  </div><!-- row -->
-
-  <div class="row row-sm mg-b-20 mg-lg-b-0">
-    <div class="col-md-6 col-xl-7">
-      <div class="card card-table-two">
-        <h6 class="card-title">Your Most Recent Earnings</h6>
-        <span class="d-block mg-b-20">This is your most recent earnings for today's date.</span>
-        <div class="table-responsive">
-          <table class="table table-striped table-dashboard-two">
-            <thead>
-              <tr>
-                <th class="wd-lg-25p">Date</th>
-                <th class="wd-lg-25p tx-right">Sales Count</th>
-                <th class="wd-lg-25p tx-right">Earnings</th>
-                <th class="wd-lg-25p tx-right">Tax Witheld</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>05 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">25</td>
-                <td class="tx-right tx-medium tx-inverse">$380.50</td>
-                <td class="tx-right tx-medium tx-danger">-$23.50</td>
-              </tr>
-              <tr>
-                <td>04 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">34</td>
-                <td class="tx-right tx-medium tx-inverse">$503.20</td>
-                <td class="tx-right tx-medium tx-danger">-$13.45</td>
-              </tr>
-              <tr>
-                <td>03 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">30</td>
-                <td class="tx-right tx-medium tx-inverse">$489.65</td>
-                <td class="tx-right tx-medium tx-danger">-$20.98</td>
-              </tr>
-              <tr>
-                <td>02 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">27</td>
-                <td class="tx-right tx-medium tx-inverse">$421.80</td>
-                <td class="tx-right tx-medium tx-danger">-$22.22</td>
-              </tr>
-              <tr>
-                <td>01 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">31</td>
-                <td class="tx-right tx-medium tx-inverse">$518.60</td>
-                <td class="tx-right tx-medium tx-danger">-$23.01</td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!-- table-responsive -->
-      </div><!-- card-dashboard-five -->
     </div>
-    <div class="col-md-6 col-xl-5 mg-t-20 mg-md-t-0">
-      <div class="card card-dashboard-eight">
-        <h6 class="card-title">Your Top Countries</h6>
-        <span class="d-block mg-b-20">Sales performance revenue based by country</span>
-
-        <div class="list-group">
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-us flag-icon-squared"></i>
-            <p>United States</p>
-            <span>$1,671.10</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-nl flag-icon-squared"></i>
-            <p>Netherlands</p>
-            <span>$1,064.75</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-gb flag-icon-squared"></i>
-            <p>United Kingdom</p>
-            <span>$1,055.98</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-ca flag-icon-squared"></i>
-            <p>Canada</p>
-            <span>$1,045.49</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-au flag-icon-squared"></i>
-            <p>Australia</p>
-            <span>$1,042.00</span>
-          </div><!-- list-group-item -->
-        </div><!-- list-group -->
-      </div><!-- card -->
-    </div><!-- col -->
+    <!-- <div class="col-lg-6 col-xl-5 mg-t-20 mg-lg-t-0">
+      <div class="card card-dashboard-map-one">
+        <label class="az-content-label">Actual Vs Projected Quantity</label>
+        <div id="legend"></div>
+        <div id="morris-line-chart" style="height: 250px;">
+        </div>
+      </div>
+    </div> -->
   </div><!-- row -->
+
+
 </div><!-- az-content-body -->
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
@@ -264,6 +216,21 @@
   /* Dashboard content */
 
   $(document).ready(function() {
+
+    //ajax request to pick sales data
+    let salesData=null;
+    $.ajax({
+    type: "post",
+    url: "/sales/salesByType",
+    data: "data",
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+      salesData=response;
+      actualSalesVsProjected(salesData);
+    },
+  });
+
     $('#compositeline').sparkline('html', {
       lineColor: '#cecece',
       lineWidth: 2,
@@ -329,6 +296,14 @@
     });
 
 
+//functiom to plot actual coffee sales vs projected value
+   const actualSalesVsProjected=(salesData)=>{
+    let allMonthsSales = salesData.allMonthSales;
+    console.log(allMonthsSales);
+   }
+
+   actualSalesVsProjected();
+
     var morrisData = [{
         y: 'Oct 01',
         a: 95000,
@@ -385,26 +360,49 @@
       padding: 5
     });
 
-    $('#vmap2').vectorMap({
-      map: 'usa_en',
-      showTooltip: true,
-      backgroundColor: '#fff',
-      color: '#60adff',
-      colors: {
-        mo: '#9fceff',
-        fl: '#60adff',
-        or: '#409cff',
-        ca: '#005cbf',
-        tx: '#005cbf',
-        wy: '#005cbf',
-        ny: '#007bff'
-      },
-      hoverColor: '#222',
-      enableZoom: false,
-      borderWidth: 1,
-      borderColor: '#fff',
-      hoverOpacity: .85
-    });
+    var data = [
+            { month: '2023-10', registrations: 30, activeUsers: 20 },
+            { month: '2023-11', registrations: 40, activeUsers: 30 },
+            { month: '2023-12', registrations: 25, activeUsers: 35 },
+            { month: '2024-01', registrations: 50, activeUsers: 40 },
+            { month: '2024-02', registrations: 35, activeUsers: 45 },
+            { month: '2024-03', registrations: 60, activeUsers: 55 }
+        ];
+
+        // Initialize the Morris Line Chart
+        var chart = Morris.Line({
+            element: 'morris-line-chart',
+            data: data,
+            xkey: 'month',
+            ykeys: ['registrations', 'activeUsers'],
+            labels: ['Registrations', 'Active Users'],
+            lineColors: ['#0b62a4', '#7a92a3'],
+            xLabelAngle: 45, // Tilts the x-axis labels by 45 degrees
+            parseTime: true,
+            resize: true,
+            gridTextSize: 12, // Font size for axis labels
+            gridTextFamily: 'Arial', // Font family for axis labels
+            pointFillColors: ['#ffffff'],
+            pointStrokeColors: ['#0b62a4'],
+            hideHover: 'auto',
+            hoverCallback: function (index, options, content, row) {
+                return content; // Custom tooltip content
+            }
+        });
+
+        // Create a custom legend
+        function createLegend(labels, colors) {
+            var legend = $('#legend');
+            labels.forEach(function(label, index) {
+                var legendItem = $('<span class="legend-item"></span>');
+                var colorBox = $('<span class="legend-color-box"></span>').css('background-color', colors[index]);
+                legendItem.append(colorBox).append(label);
+                legend.append(legendItem);
+            });
+        }
+
+        // Call createLegend with labels and colors
+        createLegend(['Registrations', 'Active Users'], ['#0b62a4', '#7a92a3']);
   });
 </script>
 <?= $this->endSection() ?>

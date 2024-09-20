@@ -68,7 +68,7 @@ class DashboardController extends BaseController
         }
         $now = new Time("now");
         $data["currentDate"] = $secondMonth->toDateString();
-        $data["allMonths"] = $monthlySales;
+        $data["allMonthSales"] = $monthlySales;
         $allSales = $this->buyersModel->previousSales($this->fpo, $dateFrom, $dateTo, "");
         // Categorizing sales by coffee type
         $robustaQty = 0;
