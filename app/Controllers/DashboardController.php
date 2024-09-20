@@ -76,6 +76,24 @@ class DashboardController extends BaseController
             }
             $details["actualPurchaseQty"] = $pQty;
             $details["actualPurchaseValue"] = $pValue;
+            // Projections of sales and purchases
+            $monthProjections = $this->generalFunctions->projections($monthStart, $monthEnd);
+            $projMonthSales = 0;
+            $projMonthPurchases = 0;
+            for ($k = 0; $k < count($monthProjections); $k++) {
+                // $projStartMonth = new Time($monthProjections[$k]["range_from"]);
+                // $projMonth = $this->generalFunctions->monthNames()[$projStartMonth->getMonth()] . " " . $projStartMonth->getYear();
+                // Sales
+                $projSalesQty = $monthProjections[$k]["sales_qty"];
+                $projSalesValue = $projSalesQty * $monthProjections[$k]["avg_sales_price"];
+                $projMonthSales += $projSalesValue;
+                // Purchases
+                $projPurchaseQty = $monthProjections[$k]["purchase_qty"];
+                $projPurchaseValue = $projPurchaseQty * $monthProjections[$k]["avg_purchase_price"];
+                $projMonthPurchases += $projPurchaseValue;
+            }
+            $details["projMonthSales"] = $projMonthSales;
+            $details["projMonthPurchases"] = $projMonthPurchases;
             array_push($monthlySales, $details);
         }
         $data["currentDate"] = $secondMonth->toDateString();
@@ -140,6 +158,25 @@ class DashboardController extends BaseController
                 "arabicaSales" => $arabicaQSales
             ]);
         }
+
+        // // Projections of sales and purchases
+        // $projectionsData = $this->generalFunctions->projections($dateFrom, $dateTo);
+        // $projections = [];
+        // for ($x = 0; $x < count($projectionsData); $x++) {
+        //     $projStartMonth = new Time($projectionsData[$x]["range_from"]);
+        //     $projMonth = $this->generalFunctions->monthNames()[$projStartMonth->getMonth()] . " " . $projStartMonth->getYear();
+        //     // Sales
+        //     $projSalesQty = $projectionsData[$x]["sales_qty"];
+        //     $projSalesValue = $projSalesQty * $projectionsData[$x]["avg_sales_price"];
+        //     // Purchases
+        //     $projPurchaseQty = $projectionsData[$x]["purchase_qty"];
+        //     $projPurchaseValue = $projPurchaseQty * $projectionsData[$x]["avg_purchase_price"];
+        //     array_push($projections, [
+        //         "month" => $projMonth,
+        //         "projSalesValue" => $projSalesValue,
+        //         "projPurchaseValue" => $projPurchaseValue,
+        //     ]);
+        // }
 
         // Response Data
         // Coffee Types
