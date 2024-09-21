@@ -47,6 +47,10 @@ class DashboardController extends BaseController
         $secondMonth = $dateFrom->addMonths(0);
         $monthlySales = [];
         $cummulativeSales = 0;
+        $totalBulkedQty = 0;
+        $totalBulkedValue = 0;
+        $totalSalesQty = 0;
+        $totalSalesValue = 0;
         for ($x = 0; $x < 12; $x++) {
             $monthNumber = $dateFrom->addMonths($x)->getMonth();
             $details["month"] = $this->generalFunctions->monthNames()[$monthNumber] . " " . $dateFrom->addMonths($x)->getYear();
@@ -62,8 +66,10 @@ class DashboardController extends BaseController
                 $sQty += $monthSales[$i]["salesQty"];
                 $sValue += $monthSales[$i]["salesValue"];
             }
-            $details['actualSalesQty'] = $sQty;
-            $details['actualSalesValue'] = $sValue;
+            $details['actualSalesQty'] = $sQty; //monthly sales qty
+            $details['actualSalesValue'] = $sValue; //monthly sales value
+            $totalSalesQty += $sQty; // Add to total sales qty
+            $totalSalesValue += $sValue; // Add to total sales value
             $cummulativeSales += $sValue;
             $details["cummulativeSalesValue"] = $cummulativeSales;
             // Getting purchases based on the date ranges
@@ -76,6 +82,9 @@ class DashboardController extends BaseController
             }
             $details["actualPurchaseQty"] = $pQty;
             $details["actualPurchaseValue"] = $pValue;
+            $totalBulkedQty += $pQty; // Add to total purchases qty
+            $totalBulkedValue += $pValue; // Add to total purchases value
+            $cummulativeSales += $sValue; // Add to total sales value
             // Projections of sales and purchases
             $monthProjections = $this->generalFunctions->projections($monthStart, $monthEnd);
             $projMonthSales = 0;
@@ -98,6 +107,10 @@ class DashboardController extends BaseController
         }
         $data["currentDate"] = $secondMonth->toDateString();
         $data["allMonthSales"] = $monthlySales;
+        $data["totalBulkedQty"] = $totalBulkedQty;
+        $data["totalBulkedValue"] = $totalBulkedValue;
+        $data["totalSalesQty"] = $totalSalesQty;
+        $data["totalSalesValue"] = $totalSalesValue;
         $allSales = $this->buyersModel->previousSales($this->fpo, $dateFrom, $dateTo, "");
         // Categorizing sales by coffee type
         $robustaQty = 0;
