@@ -142,7 +142,7 @@
           <div class="row">
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Quantity</label>
-              <h2>110,000<span>Kgs</span></h2>
+              <h2 id='salesTotalQty'>0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
@@ -151,7 +151,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Revenue</label>
-              <h2><span>UGX</span>523,200</h2>
+              <h2 id='salesValue'><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
@@ -165,7 +165,7 @@
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Total Quantity</label>
-              <h2>753,098<span>Kgs</span></h2>
+              <h2 id='totalBulkedQty'>0<span>Kgs</span></h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>0.51%</strong> (30 days)</span>
@@ -174,7 +174,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Purchases Valuation</label>
-              <h2><span>UGX</span>331,886</h2>
+              <h2 id='bulkedValue'><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
@@ -267,7 +267,7 @@
           <div class="row">
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Quantity</label>
-              <h2>110,000<span>Kgs</span></h2>
+              <h2 id="salesRobTotalQty">0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
@@ -276,7 +276,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Revenue</label>
-              <h2><span>UGX</span>523,200</h2>
+              <h2 id="salesRobValue"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
@@ -290,16 +290,16 @@
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Total Quantity</label>
-              <h2>753,098<span>Kgs</span></h2>
+              <h2 id="totalAraQty">0<span>Kgs</span></h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
-                <span><strong>0.51%</strong> (30 days)</span>
+                <!-- <span><strong>0.51%</strong> (30 days)</span> -->
               </div>
               <span id="compositeline7">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Revenue</label>
-              <h2><span>UGX</span>331,886</h2>
+              <h2 id="araValue"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
@@ -361,7 +361,8 @@
         actualSalesVsBulked(salesData);
         cumulativeSales(salesData);
         quarterlySales(quarterlySalesData);
-        // totalSalesAndBulked(data.)
+        totalSalesAndBulked(data.totalBulkedQty,data.totalBulkedValue,data.totalSalesQty,data.totalSalesValue);
+        coffeeTypes(data.robustaQty,data.robustaValue,data.arabicaQty,data.arabicaValue)
       },
     });
 
@@ -909,7 +910,21 @@
       });
     }
 
-    //function to plot
+    //function to create total sales and total bulked
+    const totalSalesAndBulked=(totalBulkedQty,totalBulkedValue,totalSalesQty,totalSalesValue)=>{
+      // const totalSales = totalSalesQty.toLocaleString()
+      $('#salesTotalQty').html(`${totalSalesQty.toLocaleString()}<span>Kgs</span>`)
+      $('#salesValue').html(`<span>UGX</span>${totalSalesValue.toLocaleString()}`)
+      $('#totalBulkedQty').html(`${totalBulkedQty.toLocaleString()}<span>Kgs</span>`)
+      $('#bulkedValue').html(`<span>UGX</span>${totalBulkedValue.toLocaleString()}`)
+    }
+    //function to create total coffee type quantity and values
+    const coffeeTypes=(totalRobQty,totalRobVal,totalAraQty,totalAraVal)=>{
+      $('#salesRobTotalQty').html(`${totalRobQty.toLocaleString()}<span>Kgs</span>`)
+      $('#salesRobValue').html(`<span>UGX</span>${totalRobVal.toLocaleString()}`)
+      $('#totalAraQty').html(`${totalAraQty.toLocaleString()}<span>Kgs</span>`)
+      $('#araValue').html(`<span>UGX</span>${totalAraVal.toLocaleString()}`)
+    }
   });
 </script>
 <?= $this->endSection() ?>
