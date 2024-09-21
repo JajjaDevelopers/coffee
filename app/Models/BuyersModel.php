@@ -110,7 +110,7 @@ class BuyersModel extends Model
         return $builder->insertBatch($data);
     }
 
-    // Get Purchases
+    // Get Sales
     public function previousSales($fpo, $dateFrom, $dateTo, $buyer = "")
     {
         if ($buyer == "") {

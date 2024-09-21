@@ -4,29 +4,37 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <style>
-        .morris-hover.morris-default-style {
-            border-radius: 10px;
-        }
-        .x-axis-labels {
-            transform: rotate(-45deg);
-            text-anchor: end !important;
-        }
-        #legend {
-            text-align: center;
-            margin-top: 10px;
-        }
-        .legend-item {
-            display: inline-block;
-            margin-right: 20px;
-        }
-        .legend-color-box {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-    </style>
+  .morris-hover.morris-default-style {
+    border-radius: 10px;
+  }
+
+  /* canvas {
+    border: 1px solid black;
+} */
+
+  .x-axis-labels {
+    transform: rotate(-45deg);
+    text-anchor: end !important;
+  }
+
+  #legend {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .legend-item {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .legend-color-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+</style>
 <div class="az-content-header d-block d-md-flex">
   <div>
     <h2 class="az-content-title tx-24 mg-b-5 mg-b-lg-8">Hi, <?= $commonData['user']['name'] ?>, Welcome Back!</h2>
@@ -170,39 +178,19 @@
   <div class="row row-sm mg-b-15 mg-sm-b-20">
     <div class="col-lg-6 col-xl-7">
       <div class="card card-dashboard-six">
-        <div class="card-header">
-          <div>
-            <label class="az-content-label">This Year's Total Revenue</label>
-            <span class="d-block">Sales Performance for Online and Offline Revenue</span>
-          </div>
-          <div class="chart-legend">
-            <div><span>Online Revenue</span> <span class="bg-indigo"></span></div>
-            <div><span>Offline Revenue</span> <span class="bg-teal"></span></div>
-          </div>
-        </div><!-- card-header -->
-        <div id="morrisBar1" class="ht-200 ht-lg-250 wd-100p"></div>
+        <canvas id="myChart" width="600" height="400"></canvas>
       </div><!-- card -->
     </div><!-- col -->
     <div class="col-lg-6 col-xl-7">
       <div class="card card-dashboard-six">
-        <div class="card-header">
-          <div>
-            <h2 class="az-content-label">Acctual Vs Projected </h2>
-          </div>
-          <div id="legend">
-          </div>
-        </div><!-- card-header -->
-        <div id="morris-line-chart" class="ht-200 ht-lg-250 wd-100p"></div>
+        <canvas id="myChart2" width="600" height="400"></canvas>
       </div><!-- card -->
-    </div>
-    <!-- <div class="col-lg-6 col-xl-5 mg-t-20 mg-lg-t-0">
-      <div class="card card-dashboard-map-one">
-        <label class="az-content-label">Actual Vs Projected Quantity</label>
-        <div id="legend"></div>
-        <div id="morris-line-chart" style="height: 250px;">
-        </div>
-      </div>
-    </div> -->
+    </div><!-- col -->
+    <div class="col-lg-6 col-xl-7">
+      <div class="card card-dashboard-six">
+      <canvas id="myChart3" width="600" height="400"></canvas>
+      </div><!-- card -->
+    </div><!-- col -->
   </div><!-- row -->
 
 
@@ -218,18 +206,29 @@
   $(document).ready(function() {
 
     //ajax request to pick sales data
-    let salesData=null;
+    let salesData = null;
     $.ajax({
-    type: "post",
-    url: "/sales/salesByType",
-    data: "data",
-    dataType: "json",
-    success: function (response) {
-      console.log(response);
-      salesData=response;
-      actualSalesVsProjected(salesData);
-    },
-  });
+      type: "post",
+      url: "/sales/salesByType",
+      data: "data",
+      dataType: "json",
+      success: function(response) {
+        console.log(response);
+        data = response;
+        salesData = data.allMonthSales
+        // Extract month, actualSalesQty, and actualPurchaseQty into a new data array
+        // var actualSalesVsProjectedData = salesData.map(function(item) {
+        //   return {
+        //     month: item.month,
+        //     actualSalesQty: item.actualSalesQty,
+        //     actualPurchaseQty: item.actualPurchaseQty
+        //   };
+        // });
+        actualSalesVsProjected(salesData);
+        actualSalesVsBulked(salesData);
+        cumulativeSales(salesData);
+      },
+    });
 
     $('#compositeline').sparkline('html', {
       lineColor: '#cecece',
@@ -296,113 +295,325 @@
     });
 
 
-//functiom to plot actual coffee sales vs projected value
-   const actualSalesVsProjected=(salesData)=>{
-    let allMonthsSales = salesData.allMonthSales;
-    console.log(allMonthsSales);
-   }
+    //functiom to plot actual coffee sales vs projected value
+    const actualSalesVsProjected = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const salesQty = data.map(item => item.actualSalesValue); // Sales Quantity
+      const purchaseQty = data.map(item => item.actualPurchaseValue); // Purchase Quantity
 
-   actualSalesVsProjected();
-
-    var morrisData = [{
-        y: 'Oct 01',
-        a: 95000,
-        b: 70000
-      },
-      {
-        y: 'Oct 05',
-        a: 75000,
-        b: 55000
-      },
-      {
-        y: 'Oct 10',
-        a: 50000,
-        b: 40000
-      },
-      {
-        y: 'Oct 15',
-        a: 75000,
-        b: 65000
-      },
-      {
-        y: 'Oct 20',
-        a: 50000,
-        b: 40000
-      },
-      {
-        y: 'Oct 25',
-        a: 80000,
-        b: 90000
-      },
-      {
-        y: 'Oct 30',
-        a: 75000,
-        b: 65000
-      }
-    ];
-
-    new Morris.Bar({
-      element: 'morrisBar1',
-      data: morrisData,
-      xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['Online', 'Offline'],
-      barColors: ['#560bd0', '#00cccc'],
-      preUnits: '$',
-      barSizeRatio: 0.55,
-      gridTextSize: 11,
-      gridTextColor: '#494c57',
-      gridTextWeight: 'bold',
-      gridLineColor: '#999',
-      gridStrokeWidth: 0.25,
-      hideHover: 'auto',
-      resize: true,
-      padding: 5
-    });
-
-    var data = [
-            { month: '2023-10', registrations: 30, activeUsers: 20 },
-            { month: '2023-11', registrations: 40, activeUsers: 30 },
-            { month: '2023-12', registrations: 25, activeUsers: 35 },
-            { month: '2024-01', registrations: 50, activeUsers: 40 },
-            { month: '2024-02', registrations: 35, activeUsers: 45 },
-            { month: '2024-03', registrations: 60, activeUsers: 55 }
-        ];
-
-        // Initialize the Morris Line Chart
-        var chart = Morris.Line({
-            element: 'morris-line-chart',
-            data: data,
-            xkey: 'month',
-            ykeys: ['registrations', 'activeUsers'],
-            labels: ['Registrations', 'Active Users'],
-            lineColors: ['#0b62a4', '#7a92a3'],
-            xLabelAngle: 45, // Tilts the x-axis labels by 45 degrees
-            parseTime: true,
-            resize: true,
-            gridTextSize: 12, // Font size for axis labels
-            gridTextFamily: 'Arial', // Font family for axis labels
-            pointFillColors: ['#ffffff'],
-            pointStrokeColors: ['#0b62a4'],
-            hideHover: 'auto',
-            hoverCallback: function (index, options, content, row) {
-                return content; // Custom tooltip content
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Actual Sales Value (UGX)',
+              data: salesQty, // y-axis data
+              borderColor: 'green', // Green line color
+              backgroundColor: 'rgba(144, 238, 144, 0.2)', // Light green fill color
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+            {
+              label: 'Actual Purchase Value (UGX)',
+              data: purchaseQty, // y-axis data
+              borderColor: 'rgb(139, 0, 0)',
+              backgroundColor: 'rgba(139, 0, 0, 0.2)',
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
             }
-        });
-
-        // Create a custom legend
-        function createLegend(labels, colors) {
-            var legend = $('#legend');
-            labels.forEach(function(label, index) {
-                var legendItem = $('<span class="legend-item"></span>');
-                var colorBox = $('<span class="legend-color-box"></span>').css('background-color', colors[index]);
-                legendItem.append(colorBox).append(label);
-                legend.append(legendItem);
-            });
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Actual vs Projected Sales and Purchase Quantities', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
         }
+      };
 
-        // Call createLegend with labels and colors
-        createLegend(['Registrations', 'Active Users'], ['#0b62a4', '#7a92a3']);
+      // Render the chart
+      const ctx = $('#myChart');
+      new Chart(ctx, config);
+    }
+
+    //functiom to plot actual coffee sales vs projected value
+    const actualSalesVsBulked = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const salesValues = data.map(item => item.actualSalesValue); // Sales value
+      const purchaseValue = data.map(item => item.actualPurchaseValue); // Purchase value
+      const salesKg=data.map(item => item.actualSalesQty)//sales in kg
+      const bulkedKg=data.map(item => item.actualPurchaseQty)//bulked in kg
+
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Actual Sales Value(UGX)',
+              data: salesValues, // y-axis data
+              type: 'bar', // Bar chart
+              borderColor: 'green', // Green line color
+              backgroundColor: 'green', // Light green fill color
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+            {
+              label: 'Actual Purchase Value(UGX)',
+              data: purchaseValue, // y-axis data
+              borderColor: 'rgb(255, 204, 0)', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+            {
+              label: 'Actual Sales Quantity(Kgs)',
+              data: salesKg, // y-axis data
+              borderColor: 'green', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+            {
+              label: 'Actual Bulked Quantity(Kgs)',
+              data: bulkedKg, // y-axis data
+              borderColor: 'blue', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Actual Sales Vs Bulked', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
+        }
+      };
+
+      // Render the chart
+      const ctx = $('#myChart2');
+      new Chart(ctx, config);
+    }
+
+     //functiom to plot actual coffee sales vs projected value
+     const cumulativeSales = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const cumulativeSales = data.map(item => item.cummulativeSalesValue); // cumulative sales
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Cumulative Sales',
+              data: cumulativeSales, // y-axis data
+              borderColor: '#0b62a4',
+              backgroundColor: 'blue',
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Cumulative Sales', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
+        }
+      };
+
+      // Render the chart
+      const ctx = $('#myChart3');
+      new Chart(ctx, config);
+    }
   });
 </script>
 <?= $this->endSection() ?>

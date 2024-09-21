@@ -8,6 +8,7 @@ use App\Controllers\Traits\CommonData;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 use App\Models\BuyersModel;
+use App\Models\SuppliersModal;
 use App\Controllers\GeneralController;
 
 
@@ -17,6 +18,7 @@ class DashboardController extends BaseController
     protected $fpo;
     protected $db;
     public $buyersModel;
+    public $supplierModel;
     public $generalFunctions;
 
     public function __construct()
@@ -24,6 +26,7 @@ class DashboardController extends BaseController
         $this->fpo = 1;
         $this->db = \Config\Database::connect();
         $this->buyersModel = new BuyersModel;
+        $this->supplierModel = new SuppliersModal;
         $this->generalFunctions = new GeneralController;
     }
 
@@ -51,22 +54,30 @@ class DashboardController extends BaseController
             $monthStart = $dateFrom->addMonths($x)->toDateString();
             // Query ending date
             $monthEnd = $dateFrom->addMonths($x + 1)->subDays(1)->toDateString();
-            // Querying based on the date range
+            // Getting sales based on the date range
             $monthSales = $this->buyersModel->previousSales($this->fpo, $monthStart, $monthEnd, "");
-            $qty = 0;
-            $value = 0;
+            $sQty = 0;
+            $sValue = 0;
             for ($i = 0; $i < count($monthSales); $i++) {
-                $qty += $monthSales[$i]["salesQty"];
-                $value += $monthSales[$i]["salesValue"];
+                $sQty += $monthSales[$i]["salesQty"];
+                $sValue += $monthSales[$i]["salesValue"];
             }
-            $details['actualSalesQty'] = $qty;
-            $details['actualSalesValue'] = $value;
-            $cummulativeSales += $value;
+            $details['actualSalesQty'] = $sQty;
+            $details['actualSalesValue'] = $sValue;
+            $cummulativeSales += $sValue;
             $details["cummulativeSalesValue"] = $cummulativeSales;
-
+            // Getting purchases based on the date ranges
+            $pQty = 0;
+            $pValue = 0;
+            $monthPurchases = $this->supplierModel->previousPurchases($this->fpo, $monthStart, $monthEnd, "");
+            for ($y = 0; $y < count($monthPurchases); $y++) {
+                $pQty += $monthPurchases[$y]["purchaseQty"];
+                $pValue += $monthPurchases[$y]["purchaseValue"];
+            }
+            $details["actualPurchaseQty"] = $pQty;
+            $details["actualPurchaseValue"] = $pValue;
             array_push($monthlySales, $details);
         }
-        $now = new Time("now");
         $data["currentDate"] = $secondMonth->toDateString();
         $data["allMonthSales"] = $monthlySales;
         $allSales = $this->buyersModel->previousSales($this->fpo, $dateFrom, $dateTo, "");
@@ -102,6 +113,34 @@ class DashboardController extends BaseController
                 $exportValue += $value;
             }
         }
+
+        // Quarterly sales
+        $allQuarterSales = [];
+        $quarters = $this->generalFunctions->quarterlyPeriods();
+        for ($x = 0; $x < count($quarters); $x++) {
+            $robustQSales = 0;
+            $arabicaQSales = 0;
+            $quarterId = $quarters[$x]["quarter"];
+            $startDate = $quarters[$x]["startDate"];
+            $endDate = $quarters[$x]["endDate"];
+            $quarterSales = $this->buyersModel->previousSales($this->fpo, $startDate, $endDate, "");
+            for ($i = 0; $i < count($quarterSales); $i++) {
+                $type = $quarterSales[$i]["type_name"];
+                $qty = $quarterSales[$i]["salesQty"];
+                $value = $quarterSales[$i]["salesValue"];
+                if ($type == "Robusta") {
+                    $robustQSales += $value;
+                } else if ($type == "Arabica") {
+                    $arabicaQSales += $value;
+                }
+            }
+            array_push($allQuarterSales, [
+                "quarter" => $quarterId,
+                "robustaSales" => $robustQSales,
+                "arabicaSales" => $arabicaQSales
+            ]);
+        }
+
         // Response Data
         // Coffee Types
         $data["robustaQty"] = $robustaQty;
@@ -113,7 +152,7 @@ class DashboardController extends BaseController
         $data["localValue"] = $localValue;
         $data["exportQty"] = $exportQty;
         $data["exportValue"] = $exportValue;
-        $data["quarters"] = $this->generalFunctions->quarterlyPeriods();
+        $data["quarters"] = $allQuarterSales;
         // $data["sales"] = $allSales;
         return $this->response->setJSON($data);
     }
