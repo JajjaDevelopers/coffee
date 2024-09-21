@@ -6,7 +6,9 @@ $(document).ready(function () {
     url: "/sales/salesByType",
     data: "data",
     dataType: "josn",
-    success: function (response) {},
+    success: function (response) {
+      console.log(response);
+    },
   });
 
   //

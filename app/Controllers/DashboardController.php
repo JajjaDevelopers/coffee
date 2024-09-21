@@ -106,7 +106,7 @@ class DashboardController extends BaseController
             array_push($monthlySales, $details);
         }
         $data["currentDate"] = $secondMonth->toDateString();
-        $data["allMonths"] = $monthlySales;
+        $data["allMonthSales"] = $monthlySales;
         $data["totalBulkedQty"] = $totalBulkedQty;
         $data["totalBulkedValue"] = $totalBulkedValue;
         $data["totalSalesQty"] = $totalSalesQty;

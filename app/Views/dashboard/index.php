@@ -3,13 +3,45 @@
 <?= $page_title ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
+<style>
+  .morris-hover.morris-default-style {
+    border-radius: 10px;
+  }
+
+  /* canvas {
+    border: 1px solid black;
+} */
+
+  .x-axis-labels {
+    transform: rotate(-45deg);
+    text-anchor: end !important;
+  }
+
+  #legend {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .legend-item {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .legend-color-box {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+</style>
 <div class="az-content-header d-block d-md-flex">
   <div>
     <h2 class="az-content-title tx-24 mg-b-5 mg-b-lg-8">Hi, <?= $commonData['user']['name'] ?>, Welcome Back!</h2>
-    <p class="mg-b-0">Your Monitoring Dashboard.</p>
+    <p class="mg-b-0">Main Dashboard.</p>
   </div>
   <div class="az-dashboard-header-right">
-    <div>
+    <!-- <div>
       <label class="tx-13">Customer Ratings</label>
       <div class="az-star">
         <i class="typcn typcn-star active"></i>
@@ -27,13 +59,13 @@
     <div>
       <label class="tx-13">All Sales (Offline)</label>
       <h5>932,210</h5>
-    </div>
+    </div> -->
   </div><!-- az-dashboard-header-right -->
 </div><!-- az-content-header -->
 <div class="az-content-body">
   <div class="card card-dashboard-seven">
     <div class="card-header">
-      <div class="row row-sm">
+      <!-- <div class="row row-sm">
         <div class="col-6 col-md-4 col-xl">
           <div class="media">
             <div><i class="icon ion-ios-calendar"></i></div>
@@ -43,7 +75,7 @@
                 <span>Sept 01, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl">
           <div class="media">
@@ -54,7 +86,7 @@
                 <span>Sept 30, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl mg-t-15 mg-md-t-0">
           <div class="media">
@@ -65,7 +97,7 @@
                 <span>Revenue</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-6 col-md-4 col-xl mg-t-15 mg-xl-t-0">
           <div class="media">
@@ -76,7 +108,7 @@
                 <span>All Customers</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
         <div class="col-md-4 col-xl mg-t-15 mg-xl-t-0">
           <div class="media">
@@ -87,9 +119,9 @@
                 <span>All Transactions</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
               </div>
             </div>
-          </div><!-- media -->
+          </div>
         </div>
-      </div><!-- row -->
+      </div> -->
     </div><!-- card-header -->
     <div class="card-body">
       <div class="row row-sm">
@@ -146,114 +178,22 @@
   <div class="row row-sm mg-b-15 mg-sm-b-20">
     <div class="col-lg-6 col-xl-7">
       <div class="card card-dashboard-six">
-        <div class="card-header">
-          <div>
-            <label class="az-content-label">This Year's Total Revenue</label>
-            <span class="d-block">Sales Performance for Online and Offline Revenue</span>
-          </div>
-          <div class="chart-legend">
-            <div><span>Online Revenue</span> <span class="bg-indigo"></span></div>
-            <div><span>Offline Revenue</span> <span class="bg-teal"></span></div>
-          </div>
-        </div><!-- card-header -->
-        <div id="morrisBar1" class="ht-200 ht-lg-250 wd-100p"></div>
+        <canvas id="myChart" width="600" height="400"></canvas>
       </div><!-- card -->
     </div><!-- col -->
-    <div class="col-lg-6 col-xl-5 mg-t-20 mg-lg-t-0">
-      <div class="card card-dashboard-map-one">
-        <label class="az-content-label">Sales Revenue by Customers in USA</label>
-        <span class="d-block mg-b-20">Sales Performance of all states in the United States</span>
-        <div id="vmap2" class="vmap-wrapper"></div>
+    <div class="col-lg-6 col-xl-7">
+      <div class="card card-dashboard-six">
+        <canvas id="myChart2" width="600" height="400"></canvas>
+      </div><!-- card -->
+    </div><!-- col -->
+    <div class="col-lg-6 col-xl-7">
+      <div class="card card-dashboard-six">
+      <canvas id="myChart3" width="600" height="400"></canvas>
       </div><!-- card -->
     </div><!-- col -->
   </div><!-- row -->
 
-  <div class="row row-sm mg-b-20 mg-lg-b-0">
-    <div class="col-md-6 col-xl-7">
-      <div class="card card-table-two">
-        <h6 class="card-title">Your Most Recent Earnings</h6>
-        <span class="d-block mg-b-20">This is your most recent earnings for today's date.</span>
-        <div class="table-responsive">
-          <table class="table table-striped table-dashboard-two">
-            <thead>
-              <tr>
-                <th class="wd-lg-25p">Date</th>
-                <th class="wd-lg-25p tx-right">Sales Count</th>
-                <th class="wd-lg-25p tx-right">Earnings</th>
-                <th class="wd-lg-25p tx-right">Tax Witheld</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>05 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">25</td>
-                <td class="tx-right tx-medium tx-inverse">$380.50</td>
-                <td class="tx-right tx-medium tx-danger">-$23.50</td>
-              </tr>
-              <tr>
-                <td>04 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">34</td>
-                <td class="tx-right tx-medium tx-inverse">$503.20</td>
-                <td class="tx-right tx-medium tx-danger">-$13.45</td>
-              </tr>
-              <tr>
-                <td>03 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">30</td>
-                <td class="tx-right tx-medium tx-inverse">$489.65</td>
-                <td class="tx-right tx-medium tx-danger">-$20.98</td>
-              </tr>
-              <tr>
-                <td>02 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">27</td>
-                <td class="tx-right tx-medium tx-inverse">$421.80</td>
-                <td class="tx-right tx-medium tx-danger">-$22.22</td>
-              </tr>
-              <tr>
-                <td>01 Oct 2018</td>
-                <td class="tx-right tx-medium tx-inverse">31</td>
-                <td class="tx-right tx-medium tx-inverse">$518.60</td>
-                <td class="tx-right tx-medium tx-danger">-$23.01</td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!-- table-responsive -->
-      </div><!-- card-dashboard-five -->
-    </div>
-    <div class="col-md-6 col-xl-5 mg-t-20 mg-md-t-0">
-      <div class="card card-dashboard-eight">
-        <h6 class="card-title">Your Top Countries</h6>
-        <span class="d-block mg-b-20">Sales performance revenue based by country</span>
 
-        <div class="list-group">
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-us flag-icon-squared"></i>
-            <p>United States</p>
-            <span>$1,671.10</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-nl flag-icon-squared"></i>
-            <p>Netherlands</p>
-            <span>$1,064.75</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-gb flag-icon-squared"></i>
-            <p>United Kingdom</p>
-            <span>$1,055.98</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-ca flag-icon-squared"></i>
-            <p>Canada</p>
-            <span>$1,045.49</span>
-          </div><!-- list-group-item -->
-          <div class="list-group-item">
-            <i class="flag-icon flag-icon-au flag-icon-squared"></i>
-            <p>Australia</p>
-            <span>$1,042.00</span>
-          </div><!-- list-group-item -->
-        </div><!-- list-group -->
-      </div><!-- card -->
-    </div><!-- col -->
-  </div><!-- row -->
 </div><!-- az-content-body -->
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
@@ -264,6 +204,32 @@
   /* Dashboard content */
 
   $(document).ready(function() {
+
+    //ajax request to pick sales data
+    let salesData = null;
+    $.ajax({
+      type: "post",
+      url: "/sales/salesByType",
+      data: "data",
+      dataType: "json",
+      success: function(response) {
+        console.log(response);
+        data = response;
+        salesData = data.allMonthSales
+        // Extract month, actualSalesQty, and actualPurchaseQty into a new data array
+        // var actualSalesVsProjectedData = salesData.map(function(item) {
+        //   return {
+        //     month: item.month,
+        //     actualSalesQty: item.actualSalesQty,
+        //     actualPurchaseQty: item.actualPurchaseQty
+        //   };
+        // });
+        actualSalesVsProjected(salesData);
+        actualSalesVsBulked(salesData);
+        cumulativeSales(salesData);
+      },
+    });
+
     $('#compositeline').sparkline('html', {
       lineColor: '#cecece',
       lineWidth: 2,
@@ -329,82 +295,325 @@
     });
 
 
-    var morrisData = [{
-        y: 'Oct 01',
-        a: 95000,
-        b: 70000
-      },
-      {
-        y: 'Oct 05',
-        a: 75000,
-        b: 55000
-      },
-      {
-        y: 'Oct 10',
-        a: 50000,
-        b: 40000
-      },
-      {
-        y: 'Oct 15',
-        a: 75000,
-        b: 65000
-      },
-      {
-        y: 'Oct 20',
-        a: 50000,
-        b: 40000
-      },
-      {
-        y: 'Oct 25',
-        a: 80000,
-        b: 90000
-      },
-      {
-        y: 'Oct 30',
-        a: 75000,
-        b: 65000
-      }
-    ];
+    //functiom to plot actual coffee sales vs projected value
+    const actualSalesVsProjected = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const salesQty = data.map(item => item.actualSalesValue); // Sales Quantity
+      const purchaseQty = data.map(item => item.actualPurchaseValue); // Purchase Quantity
 
-    new Morris.Bar({
-      element: 'morrisBar1',
-      data: morrisData,
-      xkey: 'y',
-      ykeys: ['a', 'b'],
-      labels: ['Online', 'Offline'],
-      barColors: ['#560bd0', '#00cccc'],
-      preUnits: '$',
-      barSizeRatio: 0.55,
-      gridTextSize: 11,
-      gridTextColor: '#494c57',
-      gridTextWeight: 'bold',
-      gridLineColor: '#999',
-      gridStrokeWidth: 0.25,
-      hideHover: 'auto',
-      resize: true,
-      padding: 5
-    });
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Actual Sales Value (UGX)',
+              data: salesQty, // y-axis data
+              borderColor: 'green', // Green line color
+              backgroundColor: 'rgba(144, 238, 144, 0.2)', // Light green fill color
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+            {
+              label: 'Actual Purchase Value (UGX)',
+              data: purchaseQty, // y-axis data
+              borderColor: 'rgb(139, 0, 0)',
+              backgroundColor: 'rgba(139, 0, 0, 0.2)',
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Actual vs Projected Sales and Purchase Quantities', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
+        }
+      };
 
-    $('#vmap2').vectorMap({
-      map: 'usa_en',
-      showTooltip: true,
-      backgroundColor: '#fff',
-      color: '#60adff',
-      colors: {
-        mo: '#9fceff',
-        fl: '#60adff',
-        or: '#409cff',
-        ca: '#005cbf',
-        tx: '#005cbf',
-        wy: '#005cbf',
-        ny: '#007bff'
-      },
-      hoverColor: '#222',
-      enableZoom: false,
-      borderWidth: 1,
-      borderColor: '#fff',
-      hoverOpacity: .85
-    });
+      // Render the chart
+      const ctx = $('#myChart');
+      new Chart(ctx, config);
+    }
+
+    //functiom to plot actual coffee sales vs projected value
+    const actualSalesVsBulked = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const salesValues = data.map(item => item.actualSalesValue); // Sales value
+      const purchaseValue = data.map(item => item.actualPurchaseValue); // Purchase value
+      const salesKg=data.map(item => item.actualSalesQty)//sales in kg
+      const bulkedKg=data.map(item => item.actualPurchaseQty)//bulked in kg
+
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Actual Sales Value(UGX)',
+              data: salesValues, // y-axis data
+              type: 'bar', // Bar chart
+              borderColor: 'green', // Green line color
+              backgroundColor: 'green', // Light green fill color
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+            {
+              label: 'Actual Purchase Value(UGX)',
+              data: purchaseValue, // y-axis data
+              borderColor: 'rgb(255, 204, 0)', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+            {
+              label: 'Actual Sales Quantity(Kgs)',
+              data: salesKg, // y-axis data
+              borderColor: 'green', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+            {
+              label: 'Actual Bulked Quantity(Kgs)',
+              data: bulkedKg, // y-axis data
+              borderColor: 'blue', // Dark yellow line color
+              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4,
+              pointBackgroundColor: '#7a92a3',
+              pointBorderColor: '#7a92a3'
+            },
+
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Actual Sales Vs Bulked', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
+        }
+      };
+
+      // Render the chart
+      const ctx = $('#myChart2');
+      new Chart(ctx, config);
+    }
+
+     //functiom to plot actual coffee sales vs projected value
+     const cumulativeSales = (data) => {
+      // Extracting data for Chart.js
+      const labels = data.map(item => item.month); // Months for the x-axis
+      const cumulativeSales = data.map(item => item.cummulativeSalesValue); // cumulative sales
+      // Configuration for Chart.js
+      const config = {
+        type: 'line',
+        data: {
+          labels: labels, // x-axis labels
+          datasets: [{
+              label: 'Cumulative Sales',
+              data: cumulativeSales, // y-axis data
+              borderColor: '#0b62a4',
+              backgroundColor: 'blue',
+              fill: true,
+              tension: 0.3,
+              borderWidth: 2,
+              pointRadius: 4, // Radius of points
+              pointBackgroundColor: '#0b62a4',
+              pointBorderColor: '#0b62a4'
+            },
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top' // Position of the legend
+            },
+            tooltip: {
+              enabled: true, // Display tooltips on hover
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(tooltipItem) {
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Cumulative Sales', // Title text
+              font: {
+                size: 18 // Font size for the title
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              },
+              ticks: {
+                maxRotation: 45, // Rotate x-axis labels
+                minRotation: 45
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Quantity (in thousands)'
+              },
+              beginAtZero: true,
+              ticks: {
+                // Format the y-axis labels
+                callback: function(value) {
+                  return value >= 1000 ? value / 1000 + 'K' : value;
+                }
+              },
+              grid: {
+                display: true // Show gridlines
+              }
+            }
+          }
+        }
+      };
+
+      // Render the chart
+      const ctx = $('#myChart3');
+      new Chart(ctx, config);
+    }
   });
 </script>
 <?= $this->endSection() ?>
