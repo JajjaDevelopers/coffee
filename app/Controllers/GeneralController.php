@@ -79,6 +79,17 @@ class GeneralController extends BaseController
         return $quarters;
     }
 
+    // Projections of sales and purchases
+    public function projections($startDate, $endDate)
+    {
+        $query = $this->db->query("SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = '{$this->fpo}' 
+            AND range_from >= '{$startDate}' AND range_to <= '{$endDate}'");
+        return $query->getResultArray();
+    }
+
+
 
 
     // 
