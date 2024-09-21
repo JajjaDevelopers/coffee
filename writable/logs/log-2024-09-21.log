@@ -130,3 +130,377 @@ INFO - 2024-09-21 14:22:37 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-09-21 14:34:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-09-21 14:35:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-09-21 14:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:25:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-21 16:26:02 --> mysqli_sql_exception: Table 'coffee.projections' doesn't exist in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_fr...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_fr...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_fr...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_fr...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-21 16:26:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+[Method: POST, Route: sales/salesByType]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:26:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:26:02 --> [Caused by] mysqli_sql_exception: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 5 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+ERROR - 2024-09-21 16:26:02 --> mysqli_sql_exception: Table 'coffee.projections' doesn't exist in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_fr...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_fr...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_fr...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_fr...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-21 16:26:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+[Method: POST, Route: sales/salesByType]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:26:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:26:02 --> [Caused by] mysqli_sql_exception: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 5 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-21 16:29:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-09-21 16:29:09 --> mysqli_sql_exception: Table 'coffee.projections' doesn't exist in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_fr...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_fr...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_fr...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_fr...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-21 16:29:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+[Method: POST, Route: sales/salesByType]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:29:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:29:09 --> [Caused by] mysqli_sql_exception: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 5 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+ERROR - 2024-09-21 16:29:09 --> mysqli_sql_exception: Table 'coffee.projections' doesn't exist in C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\xampp\htdocs\coffee\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_fr...', 0)
+#1 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_fr...')
+#2 C:\xampp\htdocs\coffee\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_fr...')
+#3 C:\xampp\htdocs\coffee\coffee\app\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_fr...')
+#4 C:\xampp\htdocs\coffee\coffee\app\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+#5 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+#6 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+#7 C:\xampp\htdocs\coffee\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\coffee\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\coffee\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp\htdocs\coffee\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\xampp\htdocs\coffee\coffee\system\rewrite.php(44): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-09-21 16:29:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+[Method: POST, Route: sales/salesByType]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:29:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+CRITICAL - 2024-09-21 16:29:09 --> [Caused by] mysqli_sql_exception: Table 'coffee.projections' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 4 APPPATH\Controllers\GeneralController.php(85): CodeIgniter\Database\BaseConnection->query('SELECT range_from, range_to, sales_qty, avg_sales_price, purchase_qty, avg_purchase_price, remarks
+            FROM projections
+            WHERE fpo = \'1\' 
+            AND range_from >= \'2023-10-01\' AND range_to <= \'2023-10-31\'')
+ 5 APPPATH\Controllers\DashboardController.php(80): App\Controllers\GeneralController->projections('2023-10-01', '2023-10-31')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\DashboardController->previousSales()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DashboardController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\coffee\\coffee\\public\\index.php')
+INFO - 2024-09-21 16:30:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:41:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:44:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:45:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:47:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:49:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 16:54:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:04:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:10:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:11:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:12:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:13:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:23:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:23:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:26:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:33:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:37:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:41:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:42:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:42:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:43:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:55:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 17:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:00:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:07:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:12:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:13:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:14:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:15:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:38:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:39:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:39:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:39:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:49:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:52:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:53:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:54:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 18:57:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:07:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:31:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:32:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:41:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:43:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 19:44:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-21 20:16:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
