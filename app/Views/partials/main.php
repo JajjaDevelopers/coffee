@@ -59,6 +59,7 @@
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
   <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/generalCss.css') ?>">
 
 
 </head>
@@ -66,39 +67,38 @@
 <body class="az-body az-body-sidebar">
 
   <div class="az-sidebar">
+    <!-- // style="background-color:darkolivegreen" -->
+    <br>
     <div class="az-sidebar-header">
-      <a href="index.html">
-        <h3 class="text-success"><strong>LOGO</strong></h3>
+      <a href="#">
+        <img src="<?= base_url('assets/img/nglLogo.png') ?>" width="170px" height="80px">
+        <!-- <h3 class="text-success"><strong>LOGO</strong></h3> -->
       </a>
-    </div><!-- az-sidebar-header -->
-    <!-- <div class="az-sidebar-loggedin">
-      <div class="az-img-user online"><img src="https://via.placeholder.com/500" alt=""></div>
-      <div class="media-body">
-        <h6>Aziana Pechon</h6>
-        <span>Premium Member</span>
-      </div> media-body -->
-    <!-- </div>az-sidebar-loggedin -->
+    </div>
+    <br>
     <div class="az-sidebar-body">
       <ul class="nav">
-        <li class="nav-label">Main Menu</li>
+        <li class="nav-label">
+          <h5 style="color: darkolivegreen;">Main Menu</h5>
+        </li>
         <li class="nav-item active">
-          <a href="index.html" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Dashboard</a>
-          <ul class="nav-sub">
+          <a href="/home" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>Dashboard</a>
+          <!-- <ul class="nav-sub">
             <li class="nav-sub-item"><a href="dashboard-one.html" class="nav-sub-link">Web Analytics</a></li>
             <li class="nav-sub-item active"><a href="dashboard-two.html" class="nav-sub-link">Sales Monitoring</a></li>
-          </ul>
+          </ul> -->
         </li><!-- nav-item -->
         <li class="nav-item">
           <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Sales</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales</a></li>
+            <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales Reports</a></li>
             <li class="nav-sub-item"><a href="/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Supplies</a>
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Supplies</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Deliveries</a></li>
+            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
@@ -114,13 +114,14 @@
 
   <div class="az-content az-content-dashboard-two">
     <div class="az-header">
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:darkolivegreen">
         <div class="az-header-left">
-          <a href="" id="azSidebarToggle" class="az-header-menu-icon"><span></span></a>
+          <a href="" id="azSidebarToggle" class="az-header-menu-icon" title="Access Menu"><span></span></a>
         </div><!-- az-header-left -->
         <div class="az-header-center">
-          <input type="search" class="form-control" placeholder="Search for anything...">
-          <button class="btn"><i class="fas fa-search"></i></button>
+          <h1 style="color: white;"><strong>NUCAFE GRADING LIMITED</strong></h1>
+          <!-- <input type="search" class="form-control" placeholder="Search for anything...">
+          <button class="btn"><i class="fas fa-search"></i></button> -->
         </div><!-- az-header-center -->
         <div class="az-header-right">
           <div class="az-header-message">
@@ -182,7 +183,7 @@
               </div><!-- az-header-profile -->
 
               <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-              <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+              <a href="" class="dropdown-item"><i class="typcn typcn-trash"></i> Edit Profile</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
               <a href="<?= site_url('logout'); ?>" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
@@ -221,20 +222,20 @@
   <script src="<?= base_url('dashboard/lib/lightslider/js/lightslider.min.js') ?>"></script>
   <!-- DataTables JS -->
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Buttons JS -->
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <!-- Buttons JS -->
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
   <!-- Moment.js for DateTime handling -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <!-- Date Range Picker -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     $(function() {
