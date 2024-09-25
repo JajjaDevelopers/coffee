@@ -59,6 +59,7 @@
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
   <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/generalCss.css') ?>">
 
 
 </head>
@@ -66,39 +67,47 @@
 <body class="az-body az-body-sidebar">
 
   <div class="az-sidebar">
+    <!-- // style="background-color:darkolivegreen" -->
+    <br>
     <div class="az-sidebar-header">
       <a href="#">
+<<<<<<< HEAD
         <h3 class="text-success"><strong>LOGO</strong></h3>
+=======
+        <img src="<?= base_url('assets/img/nglLogo.png') ?>" width="170px" height="80px">
+        <!-- <h3 class="text-success"><strong>LOGO</strong></h3> -->
+>>>>>>> 9993769e0fbedca75308ca79a6a35bbf5fa9b38d
       </a>
-    </div><!-- az-sidebar-header -->
-    <!-- <div class="az-sidebar-loggedin">
-      <div class="az-img-user online"><img src="https://via.placeholder.com/500" alt=""></div>
-      <div class="media-body">
-        <h6>Aziana Pechon</h6>
-        <span>Premium Member</span>
-      </div> media-body -->
-    <!-- </div>az-sidebar-loggedin -->
+    </div>
+    <br>
     <div class="az-sidebar-body">
       <ul class="nav">
-        <li class="nav-label">Main Menu</li>
+        <li class="nav-label">
+          <h5 style="color: darkolivegreen;">Main Menu</h5>
+        </li>
         <li class="nav-item active">
+<<<<<<< HEAD
           <a href="#" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Dashboard</a>
           <ul class="nav-sub">
+=======
+          <a href="/home" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>Dashboard</a>
+          <!-- <ul class="nav-sub">
+>>>>>>> 9993769e0fbedca75308ca79a6a35bbf5fa9b38d
             <li class="nav-sub-item"><a href="dashboard-one.html" class="nav-sub-link">Web Analytics</a></li>
             <li class="nav-sub-item active"><a href="dashboard-two.html" class="nav-sub-link">Sales Monitoring</a></li>
-          </ul>
+          </ul> -->
         </li><!-- nav-item -->
         <li class="nav-item">
           <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Sales</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales</a></li>
+            <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales Reports</a></li>
             <li class="nav-sub-item"><a href="/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-chart-bar-outline"></i>Supplies</a>
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Supplies</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Deliveries</a></li>
+            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
@@ -114,13 +123,14 @@
 
   <div class="az-content az-content-dashboard-two">
     <div class="az-header">
-      <div class="container-fluid">
+      <div class="container-fluid" style="background-color:darkolivegreen">
         <div class="az-header-left">
-          <a href="" id="azSidebarToggle" class="az-header-menu-icon"><span></span></a>
+          <a href="" id="azSidebarToggle" class="az-header-menu-icon" title="Access Menu"><span></span></a>
         </div><!-- az-header-left -->
         <div class="az-header-center">
-          <input type="search" class="form-control" placeholder="Search for anything...">
-          <button class="btn"><i class="fas fa-search"></i></button>
+          <h1 style="color: white;"><strong>NUCAFE GRADING LIMITED</strong></h1>
+          <!-- <input type="search" class="form-control" placeholder="Search for anything...">
+          <button class="btn"><i class="fas fa-search"></i></button> -->
         </div><!-- az-header-center -->
         <div class="az-header-right">
           <div class="az-header-message">

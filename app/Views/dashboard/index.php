@@ -34,18 +34,21 @@
     margin-right: 5px;
     vertical-align: middle;
   }
+
   .card-dashboard-six {
-  /* Ensure the card takes full width and height of the column */
-  width: 100% !important;
-  height: 100% !important;
-}
+    /* Ensure the card takes full width and height of the column */
+    width: 100% !important;
+    height: 100% !important;
+  }
 
-#myChart,#myChart2,#myChart3,#myChart4 {
-  /* Make the canvas take full width and height of the card */
-  width: 100% !important;
-  height: 100% !important;
-}
-
+  #myChart,
+  #myChart2,
+  #myChart3,
+  #myChart4 {
+    /* Make the canvas take full width and height of the card */
+    width: 100% !important;
+    height: 100% !important;
+  }
 </style>
 <div class="az-content-header d-block d-md-flex">
   <div>
@@ -138,11 +141,13 @@
     <div class="card-body">
       <div class="row row-sm">
         <div class="col-md-6">
-          <h4>Total Sales</h4>
+          <h4 style="color:green">
+            <strong>Sales</strong>
+          </h4>
           <div class="row">
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Quantity</label>
-              <h2 id='salesTotalQty'>0<span>Kgs</span></h2>
+              <h2 id='salesTotalQty' style="color: green;">0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
@@ -151,7 +156,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Revenue</label>
-              <h2 id='salesValue'><span>UGX</span>0</h2>
+              <h2 id='salesValue' style="color: green;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
@@ -161,11 +166,11 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h4>Total Bulked</h4> 
+          <h4 style="color:brown"><strong>Bulked</strong></h4>
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Total Quantity</label>
-              <h2 id='totalBulkedQty'>0<span>Kgs</span></h2>
+              <h2 id='totalBulkedQty' style="color:brown">0</h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>0.51%</strong> (30 days)</span>
@@ -174,7 +179,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Purchases Valuation</label>
-              <h2 id='bulkedValue'><span>UGX</span>0</h2>
+              <h2 id='bulkedValue' style="color:brown"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
@@ -190,12 +195,12 @@
   <div class="row row-sm mg-b-15 mg-sm-b-20">
     <div class="col-lg-6 col-xl-6">
       <div class="card card-dashboard-six">
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart2"></canvas>
       </div><!-- card -->
     </div><!-- col -->
     <div class="col-lg-6 col-xl-6">
       <div class="card card-dashboard-six">
-        <canvas id="myChart2"></canvas>
+        <canvas id="myChart3"></canvas>
       </div><!-- card -->
     </div><!-- col -->
   </div><!-- row -->
@@ -263,11 +268,11 @@
     <div class="card-body">
       <div class="row row-sm">
         <div class="col-md-6">
-          <h4>Robusta</h4>
+          <h4 style="color: green;">Robusta</h4>
           <div class="row">
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Total Quantity</label>
-              <h2 id="salesRobTotalQty">0<span>Kgs</span></h2>
+              <h2 id="salesRobTotalQty" style="color: green;">0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
@@ -276,7 +281,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label">Revenue</label>
-              <h2 id="salesRobValue"><span>UGX</span>0</h2>
+              <h2 id="salesRobValue" style="color: green;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
@@ -286,11 +291,11 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h4>Arabica</h4>
+          <h4 style="color: brown;">Arabica</h4>
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Total Quantity</label>
-              <h2 id="totalAraQty">0<span>Kgs</span></h2>
+              <h2 id="totalAraQty" style="color: brown;">0<span>Kgs</span></h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <!-- <span><strong>0.51%</strong> (30 days)</span> -->
@@ -299,7 +304,7 @@
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label">Revenue</label>
-              <h2 id="araValue"><span>UGX</span>0</h2>
+              <h2 id="araValue" style="color: brown;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
@@ -315,12 +320,12 @@
   <div class="row">
     <div class="col-lg-6 col-xl-6">
       <div class="card card-dashboard-six">
-        <canvas id="myChart3"></canvas>
+        <canvas id="myChart4"></canvas>
       </div><!-- card -->
     </div><!-- col -->
     <div class="col-lg-6 col-xl-6">
       <div class="card card-dashboard-six">
-        <canvas id="myChart4"></canvas>
+        <canvas id="myChart"></canvas>
       </div><!-- card -->
     </div><!-- col -->
   </div>
@@ -361,8 +366,8 @@
         actualSalesVsBulked(salesData);
         cumulativeSales(salesData);
         quarterlySales(quarterlySalesData);
-        totalSalesAndBulked(data.totalBulkedQty,data.totalBulkedValue,data.totalSalesQty,data.totalSalesValue);
-        coffeeTypes(data.robustaQty,data.robustaValue,data.arabicaQty,data.arabicaValue)
+        totalSalesAndBulked(data.totalBulkedQty, data.totalBulkedValue, data.totalSalesQty, data.totalSalesValue);
+        coffeeTypes(data.robustaQty, data.robustaValue, data.arabicaQty, data.arabicaValue)
       },
     });
 
@@ -650,9 +655,10 @@
             },
             {
               label: 'Actual Purchase Value(UGX)',
+              type: 'bar',
               data: purchaseValue, // y-axis data
               borderColor: 'rgb(255, 204, 0)', // Dark yellow line color
-              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+              backgroundColor: 'rgb(255, 204, 0)', // Light fill color (optional)
               fill: true,
               tension: 0.3,
               borderWidth: 2,
@@ -765,7 +771,7 @@
             label: 'Cumulative Sales',
             data: cumulativeSales, // y-axis data
             borderColor: '#0b62a4',
-            backgroundColor: 'blue',
+            backgroundColor: 'rgb(173,216,230)',
             fill: true,
             tension: 0.3,
             borderWidth: 2,
@@ -911,19 +917,19 @@
     }
 
     //function to create total sales and total bulked
-    const totalSalesAndBulked=(totalBulkedQty,totalBulkedValue,totalSalesQty,totalSalesValue)=>{
+    const totalSalesAndBulked = (totalBulkedQty, totalBulkedValue, totalSalesQty, totalSalesValue) => {
       // const totalSales = totalSalesQty.toLocaleString()
-      $('#salesTotalQty').html(`${totalSalesQty.toLocaleString()}<span>Kgs</span>`)
-      $('#salesValue').html(`<span>UGX</span>${totalSalesValue.toLocaleString()}`)
-      $('#totalBulkedQty').html(`${totalBulkedQty.toLocaleString()}<span>Kgs</span>`)
-      $('#bulkedValue').html(`<span>UGX</span>${totalBulkedValue.toLocaleString()}`)
+      $('#salesTotalQty').html(`${totalSalesQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
+      $('#salesValue').html(`<span><sub>UGX</sub></span>${totalSalesValue.toLocaleString()}`)
+      $('#totalBulkedQty').html(`${totalBulkedQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
+      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${totalBulkedValue.toLocaleString()}`)
     }
     //function to create total coffee type quantity and values
-    const coffeeTypes=(totalRobQty,totalRobVal,totalAraQty,totalAraVal)=>{
-      $('#salesRobTotalQty').html(`${totalRobQty.toLocaleString()}<span>Kgs</span>`)
-      $('#salesRobValue').html(`<span>UGX</span>${totalRobVal.toLocaleString()}`)
-      $('#totalAraQty').html(`${totalAraQty.toLocaleString()}<span>Kgs</span>`)
-      $('#araValue').html(`<span>UGX</span>${totalAraVal.toLocaleString()}`)
+    const coffeeTypes = (totalRobQty, totalRobVal, totalAraQty, totalAraVal) => {
+      $('#salesRobTotalQty').html(`${totalRobQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
+      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${totalRobVal.toLocaleString()}`)
+      $('#totalAraQty').html(`${totalAraQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
+      $('#araValue').html(`<span><sub>UGX</sub></span>${totalAraVal.toLocaleString()}`)
     }
   });
 </script>

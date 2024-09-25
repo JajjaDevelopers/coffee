@@ -55,11 +55,16 @@
     <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
 
 </head>
+<style>
+    input {
+        border-radius: 2% !important;
+    }
+</style>
 
 <body class="az-body">
 
     <div class="az-signin-wrapper">
-        <div class="az-card-signin">
+        <div class="az-card-signin" style="background-color:darkolivegreen;">
             <!-- <h1 class="az-logo">az<span>i</span>a</h1> -->
             <div class="az-signin-header">
                 <h2>Welcome back!</h2>
