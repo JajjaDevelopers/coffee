@@ -71,12 +71,8 @@
     <br>
     <div class="az-sidebar-header">
       <a href="#">
-<<<<<<< HEAD
-        <h3 class="text-success"><strong>LOGO</strong></h3>
-=======
         <img src="<?= base_url('assets/img/nglLogo.png') ?>" width="170px" height="80px">
         <!-- <h3 class="text-success"><strong>LOGO</strong></h3> -->
->>>>>>> 9993769e0fbedca75308ca79a6a35bbf5fa9b38d
       </a>
     </div>
     <br>
@@ -86,13 +82,8 @@
           <h5 style="color: darkolivegreen;">Main Menu</h5>
         </li>
         <li class="nav-item active">
-<<<<<<< HEAD
-          <a href="#" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Dashboard</a>
-          <ul class="nav-sub">
-=======
           <a href="/home" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>Dashboard</a>
           <!-- <ul class="nav-sub">
->>>>>>> 9993769e0fbedca75308ca79a6a35bbf5fa9b38d
             <li class="nav-sub-item"><a href="dashboard-one.html" class="nav-sub-link">Web Analytics</a></li>
             <li class="nav-sub-item active"><a href="dashboard-two.html" class="nav-sub-link">Sales Monitoring</a></li>
           </ul> -->
