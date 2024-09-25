@@ -53,7 +53,7 @@ class DashboardController extends BaseController
         $totalSalesValue = 0;
         for ($x = 0; $x < 12; $x++) {
             $monthNumber = $dateFrom->addMonths($x)->getMonth();
-            $details["month"] = $this->generalFunctions->monthNames()[$monthNumber] . " " . $dateFrom->addMonths($x)->getYear();
+            $details["month"] = substr($this->generalFunctions->monthNames()[$monthNumber], 0, 3)  . " " . substr($dateFrom->addMonths($x)->getYear(), 2, 2);
             // Query starting date
             $monthStart = $dateFrom->addMonths($x)->toDateString();
             // Query ending date
