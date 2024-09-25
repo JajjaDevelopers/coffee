@@ -34,6 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'sessionCheck' => \App\Filters\SessionExpirationCheck::class,
     ];
 
     /**
@@ -53,6 +54,7 @@ class Filters extends BaseFilters
         'before' => [
             'forcehttps', // Force Global Secure Requests
             'pagecache',  // Web Page Caching
+            
         ],
         'after' => [
             'pagecache',   // Web Page Caching
@@ -72,6 +74,17 @@ class Filters extends BaseFilters
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            'sessionCheck' => [
+                'except' => [
+                    '/',                          // Login page
+                    '/logout',                     // Logout action
+                    '/login',                      // Login form submission
+                    '/password-reset/request',     // Password reset request
+                    '/password-reset/send-reset-link', // Send reset link
+                    '/password-reset/reset/*',     // Password reset form with token
+                    '/password-reset/update-password', // Update password
+                ],
+            ],
         ],
         'after' => [
             // 'honeypot',

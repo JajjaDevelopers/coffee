@@ -69,6 +69,11 @@
                         <?= session()->getFlashdata('msg') ?>
                     </div>
                 <?php endif; ?>
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="alert alert-danger">
+                        <?= session()->getFlashdata('error') ?>
+                    </div>
+                <?php endif; ?>
 
                 <form id="loginform" method="post"
                     action="<?= site_url('login') ?>">
@@ -84,7 +89,7 @@
                 </form>
             </div><!-- az-signin-header -->
             <div class="az-signin-footer">
-                <p><a href="<?=site_url('password-reset/request')?>">Forgot password?</a></p>
+                <p><a href="<?= site_url('password-reset/request') ?>">Forgot password?</a></p>
                 <!-- <p>Don't have an account? <a href="page-signup.html">Create an Account</a></p> -->
             </div><!-- az-signin-footer -->
         </div><!-- az-card-signin -->

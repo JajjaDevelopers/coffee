@@ -67,7 +67,7 @@
 
   <div class="az-sidebar">
     <div class="az-sidebar-header">
-      <a href="index.html">
+      <a href="#">
         <h3 class="text-success"><strong>LOGO</strong></h3>
       </a>
     </div><!-- az-sidebar-header -->
@@ -82,7 +82,7 @@
       <ul class="nav">
         <li class="nav-label">Main Menu</li>
         <li class="nav-item active">
-          <a href="index.html" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Dashboard</a>
+          <a href="#" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Dashboard</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="dashboard-one.html" class="nav-sub-link">Web Analytics</a></li>
             <li class="nav-sub-item active"><a href="dashboard-two.html" class="nav-sub-link">Sales Monitoring</a></li>
@@ -124,48 +124,11 @@
         </div><!-- az-header-center -->
         <div class="az-header-right">
           <div class="az-header-message">
-            <a href="app-chat.html"><i class="typcn typcn-messages"></i></a>
+            <!-- <a href="app-chat.html"><i class="typcn typcn-messages"></i></a> -->
           </div><!-- az-header-message -->
           <div class="dropdown az-header-notification">
-            <a href="" class="new"><i class="typcn typcn-bell"></i></a>
-            <div class="dropdown-menu">
-              <div class="az-dropdown-header mg-b-20 d-sm-none">
-                <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
-              </div>
-              <h6 class="az-notification-title">Notifications</h6>
-              <p class="az-notification-text">You have 2 unread notification</p>
-              <div class="az-notification-list">
-                <div class="media new">
-                  <div class="az-img-user"><img src="https://via.placeholder.com/500" alt=""></div>
-                  <div class="media-body">
-                    <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
-                    <span>Mar 15 12:32pm</span>
-                  </div><!-- media-body -->
-                </div><!-- media -->
-                <div class="media new">
-                  <div class="az-img-user online"><img src="https://via.placeholder.com/500" alt=""></div>
-                  <div class="media-body">
-                    <p><strong>Joyce Chua</strong> just created a new blog post</p>
-                    <span>Mar 13 04:16am</span>
-                  </div><!-- media-body -->
-                </div><!-- media -->
-                <div class="media">
-                  <div class="az-img-user"><img src="https://via.placeholder.com/500" alt=""></div>
-                  <div class="media-body">
-                    <p><strong>Althea Cabardo</strong> just created a new blog post</p>
-                    <span>Mar 13 02:56am</span>
-                  </div><!-- media-body -->
-                </div><!-- media -->
-                <div class="media">
-                  <div class="az-img-user"><img src="https://via.placeholder.com/500" alt=""></div>
-                  <div class="media-body">
-                    <p><strong>Adrian Monino</strong> added new comment on your photo</p>
-                    <span>Mar 12 10:40pm</span>
-                  </div><!-- media-body -->
-                </div><!-- media -->
-              </div><!-- az-notification-list -->
-              <div class="dropdown-footer"><a href="">View All Notifications</a></div>
-            </div><!-- dropdown-menu -->
+            <a href="" class="news"><i class="typcn typcn-bell"></i></a>
+         
           </div><!-- az-header-notification -->
           <div class="dropdown az-profile-menu">
             <a href="" class="az-img-user"><img src="https://via.placeholder.com/500" alt=""></a>
@@ -182,7 +145,7 @@
               </div><!-- az-header-profile -->
 
               <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-              <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+              <a href="" class="dropdown-item"><i class="typcn typcn-trash"></i> Edit Profile</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
               <a href="<?= site_url('logout'); ?>" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
@@ -221,35 +184,59 @@
   <script src="<?= base_url('dashboard/lib/lightslider/js/lightslider.min.js') ?>"></script>
   <!-- DataTables JS -->
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Buttons JS -->
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <!-- Buttons JS -->
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
   <!-- Moment.js for DateTime handling -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <!-- Date Range Picker -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     $(function() {
-      'use strict'
+      'use strict';
+      // Check for saved sidebar state in localStorage
+      const isSidebarCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+      if (isSidebarCollapsed) {
+        $('body').addClass('az-sidebar-hide');
+      }
 
+      // Sidebar collapse on page load
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        $('body').addClass('az-sidebar-hide'); // Add this to start with the sidebar collapsed on larger screens
+      } else {
+        $('body').removeClass('az-sidebar-show'); // Ensure sidebar is not visible on smaller screens by default
+      }
+
+      // Sidebar toggle on click
+      $('#azSidebarToggle').on('click', function(e) {
+        e.preventDefault();
+
+        if (window.matchMedia('(min-width: 992px)').matches) {
+          $('body').toggleClass('az-sidebar-hide'); // Toggle for larger screens
+        } else {
+          $('body').toggleClass('az-sidebar-show'); // Toggle for smaller screens
+        }
+      });
+
+      // Sidebar submenu functionality
       $('.az-sidebar .with-sub').on('click', function(e) {
         e.preventDefault();
         $(this).parent().toggleClass('show');
         $(this).parent().siblings().removeClass('show');
-      })
+      });
 
+      // Close sidebar when clicking outside of it
       $(document).on('click touchstart', function(e) {
         e.stopPropagation();
 
-        // closing of sidebar menu when clicking outside of it
         if (!$(e.target).closest('.az-header-menu-icon').length) {
           var sidebarTarg = $(e.target).closest('.az-sidebar').length;
           if (!sidebarTarg) {
@@ -258,18 +245,7 @@
         }
       });
 
-
-      $('#azSidebarToggle').on('click', function(e) {
-        e.preventDefault();
-
-        if (window.matchMedia('(min-width: 992px)').matches) {
-          $('body').toggleClass('az-sidebar-hide');
-        } else {
-          $('body').toggleClass('az-sidebar-show');
-        }
-      })
-
-      //tabs
+      // Tab switching functionality
       $('#navComplex').lightSlider({
         autoWidth: true,
         pager: false,
@@ -284,28 +260,30 @@
         var target = $(this).attr('href');
         $(target).addClass('active');
         $(target).siblings().removeClass('active');
-      })
-      //date range
-      // date-range-settings.js
-      // var dateRangeSettings = {
-      //   startDate: moment().subtract(6, 'days'),
-      //   endDate: moment(),
-      //   ranges: {
-      //     'Today': [moment(), moment()],
-      //     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-      //     'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-      //     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-      //     'This Month': [moment().startOf('month'), moment().endOf('month')],
-      //     'This Year': [moment().startOf('year'), moment()],
-      //     'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
-      //     'Custom Range': [null, null]
-      //   },
-      //   alwaysShowCalendars: true,
-      //   locale: {
-      //     format: 'MM/DD/YYYY'
-      //   }
-      // };
-    })
+      });
+
+      // Date range picker settings (commented out for your reference)
+      /*
+      var dateRangeSettings = {
+        startDate: moment().subtract(6, 'days'),
+        endDate: moment(),
+        ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'This Year': [moment().startOf('year'), moment()],
+          'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+          'Custom Range': [null, null]
+        },
+        alwaysShowCalendars: true,
+        locale: {
+          format: 'MM/DD/YYYY'
+        }
+      };
+      */
+    });
   </script>
   <!--placeholder for our extra scripts-->
   <?= $this->renderSection('scripts') ?>
