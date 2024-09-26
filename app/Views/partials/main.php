@@ -96,7 +96,7 @@
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Supplies</a>
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Supplies</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
@@ -109,6 +109,31 @@
           </ul>
         </li><!-- nav-item -->
       </ul><!-- nav -->
+      <br>
+      <ul class="nav">
+        <li class="nav-label">
+          <h5 style="color: darkolivegreen;">Reports</h5>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Green Coffee</a>
+          <ul class="nav-sub">
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per Sales Report">Sales Summary</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per grade">Sales Details</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per Valuation Report">Valuations Summary</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per grade">Detailed Valuations</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per grade">Offers Summary</a></li>
+          </ul>
+        </li><!-- nav-item -->
+        <li class="nav-item">
+          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Inventory</a>
+          <ul class="nav-sub">
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Coffee Delivered to the factory">GRNs Summary</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Coffee moved out">Dispatch Summary</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Value of coffee held in stock">Stock Report</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="How stock has been changing based on the transactions">Inventory Movement</a></li>
+          </ul>
+        </li><!-- nav-item -->
+      </ul>
     </div><!-- az-sidebar-body -->
   </div><!-- az-sidebar -->
 
@@ -129,7 +154,7 @@
           </div><!-- az-header-message -->
           <div class="dropdown az-header-notification">
             <a href="" class="news"><i class="typcn typcn-bell"></i></a>
-         
+
           </div><!-- az-header-notification -->
           <div class="dropdown az-profile-menu">
             <a href="" class="az-img-user"><img src="https://via.placeholder.com/500" alt=""></a>
@@ -149,7 +174,7 @@
               <a href="" class="dropdown-item"><i class="typcn typcn-trash"></i> Edit Profile</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
               <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
-              <a href="<?= site_url('logout'); ?>" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
+              <a href="<?= base_url('logout'); ?>" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
                 Sign Out</a>
             </div><!-- dropdown-menu -->
           </div>

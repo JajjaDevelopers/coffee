@@ -581,7 +581,7 @@
             },
             title: {
               display: true,
-              text: 'Actual vs Projected Sales and Purchase Quantities', // Title text
+              text: 'Actual vs Projected', // Title text
               font: {
                 size: 18 // Font size for the title
               }

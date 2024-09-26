@@ -63,12 +63,12 @@
 
 <body class="az-body">
 
-    <div class="az-signin-wrapper">
-        <div class="az-card-signin" style="background-color:darkolivegreen;">
+    <div class="az-signin-wrapper" style="background-color:darkolivegreen;">
+        <div class="az-card-signin" style="border:5px solid green; border-radius: 20px;">
             <!-- <h1 class="az-logo">az<span>i</span>a</h1> -->
             <div class="az-signin-header">
-                <h2>Welcome back!</h2>
-                <h4>Please sign in to continue</h4>
+                <h2 style="color: green; text-align:center"><strong>NUCAFE GRADING LIMITED</strong></h2>
+                <h5>Please sign in to continue</h5>
                 <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-danger">
                         <?= session()->getFlashdata('msg') ?>
@@ -90,11 +90,11 @@
                         <label>Password</label>
                         <input type="password" class="form-control" placeholder="Enter your password" name="password" placeholder="Password" required>
                     </div><!-- form-group -->
-                    <button type='submit' class="btn btn-az-primary btn-block">Sign In</button>
+                    <button type='submit' class="btn btn-az-primary btn-block" style="background-color: green;">Sign In</button>
                 </form>
             </div><!-- az-signin-header -->
             <div class="az-signin-footer">
-                <p><a href="<?= site_url('password-reset/request') ?>">Forgot password?</a></p>
+                <p><a href="<?= base_url('password-reset/request') ?>">Forgot password?</a></p>
                 <!-- <p>Don't have an account? <a href="page-signup.html">Create an Account</a></p> -->
             </div><!-- az-signin-footer -->
         </div><!-- az-card-signin -->
