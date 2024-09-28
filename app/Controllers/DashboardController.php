@@ -66,12 +66,12 @@ class DashboardController extends BaseController
                 $sQty += $monthSales[$i]["salesQty"];
                 $sValue += $monthSales[$i]["salesValue"];
             }
-            $details['actualSalesQty'] = $sQty; //monthly sales qty
-            $details['actualSalesValue'] = $sValue; //monthly sales value
+            $details['actualSalesQty'] = $sQty / 1000; //monthly sales qty in thousands on the graph
+            $details['actualSalesValue'] = $sValue / 1000; //monthly sales value in thousands on the graph
             $totalSalesQty += $sQty; // Add to total sales qty
             $totalSalesValue += $sValue; // Add to total sales value
             $cummulativeSales += $sValue;
-            $details["cummulativeSalesValue"] = $cummulativeSales;
+            $details["cummulativeSalesValue"] = $cummulativeSales / 1000;
             // Getting purchases based on the date ranges
             $pQty = 0;
             $pValue = 0;
@@ -108,8 +108,8 @@ class DashboardController extends BaseController
         $data["currentDate"] = $secondMonth->toDateString();
         $data["allMonthSales"] = $monthlySales;
         $data["totalBulkedQty"] = $totalBulkedQty;
-        $data["totalBulkedValue"] = $totalBulkedValue;
-        $data["totalSalesQty"] = $totalSalesQty;
+        $data["totalBulkedValue"] = $totalBulkedValue / 1000;
+        $data["totalSalesQty"] = $totalSalesQty / 1000;
         $data["totalSalesValue"] = $totalSalesValue;
         $allSales = $this->buyersModel->previousSales($this->fpo, $dateFrom, $dateTo, "");
         // Categorizing sales by coffee type
