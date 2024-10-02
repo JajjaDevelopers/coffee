@@ -42,6 +42,8 @@
     <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
     <meta name="author" content="ThemePixels">
 
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/nucafe_favicon.jpg') ?>">
+
     <title>Login</title>
 
     <!-- vendor css -->

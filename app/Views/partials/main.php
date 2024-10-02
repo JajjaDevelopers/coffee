@@ -41,6 +41,7 @@
   <!-- Meta -->
   <meta name="description" content="Coffee Tracking System">
   <meta name="author" content="ThemePixels">
+  <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/nucafe_favicon.jpg') ?>">
 
   <title><?= $this->renderSection('title') ?></title>
 
@@ -82,28 +83,28 @@
           <h5 style="color: darkolivegreen;">Main Menu</h5>
         </li>
         <li class="nav-item active">
-          <a href="/home" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>Dashboard</a>
+          <a href="/home" class="nav-link" important><i class="typcn typcn-chart-bar-outline"></i>Dashboard</a>
           <!-- <ul class="nav-sub">
             <li class="nav-sub-item"><a href="dashboard-one.html" class="nav-sub-link">Web Analytics</a></li>
             <li class="nav-sub-item active"><a href="dashboard-two.html" class="nav-sub-link">Sales Monitoring</a></li>
           </ul> -->
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Sales</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit"></i>Sales</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales Reports</a></li>
             <li class="nav-sub-item"><a href="/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-edit"></i>Supplies</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit "></i>Supplies</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-archive"></i>Admin</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-archive"></i>Admin</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/admin/coffee-grades" class="nav-sub-link">Coffee Grades</a></li>
           </ul>
@@ -115,7 +116,7 @@
           <h5 style="color: darkolivegreen;">Reports</h5>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Green Coffee</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-clipboard"></i>Green Coffee</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per Sales Report">Sales Summary</a></li>
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per grade">Sales Details</a></li>
@@ -125,7 +126,7 @@
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub"><i class="typcn typcn-clipboard"></i>Inventory</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-clipboard"></i>Inventory</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Coffee Delivered to the factory">GRNs Summary</a></li>
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Coffee moved out">Dispatch Summary</a></li>
