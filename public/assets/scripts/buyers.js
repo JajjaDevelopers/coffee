@@ -125,7 +125,10 @@ $(document).ready(function () {
       ajax: {
         method: "post",
         url: "/buyers/buyersList",
-        data: {},
+        data: {
+          searchKey: "",
+          buyer: "all",
+        },
         dataSrc: "buyersList",
       },
       columns: [

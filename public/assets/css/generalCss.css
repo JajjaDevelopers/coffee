@@ -1,3 +1,29 @@
 .text-green{
   color:green;
 }
+
+
+.main-menu-item{
+  padding: 0px 5px;
+}
+
+/* The color on hover */
+.main-menu-item:hover{
+  background-color: green;
+  color: white;
+  padding: 0px 5px;
+  border-radius: 10px;
+}
+
+.main-menu-item:active{
+  background-color: brown;
+  color: white;
+  padding: 0px 5px;
+  border-radius: 10px;
+}
+.nav-sub-item:hover{
+  background-color: rgb(181, 234, 202);
+  color: white;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
