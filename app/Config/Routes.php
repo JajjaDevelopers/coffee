@@ -11,8 +11,9 @@ use CodeIgniter\Router\RouteCollection;
 
 //login
 $routes->get('/', [AuthController::class, 'index']);
+$routes->post('/', [AuthController::class, 'login']);
 $routes->get('/logout', [AuthController::class, 'logout']);
-$routes->post('/login', [AuthController::class, 'login']);
+
 
 //password reset
 $routes->get('/password-reset/request', [PasswordReset::class, 'request']);
