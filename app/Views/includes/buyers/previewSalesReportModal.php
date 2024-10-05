@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header" style="background-color: darkgreen; color: white;">
-        <h6 class="modal-title" style="color: white;">SALES REPORT ADJUSTMENT</h6>
+        <h6 class="modal-title" style="color: white;">SALES REPORT PREVIEW</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,16 +13,15 @@
           <div class="row">
             <div class="col-sm-12 col-md-7">
               <div class="row">
-                <h5 id="editSalesReportNo" class="form-label" style="color: red;"><strong></strong></h5>
+                <h5 id="previewSalesReportNo" class="form-label" style="color: red;"><strong></strong></h5>
               </div>
               <br>
-              <input id="salesReportEditId" style="display: none;" readonly>
               <div class="row">
                 <div class="col-sm-6 col-md-2">
-                  <label for="editSalesDate" class="form-label">Date:</label>
+                  <label for="previewSalesDate" class="form-label">Date:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input type="date" class="form-control form-control-sm date" id='editSalesDate' readonly>
+                  <input type="date" class="form-control form-control-sm date" id='previewSalesDate' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
@@ -30,22 +29,21 @@
                   <label for="editSalesBuyer" class="form-label">Buyer:</label>
                 </div>
                 <div class="col-sm-6 col-md-8">
-                  <select class="form-select form-control form-control-sm salesBuyer" id='editSalesBuyer' style="width: 100%;">
-                  </select>
+                  <input class="form-select form-control form-control-sm salesBuyer" id='previewSalesBuyer' style="width: 100%;" readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-2">
-                  <label for="editSalesRef" class="form-label">REF:</label>
+                  <label for="previwSalesRef" class="form-label">REF:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <input class="form-control form-control-sm" id='editSalesRef' placeholder="REF">
+                  <input class="form-control form-control-sm" id='previewSalesRef' placeholder="REF" readonly>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                  <label for="editSalesMC" class="form-label">Moisture:</label>
+                  <label for="previewSalesMC" class="form-label">Moisture:</label>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                  <input class="form-control form-control-sm" id='editSalesMC' placeholder="%">
+                  <input class="form-control form-control-sm" id='previewSalesMC' placeholder="%" readonly>
                 </div>
               </div>
             </div>
@@ -53,19 +51,37 @@
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-6"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="editSalesCurrency" class="form-label">Currency:</label>
+                  <label for="previewSalesCurrency" class="form-label">Currency:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input class="form-control form-control-sm" id='editSalesCurrency' readonly>
+                  <input class="form-control form-control-sm" id='previewSalesCurrency' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-6"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="editSalesFx" class="form-label">Exch. Rate:</label>
+                  <label for="previewSalesFx" class="form-label">Exch. Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input class="form-control form-control-sm" id='editSalesFx'>
+                  <input class="form-control form-control-sm" id='previewSalesFx' readonly>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="previewSalesMarket" class="form-label" style="text-align: right;">Market:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <input class="form-control form-control-sm" id='previewSalesMarket' readonly>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="previewSalesContract" class="form-label" style="text-align: right;">Contract:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <input class="form-control form-control-sm" id='previewSalesContract' readonly>
                 </div>
               </div>
             </div>
@@ -76,15 +92,10 @@
               <h6>Sales Report Items</h6>
             </div>
             <div class="col-sm-5">
-              <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm salesRowAddBtn" style='background-color:green; color:white' id='editSalesRowAddBtn' mode="edit">
-                  <strong>+ Add Row </strong>
-                </button>
-              </div>
             </div>
           </div>
           <table class="table table-sm table-bordered">
-            <thead>
+            <thead style="background-color:whitesmoke; color:white; opacity: 1">
               <tr>
                 <th style="width: 150px;">Code</th>
                 <th>Grade</th>
@@ -92,10 +103,9 @@
                 <th style="width: 100px;">Unit</th>
                 <th style="width: 150px;">Price</th>
                 <th style="width: 200px;">Amount</th>
-                <th style="width: 20px;">Action</th>
               </tr>
             </thead>
-            <tbody id="editSalesTBody">
+            <tbody id="previewSalesTBody">
 
             </tbody>
           </table>
@@ -107,7 +117,7 @@
                   <tbody id="salesTBody">
                     <tr>
                       <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
-                      <td><input id="editSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
+                      <td><input id="previewSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>
@@ -117,7 +127,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportEditBtn' type="button" class="btn btn-primary">Save</button>
+        <button id='salesReportPrintBtn' type="button" class="btn btn-primary">Print</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>
@@ -148,7 +158,7 @@
                     <label for="addSupplierName" class="form-label">Date:</label>
                   </div>
                   <div class="col-sm-8 col-md-5">
-                    <input type="date" value="<?= $dateToday ?>" class="form-control form-control-sm" id='addSupplierName'>
+                    <input type="date" value="" class="form-control form-control-sm" id='addSupplierName'>
                   </div>
                 </div>
               </div>

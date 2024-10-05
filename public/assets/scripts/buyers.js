@@ -334,7 +334,7 @@ $(document).ready(function () {
     salesItemsNo = 0; //Reset number of items to zero
     salesReportItemIds = []; //Clear the row ids
     // clear current items
-    $("#editSalesTBody").html("");
+    $("#previewSalesTBody").html("");
     $("#salesTBody").html("");
     const salesId = $(this).attr("sId");
     $("#salesReportEditId").val(salesId);
@@ -348,52 +348,106 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         // Buyer Details
-        var buyerName = `<option value="${response.buyerId}">${response.buyerName}</option>`;
-        $("#editSalesReportNo").text(response.reportNo);
-        $("#editSalesDate").val(response.salesDate);
-        $("#editSalesBuyer").html(buyerName);
-        $("#editSalesRef").val(response.ref);
-        $("#editSalesMC").val(response.mc);
-        $("#editSalesCurrency").val(response.currencyCode);
-        $("#editSalesFx").val(response.fxRate);
+        $("#previewSalesReportNo").text(response.reportNo);
+        $("#previewSalesDate").val(response.salesDate);
+        $("#previewSalesBuyer").val(response.buyerName);
+        $("#previwSalesRef").val(response.ref);
+        $("#previewSalesMC").val(response.mc);
+        $("#previewSalesCurrency").val(response.currencyCode);
+        $("#previewSalesFx").val(response.fxRate);
         var transactionTotal = Number(response.salesTotal);
-        $("#editSalesReportTotal").val(transactionTotal);
+        $("#previewSalesReportTotal").val(transactionTotal);
         salesReportTotal = transactionTotal;
         // Items
         var rowStr = "";
         const items = response.items;
         for (var x = 0; x < items.length; x++) {
           var rowNo = items[x].rowNo;
-          if (rowNo == 1) {
-            var removeBtn = "";
-          } else {
-            var removeBtn = `<button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
-          }
           salesReportItemIds.push(rowNo);
           salesItemsNo += 1;
           // Row strings
           rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
-                    <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
-                    <td>
-                      <select rowNo="${rowNo}" id="salesGrade${rowNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
-                        <option value="${items[x].gradeId}">${items[x].gradeName}</option>
-                      </select>
-                    </td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].qty}" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly value="${items[x].unit}"></td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].price}" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="${items[x].amount}" readonly></td>
-                    <td>
-                      ${removeBtn}
-                    </td>
+                    <td>${items[x].code}</td>
+                    <td>${items[x].gradeName}</td>
+                    <td>${items[x].qty}</td>
+                    <td>${items[x].unit}</td>
+                    <td>${items[x].price}</td>
+                    <td>${items[x].amount}</td>
                   </tr>`;
         }
-        $("#editSalesTBody").append(rowStr);
+        $("#previewSalesTBody").append(rowStr);
         setGradeNameInput("salesGradeName", "editSalesReportModal");
       },
     });
     $("#editSalesReportModal").modal("show");
   });
+
+  // // Adjusting the sales report
+  // $(document).on("click", ".salesReportValue", function (e) {
+  //   e.preventDefault();
+  //   salesItemsNo = 0; //Reset number of items to zero
+  //   salesReportItemIds = []; //Clear the row ids
+  //   // clear current items
+  //   $("#editSalesTBody").html("");
+  //   $("#salesTBody").html("");
+  //   const salesId = $(this).attr("sId");
+  //   $("#salesReportEditId").val(salesId);
+  //   // Get sales report infomation
+  //   $.ajax({
+  //     type: "post",
+  //     url: "/saleReport/editData",
+  //     data: {
+  //       sId: salesId,
+  //     },
+  //     dataType: "json",
+  //     success: function (response) {
+  //       // Buyer Details
+  //       var buyerName = `<option value="${response.buyerId}">${response.buyerName}</option>`;
+  //       $("#editSalesReportNo").text(response.reportNo);
+  //       $("#editSalesDate").val(response.salesDate);
+  //       $("#editSalesBuyer").html(buyerName);
+  //       $("#editSalesRef").val(response.ref);
+  //       $("#editSalesMC").val(response.mc);
+  //       $("#editSalesCurrency").val(response.currencyCode);
+  //       $("#editSalesFx").val(response.fxRate);
+  //       var transactionTotal = Number(response.salesTotal);
+  //       $("#editSalesReportTotal").val(transactionTotal);
+  //       salesReportTotal = transactionTotal;
+  //       // Items
+  //       var rowStr = "";
+  //       const items = response.items;
+  //       for (var x = 0; x < items.length; x++) {
+  //         var rowNo = items[x].rowNo;
+  //         if (rowNo == 1) {
+  //           var removeBtn = "";
+  //         } else {
+  //           var removeBtn = `<button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
+  //         }
+  //         salesReportItemIds.push(rowNo);
+  //         salesItemsNo += 1;
+  //         // Row strings
+  //         rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
+  //                   <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
+  //                   <td>
+  //                     <select rowNo="${rowNo}" id="salesGrade${rowNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
+  //                       <option value="${items[x].gradeId}">${items[x].gradeName}</option>
+  //                     </select>
+  //                   </td>
+  //                   <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].qty}" min="0"></td>
+  //                   <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly value="${items[x].unit}"></td>
+  //                   <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].price}" min="0"></td>
+  //                   <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="${items[x].amount}" readonly></td>
+  //                   <td>
+  //                     ${removeBtn}
+  //                   </td>
+  //                 </tr>`;
+  //       }
+  //       $("#editSalesTBody").append(rowStr);
+  //       setGradeNameInput("salesGradeName", "editSalesReportModal");
+  //     },
+  //   });
+  //   $("#editSalesReportModal").modal("show");
+  // });
 
   // Saving adjusted saless report
   $(document).on("click", "#saveSalesReportEditBtn", function (e) {

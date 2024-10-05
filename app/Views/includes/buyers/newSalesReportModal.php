@@ -71,6 +71,31 @@
                   <input class="form-control form-control-sm" id='addSalesFx'>
                 </div>
               </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="addSalesMarket" class="form-label" style="text-align: right;">Market:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <select class="form-control form-control-sm" id='addSalesMarket'>
+                    <option value="L">Local</option>
+                    <option value="E">Export</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="addSalesContract" class="form-label" style="text-align: right;">Contract:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <select class="form-control form-control-sm" id='addSalesContract'>
+                    <option value="EXW">Ex-Warehouse</option>
+                    <option value="FOT">FOT</option>
+                    <option value="FOB">FOB</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
