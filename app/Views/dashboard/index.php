@@ -49,6 +49,12 @@
     width: 100% !important;
     height: 100% !important;
   }
+
+  .chart-container {
+    max-width: 400px;
+    height: auto;
+    margin: 0 auto;
+  }
 </style>
 <div class="az-content-header d-block d-md-flex">
   <div>
@@ -207,6 +213,27 @@
 
   <div class="card card-dashboard-seven">
     <div class="card-header">
+    </div><!-- card-header -->
+    <div class="card-body">
+      <div class="row row-sm">
+        <div class="col-md-6">
+          <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+            <canvas id="export_local_qty"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+            <canvas id="export_local_value"></canvas>
+          </div>
+        </div>
+      </div><!-- row -->
+    </div><!-- card-body -->
+
+
+  </div><!-- card -->
+
+  <div class="card card-dashboard-seven">
+    <div class="card-header">
       <!-- <div class="row row-sm">
         <div class="col-6 col-md-4 col-xl">
           <div class="media">
@@ -362,6 +389,8 @@
         //     actualPurchaseQty: item.actualPurchaseQty
         //   };
         // });
+        exportLocalQty(data.exportQty, data.localQty)
+        exportLocalValue(data.exportValue, data.localValue)
         actualSalesVsProjected(salesData);
         actualSalesVsBulked(salesData);
         cumulativeSales(salesData);
@@ -510,34 +539,35 @@
         type: 'line',
         data: {
           labels: labels, // x-axis labels
-          datasets: [{
-              label: 'Actual Sales Value (UGX)',
-              type: 'bar', // Bar chart
-              data: salesQty, // y-axis data
-              borderColor: 'green', // Green line color
-              backgroundColor: 'green', // Light green fill color
-              fill: true,
-              tension: 0.3,
-              borderWidth: 2,
-              pointRadius: 4, // Radius of points
-              pointBackgroundColor: '#0b62a4',
-              pointBorderColor: '#0b62a4'
-            },
+          datasets: [
+            // {
+            //   label: 'Actual Sales Value (Kgs)',
+            //   type: 'bar', // Bar chart
+            //   data: salesQty, // y-axis data
+            //   borderColor: 'green', // Green line color
+            //   backgroundColor: 'green', // Light green fill color
+            //   fill: true,
+            //   tension: 0.3,
+            //   borderWidth: 2,
+            //   pointRadius: 4, // Radius of points
+            //   pointBackgroundColor: '#0b62a4',
+            //   pointBorderColor: '#0b62a4'
+            // },
+            // {
+            //   label: 'Actual Purchase Quantity (Kgs)',
+            //   type: 'bar', // Bar chart
+            //   data: purchaseQty, // y-axis data
+            //   borderColor: 'red',
+            //   backgroundColor: 'red',
+            //   fill: true,
+            //   tension: 0.3,
+            //   borderWidth: 2,
+            //   pointRadius: 4,
+            //   pointBackgroundColor: '#7a92a3',
+            //   pointBorderColor: '#7a92a3'
+            // },
             {
-              label: 'Actual Purchase Value (UGX)',
-              type: 'bar', // Bar chart
-              data: purchaseQty, // y-axis data
-              borderColor: 'red',
-              backgroundColor: 'red',
-              fill: true,
-              tension: 0.3,
-              borderWidth: 2,
-              pointRadius: 4,
-              pointBackgroundColor: '#7a92a3',
-              pointBorderColor: '#7a92a3'
-            },
-            {
-              label: 'Projected Purchase Value (UGX)',
+              label: ' Purchase(Kgs)',
               data: purchaseProjection, // y-axis data
               borderColor: 'teal',
               // backgroundColor: 'rgba(139, 0, 0, 0.2)',
@@ -549,7 +579,7 @@
               pointBorderColor: '#7a92a3'
             },
             {
-              label: 'Projected Sales Value (UGX)',
+              label: ' Sales(Kgs)',
               data: salesProjection, // y-axis data
               borderColor: 'rgb(139, 0, 0)',
               // backgroundColor: 'rgba(139, 0, 0, 0.2)',
@@ -581,7 +611,7 @@
             },
             title: {
               display: true,
-              text: 'Actual vs Projected', // Title text
+              text: 'Projected Sales Vs Purchases', // Title text
               font: {
                 size: 18 // Font size for the title
               }
@@ -931,6 +961,141 @@
       $('#totalAraQty').html(`${totalAraQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
       $('#araValue').html(`<span><sub>UGX</sub></span>${totalAraVal.toLocaleString()}`)
     }
+
+    //pie charts 
+    const exportLocalQty = (exportQty, localQty) => {
+      // Get the 2D context of the canvas
+      const ctx = $('#export_local_qty')[0].getContext('2d');
+
+      // Calculate the total quantity for percentage calculation
+      const totalQty = exportQty + localQty;
+
+      const myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Export(kgs)', 'Local(kgs)'],
+          datasets: [{
+            data: [exportQty, localQty],
+            backgroundColor: ['#FF6384', '#36A2EB'],
+            hoverBackgroundColor: ['#FF6384', '#36A2EB']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // Allow the chart to resize based on container size
+          plugins: {
+            title: {
+              display: true,
+              text: 'Export vs Local Quantity (kgs)', // Your desired title
+              font: {
+                size: 18
+              }
+            },
+            legend: {
+              position: 'top',
+              labels: {
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  return data.labels.map((label, i) => {
+                    const value = data.datasets[0].data[i];
+                    const percentage = ((value / totalQty) * 100).toFixed(2);
+                    return {
+                      text: `${label}: ${percentage}%`, // Show percentage in legend
+                      fillStyle: data.datasets[0].backgroundColor[i],
+                      hidden: isNaN(data.datasets[0].data[i]),
+                      index: i
+                    };
+                  });
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem) {
+                  // Get the value of the current data point
+                  const value = tooltipItem.raw;
+
+                  // Calculate percentage
+                  const percentage = ((value / totalQty) * 100).toFixed(2);
+
+                  // Return the label with the value and percentage
+                  return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+
+
+    const exportLocalValue = (exportValue, localValue) => {
+      // Get the 2D context of the canvas
+      const ctx = $('#export_local_value')[0].getContext('2d');
+
+      // Calculate the total quantity for percentage calculation
+      const totalQty = exportValue + localValue;
+
+      const myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Export(Ugx)', 'Local(Ugx)'],
+          datasets: [{
+            data: [exportValue, localValue],
+            backgroundColor: ['#FFCE56', '#4BC0C0'],
+            hoverBackgroundColor: ['#FFCE56', '#4BC0C0']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // Allow the chart to resize based on container size
+          plugins: {
+            title: {
+              display: true,
+              text: 'Export vs Local Value', // Your desired title
+              font: {
+                size: 18
+              }
+            },
+            legend: {
+              position: 'top',
+              labels: {
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  return data.labels.map((label, i) => {
+                    const value = data.datasets[0].data[i];
+                    const percentage = ((value / totalQty) * 100).toFixed(2);
+                    return {
+                      text: `${label}: ${percentage}%`, // Show percentage in legend
+                      fillStyle: data.datasets[0].backgroundColor[i],
+                      hidden: isNaN(data.datasets[0].data[i]),
+                      index: i
+                    };
+                  });
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(tooltipItem) {
+                  // Get the value of the current data point
+                  const value = tooltipItem.raw;
+
+                  // Calculate percentage
+                  const percentage = ((value / totalQty) * 100).toFixed(2);
+
+                  // Return the label with the value and percentage
+                  return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+
   });
 </script>
 <?= $this->endSection() ?>

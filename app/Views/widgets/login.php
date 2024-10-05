@@ -71,6 +71,18 @@
             <div class="az-signin-header">
                 <h2 style="color: green; text-align:center"><strong>NUCAFE GRADING LIMITED</strong></h2>
                 <h5>Please sign in to continue</h5>
+                <?php if (session()->getFlashdata('message')): ?>
+                    <div class="alert alert-success">
+                        <?php echo session()->getFlashdata('message'); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('error')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo session()->getFlashdata('error'); ?>
+                    </div>
+                <?php endif; ?>
+
                 <?php if (session()->getFlashdata('msg')): ?>
                     <div class="alert alert-danger">
                         <?= session()->getFlashdata('msg') ?>
@@ -81,9 +93,8 @@
                         <?= session()->getFlashdata('error') ?>
                     </div>
                 <?php endif; ?>
-
                 <form id="loginform" method="post"
-                    action="<?= site_url('login') ?>">
+                    action=" <?=base_url()?>">
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Enter your email" name="email" placeholder="Email" required>
