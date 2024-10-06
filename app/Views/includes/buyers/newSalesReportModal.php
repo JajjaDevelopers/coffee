@@ -68,7 +68,7 @@
                   <label for="addSalesFx" class="form-label">Exch. Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input class="form-control form-control-sm" id='addSalesFx'>
+                  <input type="number" class="form-control form-control-sm" id='addSalesFx'>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
@@ -78,8 +78,8 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                   <select class="form-control form-control-sm" id='addSalesMarket'>
-                    <option value="L">Local</option>
-                    <option value="E">Export</option>
+                    <option value="Local">Local</option>
+                    <option value="Export">Export</option>
                   </select>
                 </div>
               </div>

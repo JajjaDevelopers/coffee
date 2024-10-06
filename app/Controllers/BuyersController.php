@@ -21,6 +21,7 @@ class BuyersController extends BaseController
     public $suppliersModel;
     public $generalModel;
     public $buyersModel;
+    public $userData;
 
     public function __construct()
     {
@@ -29,6 +30,7 @@ class BuyersController extends BaseController
         $this->suppliersModel = new SuppliersModal;
         $this->generalModel = new GeneralModal;
         $this->buyersModel = new BuyersModel;
+        $this->userData = $this->CommonData()["user"];
     }
     public function buyers()
     {
@@ -133,11 +135,14 @@ class BuyersController extends BaseController
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
         $currency = $this->suppliersModel->clientsList($this->fpo, "B", "", $buyer)[0]["currency_id"];
+        $fxRate = $this->request->getPost("fxRate");
         $salesReportData = [
             "date" => $date,
             "fpo" => $this->fpo,
             "client_id" => $buyer,
-            "prepared_by" => 1, //To be updated to reflect the current user
+            "market" => $this->request->getPost("market"),
+            "contract_nature" => $this->request->getPost("contract"),
+            "prepared_by" => $this->userData["id"], //To be updated to reflect the current user
             "reference" => $ref
         ];
         // Save summary and obtain sales report Id
@@ -157,7 +162,7 @@ class BuyersController extends BaseController
                     "qty_out" => $quantities[$x],
                     "currency_id" => $currency, //To be updated to capture the actual currency
                     "price" => $prices[$x],
-                    "exch_rate" => 1, //To be updated to capture the actual rate
+                    "exch_rate" => $fxRate, //To be updated to capture the actual rate
                     "moisture" => $moisture,
                 ];
                 array_push($inventoryData, $itemData);

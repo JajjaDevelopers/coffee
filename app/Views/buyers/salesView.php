@@ -26,12 +26,12 @@
         <table class='table table-sm table-bordered' id="salesReportsTable" style="width:100%;">
           <thead style='color:white'>
             <tr>
-              <th>Date</th>
-              <th>Report No.</th>
+              <th style="width: 150px;">Date</th>
+              <th style="width: 150px;">Report No.</th>
               <th>Buyer</th>
               <th>Contract</th>
-              <th>Total Qty (Kg)</th>
-              <th style="width: 100px;">Total Value (UGX)</th>
+              <th style="width: 150px;">Total Qty (Kg)</th>
+              <th style="width: 200px;">Total Value (UGX)</th>
             </tr>
           </thead>
           <tbody>

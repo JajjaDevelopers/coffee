@@ -58,17 +58,18 @@ $(document).ready(function () {
         { data: "trans_date" },
         { data: "sales_report_no" },
         { data: "name" },
+        { data: "contract" },
         { data: "qty" },
-        { data: "currency" },
         {
           render: function (data, type, row, meta) {
             var value = Number(row.value);
-            return `
-            <a href="#" sId="${
+            var currency = row.currency;
+            return `<label sId="${
               row.sales_id
-            }" class="salesReportValue" style="color: blue; text-align: right; border:none" value="">
-              <span style="text-align: end">${value.toLocaleString()}</span>
-            </a>`;
+            }" class="salesReportValue" style="text-align: end; color: blue"> ${
+              currency + " " + value.toLocaleString()
+            }
+            </label>`;
           },
         },
       ],
@@ -316,6 +317,8 @@ $(document).ready(function () {
         moisture: $("#newSalesMC").val(),
         currency: $("#addSalesCurrency").val(),
         fxRate: $("#addSalesFx").val(),
+        market: $("#addSalesMarket").val(),
+        contract: $("#addSalesContract").val(),
         items: gradeIds,
         quantities: gradeQtys,
         prices: gradePxs,

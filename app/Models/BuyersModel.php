@@ -51,7 +51,8 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
         }
-        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
+        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
             sum(qty_out*price*exch_rate) AS value, curency_code AS currency
             FROM inventory
             JOIN clients USING (client_id)
@@ -59,6 +60,7 @@ class BuyersModel extends Model
             LEFT JOIN stores USING (store_id)
             LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
             LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
             WHERE transaction_type_id = '2' AND sales.fpo = '{$fpo}'
             {$buyerFilter} {$dateFilter}
             GROUP BY transaction_id");
