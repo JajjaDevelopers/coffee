@@ -29,9 +29,9 @@
               <th>Date</th>
               <th>Report No.</th>
               <th>Buyer</th>
+              <th>Contract</th>
               <th>Total Qty (Kg)</th>
-              <th>Currency </th>
-              <th style="width: 100px;">Total Value</th>
+              <th style="width: 100px;">Total Value (UGX)</th>
             </tr>
           </thead>
           <tbody>

@@ -90,9 +90,15 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                   <select class="form-control form-control-sm" id='addSalesContract'>
-                    <option value="EXW">Ex-Warehouse</option>
-                    <option value="FOT">FOT</option>
-                    <option value="FOB">FOB</option>
+                    <?php
+                    for ($x = 0; $x < count($contractTypes); $x++) {
+                      $typeId = $contractTypes[$x]["contract_type_id"];
+                      $typeName = $contractTypes[$x]["contract_type_name"];
+                    ?>
+                      <option value="<?= $typeId ?>"><?= $typeName ?></option>
+                    <?php
+                    }
+                    ?>
                   </select>
                 </div>
               </div>

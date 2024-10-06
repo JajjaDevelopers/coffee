@@ -83,7 +83,8 @@ class BuyersController extends BaseController
         $page_title = "Sales";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('buyers/salesView', compact('page_title', 'commonData', 'dateToday'));
+        $contractTypes = $this->buyersModel->contractTypes($this->fpo);
+        return view('buyers/salesView', compact('page_title', 'commonData', 'dateToday', 'contractTypes'));
     }
 
 

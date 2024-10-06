@@ -169,6 +169,14 @@ class BuyersModel extends Model
         return $builder->insert($data);
     }
 
+    // Contract Types
+    public function contractTypes($fpo)
+    {
+        $builder = $this->db->table("contract_types");
+        $builder->where("fpo", $fpo);
+        return $builder->get()->getResultArray();
+    }
+
 
 
     // 
