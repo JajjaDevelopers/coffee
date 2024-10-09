@@ -31,3 +31,7 @@ label.tableAmount{
   display: flow;
 
 }
+
+label.valuationValue{
+  color: blue;
+}

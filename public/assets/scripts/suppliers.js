@@ -41,7 +41,7 @@ $(document).ready(function () {
 
   // New delivery
   $(document).on("click", ".addDeliveryBtn", function (e) {
-    $("#newDeliveryModal").modal("show");
+    $("#newValuationModal").modal("show");
   });
 
   // Add new valuation rows
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
     // Grade name select2 initiation on the new row item
     $(".valGradeName").select2({
-      dropdownParent: $("#newDeliveryModal"),
+      dropdownParent: $("#newValuationModal"),
       ajax: {
         delay: 250,
         url: "/grades/search",
@@ -129,6 +129,7 @@ $(document).ready(function () {
 
   //Get deliveries
   function valuationReportslist(start, end) {
+    var exportTitle = "Valuations Summary";
     $("#valuationsTable").DataTable({
       destroy: true,
       ajax: {
@@ -137,32 +138,52 @@ $(document).ready(function () {
         data: {
           fromDate: start,
           toDate: end,
-          supplier: "all",
+          summary: true,
+          supplier: "",
         },
         dataSrc: "deliveries",
       },
       columns: [
         { data: "trans_date" },
-        { data: "grn" },
         { data: "name" },
-        { data: "grade_name" },
+        { data: "grn" },
         { data: "moisture" },
-        { data: "qty" },
+        {
+          render: function (data, type, row, meta) {
+            var qty = Number(row.qty);
+            return `<label class="tableAmount" style="text-align: end;">
+            ${qty.toLocaleString()}
+            </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.value);
+            return `<label vId="${
+              row.vId
+            }" class="tableAmount valuationValue" style="text-align: end;" title="Click to view details">
+            ${value.toLocaleString()}
+            </label>`;
+          },
+        },
       ],
       dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
         {
           extend: "csvHtml5",
+          title: exportTitle,
           text: "Export CSV",
           titleAttr: "Export CSV",
         },
         {
           extend: "excelHtml5",
+          title: exportTitle,
           text: "Export Excel",
           titleAttr: "Export Excel",
         },
         {
           extend: "pdfHtml5",
+          title: exportTitle,
           text: "Export PDF",
           titleAttr: "Export PDF",
         },
@@ -280,7 +301,7 @@ $(document).ready(function () {
 
   //select supplier
   $("#addDeliverySupplier").select2({
-    dropdownParent: $("#newDeliveryModal"),
+    dropdownParent: $("#newValuationModal"),
     ajax: {
       delay: 250,
       url: "/suppliers/list",
@@ -298,7 +319,7 @@ $(document).ready(function () {
 
   // Grade name select2
   $(".valGradeName").select2({
-    dropdownParent: $("#newDeliveryModal"),
+    dropdownParent: $("#newValuationModal"),
     ajax: {
       delay: 250,
       url: "/grades/search",
@@ -372,7 +393,55 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#newDeliveryModal").modal("hide");
+        $("#newValuationModal").modal("hide");
+      },
+    });
+  });
+
+  // Preview valuation
+  // New delivery
+  $(document).on("click", ".valuationValue", function (e) {
+    const vId = $(this).attr("vId"); //Valuation Id
+    // Get valuation details
+    $.ajax({
+      type: "post",
+      url: "/valuation/preview",
+      data: {
+        vId: vId,
+      },
+      dataType: "json",
+      success: function (response) {
+        const items = response.items;
+        const summary = response.summary;
+        console.log(items);
+        // Update Summary
+        $("#valPrevDate").val(summary.date);
+        $("#valPrevSupplier").val(summary.supplier);
+        $("#valPrevGrn").val(summary.grn);
+        $("#valPrevMc").val(summary.grn);
+        $("#valPrevGrn").val(items[0].moisture);
+        $("#valuationPreviewModal").modal("show");
+        // Upadte Valuation items
+        var gradeItemsHtml = "";
+        var valTotal = 0;
+        for (var x = 0; x < items.length; x++) {
+          var price = Number(items[x].price);
+          var qty = Number(items[x].qty);
+          var amount = price * qty;
+          valTotal += amount;
+          gradeItemsHtml += `<tr>
+            <td>${items[x].grade_code}</td>
+            <td>${items[x].grade_name}</td>
+            <td style="text-align: right">${qty.toLocaleString()}</td>
+            <td style="text-align: center">${items[x].unit}</td>
+            <td style="text-align: right">${price.toLocaleString()}</td>
+            <td style="text-align: right">${amount.toLocaleString()}</td>
+          </tr>`;
+        }
+        $("#valPrevTotal").html(
+          `<strong>${valTotal.toLocaleString()}</strong>`
+        );
+        $("#valPrevTBody").html(gradeItemsHtml);
       },
     });
   });

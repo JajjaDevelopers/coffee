@@ -40,12 +40,12 @@ class SuppliersModal extends Model
 
 
     // Get recent deliveries
-    public function deliveryValuations($fpo, $fromDate, $toDate, $supplier = "all")
+    public function deliveryValuations($fpo, $fromDate, $toDate, $summary = true, $supplier = "")
     {
-        if ($supplier == "all") {
+        if ($supplier == "") {
             $supplierFilter = "";
         } else {
-            $supplierFilter = "AND client_id = '{$supplier}'";
+            $supplierFilter = "AND inventory.client_id = '{$supplier}'";
         }
         // Date controls
         if ($fromDate == "" && $toDate == "") {
@@ -57,14 +57,23 @@ class SuppliersModal extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
         }
-        $query = $this->db->query("SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+        // Summary control
+        if ($summary == true) {
+            $groupBy = "GROUP BY inventory.transaction_id";
+        } else {
+            $groupBy = "";
+        }
+
+        $query = $this->db->query("SELECT valuation_id AS vId, trans_date, grn, name, store_name, grade_name, moisture, sum(qty_in) as qty,
+            sum(qty_in * price * exch_rate) AS value
             FROM inventory
             JOIN clients USING (client_id)
             JOIN grades USING (grade_id)
             LEFT JOIN stores USING (store_id)
             LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
             WHERE transaction_type_id = '1' AND valuations.fpo = '{$fpo}'
-            {$supplierFilter} {$dateFilter}");
+            {$supplierFilter} {$dateFilter}
+            {$groupBy}");
         return $query->getResultArray();
     }
 
@@ -135,6 +144,26 @@ class SuppliersModal extends Model
     {
         $builder = $this->db->table("clients");
         return $builder->insert($data);
+    }
+
+    // Valuation Details for preview
+    public function valuationPreview($vId)
+    {
+        // Inventory Items
+        $itemsSql = $this->db->table("inventory");
+        $itemsSql->select("grade_id, grade_code, grade_name, unit, qty_in AS qty, price, exch_rate, moisture");
+        $itemsSql->join("grades", "grade_id");
+        $itemsSql->where("transaction_type_id", 1);
+        $itemsSql->where("transaction_id", $vId);
+        $data["items"] = $itemsSql->get()->getResultArray();
+        // Valuation Summary
+        $summary = $this->db->table("valuations");
+        $summary->select("valuation_date AS date, client_id AS supplier_id, name AS supplier, grn, prepared_by, time_prepared, approved_by, time_approved");
+        $summary->join("clients", "client_id");
+        $summary->where("valuation_id", $vId);
+        $data["summary"] = $summary->get()->getResultArray()[0];
+
+        return $data;
     }
 
 

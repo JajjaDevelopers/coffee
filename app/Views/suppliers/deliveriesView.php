@@ -3,7 +3,8 @@
 <?= $page_title ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<?= $this->include('/includes/suppliers/newDeliveryModal.php'); ?>
+<?= $this->include('/includes/suppliers/newValuationModal.php'); ?>
+<?= $this->include('/includes/suppliers/valuationPreviewModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0">
@@ -54,12 +55,12 @@
         <table class='table table-sm table-bordered' id="valuationsTable" style="width:100%;">
           <thead style='color:white'>
             <tr class='text-white'>
-              <th style="width: 80px;">Date</th>
-              <th style="width: 50px;">GRN</th>
+              <th>Valuation Date</th>
               <th>Supplier</th>
-              <th>Grade</th>
-              <th style="width: 50px;">Moisture</th>
-              <th style="width: 100px;">Quantity</th>
+              <th>GRN</th>
+              <th style="width: 80px;">Moisture (%)</th>
+              <th>Qty (Kgs)</th>
+              <th>Value (UGX)</th>
             </tr>
           </thead>
           <tbody>
