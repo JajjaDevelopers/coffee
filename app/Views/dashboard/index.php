@@ -605,7 +605,7 @@
               intersect: false,
               callbacks: {
                 label: function(tooltipItem) {
-                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'M';
                 }
               }
             },
@@ -660,10 +660,10 @@
     const actualSalesVsBulked = (data) => {
       // Extracting data for Chart.js
       const labels = data.map(item => item.month); // Months for the x-axis
-      const salesValues = data.map(item => item.actualSalesValue); // Sales value
-      const purchaseValue = data.map(item => item.actualPurchaseValue); // Purchase value
-      const salesKg = data.map(item => item.actualSalesQty) //sales in kg
-      const bulkedKg = data.map(item => item.actualPurchaseQty) //bulked in kg
+      const salesValues = data.map(item => (item.actualSalesValue) / 1000000); // Sales value
+      const purchaseValue = data.map(item => (item.actualPurchaseValue) / 1000000); // Purchase value
+      const salesKg = data.map(item => (item.actualSalesQty) / 1000) //sales in kg
+      const bulkedKg = data.map(item => (item.actualPurchaseQty) / 1000) //bulked in kg
 
       // Configuration for Chart.js
       const config = {
@@ -671,7 +671,7 @@
         data: {
           labels: labels, // x-axis labels
           datasets: [{
-              label: 'Actual Sales Value(UGX)',
+              label: 'Sales Value',
               data: salesValues, // y-axis data
               type: 'bar', // Bar chart
               borderColor: 'green', // Green line color
@@ -684,7 +684,7 @@
               pointBorderColor: '#0b62a4'
             },
             {
-              label: 'Actual Purchase Value(UGX)',
+              label: 'Purchase Value',
               type: 'bar',
               data: purchaseValue, // y-axis data
               borderColor: 'rgb(255, 204, 0)', // Dark yellow line color
@@ -696,30 +696,30 @@
               pointBackgroundColor: '#7a92a3',
               pointBorderColor: '#7a92a3'
             },
-            {
-              label: 'Actual Sales Quantity(Kgs)',
-              data: salesKg, // y-axis data
-              borderColor: 'green', // Dark yellow line color
-              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
-              fill: true,
-              tension: 0.3,
-              borderWidth: 2,
-              pointRadius: 4,
-              pointBackgroundColor: '#7a92a3',
-              pointBorderColor: '#7a92a3'
-            },
-            {
-              label: 'Actual Bulked Quantity(Kgs)',
-              data: bulkedKg, // y-axis data
-              borderColor: 'blue', // Dark yellow line color
-              // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
-              fill: true,
-              tension: 0.3,
-              borderWidth: 2,
-              pointRadius: 4,
-              pointBackgroundColor: '#7a92a3',
-              pointBorderColor: '#7a92a3'
-            },
+            // {
+            //   label: 'Actual Sales Quantity(Kgs)',
+            //   data: salesKg, // y-axis data
+            //   borderColor: 'green', // Dark yellow line color
+            //   // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+            //   fill: true,
+            //   tension: 0.3,
+            //   borderWidth: 2,
+            //   pointRadius: 4,
+            //   pointBackgroundColor: '#7a92a3',
+            //   pointBorderColor: '#7a92a3'
+            // },
+            // {
+            //   label: 'Actual Bulked Quantity(Kgs)',
+            //   data: bulkedKg, // y-axis data
+            //   borderColor: 'blue', // Dark yellow line color
+            //   // backgroundColor: 'rgba(255, 204, 0, 0.2)', // Light fill color (optional)
+            //   fill: true,
+            //   tension: 0.3,
+            //   borderWidth: 2,
+            //   pointRadius: 4,
+            //   pointBackgroundColor: '#7a92a3',
+            //   pointBorderColor: '#7a92a3'
+            // },
 
           ]
         },
@@ -736,13 +736,13 @@
               intersect: false,
               callbacks: {
                 label: function(tooltipItem) {
-                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'M';
                 }
               }
             },
             title: {
               display: true,
-              text: 'Actual Sales Vs Bulked', // Title text
+              text: 'Actual Sales Vs Bulked (UGX)', // Title text
               font: {
                 size: 18 // Font size for the title
               }
@@ -765,7 +765,7 @@
             y: {
               title: {
                 display: true,
-                text: 'Quantity (in thousands)'
+                text: 'Value (in millions)'
               },
               beginAtZero: true,
               ticks: {
@@ -791,7 +791,7 @@
     const cumulativeSales = (data) => {
       // Extracting data for Chart.js
       const labels = data.map(item => item.month); // Months for the x-axis
-      const cumulativeSales = data.map(item => item.cummulativeSalesValue); // cumulative sales
+      const cumulativeSales = data.map(item => (item.cummulativeSalesValue / 1000000)); // cumulative sales
       // Configuration for Chart.js
       const config = {
         type: 'line',
@@ -823,13 +823,13 @@
               intersect: false,
               callbacks: {
                 label: function(tooltipItem) {
-                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'K';
+                  return tooltipItem.dataset.label + ': ' + tooltipItem.formattedValue + 'M';
                 }
               }
             },
             title: {
               display: true,
-              text: 'Cumulative Sales', // Title text
+              text: 'Cumulative Sales (UGX)', // Title text
               font: {
                 size: 18 // Font size for the title
               }
@@ -852,7 +852,7 @@
             y: {
               title: {
                 display: true,
-                text: 'Quantity (in thousands)'
+                text: 'Sales (in millions)'
               },
               beginAtZero: true,
               ticks: {
@@ -877,8 +877,8 @@
     //function to plot quarterly sales
     const quarterlySales = (data) => {
       const labels = data.map(item => item.quarter)
-      const robustaSales = data.map(item => item.robustaSales)
-      const arabicaSales = data.map(item => item.arabicaSales)
+      const robustaSales = data.map(item => item.robustaSales / 1000000)
+      const arabicaSales = data.map(item => item.arabicaSales / 1000000)
       // console.log(arabicaSales)
       // console.log(robustaSales)
       // console.log(labels)
@@ -924,7 +924,7 @@
                     label += ': ';
                   }
                   if (context.parsed.x !== null) {
-                    label += context.parsed.x;
+                    label += context.parsed.x + "M";
                   }
                   return label;
                 }
@@ -949,17 +949,17 @@
     //function to create total sales and total bulked
     const totalSalesAndBulked = (totalBulkedQty, totalBulkedValue, totalSalesQty, totalSalesValue) => {
       // const totalSales = totalSalesQty.toLocaleString()
-      $('#salesTotalQty').html(`${totalSalesQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
-      $('#salesValue').html(`<span><sub>UGX</sub></span>${totalSalesValue.toLocaleString()}`)
-      $('#totalBulkedQty').html(`${totalBulkedQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
-      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${totalBulkedValue.toLocaleString()}`)
+      $('#salesTotalQty').html(`${(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesValue').html(`<span><sub>UGX</sub></span>${(totalSalesValue/1000000).toLocaleString()}${"M"}`)
+      $('#totalBulkedQty').html(`${(totalBulkedQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
     }
     //function to create total coffee type quantity and values
     const coffeeTypes = (totalRobQty, totalRobVal, totalAraQty, totalAraVal) => {
-      $('#salesRobTotalQty').html(`${totalRobQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
-      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${totalRobVal.toLocaleString()}`)
-      $('#totalAraQty').html(`${totalAraQty.toLocaleString()}<span><sub>Kgs</sub></span>`)
-      $('#araValue').html(`<span><sub>UGX</sub></span>${totalAraVal.toLocaleString()}`)
+      $('#salesRobTotalQty').html(`${(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${(totalRobVal/1000000).toLocaleString()}${"M"}`)
+      $('#totalAraQty').html(`${(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#araValue').html(`<span><sub>UGX</sub></span>${(totalAraVal/1000000).toLocaleString()}${"M"}`)
     }
 
     //pie charts 

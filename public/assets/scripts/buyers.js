@@ -59,14 +59,21 @@ $(document).ready(function () {
         { data: "sales_report_no" },
         { data: "name" },
         { data: "contract" },
-        { data: "qty" },
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.qty);
+            return `<label class="tableAmount" style="text-align: end;">
+            ${value.toLocaleString()}
+            </label>`;
+          },
+        },
         {
           render: function (data, type, row, meta) {
             var value = Number(row.value);
             var currency = row.currency;
             return `<label sId="${
               row.sales_id
-            }" class="salesReportValue" style="text-align: end; color: blue"> ${
+            }" class="salesReportValue tableAmount" style="text-align: end; color: blue"> ${
               currency + " " + value.toLocaleString()
             }
             </label>`;
@@ -90,8 +97,17 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        const buyerInfo = response.buyersList[0].curency_code;
-        $("#addSalesCurrency").val(buyerInfo);
+        var buyerInfo = response.buyersList[0];
+        var buyerCurrency = buyerInfo.currency_id;
+        if (buyerCurrency == "1") {
+          //No exchange rate is required for the buyer currency same as base currency
+          $("#addSalesFx").attr("readonly", "readonly");
+        } else {
+          $("#addSalesFx").removeAttr("readonly");
+          // $("#addSalesFx").attr("readonly", "");
+        }
+        $("#addSalesFx").val(1);
+        $("#addSalesCurrency").val(buyerInfo.curency_code);
       },
     });
   });
@@ -311,6 +327,7 @@ $(document).ready(function () {
       type: "post",
       url: "/sales/saveSalesReport",
       data: {
+        salesReportNo: $("#addSalesNo").val(),
         date: $("#newSalesDate").val(),
         buyer: $("#addSalesBuyer").val(),
         ref: $("#newSalesRef").val(),
@@ -354,10 +371,12 @@ $(document).ready(function () {
         $("#previewSalesReportNo").text(response.reportNo);
         $("#previewSalesDate").val(response.salesDate);
         $("#previewSalesBuyer").val(response.buyerName);
-        $("#previwSalesRef").val(response.ref);
+        $("#previewSalesRef").val(response.ref);
         $("#previewSalesMC").val(response.mc);
         $("#previewSalesCurrency").val(response.currencyCode);
         $("#previewSalesFx").val(response.fxRate);
+        $("#previewSalesMarket").val(response.market);
+        $("#previewSalesContract").val(response.contract);
         var transactionTotal = Number(response.salesTotal);
         $("#previewSalesReportTotal").val(transactionTotal);
         salesReportTotal = transactionTotal;

@@ -9,8 +9,8 @@
     <div class="card-header bg-gray-400 bd-b-0-f pd-b-0">
       <nav class="nav nav-tabs">
         <a class="nav-link active" data-toggle="tab" href="#suppliers">Suppliers</a>
-        <a class="nav-link" data-toggle="tab" href="#deliveries">Deliveries</a>
-        <a class="nav-link" data-toggle="tab" href="#groups">Groups</a>
+        <!-- <a class="nav-link" data-toggle="tab" href="#deliveries">Deliveries</a>
+        <a class="nav-link" data-toggle="tab" href="#groups">Groups</a> -->
       </nav>
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">
@@ -40,7 +40,7 @@
           </table>
         </div>
       </div><!-- tab-pane -->
-      <div id="deliveries" class="tab-pane">
+      <!-- <div id="deliveries" class="tab-pane">
         <div class="row">
           <div style='display:flex;justify-content:flex-end'>
             <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
@@ -63,8 +63,8 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div id="groups" class="tab-pane">
+      </div> -->
+      <!-- <div id="groups" class="tab-pane">
         <div class="row">
           <div style='display:flex;justify-content:flex-end'>
             <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeCategoryBtn'>
@@ -87,7 +87,7 @@
             </tbody>
           </table>
         </div>
-      </div><!-- tab-pane -->
+      </div>tab-pane -->
     </div><!-- card-body -->
   </div><!-- card -->
 </div><!-- az-content-body -->

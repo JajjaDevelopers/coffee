@@ -97,12 +97,12 @@
           <table class="table table-sm table-bordered">
             <thead style="background-color:whitesmoke; color:white; opacity: 1">
               <tr>
-                <th style="width: 150px;">Code</th>
+                <th>Code</th>
                 <th>Grade</th>
-                <th style="width: 150px;">Quantity</th>
-                <th style="width: 100px;">Unit</th>
-                <th style="width: 150px;">Price</th>
-                <th style="width: 200px;">Amount</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Amount</th>
               </tr>
             </thead>
             <tbody id="previewSalesTBody">

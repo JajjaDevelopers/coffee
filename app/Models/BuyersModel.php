@@ -93,14 +93,16 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}' ";
         }
-        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, reference,
-            item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, exch_rate, moisture, curency_code
+        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
             FROM inventory
             JOIN sales ON sales.sales_id = inventory.transaction_id
             LEFT JOIN users ON sales.prepared_by = users.id
             LEFT JOIN clients ON inventory.client_id = clients.client_id
             LEFT JOIN grades ON grades.grade_id = inventory.grade_id
             LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
             WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}");
         return $query->getResultArray();
     }

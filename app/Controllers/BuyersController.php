@@ -124,9 +124,10 @@ class BuyersController extends BaseController
         return $this->response->setJSON($allSales);
     }
 
-    // Save new valuation
+    // Save new sales report
     public function newSalesReport()
     {
+        $salesReportNo = $this->request->getPost("salesReportNo");
         $date = $this->request->getPost("date");
         $buyer = $this->request->getPost("buyer");
         $ref = $this->request->getPost("ref");
@@ -139,6 +140,7 @@ class BuyersController extends BaseController
         $salesReportData = [
             "date" => $date,
             "fpo" => $this->fpo,
+            "sales_report_no" => $salesReportNo,
             "client_id" => $buyer,
             "market" => $this->request->getPost("market"),
             "contract_nature" => $this->request->getPost("contract"),
@@ -192,6 +194,8 @@ class BuyersController extends BaseController
         $data["currencyId"] = $salesData[0]["currency_id"];
         $data["currencyCode"] = $salesData[0]["curency_code"];
         $data["fxRate"] = $salesData[0]["exch_rate"];
+        $data["market"] = $salesData[0]["market"];
+        $data["contract"] = $salesData[0]["contract"];
         $items = [];
         $grandTotal = 0;
         for ($x = 0; $x < count($salesData); $x++) {

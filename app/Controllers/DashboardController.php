@@ -66,8 +66,8 @@ class DashboardController extends BaseController
                 $sQty += $monthSales[$i]["salesQty"];
                 $sValue += $monthSales[$i]["salesValue"];
             }
-            $details['actualSalesQty'] = $sQty; //monthly sales qty in thousands on the graph
-            $details['actualSalesValue'] = $sValue; //monthly sales value in thousands on the graph
+            $details['actualSalesQty'] = $sQty; //monthly sales qty 
+            $details['actualSalesValue'] = $sValue; //monthly sales value 
             $totalSalesQty += $sQty; // Add to total sales qty
             $totalSalesValue += $sValue; // Add to total sales value
             $cummulativeSales += $sValue;
@@ -84,7 +84,6 @@ class DashboardController extends BaseController
             $details["actualPurchaseValue"] = $pValue;
             $totalBulkedQty += $pQty; // Add to total purchases qty
             $totalBulkedValue += $pValue; // Add to total purchases value
-            $cummulativeSales += $sValue; // Add to total sales value
             // Projections of sales and purchases
             $monthProjections = $this->generalFunctions->projections($monthStart, $monthEnd);
             $projMonthSales = 0;
