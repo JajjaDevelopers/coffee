@@ -99,12 +99,19 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit "></i>Supplies</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/deliveries" class="nav-sub-link">Valuations</a></li>
+            <li class="nav-sub-item"><a href="/valuations" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-archive"></i>Admin</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit "></i>Stores</a>
+          <ul class="nav-sub">
+            <li class="nav-sub-item"><a href="/grn" class="nav-sub-link">Goods Received Note</a></li>
+            <li class="nav-sub-item"><a href="/dispatch" class="nav-sub-link">Goods Dispatch</a></li>
+          </ul>
+        </li><!-- nav-item -->
+        <li class="nav-item">
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-cog-outline"></i>Settings</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/admin/coffee-grades" class="nav-sub-link">Coffee Grades</a></li>
           </ul>

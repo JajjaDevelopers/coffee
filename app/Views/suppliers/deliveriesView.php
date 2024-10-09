@@ -9,12 +9,12 @@
   <div class="card bd-0">
     <div class="card-header bg-gray-400 bd-b-0-f pd-b-0">
       <nav class="nav nav-tabs">
-        <a class="nav-link active" data-toggle="tab" href="#summary">Summary</a>
-        <a class="nav-link" data-toggle="tab" href="#recentdeliveries">Recent Deliveries</a>
+        <!-- <a class="nav-link active" data-toggle="tab" href="#summary">Summary</a> -->
+        <a class="nav-link active" data-toggle="tab" href="#valuations">Valuations</a>
       </nav>
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">
-      <div id="summary" class="tab-pane active show">
+      <!-- <div id="summary" class="tab-pane active show">
         <div class="row">
           <div style='display:flex;justify-content:flex-end'>
             <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='addSupplierBtn'>
@@ -23,8 +23,8 @@
           </div>
         </div>
         <h5><strong>Summary of Deliveries</strong></h5>
-      </div><!-- tab-pane -->
-      <div id="recentdeliveries" class="tab-pane">
+      </div>tab-pane -->
+      <div id="valuations" class="tab-pane active show">
         <div class="row d-flex justify-content-between align-items-center">
           <!-- Date Range Filter -->
           <?= $this->include('includes/filters/daterange_filter.php') ?>
@@ -51,7 +51,7 @@
 
 
         <br>
-        <table class='table table-sm table-bordered' id="deliveriesTable" style="width:100%;">
+        <table class='table table-sm table-bordered' id="valuationsTable" style="width:100%;">
           <thead style='color:white'>
             <tr class='text-white'>
               <th style="width: 80px;">Date</th>
