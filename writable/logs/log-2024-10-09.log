@@ -97,3 +97,119 @@ INFO - 2024-10-09 10:13:57 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-10-09 10:14:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-10-09 10:16:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-10-09 10:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:51:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:51:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:52:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-09 10:52:43 --> mysqli_sql_exception: Incorrect DATE value: '11/30/2024' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\SuppliersModal.php(67): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '11/30/2024', '11/30/2024', 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-10-09 10:52:43 --> CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: '11/30/2024'
+[Method: POST, Route: suppliers/deliveryValuations]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\SuppliersModal.php(67): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 2 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '11/30/2024', '11/30/2024', 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-09 10:52:43 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Incorrect DATE value: '11/30/2024'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 3 APPPATH\Models\SuppliersModal.php(67): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 4 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '11/30/2024', '11/30/2024', 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-09 10:52:43 --> [Caused by] mysqli_sql_exception: Incorrect DATE value: '11/30/2024'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 4 APPPATH\Models\SuppliersModal.php(67): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, grn, name, store_name, grade_name, moisture, qty_in as qty 
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
+            WHERE transaction_type_id = \'1\' AND valuations.fpo = \'1\'
+             AND trans_date BETWEEN \'11/30/2024\' AND \'11/30/2024\' ')
+ 5 APPPATH\Controllers\SuppliersController.php(73): App\Models\SuppliersModal->deliveryValuations(1, '11/30/2024', '11/30/2024', 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\SuppliersController->deliveryValuations()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SuppliersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-10-09 10:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:55:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:55:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:55:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-09 10:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

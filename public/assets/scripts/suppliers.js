@@ -116,6 +116,10 @@ $(document).ready(function () {
         start.format("MM/DD/YYYY") + " ~ " + end.format("MM/DD/YYYY")
       );
       // table.ajax.reload();
+      valuationReportslist(
+        start.format("YYYY-MM-DD"),
+        end.format("YYYY-MM-DD")
+      );
     }
   );
   $("#date_range_filter").on("cancel.daterangepicker", function (ev, picker) {
@@ -124,15 +128,15 @@ $(document).ready(function () {
   });
 
   //Get deliveries
-  function valuationReportslist() {
+  function valuationReportslist(start, end) {
     $("#valuationsTable").DataTable({
       destroy: true,
       ajax: {
         method: "post",
         url: "/suppliers/deliveryValuations",
         data: {
-          fromDate: $("#fromDate").val(),
-          toDate: $("#toDate").val(),
+          fromDate: start,
+          toDate: end,
           supplier: "all",
         },
         dataSrc: "deliveries",
@@ -167,13 +171,13 @@ $(document).ready(function () {
   }
 
   // Getting recent deliveries
-  $(document).on("click", "#deliveriesGetBtn", function (e) {
-    e.preventDefault();
-    // alert($("#fromDate").val());
-    // return;
-    valuationReportslist(); //Get Categories on load
-    // $("#deliveriesTable").DataTable().ajax.reload();
-  });
+  // $(document).on("click", "#deliveriesGetBtn", function (e) {
+  //   e.preventDefault();
+  //   // alert($("#fromDate").val());
+  //   // return;
+  //   valuationReportslist(); //Get Categories on load
+  //   // $("#deliveriesTable").DataTable().ajax.reload();
+  // });
 
   //   Save Category
   $(document).on("click", "#saveCategoryBtn", function (e) {
