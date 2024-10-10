@@ -5,6 +5,7 @@
 <?= $this->section('content') ?>
 <?= $this->include('/includes/buyers/newSalesReportModal.php'); ?>
 <?= $this->include('/includes/buyers/previewSalesReportModal.php'); ?>
+<?= $this->include('/includes/buyers/editSalesReportModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0">
@@ -32,6 +33,7 @@
               <th>Contract</th>
               <th style="width: 150px;">Total Qty (Kg)</th>
               <th style="width: 200px;">Total Value</th>
+              <th style="width: 100px;">Action</th>
             </tr>
           </thead>
           <tbody>

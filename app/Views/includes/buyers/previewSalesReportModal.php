@@ -1,5 +1,5 @@
 <!-- Adding new category -->
-<div id="editSalesReportModal" class="modal">
+<div id="previewSalesReportModal" class="modal">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header" style="background-color: darkgreen; color: white;">

@@ -79,6 +79,20 @@ $(document).ready(function () {
             </label>`;
           },
         },
+        // Action
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.value);
+            var currency = row.currency;
+            return `
+            <a href="#" sId="${row.sales_id}" class="icon-btn-primary salesReportValue" title="Check Details">
+              <i class="la la-eye" style="font-size: 24px"></i>
+            </a>
+            <a href="#" sId="${row.sales_id}" class="icon-btn-primary editSalesReport" title="Edit">
+              <i class="la la-pencil" style="font-size: 24px"></i>
+            </a>`;
+          },
+        },
       ],
     });
   }
@@ -401,7 +415,7 @@ $(document).ready(function () {
         setGradeNameInput("salesGradeName", "editSalesReportModal");
       },
     });
-    $("#editSalesReportModal").modal("show");
+    $("#previewSalesReportModal").modal("show");
   });
 
   // // Adjusting the sales report
@@ -441,4 +455,11 @@ $(document).ready(function () {
     });
   });
 
+  // Open Sales Report Editing
+  $(document).on("click", ".editSalesReport", function (e) {
+    e.preventDefault();
+    $("#editSalesReportModal").modal("show");
+  });
+
+  //
 });

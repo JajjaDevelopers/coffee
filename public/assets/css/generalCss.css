@@ -35,3 +35,10 @@ label.tableAmount{
 label.valuationValue{
   color: blue;
 }
+.icon-btn-primary{
+  background-color: rgb(236, 234, 234);
+  color: black;
+  border-radius: 3px;
+  padding: 6px;
+  margin:5px
+}

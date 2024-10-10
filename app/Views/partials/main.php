@@ -57,6 +57,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome/dist/line-awesome/css/line-awesome.min.css">
   <!-- azia CSS -->
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
   <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
