@@ -70,9 +70,12 @@ class SuppliersController extends BaseController
         $fromDate = $this->request->getPost("fromDate");
         $toDate = $this->request->getPost("toDate");
         $suppplier = $this->request->getPost("supplier");
-        $deliveries = $this->suppliersModel->deliveryValuations($this->fpo, $fromDate, $toDate, $suppplier);
+        $summary = $this->request->getPost("summary");
+        $deliveries = $this->suppliersModel->deliveryValuations($this->fpo, $fromDate, $toDate, $summary, $suppplier);
         $data["deliveries"] = $deliveries;
-        return $this->response->setJSON($data);
+        return $this->response->setJSON(
+            $data
+        );
     }
     // Add categories
     public function addSupplier()
@@ -205,23 +208,12 @@ class SuppliersController extends BaseController
     }
 
     // Add grade
-    // public function addGrade()
-    // {
-    //     $grdData = [
-    //         "grade_code" => $this->request->getPost("grdCode"),
-    //         "grade_name" => $this->request->getPost("grdName"),
-    //         "category_id" => $this->request->getPost("grdCatId"),
-    //         "unit" => $this->request->getPost("grdUnit"),
-    //         "group_id" => $this->request->getPost("grdGroup")
-    //     ];
-    //     $addGrade = $this->gradesModel->addGrade($grdData);
-    //     if ($addGrade) {
-    //         $data["sms"] = "success";
-    //     } else {
-    //         $data["sms"] = "fail";
-    //     }
-    //     return $this->response->setJSON($data);
-    // }
+    public function valuationDetails()
+    {
+        $vId = $this->request->getPost("vId");
+        $valuation = $this->suppliersModel->valuationPreview($vId);
+        return $this->response->setJSON($valuation);
+    }
 
 
     // 

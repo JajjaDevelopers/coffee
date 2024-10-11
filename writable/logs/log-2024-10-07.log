@@ -1,0 +1,215 @@
+INFO - 2024-10-07 18:31:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:31:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:32:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:33:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:33:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:34:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:34:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:35:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:35:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:36:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:40:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:40:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:41:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:42:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:42:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:42:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:42:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:46:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:49:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:52:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:52:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:53:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:53:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:53:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:55:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:55:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:56:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-07 18:56:30 --> mysqli_sql_exception: Unknown column 'contract_type_name' in 'field list' in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT sales_re...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT sales_re...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT sales_re...')
+#3 C:\wamp64\www\coffee\app\Models\BuyersModel.php(105): CodeIgniter\Database\BaseConnection->query('SELECT sales_re...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(185): App\Models\BuyersModel->salesReportData(1, '3', '', '', '')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->editSalesReportData()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2024-10-07 18:56:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'contract_type_name' in 'field list'
+[Method: POST, Route: saleReport/editData]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\BuyersModel.php(105): CodeIgniter\Database\BaseConnection->query('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 2 APPPATH\Controllers\BuyersController.php(185): App\Models\BuyersModel->salesReportData(1, '3', '', '', '')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->editSalesReportData()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-07 18:56:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'contract_type_name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 3 APPPATH\Models\BuyersModel.php(105): CodeIgniter\Database\BaseConnection->query('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 4 APPPATH\Controllers\BuyersController.php(185): App\Models\BuyersModel->salesReportData(1, '3', '', '', '')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->editSalesReportData()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2024-10-07 18:56:30 --> [Caused by] mysqli_sql_exception: Unknown column 'contract_type_name' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 4 APPPATH\Models\BuyersModel.php(105): CodeIgniter\Database\BaseConnection->query('SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
+            FROM inventory
+            JOIN sales ON sales.sales_id = inventory.transaction_id
+            LEFT JOIN users ON sales.prepared_by = users.id
+            LEFT JOIN clients ON inventory.client_id = clients.client_id
+            LEFT JOIN grades ON grades.grade_id = inventory.grade_id
+            LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            WHERE sales.fpo = \'1\' AND inventory.transaction_type_id = 2 AND inventory.transaction_id = \'3\'  ')
+ 5 APPPATH\Controllers\BuyersController.php(185): App\Models\BuyersModel->salesReportData(1, '3', '', '', '')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->editSalesReportData()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+INFO - 2024-10-07 18:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 18:58:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:00:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:00:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:04:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:06:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:06:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:07:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:08:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:09:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:09:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:10:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:10:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:10:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:16:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:17:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:17:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:18:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:19:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:19:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:23:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:23:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:23:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 19:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-07 20:38:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

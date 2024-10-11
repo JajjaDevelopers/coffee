@@ -40,10 +40,11 @@ $routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');
 $routes->get('/suppliers', 'SuppliersController::index');
 $routes->post('/suppliers/list', 'SuppliersController::suppliersList');
 $routes->get('/suppliers/list', 'SuppliersController::searchSuppliers');
-$routes->get('/deliveries', 'SuppliersController::deliveriesView');
+$routes->get('/valuations', 'SuppliersController::deliveriesView');
 $routes->post('/suppliers/deliveryValuations', 'SuppliersController::deliveryValuations');
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
 $routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
+$routes->post('/valuation/preview', 'SuppliersController::valuationDetails');
 
 // Buyers and Sales/
 $routes->get('/buyers', 'BuyersController::buyers');

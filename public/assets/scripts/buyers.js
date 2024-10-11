@@ -58,16 +58,38 @@ $(document).ready(function () {
         { data: "trans_date" },
         { data: "sales_report_no" },
         { data: "name" },
-        { data: "qty" },
-        { data: "currency" },
+        { data: "contract" },
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.qty);
+            return `<label class="tableAmount" style="text-align: end;">
+            ${value.toLocaleString()}
+            </label>`;
+          },
+        },
         {
           render: function (data, type, row, meta) {
             var value = Number(row.value);
-            return `
-            <a href="#" sId="${
+            var currency = row.currency;
+            return `<label sId="${
               row.sales_id
-            }" class="salesReportValue" style="color: blue; text-align: right; border:none" value="">
-              <span style="text-align: end">${value.toLocaleString()}</span>
+            }" class="salesReportValue tableAmount" style="text-align: end; color: blue"> ${
+              currency + " " + value.toLocaleString()
+            }
+            </label>`;
+          },
+        },
+        // Action
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.value);
+            var currency = row.currency;
+            return `
+            <a href="#" sId="${row.sales_id}" class="icon-btn-primary salesReportValue" title="Check Details">
+              <i class="la la-eye" style="font-size: 24px"></i>
+            </a>
+            <a href="#" sId="${row.sales_id}" class="icon-btn-primary editSalesReport" title="Edit">
+              <i class="la la-pencil" style="font-size: 24px"></i>
             </a>`;
           },
         },
@@ -89,8 +111,17 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        const buyerInfo = response.buyersList[0].curency_code;
-        $("#addSalesCurrency").val(buyerInfo);
+        var buyerInfo = response.buyersList[0];
+        var buyerCurrency = buyerInfo.currency_id;
+        if (buyerCurrency == "1") {
+          //No exchange rate is required for the buyer currency same as base currency
+          $("#addSalesFx").attr("readonly", "readonly");
+        } else {
+          $("#addSalesFx").removeAttr("readonly");
+          // $("#addSalesFx").attr("readonly", "");
+        }
+        $("#addSalesFx").val(1);
+        $("#addSalesCurrency").val(buyerInfo.curency_code);
       },
     });
   });
@@ -310,12 +341,15 @@ $(document).ready(function () {
       type: "post",
       url: "/sales/saveSalesReport",
       data: {
+        salesReportNo: $("#addSalesNo").val(),
         date: $("#newSalesDate").val(),
         buyer: $("#addSalesBuyer").val(),
         ref: $("#newSalesRef").val(),
         moisture: $("#newSalesMC").val(),
         currency: $("#addSalesCurrency").val(),
         fxRate: $("#addSalesFx").val(),
+        market: $("#addSalesMarket").val(),
+        contract: $("#addSalesContract").val(),
         items: gradeIds,
         quantities: gradeQtys,
         prices: gradePxs,
@@ -334,7 +368,7 @@ $(document).ready(function () {
     salesItemsNo = 0; //Reset number of items to zero
     salesReportItemIds = []; //Clear the row ids
     // clear current items
-    $("#editSalesTBody").html("");
+    $("#previewSalesTBody").html("");
     $("#salesTBody").html("");
     const salesId = $(this).attr("sId");
     $("#salesReportEditId").val(salesId);
@@ -348,52 +382,43 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         // Buyer Details
-        var buyerName = `<option value="${response.buyerId}">${response.buyerName}</option>`;
-        $("#editSalesReportNo").text(response.reportNo);
-        $("#editSalesDate").val(response.salesDate);
-        $("#editSalesBuyer").html(buyerName);
-        $("#editSalesRef").val(response.ref);
-        $("#editSalesMC").val(response.mc);
-        $("#editSalesCurrency").val(response.currencyCode);
-        $("#editSalesFx").val(response.fxRate);
+        $("#previewSalesReportNo").text(response.reportNo);
+        $("#previewSalesDate").val(response.salesDate);
+        $("#previewSalesBuyer").val(response.buyerName);
+        $("#previewSalesRef").val(response.ref);
+        $("#previewSalesMC").val(response.mc);
+        $("#previewSalesCurrency").val(response.currencyCode);
+        $("#previewSalesFx").val(response.fxRate);
+        $("#previewSalesMarket").val(response.market);
+        $("#previewSalesContract").val(response.contract);
         var transactionTotal = Number(response.salesTotal);
-        $("#editSalesReportTotal").val(transactionTotal);
+        $("#previewSalesReportTotal").val(transactionTotal);
         salesReportTotal = transactionTotal;
         // Items
         var rowStr = "";
         const items = response.items;
         for (var x = 0; x < items.length; x++) {
           var rowNo = items[x].rowNo;
-          if (rowNo == 1) {
-            var removeBtn = "";
-          } else {
-            var removeBtn = `<button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
-          }
           salesReportItemIds.push(rowNo);
           salesItemsNo += 1;
           // Row strings
           rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
-                    <td><input rowNo="${rowNo}" id="salesCode${rowNo}" class="form-control form-control-xs" readonly value="${items[x].code}"></td>
-                    <td>
-                      <select rowNo="${rowNo}" id="salesGrade${rowNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
-                        <option value="${items[x].gradeId}">${items[x].gradeName}</option>
-                      </select>
-                    </td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesQty${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].qty}" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesUnit${rowNo}" class="form-control form-control-xs text-center" readonly value="${items[x].unit}"></td>
-                    <td><input type="number" rowNo="${rowNo}" id="salesPx${rowNo}" class="form-control form-control-xs text-end salesReportQtyPx" value="${items[x].price}" min="0"></td>
-                    <td><input rowNo="${rowNo}" id="salesAmt${rowNo}" class="form-control form-control-xs text-end" value="${items[x].amount}" readonly></td>
-                    <td>
-                      ${removeBtn}
-                    </td>
+                    <td>${items[x].code}</td>
+                    <td>${items[x].gradeName}</td>
+                    <td>${items[x].qty}</td>
+                    <td>${items[x].unit}</td>
+                    <td>${items[x].price}</td>
+                    <td>${items[x].amount}</td>
                   </tr>`;
         }
-        $("#editSalesTBody").append(rowStr);
+        $("#previewSalesTBody").append(rowStr);
         setGradeNameInput("salesGradeName", "editSalesReportModal");
       },
     });
-    $("#editSalesReportModal").modal("show");
+    $("#previewSalesReportModal").modal("show");
   });
+
+  // // Adjusting the sales report
 
   // Saving adjusted saless report
   $(document).on("click", "#saveSalesReportEditBtn", function (e) {
@@ -428,6 +453,12 @@ $(document).ready(function () {
         $("#salesReportsTable").DataTable().ajax.reload();
       },
     });
+  });
+
+  // Open Sales Report Editing
+  $(document).on("click", ".editSalesReport", function (e) {
+    e.preventDefault();
+    $("#editSalesReportModal").modal("show");
   });
 
   //

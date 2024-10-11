@@ -12,15 +12,15 @@
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-12 col-md-7">
-              <div class="row" style="display: none;">
-                <div class="col-sm-4 col-md-4">
-                  <label for="addSupplierName" class="form-label">SN:</label>
+              <div class="row">
+                <div class="col-sm-6 col-md-2">
+                  <label for="addSalesNo" class="form-label">Sales No.:</label>
                 </div>
-                <div class="col-sm-8 col-md-5">
-                  <label for="addSupplierName" class="form-label text-danger"><strong>00001</strong></label>
+                <div class="col-sm-6 col-md-4">
+                  <strong><input id="addSalesNo" class="form-control form-control-sm text-danger"></strong>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-2">
                   <label for="newSalesDate" class="form-label">Date:</label>
                 </div>
@@ -68,7 +68,38 @@
                   <label for="addSalesFx" class="form-label">Exch. Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input class="form-control form-control-sm" id='addSalesFx'>
+                  <input type="number" class="form-control form-control-sm" id='addSalesFx'>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="addSalesMarket" class="form-label" style="text-align: right;">Market:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <select class="form-control form-control-sm" id='addSalesMarket'>
+                    <option value="Local">Local</option>
+                    <option value="Export">Export</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-md-5"></div>
+                <div class="col-sm-6 col-md-3">
+                  <label for="addSalesContract" class="form-label" style="text-align: right;">Contract:</label>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                  <select class="form-control form-control-sm" id='addSalesContract'>
+                    <?php
+                    for ($x = 0; $x < count($contractTypes); $x++) {
+                      $typeId = $contractTypes[$x]["contract_type_id"];
+                      $typeName = $contractTypes[$x]["contract_type_name"];
+                    ?>
+                      <option value="<?= $typeId ?>"><?= $typeName ?></option>
+                    <?php
+                    }
+                    ?>
+                  </select>
                 </div>
               </div>
             </div>

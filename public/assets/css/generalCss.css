@@ -27,3 +27,18 @@
   padding: 0px 10px;
   border-radius: 5px;
 }
+label.tableAmount{
+  display: flow;
+
+}
+
+label.valuationValue{
+  color: blue;
+}
+.icon-btn-primary{
+  background-color: rgb(236, 234, 234);
+  color: black;
+  border-radius: 3px;
+  padding: 6px;
+  margin:5px
+}

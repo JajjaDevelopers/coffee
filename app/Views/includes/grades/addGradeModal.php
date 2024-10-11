@@ -44,8 +44,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-indigo">Save changes</button>
-        <button id='saveGradeBtn' type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+        <button id='saveGradeBtn' type="button" class="btn btn-success">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div><!-- modal-dialog -->

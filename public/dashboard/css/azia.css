@@ -1334,7 +1334,7 @@ pre {
     color: #7987a1;
     opacity: 1; }
   .form-control:disabled, .form-control[readonly] {
-    background-color: #e3e7ed;
+    background-color: #ffffff;
     opacity: 1; }
 
 select.form-control:focus::-ms-value {
@@ -1748,12 +1748,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #3366ff;
-  border-color: #3366ff; }
+  background-color: #0db707;
+  border-color: #034019;
+  border-radius: 5px;
+  height: 20px }
   .btn-primary:hover {
     color: #fff;
-    background-color: #0d49ff;
-    border-color: #0040ff; }
+    background-color: #6c2705bc;
+    border-color: #391604bc; }
   .btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(82, 125, 255, 0.5); }
   .btn-primary.disabled, .btn-primary:disabled {
@@ -7540,8 +7542,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 /* ###### 3.6 Forms ###### */
 .form-control {
-  height: 38px;
-  border-radius: 0; }
+  height: 30px;
+  border-radius: 5px; }
   .form-control:focus {
     border-color: #97a3b9;
     box-shadow: none; }

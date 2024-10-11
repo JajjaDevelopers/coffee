@@ -1,22 +1,25 @@
 $(document).ready(function () {
   //date range settings
   var dateRangeSettings = {
-    startDate: moment().subtract(6, 'days'),
+    startDate: moment().subtract(6, "days"),
     endDate: moment(),
     ranges: {
-      'Today': [moment(), moment()],
-      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-      'This Month': [moment().startOf('month'), moment().endOf('month')],
-      'This Year': [moment().startOf('year'), moment()],
-      'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
-      'Custom Range': [null, null]
+      Today: [moment(), moment()],
+      Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+      "Last 7 Days": [moment().subtract(6, "days"), moment()],
+      "Last 30 Days": [moment().subtract(29, "days"), moment()],
+      "This Month": [moment().startOf("month"), moment().endOf("month")],
+      "This Year": [moment().startOf("year"), moment()],
+      "Last Year": [
+        moment().subtract(1, "year").startOf("year"),
+        moment().subtract(1, "year").endOf("year"),
+      ],
+      "Custom Range": [null, null],
     },
     alwaysShowCalendars: true,
     locale: {
-      format: 'MM/DD/YYYY'
-    }
+      format: "MM/DD/YYYY",
+    },
   };
   // Grade groups options.
   function gradeGroupsOptions(selectId) {
@@ -38,7 +41,7 @@ $(document).ready(function () {
 
   // New delivery
   $(document).on("click", ".addDeliveryBtn", function (e) {
-    $("#newDeliveryModal").modal("show");
+    $("#newValuationModal").modal("show");
   });
 
   // Add new valuation rows
@@ -70,7 +73,7 @@ $(document).ready(function () {
 
     // Grade name select2 initiation on the new row item
     $(".valGradeName").select2({
-      dropdownParent: $("#newDeliveryModal"),
+      dropdownParent: $("#newValuationModal"),
       ajax: {
         delay: 250,
         url: "/grades/search",
@@ -105,71 +108,97 @@ $(document).ready(function () {
     valuationItemIds = temporaryItemIds;
   });
 
-//date range filtering
-$('#date_range_filter').daterangepicker(
+  //date range filtering
+  $("#date_range_filter").daterangepicker(
     dateRangeSettings,
-    function(start, end) {
-        $('#date_range_filter').val(start.format('MM/DD/YYYY') + ' ~ ' + end
-            .format('MM/DD/YYYY'));
-        // table.ajax.reload();
+    function (start, end) {
+      $("#date_range_filter").val(
+        start.format("MM/DD/YYYY") + " ~ " + end.format("MM/DD/YYYY")
+      );
+      // table.ajax.reload();
+      valuationReportslist(
+        start.format("YYYY-MM-DD"),
+        end.format("YYYY-MM-DD")
+      );
     }
-);
-$('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
-    $('#date_range_filter').val('');
+  );
+  $("#date_range_filter").on("cancel.daterangepicker", function (ev, picker) {
+    $("#date_range_filter").val("");
     //table.ajax.reload();
-});
+  });
 
   //Get deliveries
-  function deliveries() {
-    $("#deliveriesTable").DataTable({
+  function valuationReportslist(start, end) {
+    var exportTitle = "Valuations Summary";
+    $("#valuationsTable").DataTable({
       destroy: true,
       ajax: {
         method: "post",
         url: "/suppliers/deliveryValuations",
         data: {
-          fromDate: $("#fromDate").val(),
-          toDate: $("#toDate").val(),
-          supplier: "all",
+          fromDate: start,
+          toDate: end,
+          summary: true,
+          supplier: "",
         },
         dataSrc: "deliveries",
       },
       columns: [
         { data: "trans_date" },
-        { data: "grn" },
         { data: "name" },
-        { data: "grade_name" },
+        { data: "grn" },
         { data: "moisture" },
-        { data: "qty" },
+        {
+          render: function (data, type, row, meta) {
+            var qty = Number(row.qty);
+            return `<label class="tableAmount" style="text-align: end;">
+            ${qty.toLocaleString()}
+            </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var value = Number(row.value);
+            return `<label vId="${
+              row.vId
+            }" class="tableAmount valuationValue" style="text-align: end;" title="Click to view details">
+            ${value.toLocaleString()}
+            </label>`;
+          },
+        },
       ],
-      dom: 'Bfrtip',  // Specify the placement of buttons
+      dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
         {
-          extend: 'csvHtml5',
-          text: 'Export CSV',
-          titleAttr: 'Export CSV'
+          extend: "csvHtml5",
+          title: exportTitle,
+          text: "Export CSV",
+          titleAttr: "Export CSV",
         },
         {
-          extend: 'excelHtml5',
-          text: 'Export Excel',
-          titleAttr: 'Export Excel'
+          extend: "excelHtml5",
+          title: exportTitle,
+          text: "Export Excel",
+          titleAttr: "Export Excel",
         },
         {
-          extend: 'pdfHtml5',
-          text: 'Export PDF',
-          titleAttr: 'Export PDF'
-        }
-      ]
+          extend: "pdfHtml5",
+          title: exportTitle,
+          text: "Export PDF",
+          titleAttr: "Export PDF",
+        },
+      ],
     });
   }
 
   // Getting recent deliveries
-  $(document).on("click", "#deliveriesGetBtn", function (e) {
-    e.preventDefault();
-    // alert($("#fromDate").val());
-    // return;
-    deliveries(); //Get Categories on load
-    // $("#deliveriesTable").DataTable().ajax.reload();
-  });
+  // $(document).on("click", "#deliveriesGetBtn", function (e) {
+  //   e.preventDefault();
+  //   // alert($("#fromDate").val());
+  //   // return;
+  //   valuationReportslist(); //Get Categories on load
+  //   // $("#deliveriesTable").DataTable().ajax.reload();
+  // });
 
   //   Save Category
   $(document).on("click", "#saveCategoryBtn", function (e) {
@@ -220,24 +249,24 @@ $('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
           },
         },
       ],
-      dom: 'Bfrtip',  // Specify the placement of buttons
+      dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
         {
-          extend: 'csvHtml5',
-          text: 'Export CSV',
-          titleAttr: 'Export CSV'
+          extend: "csvHtml5",
+          text: "Export CSV",
+          titleAttr: "Export CSV",
         },
         {
-          extend: 'excelHtml5',
-          text: 'Export Excel',
-          titleAttr: 'Export Excel'
+          extend: "excelHtml5",
+          text: "Export Excel",
+          titleAttr: "Export Excel",
         },
         {
-          extend: 'pdfHtml5',
-          text: 'Export PDF',
-          titleAttr: 'Export PDF'
-        }
-      ]
+          extend: "pdfHtml5",
+          text: "Export PDF",
+          titleAttr: "Export PDF",
+        },
+      ],
     });
   }
   suppliersList();
@@ -272,7 +301,7 @@ $('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
 
   //select supplier
   $("#addDeliverySupplier").select2({
-    dropdownParent: $("#newDeliveryModal"),
+    dropdownParent: $("#newValuationModal"),
     ajax: {
       delay: 250,
       url: "/suppliers/list",
@@ -290,7 +319,7 @@ $('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
 
   // Grade name select2
   $(".valGradeName").select2({
-    dropdownParent: $("#newDeliveryModal"),
+    dropdownParent: $("#newValuationModal"),
     ajax: {
       delay: 250,
       url: "/grades/search",
@@ -364,7 +393,55 @@ $('#date_range_filter').on('cancel.daterangepicker', function(ev, picker) {
       },
       dataType: "json",
       success: function (response) {
-        $("#newDeliveryModal").modal("hide");
+        $("#newValuationModal").modal("hide");
+      },
+    });
+  });
+
+  // Preview valuation
+  // New delivery
+  $(document).on("click", ".valuationValue", function (e) {
+    const vId = $(this).attr("vId"); //Valuation Id
+    // Get valuation details
+    $.ajax({
+      type: "post",
+      url: "/valuation/preview",
+      data: {
+        vId: vId,
+      },
+      dataType: "json",
+      success: function (response) {
+        const items = response.items;
+        const summary = response.summary;
+        console.log(items);
+        // Update Summary
+        $("#valPrevDate").val(summary.date);
+        $("#valPrevSupplier").val(summary.supplier);
+        $("#valPrevGrn").val(summary.grn);
+        $("#valPrevMc").val(summary.grn);
+        $("#valPrevGrn").val(items[0].moisture);
+        $("#valuationPreviewModal").modal("show");
+        // Upadte Valuation items
+        var gradeItemsHtml = "";
+        var valTotal = 0;
+        for (var x = 0; x < items.length; x++) {
+          var price = Number(items[x].price);
+          var qty = Number(items[x].qty);
+          var amount = price * qty;
+          valTotal += amount;
+          gradeItemsHtml += `<tr>
+            <td>${items[x].grade_code}</td>
+            <td>${items[x].grade_name}</td>
+            <td style="text-align: right">${qty.toLocaleString()}</td>
+            <td style="text-align: center">${items[x].unit}</td>
+            <td style="text-align: right">${price.toLocaleString()}</td>
+            <td style="text-align: right">${amount.toLocaleString()}</td>
+          </tr>`;
+        }
+        $("#valPrevTotal").html(
+          `<strong>${valTotal.toLocaleString()}</strong>`
+        );
+        $("#valPrevTBody").html(gradeItemsHtml);
       },
     });
   });

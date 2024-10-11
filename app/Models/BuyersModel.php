@@ -51,7 +51,8 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$fromDate}' AND '{$toDate}' ";
         }
-        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, sum(qty_out) AS qty,
+        $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
             sum(qty_out*price*exch_rate) AS value, curency_code AS currency
             FROM inventory
             JOIN clients USING (client_id)
@@ -59,6 +60,7 @@ class BuyersModel extends Model
             LEFT JOIN stores USING (store_id)
             LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
             LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
             WHERE transaction_type_id = '2' AND sales.fpo = '{$fpo}'
             {$buyerFilter} {$dateFilter}
             GROUP BY transaction_id");
@@ -91,14 +93,16 @@ class BuyersModel extends Model
         } else {
             $dateFilter = "AND trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}' ";
         }
-        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, reference,
-            item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, exch_rate, moisture, curency_code
+        $query = $this->db->query("SELECT sales_report_no, date, name, inventory.client_id, fname, lname, time_prepared, 
+            reference, item_no, inventory.grade_id, grade_code, grade_name, unit, qty_out, inventory.currency_id, price, 
+            exch_rate, moisture, curency_code, contract_type_name AS contract, market
             FROM inventory
             JOIN sales ON sales.sales_id = inventory.transaction_id
             LEFT JOIN users ON sales.prepared_by = users.id
             LEFT JOIN clients ON inventory.client_id = clients.client_id
             LEFT JOIN grades ON grades.grade_id = inventory.grade_id
             LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
             WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}");
         return $query->getResultArray();
     }
@@ -167,6 +171,14 @@ class BuyersModel extends Model
     {
         $builder = $this->db->table("clients");
         return $builder->insert($data);
+    }
+
+    // Contract Types
+    public function contractTypes($fpo)
+    {
+        $builder = $this->db->table("contract_types");
+        $builder->where("fpo", $fpo);
+        return $builder->get()->getResultArray();
     }
 
 

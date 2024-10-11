@@ -1,5 +1,5 @@
 <!-- Adding new category -->
-<div id="newDeliveryModal" class="modal">
+<div id="newValuationModal" class="modal">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header">
@@ -113,7 +113,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveValuationBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveValuationBtn' type="button" class="btn btn-primary addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>

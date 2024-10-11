@@ -4,6 +4,7 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/buyers/newSalesReportModal.php'); ?>
+<?= $this->include('/includes/buyers/previewSalesReportModal.php'); ?>
 <?= $this->include('/includes/buyers/editSalesReportModal.php'); ?>
 <div class="az-content-body">
   <br>
@@ -26,12 +27,13 @@
         <table class='table table-sm table-bordered' id="salesReportsTable" style="width:100%;">
           <thead style='color:white'>
             <tr>
-              <th>Date</th>
-              <th>Report No.</th>
+              <th style="width: 150px;">Date</th>
+              <th style="width: 150px;">Report No.</th>
               <th>Buyer</th>
-              <th>Total Qty (Kg)</th>
-              <th>Currency </th>
-              <th style="width: 100px;">Total Value</th>
+              <th>Contract</th>
+              <th style="width: 150px;">Total Qty (Kg)</th>
+              <th style="width: 200px;">Total Value</th>
+              <th style="width: 100px;">Action</th>
             </tr>
           </thead>
           <tbody>
