@@ -149,7 +149,7 @@ $(document).ready(function () {
         {
           render: function (data, type, row, meta) {
             return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-sm btn-info">
-                        <i class="la la-eye"></i>
+                        <i class="fas fa-eye"></i>
                     </button>`;
           },
         },
