@@ -1,7 +1,12 @@
 $(document).ready(function () {
+
+  //initial date range 
+  //date range settings
+  var startDate = moment().subtract(1, "months").startOf("month");
+  var endDate = moment();
   //date range settings
   var dateRangeSettings = {
-    startDate: moment().subtract(6, "days"),
+    startDate: moment().subtract(1, "months").startOf("month"),
     endDate: moment(),
     ranges: {
       Today: [moment(), moment()],
@@ -126,6 +131,16 @@ $(document).ready(function () {
     $("#date_range_filter").val("");
     //table.ajax.reload();
   });
+   // Set the initial date range filter value
+   $("#date_range_filter").val(
+    startDate.format("MM/DD/YYYY") + " ~ " + endDate.format("MM/DD/YYYY")
+  );
+
+  // Call the function with the initial date range
+  valuationReportslist(
+    startDate.format("YYYY-MM-DD"),
+    endDate.format("YYYY-MM-DD")
+  );
 
   //Get deliveries
   function valuationReportslist(start, end) {

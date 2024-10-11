@@ -90,6 +90,7 @@
                 </table>
               </div>
             </div>
+          </div>
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
