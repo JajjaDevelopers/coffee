@@ -1,0 +1,29 @@
+INFO - 2024-10-14 18:04:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:04:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-14 18:12:59 --> ErrorException: Maximum execution time of 120 seconds exceeded
+[Method: GET, Route: /]
+in SYSTEMPATH\Cookie\CloneableCookieInterface.php on line 22.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2024-10-14 18:12:59 --> Error: Class "CodeIgniter\Cookie\Cookie" not found
+[Method: GET, Route: /]
+in SYSTEMPATH\HTTP\Response.php on line 167.
+ 1 SYSTEMPATH\Config\Services.php(587): CodeIgniter\HTTP\Response->__construct(Object(Config\App))
+ 2 SYSTEMPATH\Config\BaseService.php(311): CodeIgniter\Config\Services::response(Object(Config\App), false)
+ 3 SYSTEMPATH\Config\BaseService.php(250): CodeIgniter\Config\BaseService::__callStatic('response', [...])
+ 4 SYSTEMPATH\Config\Services.php(582): CodeIgniter\Config\BaseService::getSharedInstance('response', null)
+ 5 SYSTEMPATH\Config\BaseService.php(311): CodeIgniter\Config\Services::response()
+ 6 SYSTEMPATH\Debug\Exceptions.php(158): CodeIgniter\Config\BaseService::__callStatic('response', [])
+ 7 SYSTEMPATH\Debug\Exceptions.php(252): CodeIgniter\Debug\Exceptions->exceptionHandler(Object(ErrorException))
+ 8 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+INFO - 2024-10-14 18:13:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:17:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:17:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:18:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:18:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:21:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:25:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:25:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-14 18:25:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

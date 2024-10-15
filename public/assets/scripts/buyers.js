@@ -80,19 +80,19 @@ $(document).ready(function () {
           },
         },
         // Action
-        {
-          render: function (data, type, row, meta) {
-            var value = Number(row.value);
-            var currency = row.currency;
-            return `
-            <a href="#" sId="${row.sales_id}" class="icon-btn-primary salesReportValue" title="Check Details">
-              <i class="la la-eye" style="font-size: 24px"></i>
-            </a>
-            <a href="#" sId="${row.sales_id}" class="icon-btn-primary editSalesReport" title="Edit">
-              <i class="la la-pencil" style="font-size: 24px"></i>
-            </a>`;
-          },
-        },
+        // {
+        //   render: function (data, type, row, meta) {
+        //     var value = Number(row.value);
+        //     var currency = row.currency;
+        //     return `
+        //     <a href="#" sId="${row.sales_id}" class="icon-btn-primary salesReportValue" title="Check Details">
+        //       <i class="la la-eye" style="font-size: 24px"></i>
+        //     </a>
+        //     <a href="#" sId="${row.sales_id}" class="icon-btn-primary editSalesReport" title="Edit">
+        //       <i class="la la-pencil" style="font-size: 24px"></i>
+        //     </a>`;
+        //   },
+        // },
       ],
     });
   }
@@ -392,7 +392,7 @@ $(document).ready(function () {
         $("#previewSalesMarket").val(response.market);
         $("#previewSalesContract").val(response.contract);
         var transactionTotal = Number(response.salesTotal);
-        $("#previewSalesReportTotal").val(transactionTotal);
+        $("#previewSalesReportTotal").text(transactionTotal.toLocaleString());
         salesReportTotal = transactionTotal;
         // Items
         var rowStr = "";
@@ -401,21 +401,26 @@ $(document).ready(function () {
           var rowNo = items[x].rowNo;
           salesReportItemIds.push(rowNo);
           salesItemsNo += 1;
+          var qty = Number(items[x].qty);
+          var px = Number(items[x].price);
+          var amt = Number(items[x].amount);
           // Row strings
           rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
                     <td>${items[x].code}</td>
                     <td>${items[x].gradeName}</td>
-                    <td>${items[x].qty}</td>
+                    <td class="tableAmount">${qty.toLocaleString()}</td>
                     <td>${items[x].unit}</td>
-                    <td>${items[x].price}</td>
-                    <td>${items[x].amount}</td>
+                    <td class="tableAmount">${px.toLocaleString()}</td>
+                    <td class="tableAmount">${amt.toLocaleString()}</td>
                   </tr>`;
         }
         $("#previewSalesTBody").append(rowStr);
         setGradeNameInput("salesGradeName", "editSalesReportModal");
+        // Sales Id in for adjusting
+        $("#salesReportEditBtn").attr("salesId", salesId);
+        $("#previewSalesReportModal").modal("show");
       },
     });
-    $("#previewSalesReportModal").modal("show");
   });
 
   // // Adjusting the sales report
@@ -456,9 +461,15 @@ $(document).ready(function () {
   });
 
   // Open Sales Report Editing
-  $(document).on("click", ".editSalesReport", function (e) {
+  $(document).on("click", "#salesReportEditBtn", function (e) {
     e.preventDefault();
-    $("#editSalesReportModal").modal("show");
+    var confirmEdit = confirm(
+      "Are you sure you want to edit this sales report? Click 'OK' to continue..."
+    );
+    if (confirmEdit) {
+      $("#previewSalesReportModal").modal("hide");
+      $("#editSalesReportModal").modal("show");
+    }
   });
 
   //

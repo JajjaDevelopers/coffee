@@ -11,6 +11,15 @@
       <div class="modal-body">
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
           <div class="row">
+            <div class="col-11"></div>
+            <div class="col-1">
+              <button id='salesReportEditBtn' type="button" salesId="" class="form-control form-control-sm btn-warning"
+                style="color:white; background-color:brown; margin-right:1opx">
+                Edit
+              </button>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-12 col-md-7">
               <div class="row">
                 <h5 id="previewSalesReportNo" class="form-label" style="color: red;"><strong></strong></h5>
@@ -116,8 +125,13 @@
                 <table class="table table-sm table-bordered">
                   <tbody id="salesTBody">
                     <tr>
-                      <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
-                      <td><input id="previewSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
+                      <th style="color: white; background-color: green;"><strong>Total:</strong></th>
+                      <th id="previewSalesReportTotal" class="salesReportTotal tableAmount">
+                        <!-- <strong>
+                          <input id="previewSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal tableAmount"
+                            value="0" readonly>
+                        </strong> -->
+                      </th>
                     </tr>
                   </tbody>
                 </table>

@@ -29,6 +29,7 @@
 }
 label.tableAmount{
   display: flow;
+  
 
 }
 
@@ -41,4 +42,8 @@ label.valuationValue{
   border-radius: 3px;
   padding: 6px;
   margin:5px
+}
+
+.tableAmount{
+  text-align: end;
 }

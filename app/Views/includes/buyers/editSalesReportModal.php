@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header" style="background-color: darkgreen; color: white;">
-        <h6 class="modal-title" style="color: white;">NEW SALES REPORT</h6>
+        <h6 class="modal-title" style="color: white;">SALES REPORT ADJUSTMENT</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
