@@ -38,7 +38,7 @@ $(document).ready(function () {
     });
   }
   setSalesBuyerInput("addSalesBuyer", "newSalesReportModal"); //Buyer on new sales report
-  setSalesBuyerInput("editSalesBuyer", "editSalesReportModal"); //Buyer on editing of sales report
+  // setSalesBuyerInput("editSalesBuyer", "editSalesReportModal"); //Buyer on editing of sales report
 
   // Get previous sales reports
   function salesReportsList() {
@@ -363,6 +363,7 @@ $(document).ready(function () {
   });
 
   // Previewing the
+  var salesReportPreviewData = [];
   $(document).on("click", ".salesReportValue", function (e) {
     e.preventDefault();
     salesItemsNo = 0; //Reset number of items to zero
@@ -381,6 +382,8 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        // Set sales report preview data
+        salesReportPreviewData = response;
         // Buyer Details
         $("#previewSalesReportNo").text(response.reportNo);
         $("#previewSalesDate").val(response.salesDate);
@@ -405,7 +408,7 @@ $(document).ready(function () {
           var px = Number(items[x].price);
           var amt = Number(items[x].amount);
           // Row strings
-          rowStr += `<tr rowNo="${rowNo}" id="salesReportRow${rowNo}">
+          rowStr += `<tr rowNo="${rowNo}" id="editSalesReportRow${rowNo}">
                     <td>${items[x].code}</td>
                     <td>${items[x].gradeName}</td>
                     <td class="tableAmount">${qty.toLocaleString()}</td>
@@ -415,7 +418,7 @@ $(document).ready(function () {
                   </tr>`;
         }
         $("#previewSalesTBody").append(rowStr);
-        setGradeNameInput("salesGradeName", "editSalesReportModal");
+        // setGradeNameInput("salesGradeName", "editSalesReportModal");
         // Sales Id in for adjusting
         $("#salesReportEditBtn").attr("salesId", salesId);
         $("#previewSalesReportModal").modal("show");
@@ -424,6 +427,71 @@ $(document).ready(function () {
   });
 
   // // Adjusting the sales report
+
+  // Open Sales Report Editing
+  var editSalesReportItemIds = [];
+  $(document).on("click", "#salesReportEditBtn", function (e) {
+    e.preventDefault();
+    var confirmEdit = confirm(
+      "Are you sure you want to edit this sales report? Click 'OK' to proceed..."
+    );
+    if (confirmEdit) {
+      // Get sales report details
+      const salesId = $("#salesReportEditBtn").attr("salesId");
+      salesItemsNo = 0;
+      var sr = salesReportPreviewData;
+      console.log(sr);
+      // summary info
+      $("#editSalesNo").val(sr.reportNo);
+      $("#editSalesDate").val(sr.salesDate);
+      $("#editSalesBuyer").val(sr.buyerName);
+      $("#editSalesRef").val(sr.ref);
+      $("#editSalesMC").val(sr.mc);
+      $("#editSalesCurrency").val(sr.currencyCode);
+      $("#editSalesFx").val(sr.fxRate);
+      $("#editSalesMarket").val(sr.market);
+      // Items info
+      var rowStr = "";
+      const items = sr.items;
+      for (var x = 0; x < items.length; x++) {
+        var rowNo = items[x].rowNo;
+        editSalesReportItemIds.push(rowNo);
+        salesItemsNo += 1;
+        var qty = Number(items[x].qty);
+        var px = Number(items[x].price);
+        var amt = Number(items[x].amount);
+        var grdId = items[x].gradeId;
+        var grdName = items[x].gradeName;
+        var grdCode = items[x].code;
+        var unit = items[x].unit;
+        // Row strings
+        salesItemsNo += 1; //Increment by 1
+        if (rowNo == 1) {
+          var rowRemoveBtn = "";
+        } else {
+          var rowRemoveBtn = `<button rowNo="${salesItemsNo}" type="button" class="form-control form-control-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
+        }
+        rowStr += `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
+                    <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" value="${grdCode}" class="form-control form-control-xs" readonly></td>
+                    <td>
+                      <select rowNo="${salesItemsNo}" id="salesGrade${salesItemsNo}" class="form-select form-control form-control-sm salesGradeName" style="width: 300px;">
+                      <option value="${grdId}">${grdName}</option>
+                      </select>
+                    </td>
+                    <td><input type="number" rowNo="${salesItemsNo}" id="salesQty${salesItemsNo}" value="${qty}" class="form-control form-control-xs text-end salesReportQtyPx" min="0"></td>
+                    <td><input rowNo="${salesItemsNo}" id="salesUnit${salesItemsNo}" value="${unit}" class="form-control form-control-xs text-center" readonly></td>
+                    <td><input type="number" rowNo="${salesItemsNo}" id="salesPx${salesItemsNo}" value="${px}" class="form-control form-control-xs text-end salesReportQtyPx" value="0" min="0"></td>
+                    <td><input rowNo="${salesItemsNo}" id="salesAmt${salesItemsNo}" value="${amt}" class="form-control form-control-xs text-end" value="0" readonly></td>
+                    <td>${rowRemoveBtn}</td>
+                  </tr>`;
+      }
+      //
+      $("#editSalesTBody").html(rowStr);
+      setGradeNameInput("salesGradeName", "editSalesReportModal");
+      $("#previewSalesReportModal").modal("hide");
+      $("#editSalesReportModal").modal("show");
+    }
+  });
 
   // Saving adjusted saless report
   $(document).on("click", "#saveSalesReportEditBtn", function (e) {
@@ -437,7 +505,10 @@ $(document).ready(function () {
       gradeQtys.push($(`#salesQty${salesReportItemIds[x]}`).val());
       gradePxs.push($(`#salesPx${salesReportItemIds[x]}`).val());
     }
-
+    console.log(gradeIds);
+    console.log(gradeQtys);
+    console.log(gradePxs);
+    return;
     $.ajax({
       type: "post",
       url: "/salesReport/saveAdjusted",
@@ -458,18 +529,6 @@ $(document).ready(function () {
         $("#salesReportsTable").DataTable().ajax.reload();
       },
     });
-  });
-
-  // Open Sales Report Editing
-  $(document).on("click", "#salesReportEditBtn", function (e) {
-    e.preventDefault();
-    var confirmEdit = confirm(
-      "Are you sure you want to edit this sales report? Click 'OK' to continue..."
-    );
-    if (confirmEdit) {
-      $("#previewSalesReportModal").modal("hide");
-      $("#editSalesReportModal").modal("show");
-    }
   });
 
   //

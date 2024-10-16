@@ -14,41 +14,40 @@
             <div class="col-sm-12 col-md-7">
               <div class="row">
                 <div class="col-sm-6 col-md-2">
-                  <label for="addSalesNo" class="form-label">Sales No.:</label>
+                  <label for="editSalesNo" class="form-label">Sales No.:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <strong><input id="addSalesNo" class="form-control form-control-sm text-danger"></strong>
+                  <strong><input id="editSalesNo" class="form-control form-control-sm text-danger" readonly></strong>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-2">
-                  <label for="newSalesDate" class="form-label">Date:</label>
+                  <label for="editSalesDate" class="form-label">Date:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input type="date" class="form-control form-control-sm date" id='newSalesDate'>
+                  <input type="date" class="form-control form-control-sm date" id='editSalesDate' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-2">
-                  <label for="addSalesBuyer" class="form-label">Buyer:</label>
+                  <label for="editSalesBuyer" class="form-label">Buyer:</label>
                 </div>
                 <div class="col-sm-6 col-md-8">
-                  <select class="form-select form-control form-control-sm salesBuyer" id='addSalesBuyer' style="width: 100%;">
-                  </select>
+                  <input class="form-select form-control form-control-sm" id='editSalesBuyer' style="width: 100%;" readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-2">
-                  <label for="newSalesRef" class="form-label">REF:</label>
+                  <label for="editSalesRef" class="form-label">REF:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <input class="form-control form-control-sm" id='newSalesRef' placeholder="REF">
+                  <input class="form-control form-control-sm" id='editSalesRef' placeholder="REF">
                 </div>
                 <div class="col-sm-6 col-md-2">
-                  <label for="newSalesMC" class="form-label">Moisture:</label>
+                  <label for="editSalesMC" class="form-label">Moisture:</label>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                  <input class="form-control form-control-sm" id='newSalesMC' placeholder="%">
+                  <input class="form-control form-control-sm" id='editSalesMC' placeholder="%">
                 </div>
               </div>
             </div>
@@ -56,28 +55,28 @@
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-6"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="addSalesCurrency" class="form-label">Currency:</label>
+                  <label for="editSalesCurrency" class="form-label">Currency:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input class="form-control form-control-sm" id='addSalesCurrency' readonly>
+                  <input class="form-control form-control-sm" id='editSalesCurrency' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-6"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="addSalesFx" class="form-label">Exch. Rate:</label>
+                  <label for="editSalesFx" class="form-label">Exch. Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input type="number" class="form-control form-control-sm" id='addSalesFx'>
+                  <input type="number" class="form-control form-control-sm" id='editSalesFx'>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-5"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="addSalesMarket" class="form-label" style="text-align: right;">Market:</label>
+                  <label for="editSalesMarket" class="form-label" style="text-align: right;">Market:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <select class="form-control form-control-sm" id='addSalesMarket'>
+                  <select class="form-control form-control-sm" id='editSalesMarket'>
                     <option value="Local">Local</option>
                     <option value="Export">Export</option>
                   </select>
@@ -86,10 +85,10 @@
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-5"></div>
                 <div class="col-sm-6 col-md-3">
-                  <label for="addSalesContract" class="form-label" style="text-align: right;">Contract:</label>
+                  <label for="editSalesContract" class="form-label" style="text-align: right;">Contract:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <select class="form-control form-control-sm" id='addSalesContract'>
+                  <select class="form-control form-control-sm" id='editSalesContract'>
                     <?php
                     for ($x = 0; $x < count($contractTypes); $x++) {
                       $typeId = $contractTypes[$x]["contract_type_id"];
@@ -111,7 +110,7 @@
             </div>
             <div class="col-sm-5">
               <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm salesRowAddBtn" style='background-color:green;color:white' id='salesRowAddBtn' mode="new">
+                <button class="btn btn-sm salesRowAddBtn" style='background-color:green;color:white' id='editRowAddBtn' mode="edit">
                   <strong>+ Add Row </strong>
                 </button>
               </div>
@@ -129,7 +128,7 @@
                 <th style="width: 20px;">Action</th>
               </tr>
             </thead>
-            <tbody id="salesTBody">
+            <tbody id="editSalesTBody">
             </tbody>
           </table>
           <div id="valuationSummary">
@@ -140,7 +139,7 @@
                   <tbody id="salesTBody">
                     <tr>
                       <td style="color: white; background-color: green; padding-top: 20px"><strong>Total:</strong></td>
-                      <td><input id="salesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
+                      <td><input id="editSalesReportTotal" class="form-control form-control-xs text-end salesReportTotal" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>
@@ -150,7 +149,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveSalesReportEditBtn' type="button" class="btn btn-indigo addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>
