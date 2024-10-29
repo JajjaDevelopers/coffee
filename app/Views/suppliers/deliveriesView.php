@@ -36,18 +36,6 @@
               <strong>+ New Delivery Valuation</strong>
             </button>
           </div>
-          <!-- <div class="col-sm-5 col-md-2">
-            <label for="fromDate" class="form-label">From Date</label>
-            <input type="date" class="form-control form-control-sm" id="fromDate">
-          </div>
-          <div class="col-sm-5 col-md-2">
-            <label for="toDate" class="form-label">To Date</label>
-            <input type="date" class="form-control form-control-sm" id="toDate">
-          </div>
-          <div class="col-sm-2 col-md-1">
-            <br>
-            <button class="btn btn-sm btn-success" id='deliveriesGetBtn'>Get</button>
-          </div> -->
         </div>
 
 

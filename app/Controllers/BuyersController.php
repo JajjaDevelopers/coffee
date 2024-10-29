@@ -22,10 +22,13 @@ class BuyersController extends BaseController
     public $generalModel;
     public $buyersModel;
     public $userData;
+    public $dtNow; //DateTime now
 
     public function __construct()
     {
         $this->fpo = 1; //shall be made dynamic based on login details
+        $timeNow = Time::now();
+        $this->dtNow = $timeNow->toDateTimeString();
         $this->gradesModel = new GradesModel;
         $this->suppliersModel = new SuppliersModal;
         $this->generalModel = new GeneralModal;
@@ -224,20 +227,27 @@ class BuyersController extends BaseController
     public function saveAdjustedSalesReport()
     {
         $salesId = $this->request->getPost("salesId");
-        $buyer = $this->request->getPost("buyer");
+        $salesReportNo = $this->request->getPost("salesNo");
         $ref = $this->request->getPost("ref");
         $moisture = $this->request->getPost("moisture");
-        $currency = $this->request->getPost("currency");
         $fxRate = $this->request->getPost("fxRate");
+        $market = $this->request->getPost("market");
+        $contractNature = $this->request->getPost("contractNature");
         $items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
+        // Current Sales report summary;
+        $currentSummaryDetails = $this->buyersModel->getSalesReportSummary($salesId);
+        $buyer = $currentSummaryDetails["client_id"];
+        $currency = $this->suppliersModel->clientsList($this->fpo, "B", "", $buyer)[0]["currency_id"];
 
         $updateData["summaryData"] = [
-            "sales_report_no" => "SR0001",
-            "client_id" => $buyer,
+            "sales_report_no" => $salesReportNo,
             "prepared_by" => 1, //To be changed to match the current user
-            "reference" => $ref
+            "reference" => $ref,
+            "market" => $market,
+            "contract_nature" => $contractNature,
+            "time_prepared" => $this->dtNow,
         ];
         // Inventory update
         $inventoryItems = [];
@@ -245,6 +255,7 @@ class BuyersController extends BaseController
             $item = [
                 "transaction_type_id" => 2,
                 "transaction_id" => $salesId,
+                "trans_date" => $currentSummaryDetails["date"],
                 "client_id" => $buyer,
                 "item_no" => $x + 1,
                 "grade_id" => $items[$x],

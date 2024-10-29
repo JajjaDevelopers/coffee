@@ -9,15 +9,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
+        <form action="#" method="post" id='editSalesReportForm' enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-12 col-md-7">
               <div class="row">
                 <div class="col-sm-6 col-md-2">
+                  <input id="salesReportEditId" value="" style="display: none;" readonly>
                   <label for="editSalesNo" class="form-label">Sales No.:</label>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                  <strong><input id="editSalesNo" class="form-control form-control-sm text-danger" readonly></strong>
+                  <strong><input id="editSalesNo" class="form-control form-control-sm text-danger"></strong>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">

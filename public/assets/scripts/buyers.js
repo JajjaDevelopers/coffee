@@ -98,6 +98,16 @@ $(document).ready(function () {
   }
   salesReportsList();
 
+  // Check Currency for exchange rate setting
+  function activateFxRate(clientCurrency, fxInputId) {
+    if (clientCurrency == "1") {
+      //No exchange rate is required if the buyer currency is the same as base currency
+      $(`#${fxInputId}`).attr("readonly", "readonly");
+    } else {
+      $(`#${fxInputId}`).removeAttr("readonly");
+    }
+  }
+
   // Get buyer info on changing the buyer
   $(document).on("change", "#addSalesBuyer", function (e) {
     e.preventDefault();
@@ -113,14 +123,8 @@ $(document).ready(function () {
       success: function (response) {
         var buyerInfo = response.buyersList[0];
         var buyerCurrency = buyerInfo.currency_id;
-        if (buyerCurrency == "1") {
-          //No exchange rate is required for the buyer currency same as base currency
-          $("#addSalesFx").attr("readonly", "readonly");
-        } else {
-          $("#addSalesFx").removeAttr("readonly");
-          // $("#addSalesFx").attr("readonly", "");
-        }
-        $("#addSalesFx").val(1);
+        activateFxRate(buyerCurrency, "addSalesFx");
+        $(`#addSalesFx`).val(1);
         $("#addSalesCurrency").val(buyerInfo.curency_code);
       },
     });
@@ -163,7 +167,13 @@ $(document).ready(function () {
         dataSrc: "buyersList",
       },
       columns: [
-        { data: "name" },
+        {
+          render: function (data, type, row, meta) {
+            return `<label class="buyerName" style="color: blue">
+          ${row.name}
+          </label>`;
+          },
+        },
         { data: "contact_person" },
         { data: "telephone_1" },
         { data: "email_1" },
@@ -215,6 +225,7 @@ $(document).ready(function () {
   // Add new Sales Report
   $(document).on("click", ".addSalesReportBtn", function (e) {
     e.preventDefault();
+    salesReportItemIds = []; //Empty item Ids array
     salesItemsNo = 0; //Reset number of rows to zero
     salesReportTotal = 0;
     salesReportItemIds = [];
@@ -249,7 +260,7 @@ $(document).ready(function () {
   // Add new sales report rows
   var salesItemsNo = 0;
   var salesReportTotal = 0;
-  var salesReportItemIds = []; //Store item row numbers for new sales report
+  var salesReportItemIds = []; //Store item row numbers for sales report
   // New rows
   function addSalesRows(tableTBody, parentContainer) {
     salesItemsNo += 1; //Increment by 1
@@ -429,13 +440,13 @@ $(document).ready(function () {
   // // Adjusting the sales report
 
   // Open Sales Report Editing
-  var editSalesReportItemIds = [];
   $(document).on("click", "#salesReportEditBtn", function (e) {
     e.preventDefault();
     var confirmEdit = confirm(
       "Are you sure you want to edit this sales report? Click 'OK' to proceed..."
     );
     if (confirmEdit) {
+      salesReportItemIds = []; //Empty item Ids array
       // Get sales report details
       const salesId = $("#salesReportEditBtn").attr("salesId");
       salesItemsNo = 0;
@@ -450,16 +461,20 @@ $(document).ready(function () {
       $("#editSalesCurrency").val(sr.currencyCode);
       $("#editSalesFx").val(sr.fxRate);
       $("#editSalesMarket").val(sr.market);
+      // determine need for fx rate
+      var clientCurrency = sr.currencyId;
+      activateFxRate(clientCurrency, "editSalesFx");
       // Items info
       var rowStr = "";
       const items = sr.items;
+      var editTotal = 0;
       for (var x = 0; x < items.length; x++) {
         var rowNo = items[x].rowNo;
-        editSalesReportItemIds.push(rowNo);
-        salesItemsNo += 1;
+        salesReportItemIds.push(rowNo);
         var qty = Number(items[x].qty);
         var px = Number(items[x].price);
         var amt = Number(items[x].amount);
+        editTotal += amt;
         var grdId = items[x].gradeId;
         var grdName = items[x].gradeName;
         var grdCode = items[x].code;
@@ -490,6 +505,7 @@ $(document).ready(function () {
       setGradeNameInput("salesGradeName", "editSalesReportModal");
       $("#previewSalesReportModal").modal("hide");
       $("#editSalesReportModal").modal("show");
+      $("#editSalesReportTotal").val(editTotal);
     }
   });
 
@@ -505,16 +521,16 @@ $(document).ready(function () {
       gradeQtys.push($(`#salesQty${salesReportItemIds[x]}`).val());
       gradePxs.push($(`#salesPx${salesReportItemIds[x]}`).val());
     }
-    console.log(gradeIds);
-    console.log(gradeQtys);
-    console.log(gradePxs);
-    return;
+    //
     $.ajax({
       type: "post",
       url: "/salesReport/saveAdjusted",
       data: {
         salesId: $("#salesReportEditId").val(),
+        salesNo: $("#editSalesNo").val(),
         buyer: $("#editSalesBuyer").val(),
+        market: $("#editSalesMarket").val(),
+        contractNature: $("#editSalesContract").val(),
         ref: $("#editSalesRef").val(),
         moisture: $("#editSalesMC").val(),
         currency: $("#editSalesCurrency").val(),
@@ -531,5 +547,10 @@ $(document).ready(function () {
     });
   });
 
+  // Adjusting buyer details
+  $(document).on("click", ".buyerName", function (e) {
+    e.preventDefault();
+    $("#editBuyerModal").modal("show");
+  });
   //
 });

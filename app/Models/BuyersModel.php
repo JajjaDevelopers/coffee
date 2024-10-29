@@ -32,6 +32,16 @@ class BuyersModel extends Model
         return $query->getResultArray();
     }
 
+    // Get sales report summary
+    public function getSalesReportSummary($salesId)
+    {
+        $builder = $this->db->table("sales");
+        $builder->where("sales_id", $salesId);
+        $builder->select("sales_report_no, date, client_id, market, contract_nature, 
+                            prepared_by, time_prepared, approved_by, time_approved, reference");
+        return $builder->get()->getResultArray()[0];
+    }
+
 
     // Get recent sales reports
     public function salesReportsList($fpo, $fromDate, $toDate, $buyer = "all")
@@ -53,7 +63,7 @@ class BuyersModel extends Model
         }
         $query = $this->db->query("SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
             contract_type_name AS contract, sum(qty_out) AS qty,
-            sum(qty_out*price*exch_rate) AS value, curency_code AS currency
+            sum(qty_out*price) AS value, curency_code AS currency
             FROM inventory
             JOIN clients USING (client_id)
             JOIN grades USING (grade_id)
@@ -133,20 +143,22 @@ class BuyersModel extends Model
         return $query->getResultArray();
     }
 
+    // Save adjusted sales report
     public function saveAdjustedSalesReport($salesId, $dataSet)
     {
         $summaryBuilder = $this->db->table("sales");
         $summaryBuilder->where("sales_id", $salesId);
         $salesSummary = $summaryBuilder->update($dataSet["summaryData"]);
         if ($salesSummary) {
-            $inventoryBuilder = $this->db->table("inventory");
+            $deleteBuilder = $this->db->table("inventory");
             // Remove current sales Id items from the inventory
-            $inventoryBuilder->where("transaction_type_id", 2);
-            $inventoryBuilder->where("transaction_id", $salesId);
-            $deleteExisting = $inventoryBuilder->delete();
+            $deleteBuilder->where("transaction_type_id", 2);
+            $deleteBuilder->where("transaction_id", $salesId);
+            $deleteExisting = $deleteBuilder->delete();
             // Update stock items
             if ($deleteExisting) {
-                return $inventoryBuilder->insert($dataSet["inventoryData"]);
+                $updateBuilder = $this->db->table("inventory");
+                return $updateBuilder->insertBatch($dataSet["inventoryData"]);
             }
         }
     }
