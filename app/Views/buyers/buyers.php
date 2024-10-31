@@ -4,7 +4,7 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/buyers/addBuyerModal.php'); ?>
-<?= $this->include('/includes/buyers/editBuyerModal.php'); ?>
+<?= $this->include('/includes/buyers/previewBuyerModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0">

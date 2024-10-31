@@ -45,5 +45,5 @@
 <?= $this->endSection() ?>
 <!---scripts-->
 <?= $this->section('scripts') ?>
-<script src="<?= base_url('assets/scripts/buyers.js') ?>"></script>
+<script src="<?= base_url('assets/scripts/sales.js') ?>"></script>
 <?= $this->endSection() ?>

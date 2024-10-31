@@ -16,14 +16,14 @@ class SuppliersModal extends Model
     }
 
     // Coffee Types
-    public function clientsList($fpo, $clientType, $searchStr = "", $clientId = "all")
+    public function clientsList($fpo, $clientType, $searchStr = "", $clientId = "")
     {
         if ($searchStr == "") {
             $searchFilter = "";
         } else {
             $searchFilter = "AND (name like '%{$searchStr}%')";
         }
-        if ($clientId == "all") {
+        if ($clientId == "") {
             $clientFilter = "";
         } else {
             $clientFilter = "AND client_id = '{$clientId}'";

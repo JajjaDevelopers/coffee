@@ -44,9 +44,9 @@ class BuyersModel extends Model
 
 
     // Get recent sales reports
-    public function salesReportsList($fpo, $fromDate, $toDate, $buyer = "all")
+    public function salesReportsList($fpo, $fromDate, $toDate, $buyer = "")
     {
-        if ($buyer == "all") {
+        if ($buyer == "") {
             $buyerFilter = "";
         } else {
             $buyerFilter = "AND client_id = '{$buyer}'";
