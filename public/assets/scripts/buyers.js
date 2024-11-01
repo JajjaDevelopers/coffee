@@ -112,11 +112,19 @@ $(document).ready(function () {
         $("#previewBuyerTel2").val(b.telephone_2);
         $("#previewBuyerEmail").val(b.email_1);
         $("#previewBuyerCountry").val(b.country_name);
+        $("#previewBuyerCity").val(b.city);
         $("#previewBuyerStreet").val(b.street);
         $("#previewBuyerCurrency").val(b.curency_code);
         $("#previewBuyerModal").modal("show");
       },
     });
   });
+
+  // Editing Buyer information
+  $(document).on("click", "#buyerEditBtn", function (e) {
+    e.preventDefault();
+    $("#previewBuyerModal").modal("show");
+  });
+
   //
 });
