@@ -1,21 +1,23 @@
 $(document).ready(function () {
   //select country
-  $("#addBuyerCountry").select2({
-    dropdownParent: $("#addBuyerModal"),
-    ajax: {
-      delay: 250,
-      url: "/admin/countriesList",
-      data: function (params) {
-        var query = {
-          search: params.term,
-        };
-        return query;
+  function searchCountry(inputId, parentId) {
+    $(`#${inputId}`).select2({
+      dropdownParent: $(`#${parentId}`),
+      ajax: {
+        delay: 250,
+        url: "/admin/countriesList",
+        data: function (params) {
+          var query = {
+            search: params.term,
+          };
+          return query;
+        },
+        dataType: "json",
+        placeholder: "Search for supplier",
+        minimumInputLength: 3,
       },
-      dataType: "json",
-      placeholder: "Search for supplier",
-      minimumInputLength: 3,
-    },
-  });
+    });
+  }
 
   //Get buyers list
   function buyersList() {
@@ -55,6 +57,7 @@ $(document).ready(function () {
   // Add new buyer
   $(document).on("click", ".addBuyerBtn", function (e) {
     e.preventDefault();
+    searchCountry("addBuyerCountry", "addBuyerModal");
     $("#addBuyerModal").modal("show");
   });
 
@@ -91,6 +94,7 @@ $(document).ready(function () {
   });
 
   // Previewing buyer details
+  var prevBuyerInfo = [];
   $(document).on("click", ".buyerName", function (e) {
     e.preventDefault();
     var buyerId = $(this).attr("buyer");
@@ -104,6 +108,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         const b = response.buyersList[0];
+        prevBuyerInfo = b;
         $("#previewBuyerName").val(b.name);
         $("#previewBuyerCategory").val(b.category_name);
         $("#previewBuyerContactPerson").val(b.contact_person);
@@ -123,7 +128,52 @@ $(document).ready(function () {
   // Editing Buyer information
   $(document).on("click", "#buyerEditBtn", function (e) {
     e.preventDefault();
-    $("#previewBuyerModal").modal("show");
+    const b = prevBuyerInfo;
+    $("#editBuyerName").val(b.name);
+    $("#editBuyerName").attr("editId", b.client_id);
+    $("#editBuyerContactPerson").val(b.contact_person);
+    $("#editBuyerRole").val(b.role);
+    $("#editBuyerTel1").val(b.telephone_1);
+    $("#editBuyerTel2").val(b.telephone_2);
+    $("#editBuyerEmail").val(b.email_1);
+    $("#editBuyerCity").val(b.city);
+    $("#editBuyerStreet").val(b.street);
+    $("#editBuyerCurrency").val(b.curency_code);
+    $("#editBuyerCountry").html(
+      `<option value="${b.country_id}">${b.country_name}</option>`
+    );
+    searchCountry("editBuyerCountry", "editBuyerModal");
+    $("#previewBuyerModal").modal("hide");
+    $("#editBuyerModal").modal("show");
+  });
+
+  // Save edited buyer information
+  $(document).on("click", "#editBuyerSaveBtn", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/buyer/edit",
+      data: {
+        buyer: $("#editBuyerName").attr("editId"),
+        info: {
+          name: $("#editBuyerName").val(),
+          contact_person: $("#editBuyerContactPerson").val(),
+          telephone_1: $("#editBuyerTel1").val(),
+          telephone_2: $("#editBuyerTel2").val(),
+          email_1: $("#editBuyerEmail").val(),
+          category_id: $("#editBuyerCategory").val(),
+          role: $("#editBuyerRole").val(),
+          country_id: $("#editBuyerCountry").val(),
+          city: $("#editBuyerCity").val(),
+          street: $("#editBuyerStreet").val(),
+        },
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#editBuyerModal").modal("hide");
+        $("#buyersTable").DataTable().ajax.reload();
+      },
+    });
   });
 
   //

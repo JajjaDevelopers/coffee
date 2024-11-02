@@ -152,22 +152,26 @@
           </h4>
           <div class="row">
             <div class="col-6 col-lg-6">
-              <label class="az-content-label">Total Quantity</label>
+              <label class="az-content-label green-bg" style="color: white;">Total Quantity</label>
               <h2 id='salesTotalQty' style="color: green;">0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
               </div>
-              <span id="compositeline2">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
+              <span id="compositeline2">
+                5,9,5,6,4,12,18,14,10,15,12,5
+              </span>
             </div><!-- col -->
             <div class="col-6 col-lg-6">
-              <label class="az-content-label">Total Revenue</label>
+              <label class="az-content-label green-bg" style="color: white;">Total Revenue</label>
               <h2 id='salesValue' style="color: green;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
               </div>
-              <span id="compositeline">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
+              <span id="compositeline">
+                3,2,4,6,12,14,8,7,14,16,12,7,8,4
+              </span>
             </div><!-- col -->
           </div>
         </div>
@@ -175,22 +179,26 @@
           <h4 style="color:brown"><strong>Bulked</strong></h4>
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
-              <label class="az-content-label">Total Quantity</label>
+              <label class="az-content-label brown-bg" style="color: white;">Total Quantity</label>
               <h2 id='totalBulkedQty' style="color:brown">0</h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>0.51%</strong> (30 days)</span>
               </div>
-              <span id="compositeline4">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
+              <span id="compositeline4">
+                5,9,5,6,4,12,18,14,10,15,12,5,8,5
+              </span>
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
-              <label class="az-content-label">Purchases Valuation</label>
+              <label class="az-content-label brown-bg" style="color: white;">Purchases Valuation</label>
               <h2 id='bulkedValue' style="color:brown"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
               </div>
-              <span id="compositeline3">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
+              <span id="compositeline3">
+                5,10,5,20,22,12,15,18,20,15,8,12,22,5
+              </span>
             </div><!-- col -->
           </div>
         </div>
@@ -298,22 +306,20 @@
           <h4 style="color: green;">Robusta</h4>
           <div class="row">
             <div class="col-6 col-lg-6">
-              <label class="az-content-label">Total Quantity</label>
+              <label class="az-content-label green-bg" style="color: white;">Total Quantity</label>
               <h2 id="salesRobTotalQty" style="color: green;">0<span>Kgs</span></h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
               </div>
-              <span id="compositeline5">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
             </div><!-- col -->
             <div class="col-6 col-lg-6">
-              <label class="az-content-label">Revenue</label>
+              <label class="az-content-label green-bg" style="color: white;">Revenue</label>
               <h2 id="salesRobValue" style="color: green;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
               </div>
-              <span id="compositeline6">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
             </div><!-- col -->
           </div>
         </div>
@@ -321,22 +327,20 @@
           <h4 style="color: brown;">Arabica</h4>
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
-              <label class="az-content-label">Total Quantity</label>
+              <label class="az-content-label brown-bg" style="color: white;">Total Quantity</label>
               <h2 id="totalAraQty" style="color: brown;">0<span>Kgs</span></h2>
               <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <!-- <span><strong>0.51%</strong> (30 days)</span> -->
               </div>
-              <span id="compositeline7">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
-              <label class="az-content-label">Revenue</label>
+              <label class="az-content-label brown-bg" style="color: white;">Revenue</label>
               <h2 id="araValue" style="color: brown;"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
               </div>
-              <span id="compositeline8">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
             </div><!-- col -->
           </div>
         </div>

@@ -148,7 +148,7 @@
 
   <div class="az-content az-content-dashboard-two">
     <div class="az-header">
-      <div class="container-fluid" style="background-color:darkolivegreen">
+      <div class="container-fluid" style="background-color:green">
         <div class="az-header-left">
           <a href="" id="azSidebarToggle" class="az-header-menu-icon" title="Access Menu"><span></span></a>
         </div><!-- az-header-left -->

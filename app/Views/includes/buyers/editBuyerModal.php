@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-sm-12">
               <label for="editBuyerName" class="form-label">Name</label>
-              <input class="form-control form-control-sm" id='editBuyerName'>
+              <input id='editBuyerName' class="form-control form-control-sm" editId="">
             </div>
           </div><br>
           <div class="row">
@@ -75,18 +75,14 @@
           <div class="row">
             <div class="col-sm-6 col-md-2">
               <label for="editBuyerCurrency" class="form-label">Currency</label>
-              <select class="form-control form-control-sm" id='editBuyerCurrency'>
-                <option value="1">UGX</option>
-                <option value="2">USD</option>
-                <option value="3">EUR</option>
-              </select>
+              <input class="form-control form-control-sm" id='editBuyerCurrency' readonly>
             </div>
           </div>
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-indigo saveBuyerBtn">Save</button>
-        <button id='saveBuyerBtn' type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
+        <button id="editBuyerSaveBtn" type="button" class="btn btn-sm btn-success">Save</button>
+        <button id='saveBuyerBtn' type="button" data-dismiss="modal" class="btn btn-sm btn-danger">Close</button>
       </div>
     </div>
   </div><!-- modal-dialog -->

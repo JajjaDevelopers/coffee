@@ -103,7 +103,7 @@ class BuyersController extends BaseController
         $data["salesReports"] = $deliveries;
         return $this->response->setJSON($data);
     }
-    // Add categories
+    // Add buyer
     public function addBuyer()
     {
         $buyerData = $this->request->getPost("buyerInfo");
@@ -117,6 +117,20 @@ class BuyersController extends BaseController
             $sms["sms"] = "fail";
         }
         return $this->response->setJSON($sms);
+    }
+
+    // Edit buyer
+    public function editBuyer()
+    {
+        $newInfo = $this->request->getPost("info");
+        $buyer = $this->request->getPost("buyer");
+        $editBuyer = $this->buyersModel->editBuyer($buyer, $newInfo);
+        if ($editBuyer) {
+            $data["sms"] = "Success";
+        } else {
+            $data["sms"] = "fail";
+        }
+        return $this->response->setJSON($data);
     }
 
     // Previous Sales 

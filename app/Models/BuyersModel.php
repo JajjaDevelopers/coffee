@@ -178,11 +178,19 @@ class BuyersModel extends Model
         return $builder->insertBatch($data);
     }
 
-    // Add grade
+    // Add buyer
     public function addBuyer($data)
     {
         $builder = $this->db->table("clients");
         return $builder->insert($data);
+    }
+
+    // Edit buyer
+    public function editBuyer($buyer, $newInfo)
+    {
+        $builder = $this->db->table("clients");
+        $builder->where("client_id", $buyer);
+        return $builder->update($newInfo);
     }
 
     // Contract Types

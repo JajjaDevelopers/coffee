@@ -28,7 +28,7 @@ class SuppliersModal extends Model
         } else {
             $clientFilter = "AND client_id = '{$clientId}'";
         }
-        $query = $this->db->query("SELECT client_id, name, contact_person, district, city, telephone_1, telephone_2, email_1, category_name, 
+        $query = $this->db->query("SELECT client_id, name, contact_person, country_id, district, city, telephone_1, telephone_2, email_1, category_name, 
             role, subcounty, street, country_name, currency_id, curency_code
             FROM clients
             LEFT JOIN client_categories USING (category_id)

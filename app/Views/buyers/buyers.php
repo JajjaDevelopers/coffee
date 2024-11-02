@@ -11,7 +11,7 @@
   <div class="card bd-0">
     <div class="card-header bg-gray-400 bd-b-0-f pd-b-0" style="background-color: green;">
       <nav class="nav nav-tabs">
-        <a class="nav-link" data-toggle="tab" href="#buyersTab" style="background-color:firebrick">Buyers</a>
+        <a class="nav-link" data-toggle="tab" href="#buyersTab" style="background-color:firebrick; color: white">Buyers</a>
       </nav>
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">

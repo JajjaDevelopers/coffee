@@ -47,3 +47,16 @@ label.valuationValue{
 .tableAmount{
   text-align: end;
 }
+
+.brown-bg{
+  color: white;
+  background: brown;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+.green-bg{
+  color: white;
+  background: green;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
