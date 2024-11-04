@@ -63,7 +63,7 @@
             </div>
             <div class="col-sm-5">
               <div style='display:flex;justify-content:flex-end'>
-                <button class="btn btn-sm addDeliveryBtn" style='background-color:green;color:white' id='valRowAddBtn'>
+                <button class="btn btn-sm valRowAddBtn" style='background-color:green;color:white' mode='new'>
                   <strong>+ Add Row </strong>
                 </button>
               </div>
@@ -82,17 +82,7 @@
               </tr>
             </thead>
             <tbody id="valTBody">
-              <tr rowNo="1" id="valrow1">
-                <td><input rowNo="1" id="valCode1" class="form-control form-control-xs" readonly></td>
-                <td>
-                  <select rowNo="1" id="valGrade1" class="form-select form-control form-control-sm valGradeName" style="width: 300px;">
-                  </select>
-                </td>
-                <td><input type="number" rowNo="1" id="valQty1" class="form-control form-control-xs text-end valuationQtyPx" value="1" min="0"></td>
-                <td><input rowNo="1" id="valUnit1" class="form-control form-control-xs text-center" readonly></td>
-                <td><input type="number" rowNo="1" id="valPx1" class="form-control form-control-xs text-end valuationQtyPx" value="0" min="0"></td>
-                <td><input rowNo="1" id="valAmt1" class="form-control form-control-xs text-end" value="0" readonly></td>
-              </tr>
+
             </tbody>
           </table>
           <div id="valuationSummary">

@@ -1,0 +1,740 @@
+INFO - 2024-11-03 13:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:20:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:20:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:22:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:22:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:22:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:23:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:24:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:24:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:24:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:24:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-03 13:24:38 --> mysqli_sql_exception: Column 'client_id' in where clause is ambiguous in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, NULL, NULL, 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\wamp64\www\coffee\system\rewrite.php(44): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+CRITICAL - 2024-11-03 13:24:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+[Method: POST, Route: sales/salesReports]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:24:38 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:24:38 --> [Caused by] mysqli_sql_exception: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 5 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+INFO - 2024-11-03 13:24:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:24:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-03 13:24:48 --> mysqli_sql_exception: Column 'client_id' in where clause is ambiguous in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, NULL, NULL, 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\wamp64\www\coffee\system\rewrite.php(44): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+CRITICAL - 2024-11-03 13:24:48 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+[Method: POST, Route: sales/salesReports]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:24:48 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:24:48 --> [Caused by] mysqli_sql_exception: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 5 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+INFO - 2024-11-03 13:25:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:25:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:26:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:27:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-03 13:27:33 --> mysqli_sql_exception: Column 'client_id' in where clause is ambiguous in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, NULL, NULL, 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\wamp64\www\coffee\system\rewrite.php(44): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+CRITICAL - 2024-11-03 13:27:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+[Method: POST, Route: sales/salesReports]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:27:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:27:33 --> [Caused by] mysqli_sql_exception: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 5 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+INFO - 2024-11-03 13:29:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-03 13:29:21 --> mysqli_sql_exception: Column 'client_id' in where clause is ambiguous in C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 C:\wamp64\www\coffee\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_da...', 0)
+#1 C:\wamp64\www\coffee\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_da...')
+#2 C:\wamp64\www\coffee\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_da...')
+#3 C:\wamp64\www\coffee\app\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_da...')
+#4 C:\wamp64\www\coffee\app\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, NULL, NULL, 'all')
+#5 C:\wamp64\www\coffee\system\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+#6 C:\wamp64\www\coffee\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+#7 C:\wamp64\www\coffee\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\coffee\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#9 C:\wamp64\www\coffee\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\wamp64\www\coffee\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 C:\wamp64\www\coffee\system\rewrite.php(44): require_once('C:\\wamp64\\www\\c...')
+#12 {main}
+CRITICAL - 2024-11-03 13:29:21 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+[Method: POST, Route: sales/salesReports]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 4 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:29:21 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+CRITICAL - 2024-11-03 13:29:21 --> [Caused by] mysqli_sql_exception: Column 'client_id' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 4 APPPATH\Models\BuyersModel.php(64): CodeIgniter\Database\BaseConnection->query('SELECT trans_date, sales_id, sales_report_no, name, store_name, grade_name, market, 
+            contract_type_name AS contract, sum(qty_out) AS qty,
+            sum(qty_out*price) AS value, curency_code AS currency
+            FROM inventory
+            JOIN clients USING (client_id)
+            JOIN grades USING (grade_id)
+            LEFT JOIN stores USING (store_id)
+            LEFT JOIN currencies ON inventory.currency_id = currencies.currency_id
+            LEFT JOIN sales ON inventory.transaction_id = sales.sales_id
+            LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
+            WHERE transaction_type_id = \'2\' AND sales.fpo = \'1\'
+            AND client_id = \'all\' 
+            GROUP BY transaction_id')
+ 5 APPPATH\Controllers\BuyersController.php(102): App\Models\BuyersModel->salesReportsList(1, null, null, 'all')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\BuyersController->salesReports()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\BuyersController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\wamp64\\www\\coffee\\public\\index.php')
+INFO - 2024-11-03 13:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:33:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:34:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:35:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:36:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:36:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:37:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:37:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:41:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:42:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:42:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:42:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:44:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:44:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:45:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:46:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:55:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 13:55:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:20:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:24:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:24:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:36:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:39:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:39:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:39:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:40:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:40:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:40:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:41:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:41:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:41:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 15:43:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:16:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:23:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:23:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:26:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:26:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:26:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:30:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:30:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:30:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:31:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:32:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:32:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:32:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:32:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:47:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:47:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 16:49:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:49:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:49:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:49:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:53:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:53:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:53:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:54:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:54:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:55:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:55:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-03 18:55:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -176,7 +176,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <h4 style="color:brown"><strong>Bulked</strong></h4>
+          <h4 style="color:brown"><strong>Bulking</strong></h4>
           <div class="row">
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label brown-bg" style="color: white;">Total Quantity</label>
@@ -190,7 +190,7 @@
               </span>
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
-              <label class="az-content-label brown-bg" style="color: white;">Purchases Valuation</label>
+              <label class="az-content-label brown-bg" style="color: white;">Valuations</label>
               <h2 id='bulkedValue' style="color:brown"><span>UGX</span>0</h2>
               <div class="desc up">
                 <i class="icon ion-md-stats"></i>

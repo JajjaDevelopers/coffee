@@ -60,7 +60,7 @@ class SuppliersController extends BaseController
         $page_title = "Suppliers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('suppliers/deliveriesView', compact('page_title', 'commonData', 'dateToday'));
+        return view('suppliers/valuationsView', compact('page_title', 'commonData', 'dateToday'));
     }
 
 

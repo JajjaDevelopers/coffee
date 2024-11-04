@@ -150,7 +150,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportEditBtn' type="button" class="btn btn-indigo addBtn">Save</button>
+        <button id='saveSalesReportEditBtn' type="button" class="btn btn-sm btn-primary addBtn">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>

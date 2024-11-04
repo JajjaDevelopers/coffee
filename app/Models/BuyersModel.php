@@ -49,7 +49,7 @@ class BuyersModel extends Model
         if ($buyer == "") {
             $buyerFilter = "";
         } else {
-            $buyerFilter = "AND client_id = '{$buyer}'";
+            $buyerFilter = "AND inventory.client_id = '{$buyer}'";
         }
         // Date controls
         if ($fromDate == "" && $toDate == "") {

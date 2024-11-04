@@ -50,7 +50,7 @@ $(document).ready(function () {
         data: {
           fromDate: $("#fromDate").val(),
           toDate: $("#toDate").val(),
-          buyer: "all",
+          buyer: "",
         },
         dataSrc: "salesReports",
       },

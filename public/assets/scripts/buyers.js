@@ -128,23 +128,28 @@ $(document).ready(function () {
   // Editing Buyer information
   $(document).on("click", "#buyerEditBtn", function (e) {
     e.preventDefault();
-    const b = prevBuyerInfo;
-    $("#editBuyerName").val(b.name);
-    $("#editBuyerName").attr("editId", b.client_id);
-    $("#editBuyerContactPerson").val(b.contact_person);
-    $("#editBuyerRole").val(b.role);
-    $("#editBuyerTel1").val(b.telephone_1);
-    $("#editBuyerTel2").val(b.telephone_2);
-    $("#editBuyerEmail").val(b.email_1);
-    $("#editBuyerCity").val(b.city);
-    $("#editBuyerStreet").val(b.street);
-    $("#editBuyerCurrency").val(b.curency_code);
-    $("#editBuyerCountry").html(
-      `<option value="${b.country_id}">${b.country_name}</option>`
+    var confirmEdit = confirm(
+      "Click OK to confirm adjusting buyer information:"
     );
-    searchCountry("editBuyerCountry", "editBuyerModal");
-    $("#previewBuyerModal").modal("hide");
-    $("#editBuyerModal").modal("show");
+    if (confirmEdit) {
+      const b = prevBuyerInfo;
+      $("#editBuyerName").val(b.name);
+      $("#editBuyerName").attr("editId", b.client_id);
+      $("#editBuyerContactPerson").val(b.contact_person);
+      $("#editBuyerRole").val(b.role);
+      $("#editBuyerTel1").val(b.telephone_1);
+      $("#editBuyerTel2").val(b.telephone_2);
+      $("#editBuyerEmail").val(b.email_1);
+      $("#editBuyerCity").val(b.city);
+      $("#editBuyerStreet").val(b.street);
+      $("#editBuyerCurrency").val(b.curency_code);
+      $("#editBuyerCountry").html(
+        `<option value="${b.country_id}">${b.country_name}</option>`
+      );
+      searchCountry("editBuyerCountry", "editBuyerModal");
+      $("#previewBuyerModal").modal("hide");
+      $("#editBuyerModal").modal("show");
+    }
   });
 
   // Save edited buyer information
