@@ -25,7 +25,7 @@
                   <label for="editValuationDate" class="form-label">Date:</label>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                  <input type="date" class="form-control form-control-sm date" id='editValuationDate'>
+                  <input type="date" class="form-control form-control-sm date" id='editValuationDate' readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
@@ -33,8 +33,7 @@
                   <label for="editDeliverySupplier" class="form-label">Supplier:</label>
                 </div>
                 <div class="col-sm-6 col-md-8">
-                  <select class="form-select form-control form-control-sm" id='editDeliverySupplier' style="width: 100%;">
-                  </select>
+                  <input class="form-select form-control form-control-sm" id='editDeliverySupplier' style="width: 100%;" readonly>
                 </div>
               </div>
               <div class="row" style="margin-top: 10px;">
@@ -92,7 +91,7 @@
                   <tbody id="valTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
-                      <td><input id="valTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                      <td><input id="editValTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>

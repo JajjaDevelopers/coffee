@@ -46,6 +46,9 @@ $(document).ready(function () {
   // New delivery
   $(document).on("click", "#addDeliveryBtn", function (e) {
     e.preventDefault();
+    numberOfRows = 0; // Rest number of rows
+    numberOfRows += 1; //Increment by 1
+    valuationItemIds.push(numberOfRows);
     $("#valTBody").html(`
       <tr rowNo="1" id="valrow1">
         <td><input rowNo="1" id="valCode1" class="form-control form-control-xs" readonly></td>
@@ -65,9 +68,9 @@ $(document).ready(function () {
   });
 
   // Add new valuation rows
-  var numberOfRows = 1;
+  var numberOfRows = 0;
   var valuationTotal = 0;
-  var valuationItemIds = [1]; //Store item ids in key-value pairs
+  var valuationItemIds = []; //Store item ids in key-value pairs
   function addValuationRow(tBody, parentModal) {
     numberOfRows += 1; //Increment by 1
     var rowStr = `<tr rowNo="${numberOfRows}" id="valRow${numberOfRows}">
@@ -81,7 +84,7 @@ $(document).ready(function () {
                       <td><input type="number" rowNo="${numberOfRows}" id="valPx${numberOfRows}" class="form-control form-control-xs text-end valuationQtyPx" value="0" min="0"></td>
                       <td><input rowNo="${numberOfRows}" id="valAmt${numberOfRows}" class="form-control form-control-xs text-end" value="0" readonly></td>
                       <td>
-                        <button rowNo="${numberOfRows}" type="button" id="valAmt${numberOfRows}" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
+                        <button rowNo="${numberOfRows}" type="button" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
                       </td>
                     </tr>`;
     // Add another row
@@ -373,7 +376,7 @@ $(document).ready(function () {
   });
 
   // Preview valuation
-  // New delivery
+  var valuationPreviewDetails = [];
   $(document).on("click", ".valuationValue", function (e) {
     const vId = $(this).attr("vId"); //Valuation Id
     // Get valuation details
@@ -385,9 +388,9 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        valuationPreviewDetails = response;
         const items = response.items;
         const summary = response.summary;
-        console.log(items);
         // Update Summary
         $("#valPrevDate").val(summary.date);
         $("#valPrevSupplier").val(summary.supplier);
@@ -423,9 +426,55 @@ $(document).ready(function () {
   // Edit valuation schedule
   $(document).on("click", "#valuationEditBtn", function (e) {
     e.preventDefault();
+
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
-      searchSupplier("editDeliverySupplier", "editValuationModal");
+      numberOfRows = 0;
+      const valDetails = valuationPreviewDetails; // Current valuation details
+      const items = valDetails.items;
+      const summary = valDetails.summary;
+      // Current details
+      $("#editValuationDate").val(summary.date);
+      $("#editDeliverySupplier").val(summary.supplier);
+      $("#editValuationGrn").val(summary.grn);
+      $("#editValuationMc").val(summary.moisture);
+      $("#valPrevGrn").val(items[0].grn);
+      // Current Items
+      // Upadte Valuation items
+      var gradeItemsHtml = "";
+      var valTotal = 0;
+      for (var x = 0; x < items.length; x++) {
+        numberOfRows += 1; //item rows incremented by 1
+        var rowNo = x + 1;
+        var price = Number(items[x].price);
+        var qty = Number(items[x].qty);
+        var amount = price * qty;
+        valTotal += amount;
+        if (rowNo == 1) {
+          var removeBtn = "";
+        } else {
+          var removeBtn = `<td>
+                        <button rowNo="${rowNo}" type="button" class="btn btn-sm btn-danger rowRemoveBtn" title="Remove Row">-</button>
+                      </td>`;
+        }
+        gradeItemsHtml += `<tr rowNo="${rowNo}" id="valRow${rowNo}">
+          <td><input rowNo="${rowNo}" id="valCode${rowNo}" value="${items[x].grade_code}" class="form-control form-control-xs" readonly></td>
+          <td>
+            <select rowNo="${rowNo}" id="valGrade${rowNo}" class="form-select form-control form-control-sm valGradeName" style="width: 300px;">
+              <option value="${items[x].grade_id}">${items[x].grade_name}</option>
+            </select>
+          </td>
+          <td><input type="number" rowNo="${rowNo}" id="valQty${rowNo}" class="form-control form-control-xs text-end valuationQtyPx" value="${qty}" min="0"></td>
+          <td><input rowNo="${rowNo}" id="valUnit${rowNo}" value="${items[x].unit}" class="form-control form-control-xs text-center" readonly></td>
+          <td><input type="number" rowNo="${rowNo}" id="valPx1" class="form-control form-control-xs text-end valuationQtyPx" value="${price}" min="0"></td>
+          <td><input rowNo="${rowNo}" id="valAmt${rowNo}" class="form-control form-control-xs text-end" value="${amount}" readonly></td>
+          ${removeBtn}
+        </tr>`;
+      }
+
+      $("#editValTBody").html(gradeItemsHtml);
+      $("#editValTotal").val(valTotal);
+      valuationItemIds.push(rowNo);
       searchGrade("valGradeName", "editValuationModal");
       $("#valuationPreviewModal").modal("hide");
       $("#editValuationModal").modal("show");
