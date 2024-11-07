@@ -93,7 +93,7 @@
                   <tbody id="valTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
-                      <td><input id="valTotal" class="form-control form-control-xs text-end" value="0" readonly></td>
+                      <td><input id="valTotal" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
                     </tr>
                   </tbody>
                 </table>

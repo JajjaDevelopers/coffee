@@ -23,7 +23,7 @@
 
           <!-- Button aligned to the right -->
           <div>
-            <button id="addDeliveryBtn" class="btn btn-sm" style='background-color:green;color:white'>
+            <button id="addValuationBtn" class="btn btn-sm" style='background-color:green;color:white'>
               <strong>+ New Valuation</strong>
             </button>
           </div>
