@@ -429,11 +429,12 @@ $(document).ready(function () {
   // Edit valuation schedule
   $(document).on("click", "#valuationEditBtn", function (e) {
     e.preventDefault();
-    $("#editValTotal").val(0); //Reset total
+    $(".valuationTotal").val(0); //Reset total
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
       $("#valTBody").html("");
       numberOfRows = 0;
+      valuationTotal = 0;
       const valDetails = valuationPreviewDetails; // Current valuation details
       const items = valDetails.items;
       const summary = valDetails.summary;
@@ -478,7 +479,7 @@ $(document).ready(function () {
       }
       valuationTotal += valTotal;
       $("#editValTBody").html(gradeItemsHtml);
-      $("#editValTotal").val(valuationTotal);
+      $(".valuationTotal").val(valuationTotal);
       searchGrade("valGradeName", "editValuationModal");
       $("#valuationPreviewModal").modal("hide");
       $("#editValuationModal").modal("show");
