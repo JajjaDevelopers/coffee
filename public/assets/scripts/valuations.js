@@ -43,9 +43,12 @@ $(document).ready(function () {
     });
   }
 
-  // New delivery
-  $(document).on("click", "#addDeliveryBtn", function (e) {
+  // New valuation
+  $(document).on("click", "#addValuationBtn", function (e) {
     e.preventDefault();
+    valuationTotal = 0; //Reset total
+    $(".valuationTotal").val(valuationTotal);
+    $("#editValTBody").html("");
     numberOfRows = 0; // Rest number of rows
     numberOfRows += 1; //Increment by 1
     valuationItemIds.push(numberOfRows);
@@ -114,7 +117,7 @@ $(document).ready(function () {
     var total = Number($(`#valAmt${rowNo}`).val()); //Removed item total
     valuationTotal -= total;
     $(`#valRow${rowNo}`).remove();
-    $("#valTotal").val(valuationTotal);
+    $(".valuationTotal").val(valuationTotal);
     // Remove from the item id list
     var temporaryItemIds = [];
     var removedItem = rowNo;
@@ -341,7 +344,7 @@ $(document).ready(function () {
     var total = Number(price * qty);
     valuationTotal += total;
     $(`#valAmt${rowNo}`).val(total);
-    $("#valTotal").val(valuationTotal);
+    $(".valuationTotal").val(valuationTotal);
   });
 
   // Save Valuation
@@ -426,10 +429,12 @@ $(document).ready(function () {
   // Edit valuation schedule
   $(document).on("click", "#valuationEditBtn", function (e) {
     e.preventDefault();
-
+    $(".valuationTotal").val(0); //Reset total
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
+      $("#valTBody").html("");
       numberOfRows = 0;
+      valuationTotal = 0;
       const valDetails = valuationPreviewDetails; // Current valuation details
       const items = valDetails.items;
       const summary = valDetails.summary;
@@ -466,15 +471,15 @@ $(document).ready(function () {
           </td>
           <td><input type="number" rowNo="${rowNo}" id="valQty${rowNo}" class="form-control form-control-xs text-end valuationQtyPx" value="${qty}" min="0"></td>
           <td><input rowNo="${rowNo}" id="valUnit${rowNo}" value="${items[x].unit}" class="form-control form-control-xs text-center" readonly></td>
-          <td><input type="number" rowNo="${rowNo}" id="valPx1" class="form-control form-control-xs text-end valuationQtyPx" value="${price}" min="0"></td>
+          <td><input type="number" rowNo="${rowNo}" id="valPx${rowNo}" class="form-control form-control-xs text-end valuationQtyPx" value="${price}" min="0"></td>
           <td><input rowNo="${rowNo}" id="valAmt${rowNo}" class="form-control form-control-xs text-end" value="${amount}" readonly></td>
           ${removeBtn}
         </tr>`;
+        valuationItemIds.push(rowNo);
       }
-
+      valuationTotal += valTotal;
       $("#editValTBody").html(gradeItemsHtml);
-      $("#editValTotal").val(valTotal);
-      valuationItemIds.push(rowNo);
+      $(".valuationTotal").val(valuationTotal);
       searchGrade("valGradeName", "editValuationModal");
       $("#valuationPreviewModal").modal("hide");
       $("#editValuationModal").modal("show");
