@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Traits\CommonData;
-use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
+use CodeIgniter\Config\Services;
+use App\Controllers\BaseController;
+use App\Controllers\Traits\CommonData;
+use CodeIgniter\HTTP\ResponseInterface;
 
 
 class CoffeeGradesController extends BaseController
@@ -13,10 +14,12 @@ class CoffeeGradesController extends BaseController
     use CommonData;
     protected $fpo;
     public $gradesModel;
+    public $validation;
     public function __construct()
     {
         $this->fpo = 1; //shall be made dynamic based on login details
         $this->gradesModel = new GradesModel;
+        $this->validation = Services::validation();
     }
     public function coffeeGrades()
     {
@@ -101,6 +104,11 @@ class CoffeeGradesController extends BaseController
     // Add grade
     public function addGrade()
     {
+        if (!$this->validate($this->validation->getRuleGroup("coffeeGradeRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["sms" => $validationErrors]);
+        } 
         $grdData = [
             "grade_code" => $this->request->getPost("grdCode"),
             "grade_name" => $this->request->getPost("grdName"),

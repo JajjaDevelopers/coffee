@@ -62,24 +62,24 @@ $(document).ready(function () {
           },
         },
       ],
-      dom: 'Bfrtip',  // Specify the placement of buttons
+      dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
         {
-          extend: 'csvHtml5',
-          text: 'Export CSV',
-          titleAttr: 'Export CSV'
+          extend: "csvHtml5",
+          text: "Export CSV",
+          titleAttr: "Export CSV",
         },
         {
-          extend: 'excelHtml5',
-          text: 'Export Excel',
-          titleAttr: 'Export Excel'
+          extend: "excelHtml5",
+          text: "Export Excel",
+          titleAttr: "Export Excel",
         },
         {
-          extend: 'pdfHtml5',
-          text: 'Export PDF',
-          titleAttr: 'Export PDF'
-        }
-      ]
+          extend: "pdfHtml5",
+          text: "Export PDF",
+          titleAttr: "Export PDF",
+        },
+      ],
     });
   }
   getGradeCategories(); //Get Categories on load
@@ -154,24 +154,24 @@ $(document).ready(function () {
           },
         },
       ],
-      dom: 'Bfrtip',  // Specify the placement of buttons
+      dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
         {
-          extend: 'csvHtml5',
-          text: 'Export CSV',
-          titleAttr: 'Export CSV'
+          extend: "csvHtml5",
+          text: "Export CSV",
+          titleAttr: "Export CSV",
         },
         {
-          extend: 'excelHtml5',
-          text: 'Export Excel',
-          titleAttr: 'Export Excel'
+          extend: "excelHtml5",
+          text: "Export Excel",
+          titleAttr: "Export Excel",
         },
         {
-          extend: 'pdfHtml5',
-          text: 'Export PDF',
-          titleAttr: 'Export PDF'
-        }
-      ]
+          extend: "pdfHtml5",
+          text: "Export PDF",
+          titleAttr: "Export PDF",
+        },
+      ],
     });
   }
   getGrade();
@@ -192,8 +192,17 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var sms = response.sms;
-        $("#gradesListTable").DataTable().ajax.reload();
-        $("#addGradeModal").modal("hide");
+        if (sms === "success") {
+          toastr.success("Grade Added Successfully");
+          $("#gradesListTable").DataTable().ajax.reload();
+          $("#addGradeModal").modal("hide");
+        } else {
+          toastr.error('Something went wrong!')
+        }
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        toastr.error(xhr.responseJSON.sms)
       },
     });
   });

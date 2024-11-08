@@ -62,8 +62,7 @@
   <link rel="stylesheet" href="<?= base_url('dashboard/css/azia.css') ?>">
   <link rel="stylesheet" href="<?= base_url('select2/dist/css/select2.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/generalCss.css') ?>">
-
-
+  <link rel="stylesheet" href="<?= base_url('assets/toastr/toastr.min.css') ?>">
 </head>
 
 <body class="az-body az-body-sidebar">
@@ -91,21 +90,21 @@
           </ul> -->
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit"></i>Sales</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-credit-card"></i>Sales</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/sales" class="nav-sub-link">Sales Reports</a></li>
             <li class="nav-sub-item"><a href="/buyers" class="nav-sub-link">Buyers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit "></i>Supplies</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-archive"></i>Supplies</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="/valuations" class="nav-sub-link">Valuations</a></li>
             <li class="nav-sub-item"><a href="/suppliers" class="nav-sub-link">Suppliers</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">
-          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-edit "></i>Stores</a>
+          <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-home"></i>Stores</a>
           <ul class="nav-sub">
             <li class="nav-sub-item"><a href="#grn" class="nav-sub-link">Goods Received Note</a></li>
             <li class="nav-sub-item"><a href="#dispatch" class="nav-sub-link">Goods Dispatch</a></li>
@@ -228,6 +227,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
   <script src="<?= base_url('dashboard/js/azia.js') ?>"></script>
   <script src="<?= base_url('select2/dist/js/select2.js') ?>"></script>
+  <script src="<?= base_url('assets/toastr/toastr.min.js') ?>"></script>
   <!-- Moment.js for DateTime handling -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <!-- Date Range Picker -->
@@ -237,6 +237,26 @@
   <script>
     $(function() {
       'use strict';
+
+      function toastrOptions() {
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": true,
+          "positionClass": "toast-top-center",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "8000",
+          "timeOut": "9000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        }
+      }
       // Check for saved sidebar state in localStorage
       const isSidebarCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
       if (isSidebarCollapsed) {
