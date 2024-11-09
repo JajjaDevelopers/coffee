@@ -395,6 +395,7 @@ $(document).ready(function () {
         const items = response.items;
         const summary = response.summary;
         // Update Summary
+        $("#valuationEditBtn").attr("vId", vId);
         $("#valPrevDate").val(summary.date);
         $("#valPrevSupplier").val(summary.supplier);
         $("#valPrevGrn").val(summary.grn);
@@ -433,6 +434,8 @@ $(document).ready(function () {
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
       $("#valTBody").html("");
+      const vId = $("#valuationEditBtn").attr("vId");
+      $("#valuationEditId").val(vId);
       numberOfRows = 0;
       valuationTotal = 0;
       const valDetails = valuationPreviewDetails; // Current valuation details
@@ -484,6 +487,35 @@ $(document).ready(function () {
       $("#valuationPreviewModal").modal("hide");
       $("#editValuationModal").modal("show");
     }
+  });
+
+  // Save adjusted valuation
+  $(document).on("click", "#saveEditValuationBtn", function (e) {
+    e.preventDefault();
+    const editItems = valuationItemIds;
+    var itemIds = [];
+    var itemQtys = [];
+    var itemPxs = [];
+    for (var x = 0; x < editItems.length; x++) {
+      itemIds.push($(`#valGrade${editItems[x]}`).val());
+      itemQtys.push($(`#valQty${editItems[x]}`).val());
+      itemPxs.push($(`#valPx${editItems[x]}`).val());
+    }
+
+    $.ajax({
+      type: "post",
+      url: "/valuation/modify",
+      data: {
+        valId: $("#valuationEditId").val(),
+        valGrn: $("#editValuationGrn").val(),
+        valMc: $("#editValuationMc").val(),
+        itemIds: itemIds,
+        itemQtys: itemQtys,
+        itemPxs: itemPxs,
+      },
+      dataType: "json",
+      success: function (response) {},
+    });
   });
 
   //

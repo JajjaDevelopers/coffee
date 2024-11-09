@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-11"></div>
             <div class="col-1">
-              <button id='valuationEditBtn' type="button" salesId="" class="form-control form-control-sm btn-warning"
+              <button id='valuationEditBtn' type="button" vId="" class="form-control form-control-sm btn-warning"
                 style="color:white; background-color:brown; margin-right:10px">
                 Edit
               </button>

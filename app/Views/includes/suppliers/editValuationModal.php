@@ -13,6 +13,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-7">
               <div class="row" style="display: none;">
+                <input id="valuationEditId" vId="" readonly style="display: none;">
                 <div class="col-sm-4 col-md-4">
                   <label for="editValuationNo" class="form-label">VAL No:</label>
                 </div>
@@ -101,7 +102,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveEditValuationBtn' type="button" class="btn btn-primary addBtn">Save</button>
+        <button id='saveEditValuationBtn' type="button" class="btn btn-primary">Save</button>
         <button type="button" data-dismiss="modal" class="btn btn-sm btn-danger">Close</button>
       </div>
     </div>

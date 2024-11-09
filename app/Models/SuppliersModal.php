@@ -105,7 +105,7 @@ class SuppliersModal extends Model
         return $query->getResultArray();
     }
 
-    // Get Sales
+    // Get Purchases
     public function previousPurchases($fpo, $dateFrom, $dateTo, $supplier = "")
     {
         if ($supplier == "") {
@@ -164,6 +164,29 @@ class SuppliersModal extends Model
         $data["summary"] = $summary->get()->getResultArray()[0];
 
         return $data;
+    }
+
+    // Save adjusted valuation
+    public function editValuation($valuation, $data)
+    {
+        // Updating summary
+        $editBuilder = $this->db->table("valuations");
+        $editBuilder->where("valuation_id", $valuation);
+        $editSummary = $editBuilder->update($data["summary"]);
+        // Update inventory changes
+        // Remove existing inventory
+        if ($editSummary) {
+            $removeCurrentItems = $this->db->table("inventory");
+            $removeCurrentItems->where("transaction_type_id", 1); // 1 for purchases or valuations
+            $removeCurrentItems->where("transaction_id", $valuation);
+            $removeInv = $removeCurrentItems->delete(); //Delete current inventory items
+            if ($removeInv) {
+                // Add new items
+                $newItemsBuilder = $this->db->table("inventory");
+                $newItems = $newItemsBuilder->insertBatch($data["inventory"]);
+                return $newItems;
+            }
+        }
     }
 
 

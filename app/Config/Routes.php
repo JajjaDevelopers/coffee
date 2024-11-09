@@ -45,6 +45,7 @@ $routes->post('/suppliers/deliveryValuations', 'SuppliersController::deliveryVal
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
 $routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
 $routes->post('/valuation/preview', 'SuppliersController::valuationDetails');
+$routes->post('/valuation/modify', 'SuppliersController::editValuation');
 
 // Buyers and Sales/
 $routes->get('/buyers', 'BuyersController::buyers');

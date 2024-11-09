@@ -16,11 +16,15 @@ class SuppliersController extends BaseController
     protected $fpo;
     public $gradesModel;
     public $suppliersModel;
+    public $dateTimeNow;
+    public $now;
     public function __construct()
     {
         $this->fpo = 1; //shall be made dynamic based on login details
         $this->gradesModel = new GradesModel;
         $this->suppliersModel = new SuppliersModal;
+        $this->now = Time::now();
+        $this->dateTimeNow = $this->now->toDateTimeString();
     }
     public function index()
     {
@@ -57,7 +61,7 @@ class SuppliersController extends BaseController
     {
         $timeNow = Time::now();
         $dateToday = $timeNow->toLocalizedString('dd-MM-yyyy');
-        $page_title = "Suppliers";
+        $page_title = "Valuations";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
         return view('suppliers/valuationsView', compact('page_title', 'commonData', 'dateToday'));
@@ -119,8 +123,8 @@ class SuppliersController extends BaseController
             "quality_remarks" => $this->request->getPost("quality_remarks"),
             "delivery_person" => $this->request->getPost("delivery_person"),
             "truck_no" => $this->request->getPost("truck_no"),
-            "prepared_by" => $this->commonData()["user"]["id"], //request->getPost("prepared_by"),
-            "time_prepared" => $this->request->getPost("time_prepared"),
+            "prepared_by" => $this->commonData()["user"]["id"],
+            "time_prepared" => $this->dateTimeNow,
             "reference" => $this->request->getPost("reference"),
         ];
         // Update delivery valuation summary
@@ -172,7 +176,7 @@ class SuppliersController extends BaseController
             "client_id" => $supplier,
             "grn" => $grn,
             "fpo" => $this->fpo,
-            "prepared_by" => 1, //To be changed to reflect the current user
+            "prepared_by" => $this->commonData()["user"]["id"], //To be changed to reflect the current user
         ];
         // Save summary and obtain valuation Id
         $valuationId = $this->suppliersModel->newValuationSummary($valuationSummaryData);
@@ -213,6 +217,47 @@ class SuppliersController extends BaseController
         $vId = $this->request->getPost("vId");
         $valuation = $this->suppliersModel->valuationPreview($vId);
         return $this->response->setJSON($valuation);
+    }
+
+    // Valution modification
+    public function editValuation()
+    {
+        $valuationId = $this->request->getPost("valId");
+        $mc = $this->request->getPost("valMc");
+        $itemIds = $this->request->getPost("itemIds");
+        $itemQtys = $this->request->getPost("itemQtys");
+        $itemPxs = $this->request->getPost("itemPxs");
+        $currentSummary = $this->suppliersModel->valuationPreview($valuationId);
+        $date = $currentSummary["summary"]["date"];
+        $supplier = $currentSummary["summary"]["supplier_id"];
+        // Valuation summary. Only changing required fields and the rest should not be changed
+        $summaryData = [
+            "grn" => $this->request->getPost("valGrn"),
+            "prepared_by" => $this->commonData()["user"]["id"],
+            "time_prepared" => $this->dateTimeNow,
+        ];
+        // Inventory details
+        $inventoryDetails = [];
+        for ($x = 0; $x < count($itemIds); $x++) {
+            $item = [
+                "transaction_type_id" => 1, // 1 for purchases or valuations
+                "transaction_id" => $valuationId,
+                "trans_date" => $date,
+                "client_id" => $supplier,
+                "item_no" => $x + 1,
+                "grade_id" => $itemIds[$x],
+                "store_id" => 1,
+                "qty_in" => $itemQtys[$x],
+                "currency_id" => 1, //Assuming all suppliers are set to UGX as their currency
+                "price" => $itemPxs[$x],
+                "exch_rate" => 1, //Assuming all valuations are made in UGX
+                "moisture" => $mc,
+            ];
+            array_push($inventoryDetails, $item);
+        }
+        $data["summary"] = $summaryData;
+        $data["inventory"] = $inventoryDetails;
+        return $this->suppliersModel->editValuation($valuationId, $data);
     }
 
 
