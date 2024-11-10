@@ -16,18 +16,16 @@ $(document).ready(function () {
         dataSrc: "suppliers",
       },
       columns: [
-        { data: "name" },
+        {
+          render: function (data, type, row, meta) {
+            return `<label style="color: blue" class="supplierName" sId="${row.client_id}"> ${row.name}</label>`;
+          },
+        },
         { data: "district" },
         { data: "category_name" },
         { data: "contact_person" },
         { data: "telephone_1" },
-        {
-          render: function (data, type, row, meta) {
-            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-sm btn-info">
-                        <i class="la la-eye"></i>
-                    </button>`;
-          },
-        },
+        { data: "email_1" },
       ],
       dom: "Bfrtip", // Specify the placement of buttons
       buttons: [
@@ -77,6 +75,12 @@ $(document).ready(function () {
         $("#addSupplierModal").modal("hide");
       },
     });
+  });
+
+  // Preview Supplier
+  $(document).on("click", ".supplierName", function (e) {
+    e.preventDefault();
+    $("#previewSupplierModal").modal("show");
   });
 
   //

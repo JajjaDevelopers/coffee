@@ -13,7 +13,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         const catList = response.groupsList;
-        var options = "<option value='0'>Groups</option>";
+        var options = "<option value=''>--Select--</option>";
         for (var x = 0; x < catList.length; x++) {
           options += `<option value="${catList[x].group_id}">${catList[x].group_name}</option>`;
         }
@@ -31,7 +31,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         const catList = response.categories;
-        var options = "<option value='0'>Categories</option>";
+        var options = "<option value=''>--select--</option>";
         for (var x = 0; x < catList.length; x++) {
           options += `<option value="${catList[x].category_id}">${catList[x].category_name}</option>`;
         }
@@ -197,12 +197,12 @@ $(document).ready(function () {
           $("#gradesListTable").DataTable().ajax.reload();
           $("#addGradeModal").modal("hide");
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error("Something went wrong!");
         }
       },
       error: function (xhr) {
         console.log(xhr);
-        toastr.error(xhr.responseJSON.sms)
+        toastr.error(xhr.responseJSON.sms);
       },
     });
   });

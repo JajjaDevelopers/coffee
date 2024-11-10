@@ -65,30 +65,35 @@ class Validation extends BaseConfig
     {
         $this->coffeeGradeRules = [
             'grdName' => [
-                'rules'=>'required',
-                'errors'=>[
+                'rules' => 'required',
+                'errors' => [
                     'required' => 'Grade Name is required.',
                 ],
             ],
             'grdCatId' => [
-                'rules'=>'required',
-                'errors'=>[
+                'rules' => 'required',
+                'errors' => [
                     'required' => 'Grade Category is required.',
                 ],
             ],
             'grdUnit' => [
-                'rules'=>'required',
-                'errors'=>[
+                'rules' => 'required',
+                'errors' => [
                     'required' => 'Grade Unit Category is required.',
                 ],
             ],
             'grdGroup' => [
-                'rules'=>'required',
-                'errors'=>[
+                'rules' => 'required',
+                'errors' => [
                     'required' => 'Grade  is required.',
+                ]
+            ],
+            'grdCode' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Grade Code is required.',
                 ]
             ],
         ];
     }
-   
 }
