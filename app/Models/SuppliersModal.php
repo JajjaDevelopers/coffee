@@ -184,7 +184,11 @@ class SuppliersModal extends Model
                 // Add new items
                 $newItemsBuilder = $this->db->table("inventory");
                 $newItems = $newItemsBuilder->insertBatch($data["inventory"]);
-                return $newItems;
+                if ($newItems) {
+                    return "success";
+                } else {
+                    return $newItems;
+                }
             }
         }
     }

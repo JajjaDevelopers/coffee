@@ -15668,9 +15668,10 @@ body {
     padding: 20px;
     border-bottom: 1px solid #cdd4e0;
     background-color: #f4f5f8; }
+    
     @media (min-width: 576px) {
       .card-dashboard-seven .card-header {
-        padding: 20px; } }
+        padding: 5px 20px; } }
     .card-dashboard-seven .card-header .media {
       align-items: center; }
       .card-dashboard-seven .card-header .media > div:first-child {

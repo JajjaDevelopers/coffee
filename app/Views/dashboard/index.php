@@ -85,60 +85,22 @@
 </div><!-- az-content-header -->
 <div class="az-content-body">
   <div class="card card-dashboard-seven">
-    <div class="card-header">
-      <!-- <div class="row row-sm">
-        <div class="col-6 col-md-4 col-xl">
-          <div class="media">
-            <div><i class="icon ion-ios-calendar"></i></div>
-            <div class="media-body">
-              <label>Start Date</label>
-              <div class="date">
-                <span>Sept 01, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
-              </div>
+    <div class="card-header" style="height: 30px;">
+      <!-- <div class="row">
+        <div class="col-sm-6">
+          <div class="row" style="height: 40px;">
+            <div id="month-1-sales-col" style="width: 20%; background-color:green">
+              <h6 style="color: white; margin: 5px 10px"><strong>Nov-2024</strong></h6>
+            </div>
+            <div id="month-0-sales-col" style="width: 80%; background-color:rgb(105, 144, 66)">
+              <h6 style="color: white; margin: 5px 10px"><strong>Oct-2024</strong></h6>
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 col-xl">
-          <div class="media">
-            <div><i class="icon ion-ios-calendar"></i></div>
-            <div class="media-body">
-              <label>End Date</label>
-              <div class="date">
-                <span>Sept 30, 2018</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-xl mg-t-15 mg-md-t-0">
-          <div class="media">
-            <div><i class="icon ion-logo-usd"></i></div>
-            <div class="media-body">
-              <label>Sales Measure</label>
-              <div class="date">
-                <span>Revenue</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-xl mg-t-15 mg-xl-t-0">
-          <div class="media">
-            <div><i class="icon ion-md-person"></i></div>
-            <div class="media-body">
-              <label>Customer Type</label>
-              <div class="date">
-                <span>All Customers</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-xl mg-t-15 mg-xl-t-0">
-          <div class="media">
-            <div><i class="icon ion-md-stats"></i></div>
-            <div class="media-body">
-              <label>Transaction Type</label>
-              <div class="date">
-                <span>All Transactions</span> <a href=""><i class="icon ion-md-arrow-dropdown"></i></a>
-              </div>
+        <div id="card-header-purchases" class="col-sm-6">
+          <div class="row">
+            <div id="month-1-purchases-col">
+              Current month
             </div>
           </div>
         </div>

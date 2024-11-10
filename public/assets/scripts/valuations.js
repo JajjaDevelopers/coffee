@@ -46,6 +46,7 @@ $(document).ready(function () {
   // New valuation
   $(document).on("click", "#addValuationBtn", function (e) {
     e.preventDefault();
+    valuationItemIds = [];
     valuationTotal = 0; //Reset total
     $(".valuationTotal").val(valuationTotal);
     $("#editValTBody").html("");
@@ -398,9 +399,9 @@ $(document).ready(function () {
         $("#valuationEditBtn").attr("vId", vId);
         $("#valPrevDate").val(summary.date);
         $("#valPrevSupplier").val(summary.supplier);
+        // $("#valPrevGrn").val(summary.grn);
+        $("#valPrevMc").val(items[0].moisture);
         $("#valPrevGrn").val(summary.grn);
-        $("#valPrevMc").val(summary.moisture);
-        $("#valPrevGrn").val(items[0].grn);
         $("#valuationPreviewModal").modal("show");
         // Upadte Valuation items
         var gradeItemsHtml = "";
@@ -430,10 +431,11 @@ $(document).ready(function () {
   // Edit valuation schedule
   $(document).on("click", "#valuationEditBtn", function (e) {
     e.preventDefault();
-    $(".valuationTotal").val(0); //Reset total
+    valuationItemIds = [];
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
       $("#valTBody").html("");
+      $(".valuationTotal").val(0); //Reset total
       const vId = $("#valuationEditBtn").attr("vId");
       $("#valuationEditId").val(vId);
       numberOfRows = 0;
@@ -445,8 +447,8 @@ $(document).ready(function () {
       $("#editValuationDate").val(summary.date);
       $("#editDeliverySupplier").val(summary.supplier);
       $("#editValuationGrn").val(summary.grn);
-      $("#editValuationMc").val(summary.moisture);
-      $("#valPrevGrn").val(items[0].grn);
+      $("#editValuationMc").val(items[0].moisture);
+      // $("#valPrevGrn").val(items[0].grn);
       // Current Items
       // Upadte Valuation items
       var gradeItemsHtml = "";
@@ -492,6 +494,7 @@ $(document).ready(function () {
   // Save adjusted valuation
   $(document).on("click", "#saveEditValuationBtn", function (e) {
     e.preventDefault();
+    console.log(valuationItemIds);
     const editItems = valuationItemIds;
     var itemIds = [];
     var itemQtys = [];
@@ -516,6 +519,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {},
     });
+    $("#editValuationModal").modal("hide");
   });
 
   //

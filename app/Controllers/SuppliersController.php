@@ -257,7 +257,8 @@ class SuppliersController extends BaseController
         }
         $data["summary"] = $summaryData;
         $data["inventory"] = $inventoryDetails;
-        return $this->suppliersModel->editValuation($valuationId, $data);
+        $edit = $this->suppliersModel->editValuation($valuationId, $data);
+        return $this->response->setJSON($edit);
     }
 
 
