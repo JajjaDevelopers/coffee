@@ -374,7 +374,17 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#newValuationModal").modal("hide");
+        // console.log(response.status);
+        if (response.status == 'Success')
+        {
+          toastr.success('Valuation Added Successfully')
+          valuationReportslist();
+          $("#newValuationModal").modal("hide");
+        }
+      },
+      error: function (xhr) {
+        // console.log(xhr);
+        toastr.error(xhr.responseJSON.error);
       },
     });
   });
