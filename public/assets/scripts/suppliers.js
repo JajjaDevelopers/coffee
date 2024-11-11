@@ -78,9 +78,83 @@ $(document).ready(function () {
   });
 
   // Preview Supplier
+  var prevSupplier = "";
   $(document).on("click", ".supplierName", function (e) {
     e.preventDefault();
-    $("#previewSupplierModal").modal("show");
+    var supplier = $(this).attr("sId");
+    $("#supplierEditBtn").attr("sId", supplier);
+    // Get supplier information
+    $.ajax({
+      type: "post",
+      url: "/suppliers/list",
+      data: {
+        supplier: supplier,
+      },
+      dataType: "json",
+      success: function (response) {
+        var s = response.suppliers[0];
+        prevSupplier = s;
+        $("#prevSupplierName").val(s.name);
+        $("#prevSupplierCategory").val(s.category_name);
+        $("#prevSupplierContactPerson").val(s.contact_person);
+        $("#prevSupplierRole").val(s.role);
+        $("#prevSupplierTel1").val(s.telephone_1);
+        $("#prevSupplierTel2").val(s.telephone_2);
+        $("#prevSupplierEmail").val(s.email_1);
+        $("#prevSupplierDistrict").val(s.district);
+        $("#prevSupplierSubcounty").val(s.subcounty);
+        $("#prevSupplierStreet").val(s.street);
+        $("#prevSupplierCurrency").val(s.curency_code);
+        $("#previewSupplierModal").modal("show");
+      },
+    });
+  });
+
+  // Adjust supplier Information
+  $(document).on("click", "#supplierEditBtn", function (e) {
+    e.preventDefault();
+    var confirmEdit = confirm("Confirm adjusting supplier details!");
+    if (confirmEdit) {
+      var s = prevSupplier;
+      $("#editSupplierName").val(s.name);
+      $("#editSupplierCategory").val(s.name);
+      $("#editSupplierContactPerson").val(s.contact_person);
+      $("#editSupplierRole").val(s.role);
+      $("#editSupplierTel1").val(s.telephone_1);
+      $("#editSupplierTel2").val(s.telephone_2);
+      $("#editSupplierEmail").val(s.email_1);
+      $("#editSupplierDistrict").val(s.district);
+      $("#editSupplierSubcounty").val(s.subcounty);
+      $("#editSupplierStreet").val(s.street);
+      $("#editSupplierCurrency").val(s.curency_code);
+      $("#saveEditSupplier").attr("sId", s.client_id);
+      $("#previewSupplierModal").modal("hide");
+      $("#editSupplierModal").modal("show");
+    }
+  });
+
+  // Save adjusted supplier information
+  $(document).on("click", "#saveEditSupplier", function (e) {
+    e.preventDefault();
+    var supplier = $(this).attr("sId");
+    $.ajax({
+      type: "post",
+      url: "url",
+      data: {
+        sName: $("#editSupplierName").val(s.name),
+        sContactPerson: $("#editSupplierContactPerson").val(s.contact_person),
+        sContactPerson: $("#editSupplierContactPerson").val(s.contact_person),
+        sContactRole: $("#editSupplierRole").val(s.role),
+        sTel1: $("#editSupplierTel1").val(s.telephone_1),
+        sTel2: $("#editSupplierTel2").val(s.telephone_2),
+        sEmail: $("#editSupplierEmail").val(s.email_1),
+        sDistrict: $("#editSupplierDistrict").val(s.district),
+        sSubCounty: $("#editSupplierSubcounty").val(s.subcounty),
+        sStreet: $("#editSupplierStreet").val(s.street),
+      },
+      dataType: "json",
+      success: function (response) {},
+    });
   });
 
   //

@@ -39,7 +39,7 @@ $routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');
 // Suppliers and Purchases
 $routes->get('/suppliers', 'SuppliersController::index');
 $routes->post('/suppliers/list', 'SuppliersController::suppliersList');
-$routes->get('/suppliers/list', 'SuppliersController::searchSuppliers');
+$routes->get('/suppliers/list', 'SuppliersController::searchSuppliers'); //Search suppliers
 $routes->get('/valuations', 'SuppliersController::deliveriesView');
 $routes->post('/suppliers/deliveryValuations', 'SuppliersController::deliveryValuations');
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');

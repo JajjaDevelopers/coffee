@@ -10,16 +10,18 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-11"></div>
-          <div class="col-1">
-            <button id='supplierEditBtn' type="button" vId="" class="form-control form-control-sm btn-warning"
+          <div class="col-sm-10 col-md-11">
+            <h6>Supplier Details</h6>
+          </div>
+          <div class="col-sm-2 col-md-1">
+            <button id='supplierEditBtn' type="button" sId="" class="form-control form-control-sm btn-warning"
               style="color:white; background-color:brown; margin-right:10px">
               Edit
             </button>
           </div>
         </div>
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
-          <h6>Supplier Details</h6>
+
           <div class="row">
             <div class="col-sm-12">
               <label for="prevSupplierName" class="form-label">Name</label>

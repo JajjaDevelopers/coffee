@@ -38,7 +38,8 @@ class SuppliersController extends BaseController
     public function suppliersList()
     {
         $searchStr = $this->request->getPost("searchKey");
-        $data["suppliers"] = $this->suppliersModel->clientsList($this->fpo, "S", $searchStr);
+        $supplier = $this->request->getPost("supplier");
+        $data["suppliers"] = $this->suppliersModel->clientsList($this->fpo, "S", $searchStr, $supplier);
         return $this->response->setJSON($data);
     }
 

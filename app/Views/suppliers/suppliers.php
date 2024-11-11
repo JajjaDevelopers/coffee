@@ -4,6 +4,7 @@
 <?= $this->section('content') ?>
 <?= $this->include('/includes/suppliers/addSupplierModal.php'); ?>
 <?= $this->include('/includes/suppliers/previewSupplierModal.php'); ?>
+<?= $this->include('/includes/suppliers/editSupplierModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0">
