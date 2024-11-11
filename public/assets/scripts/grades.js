@@ -201,7 +201,7 @@ $(document).ready(function () {
         }
       },
       error: function (xhr) {
-        console.log(xhr);
+        // console.log(xhr);
         toastr.error(xhr.responseJSON.sms);
       },
     });

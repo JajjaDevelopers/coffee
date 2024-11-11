@@ -43,24 +43,18 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
 
     public $coffeeGradeRules = [];
-
+    public $valuationRules=[];
     public function __construct()
     {
         $this->setCoffeeGradesRules();
+        $this->setValuationRules();
     }
 
-    //setting user Rules
-    // public function setUsernameRules(): void
-    // {
-    //     $this->userNameRules = [
-    //         "name" => [
-    //             "rules" => "is_unique[users.name]",
-    //             "errors" => [
-    //                 "is_unique" => "User name already exists"
-    //             ]
-    //         ]
-    //     ];
-    // }
+    /**
+     * Set Coffee Grades Rules
+     *
+     * @return void
+     */
     public function setCoffeeGradesRules(): void
     {
         $this->coffeeGradeRules = [
@@ -94,6 +88,67 @@ class Validation extends BaseConfig
                     'required' => 'Grade Code is required.',
                 ]
             ],
+        ];
+    }
+
+    /**
+     * Sets validation rules for Valutaion
+     *
+     * @return void
+     */
+    public function setValuationRules(): void
+    {
+        $this->valuationRules = [
+            'date' => [
+                'label' => 'Date',
+                'rules' => 'required|valid_date',
+                'errors' => [
+                    'required' => 'Date is required.',
+                    'valid_date' => 'Please enter a valid date.',
+                ],
+            ],
+            'supplier' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Supplier is required.',
+                ],
+            ],
+            'grn' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Grn field is required.',
+                ],
+            ],
+            'moisture' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Moisture field is required.',
+                ],
+            ],
+            'items.*' => [
+                'label' => 'Items',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Item field is required.',
+                ],
+            ],
+            'quantities.*' => [
+                'label' => 'Quantities',
+                'rules' => 'required|is_natural_no_zero',
+                'errors' => [
+                    'required' => 'Each quantity is required.',
+                    'is_natural_no_zero' => 'Quantity must be a positive number.',
+                ],
+            ],
+            'prices.*' => [
+                'label' => 'Prices',
+                'rules' => 'required|decimal',
+                'errors' => [
+                    'required' => 'Each price is required.',
+                    'decimal' => 'Price must be a valid decimal number.',
+                ],
+            ],
+
         ];
     }
 }

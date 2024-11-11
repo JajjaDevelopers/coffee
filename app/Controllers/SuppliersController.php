@@ -8,7 +8,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
 use App\Models\SuppliersModal;
 use CodeIgniter\I18n\Time;
-
+use Config\Services;
 
 class SuppliersController extends BaseController
 {
@@ -165,6 +165,11 @@ class SuppliersController extends BaseController
     // Save new valuation
     public function newValuation()
     {
+        if (!$this->validate(Services::validation()->getRuleGroup("valuationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
         $date = $this->request->getPost("date");
         $supplier = $this->request->getPost("supplier");
         $grn = $this->request->getPost("grn");
