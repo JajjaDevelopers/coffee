@@ -21,10 +21,14 @@
             <div class="col-sm-12 col-md-4">
               <label for="editBuyerCategory" class="form-label">Category</label>
               <select class="form-control form-control-sm" id='editBuyerCategory'>
-                <option value="3">Exporter</option>
-                <option value="4">Importer</option>
-                <option value="5">Roaster</option>
-                <option value="6">Trader</option>
+                <option value="" selected>--select--</option>
+                <?php
+                for ($x = 0; $x < count($buyerCategories); $x++) {
+                ?>
+                  <option value="<?= $buyerCategories[$x]["category_id"] ?>"><?= $buyerCategories[$x]["category_name"] ?></option>
+                <?php
+                }
+                ?>
               </select>
             </div>
             <div class="col-sm-12 col-md-4">

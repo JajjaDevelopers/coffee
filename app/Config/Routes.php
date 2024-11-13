@@ -43,6 +43,7 @@ $routes->get('/suppliers/list', 'SuppliersController::searchSuppliers'); //Searc
 $routes->get('/valuations', 'SuppliersController::deliveriesView');
 $routes->post('/suppliers/deliveryValuations', 'SuppliersController::deliveryValuations');
 $routes->post('/suppliers/addSupplier', 'SuppliersController::addSupplier');
+$routes->post('/suppliers/editSupplier', 'SuppliersController::editSupplier');
 $routes->post('/delivery/saveValuation', 'SuppliersController::newValuation');
 $routes->post('/valuation/preview', 'SuppliersController::valuationDetails');
 $routes->post('/valuation/modify', 'SuppliersController::editValuation');

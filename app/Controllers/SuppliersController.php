@@ -32,7 +32,8 @@ class SuppliersController extends BaseController
         $page_title = "Suppliers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('suppliers/suppliers', compact('page_title', 'commonData', 'coffeeTypes'));
+        $clientCategories = $this->suppliersModel->getClientCategories($this->fpo, "");
+        return view('suppliers/suppliers', compact('page_title', 'commonData', 'coffeeTypes', 'clientCategories'));
     }
     // Get Suppliers List
     public function suppliersList()
@@ -82,7 +83,7 @@ class SuppliersController extends BaseController
             $data
         );
     }
-    // Add categories
+    // Add supplier
     public function addSupplier()
     {
         $data = [
@@ -107,6 +108,32 @@ class SuppliersController extends BaseController
             $sms["sms"] = "fail";
         }
         return $this->response->setJSON($sms);
+    }
+
+    // Edit supplier
+    public function editSupplier()
+    {
+        $supplier = $this->request->getPost("supplier");
+        // Adjusted details
+        $details = [
+            "name" => $this->request->getPost("sName"),
+            "contact_person" => $this->request->getPost("sName"),
+            "district" => $this->request->getPost("sDistrict"),
+            "telephone_1"  => $this->request->getPost("sTel1"),
+            "telephone_2" => $this->request->getPost("sTel2"),
+            "email_1" => $this->request->getPost("sEmail"),
+            "category_id" => $this->request->getPost("sCategory"),
+            "role" => $this->request->getPost("sContactRole"),
+            "subcounty" => $this->request->getPost("sSubCounty"),
+            "street" => $this->request->getPost("sStreet"),
+        ];
+        $edit =  $this->suppliersModel->editSupplier($supplier, $details);
+        if ($edit) {
+            $response["sms"] = "success";
+        } else {
+            $response["sms"] = "fail";
+        }
+        return $this->response->setJSON($response);
     }
 
     // New delivery valuation
@@ -169,7 +196,7 @@ class SuppliersController extends BaseController
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
+        }
         $date = $this->request->getPost("date");
         $supplier = $this->request->getPost("supplier");
         $grn = $this->request->getPost("grn");

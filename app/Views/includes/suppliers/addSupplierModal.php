@@ -21,10 +21,14 @@
             <div class="col-sm-12 col-md-4">
               <label for="addSupplierCategory" class="form-label">Category</label>
               <select class="form-control form-control-sm" id='addSupplierCategory'>
-                <option value="1">Cooperative</option>
-                <option value="2">Association</option>
-                <option value="3">Individual</option>
-                <option value="4">Company</option>
+                <option value="" selected>--select--</option>
+                <?php
+                for ($x = 0; $x < count($clientCategories); $x++) {
+                ?>
+                  <option value="<?= $clientCategories[$x]["category_id"] ?>"><?= $clientCategories[$x]["category_name"] ?></option>
+                <?php
+                }
+                ?>
               </select>
             </div>
             <div class="col-sm-12 col-md-4">
@@ -84,8 +88,8 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSupplierBtn' type="button" class="btn btn-sm btn-primary">Save changes</button>
-        <button type="button" data-dismiss="modal" class="btn btn-sm btn-danger">Close</button>
+        <button id='saveSupplierBtn' type="button" class="btn btn-sm btn-primary">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-sm btn-danger">Cancel</button>
       </div>
     </div>
   </div><!-- modal-dialog -->

@@ -48,7 +48,7 @@
                   <label for="newSalesMC" class="form-label">Moisture:</label>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                  <input class="form-control form-control-sm" id='newSalesMC' placeholder="%">
+                  <input type="number" class="form-control form-control-sm" id='newSalesMC' min="10" step="0.01">
                 </div>
               </div>
             </div>
@@ -150,8 +150,8 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <button id='saveSalesReportBtn' type="button" class="btn btn-indigo addBtn">Save</button>
-        <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
+        <button id='saveSalesReportBtn' type="button" class="btn btn-sm btn-primary addBtn">Save</button>
+        <button type="button" data-dismiss="modal" class="btn btn-sm btn-danger">Close</button>
       </div>
     </div>
   </div><!-- modal-dialog -->

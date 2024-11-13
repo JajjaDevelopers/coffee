@@ -28,7 +28,7 @@ class SuppliersModal extends Model
         } else {
             $clientFilter = "AND client_id = '{$clientId}'";
         }
-        $query = $this->db->query("SELECT client_id, name, contact_person, country_id, district, city, telephone_1, telephone_2, email_1, category_name, 
+        $query = $this->db->query("SELECT client_id, name, contact_person, country_id, district, city, telephone_1, telephone_2, email_1, category_id, category_name, 
             role, subcounty, street, country_name, currency_id, curency_code
             FROM clients
             LEFT JOIN client_categories USING (category_id)
@@ -139,11 +139,18 @@ class SuppliersModal extends Model
         return $builder->insertBatch($data);
     }
 
-    // Add grade
+    // Add supplier
     public function addSupplier($data)
     {
         $builder = $this->db->table("clients");
         return $builder->insert($data);
+    }
+
+    // Edit supplier
+    public function editSupplier($supplier, $data)
+    {
+        $edit = $this->db->table("clients")->where("client_id", $supplier);
+        return $edit->update($data);
     }
 
     // Valuation Details for preview
@@ -191,6 +198,18 @@ class SuppliersModal extends Model
                 }
             }
         }
+    }
+
+    // Client categories
+    public function getClientCategories($fpo, $categoryId = "")
+    {
+        $categories = $this->db->table("client_categories");
+        $categories->select("category_id, category_name, description");
+        $categories->where("fpo_id", $fpo);
+        if ($categoryId != "") {
+            $categories->where("category_id", $categoryId);
+        }
+        return $categories->get()->getResultArray();
     }
 
 

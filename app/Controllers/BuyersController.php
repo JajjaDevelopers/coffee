@@ -8,6 +8,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\GradesModel;
 use App\Models\SuppliersModal;
+use App\Controllers\SuppliersController;
 use CodeIgniter\I18n\Time;
 use App\Models\GeneralModal;
 use App\Models\BuyersModel;
@@ -23,6 +24,7 @@ class BuyersController extends BaseController
     public $buyersModel;
     public $userData;
     public $dtNow; //DateTime now
+    public $suppliersController;
 
     public function __construct()
     {
@@ -33,6 +35,7 @@ class BuyersController extends BaseController
         $this->suppliersModel = new SuppliersModal;
         $this->generalModel = new GeneralModal;
         $this->buyersModel = new BuyersModel;
+        $this->suppliersController = new SuppliersController;
         $this->userData = $this->CommonData()["user"];
     }
     public function buyers()
@@ -41,7 +44,8 @@ class BuyersController extends BaseController
         $page_title = "Buyers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();
-        return view('buyers/buyers', compact('page_title', 'commonData', 'coffeeTypes'));
+        $buyerCategories = $this->suppliersModel->getClientCategories($this->fpo, "");
+        return view('buyers/buyers', compact('page_title', 'commonData', 'coffeeTypes', 'buyerCategories'));
     }
     // Get Buyers List
     public function buyersList()

@@ -2,8 +2,6 @@ $(document).ready(function () {
   // Adding supplier
   $(document).on("click", "#addSupplierBtn", function (e) {
     e.preventDefault();
-    // gradeCategoryOptions("addGradeCategory");
-    gradeGroupsOptions("addGradeGroup");
     $("#addSupplierModal").modal("show");
   });
   function suppliersList() {
@@ -117,7 +115,7 @@ $(document).ready(function () {
     if (confirmEdit) {
       var s = prevSupplier;
       $("#editSupplierName").val(s.name);
-      $("#editSupplierCategory").val(s.name);
+      $("#editSupplierCategory").val(s.category_id);
       $("#editSupplierContactPerson").val(s.contact_person);
       $("#editSupplierRole").val(s.role);
       $("#editSupplierTel1").val(s.telephone_1);
@@ -139,21 +137,25 @@ $(document).ready(function () {
     var supplier = $(this).attr("sId");
     $.ajax({
       type: "post",
-      url: "url",
+      url: "/suppliers/editSupplier",
       data: {
-        sName: $("#editSupplierName").val(s.name),
-        sContactPerson: $("#editSupplierContactPerson").val(s.contact_person),
-        sContactPerson: $("#editSupplierContactPerson").val(s.contact_person),
-        sContactRole: $("#editSupplierRole").val(s.role),
-        sTel1: $("#editSupplierTel1").val(s.telephone_1),
-        sTel2: $("#editSupplierTel2").val(s.telephone_2),
-        sEmail: $("#editSupplierEmail").val(s.email_1),
-        sDistrict: $("#editSupplierDistrict").val(s.district),
-        sSubCounty: $("#editSupplierSubcounty").val(s.subcounty),
-        sStreet: $("#editSupplierStreet").val(s.street),
+        supplier: supplier,
+        sName: $("#editSupplierName").val(),
+        sContactPerson: $("#editSupplierContactPerson").val(),
+        sCategory: $("#editSupplierCategory").val(),
+        sContactRole: $("#editSupplierRole").val(),
+        sTel1: $("#editSupplierTel1").val(),
+        sTel2: $("#editSupplierTel2").val(),
+        sEmail: $("#editSupplierEmail").val(),
+        sDistrict: $("#editSupplierDistrict").val(),
+        sSubCounty: $("#editSupplierSubcounty").val(),
+        sStreet: $("#editSupplierStreet").val(),
       },
       dataType: "json",
-      success: function (response) {},
+      success: function (response) {
+        $("#editSupplierModal").modal("hide");
+        $("#suppliersListTable").DataTable().ajax.reload();
+      },
     });
   });
 

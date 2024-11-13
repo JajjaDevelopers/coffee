@@ -20,12 +20,15 @@
           <div class="row">
             <div class="col-sm-12 col-md-4">
               <label for="editSupplierCategory" class="form-label">Category</label>
-              <select class="form-control form-control-sm" id='editSupplierCategory'>
-                <option value="">--select--</option>
-                <option value="1">Cooperative</option>
-                <option value="2">Association</option>
-                <option value="3">Individual</option>
-                <option value="4">Company</option>
+              <select class="form-control form-control-sm " id='editSupplierCategory'>
+                <option value="" selected>--select--</option>
+                <?php
+                for ($x = 0; $x < count($clientCategories); $x++) {
+                ?>
+                  <option value="<?= $clientCategories[$x]["category_id"] ?>"><?= $clientCategories[$x]["category_name"] ?></option>
+                <?php
+                }
+                ?>
               </select>
             </div>
             <div class="col-sm-12 col-md-4">
