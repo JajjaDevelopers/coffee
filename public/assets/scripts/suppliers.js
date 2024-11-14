@@ -69,8 +69,16 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var sms = response.sms;
-        $("#suppliersListTable").DataTable().ajax.reload();
-        $("#addSupplierModal").modal("hide");
+        if (sms == "success") {
+          $("#suppliersListTable").DataTable().ajax.reload();
+          $("#addSupplierModal").modal("hide");
+          toastr.success("Supplier Added");
+        } else {
+          toastr.error("Something went wrong!");
+        }
+      },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
       },
     });
   });
@@ -153,8 +161,16 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#editSupplierModal").modal("hide");
-        $("#suppliersListTable").DataTable().ajax.reload();
+        if (response.sms == 'success') {
+          $("#suppliersListTable").DataTable().ajax.reload();
+          $("#editSupplierModal").modal("hide");
+          toastr.success('Supplier Updated!')
+        } else {
+          toastr.error('Something went wrong!');
+        }
+      },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
       },
     });
   });

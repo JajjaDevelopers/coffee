@@ -44,10 +44,14 @@ class Validation extends BaseConfig
 
     public $coffeeGradeRules = [];
     public $valuationRules=[];
+    public $supplierValidationRules = [];
+    public $updateSupplierValidationRules=[];
     public function __construct()
     {
         $this->setCoffeeGradesRules();
         $this->setValuationRules();
+        $this->setSupplierValidationRules();
+        $this->setUpdateSupplierValidationRules();
     }
 
     /**
@@ -151,4 +155,186 @@ class Validation extends BaseConfig
 
         ];
     }
+     /**
+     * Set Supplier Validation Rules
+     *
+     * @return void
+     */
+    public function setSupplierValidationRules(): void
+    {
+        $this->supplierValidationRules = [
+            'supplierName' => [
+                'rules' => 'required|string|max_length[255]',
+                'errors' => [
+                    'required' => 'Supplier name is required.',
+                    'string' => 'Supplier name must be a string.',
+                    'max_length' => 'Supplier name cannot exceed 255 characters.',
+                ],
+            ],
+            'contactPerson' => [
+                'rules' => 'required|string|max_length[255]',
+                'errors' => [
+                    'required' => 'Contact person is required.',
+                    'string' => 'Contact person must be a string.',
+                    'max_length' => 'Contact person cannot exceed 255 characters.',
+                ],
+            ],
+            'supplierDistrict' => [
+                'rules' => 'required|string|max_length[100]',
+                'errors' => [
+                    'required' => 'District is required.',
+                    'string' => 'District must be a string.',
+                    'max_length' => 'District cannot exceed 100 characters.',
+                ],
+            ],
+            'supplierTel1' => [
+                'rules' => 'required|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'required' => 'Primary telephone is required.',
+                    'numeric' => 'Primary telephone must be a number.',
+                    'min_length' => 'Primary telephone must be at least 10 digits.',
+                    'max_length' => 'Primary telephone cannot exceed 15 digits.',
+                ],
+            ],
+            'supplierTel2' => [
+                'rules' => 'permit_empty|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'numeric' => 'Secondary telephone must be a number.',
+                    'min_length' => 'Secondary telephone must be at least 10 digits.',
+                    'max_length' => 'Secondary telephone cannot exceed 15 digits.',
+                ],
+            ],
+            'supplierEmail' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'Email is required.',
+                    'valid_email' => 'Please provide a valid email address.',
+                ],
+            ],
+            'supplierCategory' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Category ID is required.',
+                    'integer' => 'Category ID must be an integer.',
+                ],
+            ],
+            'supplierCurrency' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Currency ID is required.',
+                    'integer' => 'Currency ID must be an integer.',
+                ],
+            ],
+            'conatctRole' => [
+                'rules' => 'required|string|max_length[100]',
+                'errors' => [
+                    'required' => 'Role is required.',
+                    'string' => 'Role must be a string.',
+                    'max_length' => 'Role cannot exceed 100 characters.',
+                ],
+            ],
+            'supplierSubcounty' => [
+                'rules' => 'permit_empty|string|max_length[100]',
+                'errors' => [
+                    'string' => 'Subcounty must be a string.',
+                    'max_length' => 'Subcounty cannot exceed 100 characters.',
+                ],
+            ],
+            'supplierStreet' => [
+                'rules' => 'permit_empty|string|max_length[255]',
+                'errors' => [
+                    'string' => 'Street must be a string.',
+                    'max_length' => 'Street cannot exceed 255 characters.',
+                ],
+            ],
+        ];
+    }
+
+    /*
+    * Set Supplier Validation Rules
+    *
+    * @return void
+    */
+   public function setUpdateSupplierValidationRules(): void
+   {
+       $this->updateSupplierValidationRules = [
+           'sName' => [
+               'rules' => 'required|string|max_length[255]',
+               'errors' => [
+                   'required' => 'Supplier name is required.',
+                   'string' => 'Supplier name must be a string.',
+                   'max_length' => 'Supplier name cannot exceed 255 characters.',
+               ],
+           ],
+           'sContactPerson' => [
+               'rules' => 'required|string|max_length[255]',
+               'errors' => [
+                   'required' => 'Contact person is required.',
+                   'string' => 'Contact person must be a string.',
+                   'max_length' => 'Contact person cannot exceed 255 characters.',
+               ],
+           ],
+           'sDistrict' => [
+               'rules' => 'required|string|max_length[100]',
+               'errors' => [
+                   'required' => 'District is required.',
+                   'string' => 'District must be a string.',
+                   'max_length' => 'District cannot exceed 100 characters.',
+               ],
+           ],
+           'sTel1' => [
+               'rules' => 'required|numeric|min_length[10]|max_length[15]',
+               'errors' => [
+                   'required' => 'Primary telephone is required.',
+                   'numeric' => 'Primary telephone must be a number.',
+                   'min_length' => 'Primary telephone must be at least 10 digits.',
+                   'max_length' => 'Primary telephone cannot exceed 15 digits.',
+               ],
+           ],
+           'sTel2' => [
+               'rules' => 'permit_empty|numeric|min_length[10]|max_length[15]',
+               'errors' => [
+                   'numeric' => 'Secondary telephone must be a number.',
+                   'min_length' => 'Secondary telephone must be at least 10 digits.',
+                   'max_length' => 'Secondary telephone cannot exceed 15 digits.',
+               ],
+           ],
+           'sEmail' => [
+               'rules' => 'required|valid_email',
+               'errors' => [
+                   'required' => 'Email is required.',
+                   'valid_email' => 'Please provide a valid email address.',
+               ],
+           ],
+           'sCategory' => [
+               'rules' => 'required|integer',
+               'errors' => [
+                   'required' => 'Category ID is required.',
+                   'integer' => 'Category ID must be an integer.',
+               ],
+           ],
+           'sContactRole' => [
+               'rules' => 'required|string|max_length[100]',
+               'errors' => [
+                   'required' => 'Role is required.',
+                   'string' => 'Role must be a string.',
+                   'max_length' => 'Role cannot exceed 100 characters.',
+               ],
+           ],
+           'sSubCounty' => [
+               'rules' => 'permit_empty|string|max_length[100]',
+               'errors' => [
+                   'string' => 'Subcounty must be a string.',
+                   'max_length' => 'Subcounty cannot exceed 100 characters.',
+               ],
+           ],
+           'sStreet' => [
+               'rules' => 'permit_empty|string|max_length[255]',
+               'errors' => [
+                   'string' => 'Street must be a string.',
+                   'max_length' => 'Street cannot exceed 255 characters.',
+               ],
+           ],
+       ];
+   }
 }
