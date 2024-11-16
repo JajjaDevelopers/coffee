@@ -213,12 +213,20 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        alert('Hi')
         var status = response.sms;
-        if (status == "success") {
+        if(status == "success") {
           $("#addBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
+          toastr.success('Buyer Added')
+        } else {
+          toastr.error('Something went wrong!')
         }
+        
       },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
+      }
     });
   });
 
@@ -367,9 +375,19 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#newSalesReportModal").modal("hide");
+        var sms = response.sms;
+        if (sms == 'Success') {
+          $("#newSalesReportModal").modal("hide");
+          toastr.success('Report Added!');
         $("#salesReportsTable").DataTable().ajax.reload();
+        } else {
+          toastr.error('Something went wrong!')
+        }
+        
       },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
+      }
     });
   });
 
@@ -541,9 +559,19 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#editSalesReportModal").modal("hide");
-        $("#salesReportsTable").DataTable().ajax.reload();
+        if (response.sms == 'Success')
+        {
+          $("#editSalesReportModal").modal("hide");
+          toastr.success('Sales Report Updated!');
+          $("#salesReportsTable").DataTable().ajax.reload();
+        } else {
+          toastr.error('Something went wrong')
+        }
       },
+      error: function (xhr)
+      {
+        toastr.error(xhr.responseJSON.error);
+        }
     });
   });
 
