@@ -28,7 +28,6 @@ class SuppliersController extends BaseController
     }
     public function index()
     {
-
         $page_title = "Suppliers";
         $commonData = $this->commonData();
         $coffeeTypes = $this->gradesModel->getCoffeeTypes();

@@ -65,7 +65,7 @@
 
 <body class="az-body">
 
-    <div class="az-signin-wrapper" style="background-color:darkolivegreen;">
+    <div class="az-signin-wrapper" style="background-color:white;">
         <div class="az-card-signin" style="border:5px solid green; border-radius: 20px;">
             <!-- <h1 class="az-logo">az<span>i</span>a</h1> -->
             <div class="az-signin-header">
@@ -94,7 +94,7 @@
                     </div>
                 <?php endif; ?>
                 <form id="loginform" method="post"
-                    action=" <?=base_url()?>">
+                    action=" <?= base_url() ?>">
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Enter your email" name="email" placeholder="Email" required>
@@ -103,7 +103,9 @@
                         <label>Password</label>
                         <input type="password" class="form-control" placeholder="Enter your password" name="password" placeholder="Password" required>
                     </div><!-- form-group -->
-                    <button type='submit' class="btn btn-az-primary btn-block" style="background-color: green;">Sign In</button>
+                    <button type='submit' class="btn btn-az-primary btn-block" style="background-color: green; border-radius:5px">
+                        Sign In
+                    </button>
                 </form>
             </div><!-- az-signin-header -->
             <div class="az-signin-footer">
