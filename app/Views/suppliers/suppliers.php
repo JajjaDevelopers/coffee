@@ -17,16 +17,14 @@
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">
       <div id="suppliers" class="tab-pane active show">
-        <h5><strong>List of Suppliers</strong></h5>
-        <div class="row">
-          <div style='display:flex;justify-content:flex-end'>
-            <button class="btn btn-sm" style='background-color:green;color:white' id='addSupplierBtn'>
-              <strong>+ New Supplier </strong>
-            </button>
-          </div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0"><strong>List of Suppliers</strong></h5>
+          <button class="btn btn-sm btn-success d-flex align-items-center" id="addSupplierBtn">
+            <i class="typcn typcn-plus me-1"></i> Add
+          </button>
         </div>
         <br>
-        <div class="dataTables_wrapper no-footer">
+        <div class="dataTables_wrapper no-footer table table-responsive">
           <table id="suppliersListTable" class='table table-sm table-hover'>
             <thead>
               <tr>

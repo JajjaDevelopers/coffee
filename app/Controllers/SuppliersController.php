@@ -85,6 +85,11 @@ class SuppliersController extends BaseController
     // Add supplier
     public function addSupplier()
     {
+        if (!$this->validate(Services::validation()->getRuleGroup("supplierValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
         $data = [
             "fpo" => $this->fpo,
             "client_type" => "S",
@@ -112,6 +117,11 @@ class SuppliersController extends BaseController
     // Edit supplier
     public function editSupplier()
     {
+        if (!$this->validate(Services::validation()->getRuleGroup("updateSupplierValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
         $supplier = $this->request->getPost("supplier");
         // Adjusted details
         $details = [
