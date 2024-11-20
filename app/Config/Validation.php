@@ -49,7 +49,7 @@ class Validation extends BaseConfig
     public $salesReportValidationRules = [];
     public $salesUpdateReportValidationRules = [];
     public $buyerInfoValidationRules=[];
-    
+    public $buyerUpdateInfoValidationRules=[];
     public function __construct()
     {
         $this->setCoffeeGradesRules();
@@ -59,6 +59,7 @@ class Validation extends BaseConfig
         $this->setSalesReportValidationRules();
         $this->setUpdateSalesValidationRules();
         $this->setBuyerInfoValidationRules();
+        $this->setBuyerUpdateInfoValidationRules();
     }
 
     /**
@@ -574,6 +575,93 @@ class Validation extends BaseConfig
                 ],
             ],
             'buyerInfo.street' => [
+                'rules' => 'permit_empty|string|max_length[255]',
+                'errors' => [
+                    'string' => 'Street must be a valid string.',
+                    'max_length' => 'Street cannot exceed 255 characters.',
+                ],
+            ],
+        ];
+    }
+
+     /**
+     * Set Buyers Edit Validation Rules
+     *
+     * @return void
+     */
+    public function setBuyerUpdateInfoValidationRules(): void
+    {
+        $this->buyerUpdateInfoValidationRules = [
+            'info.name' => [
+                'rules' => 'required|string|max_length[255]',
+                'errors' => [
+                    'required' => 'Name is required.',
+                    'string' => 'Name must be a valid string.',
+                    'max_length' => 'Name cannot exceed 255 characters.',
+                ],
+            ],
+            'info.contact_person' => [
+                'rules' => 'required|string|max_length[255]',
+                'errors' => [
+                    'required' => 'Contact person is required.',
+                    'string' => 'Contact person must be a valid string.',
+                    'max_length' => 'Contact person cannot exceed 255 characters.',
+                ],
+            ],
+            'info.telephone_1' => [
+                'rules' => 'required|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'required' => 'Primary telephone is required.',
+                    'numeric' => 'Primary telephone must be a valid number.',
+                    'min_length' => 'Primary telephone must be at least 10 digits.',
+                    'max_length' => 'Primary telephone cannot exceed 15 digits.',
+                ],
+            ],
+            'info.telephone_2' => [
+                'rules' => 'permit_empty|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'numeric' => 'Secondary telephone must be a valid number.',
+                    'min_length' => 'Secondary telephone must be at least 10 digits.',
+                    'max_length' => 'Secondary telephone cannot exceed 15 digits.',
+                ],
+            ],
+            'info.email_1' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'Email is required.',
+                    'valid_email' => 'Please provide a valid email address.',
+                ],
+            ],
+            'info.category_id' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Category ID is required.',
+                    'integer' => 'Category ID must be a valid integer.',
+                ],
+            ],
+            'info.role' => [
+                'rules' => 'required|string|max_length[100]',
+                'errors' => [
+                    'required' => 'Role is required.',
+                    'string' => 'Role must be a valid string.',
+                    'max_length' => 'Role cannot exceed 100 characters.',
+                ],
+            ],
+            'info.country_id' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Country ID is required.',
+                    'integer' => 'Country ID must be a valid integer.',
+                ],
+            ],
+            'info.city' => [
+                'rules' => 'permit_empty|string|max_length[100]',
+                'errors' => [
+                    'string' => 'City must be a valid string.',
+                    'max_length' => 'City cannot exceed 100 characters.',
+                ],
+            ],
+            'info.street' => [
                 'rules' => 'permit_empty|string|max_length[255]',
                 'errors' => [
                     'string' => 'Street must be a valid string.',

@@ -85,11 +85,18 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var status = response.sms;
-        if (status == "success") {
+        if(status == "success") {
           $("#addBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
+          toastr.success('Buyer Added')
+        } else {
+          toastr.error('Something went wrong!')
         }
+        
       },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
+      }
     });
   });
 
@@ -175,9 +182,19 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        $("#editBuyerModal").modal("hide");
-        $("#buyersTable").DataTable().ajax.reload();
+        var status = response.sms;
+        if (status == 'Success')
+        {
+          $("#editBuyerModal").modal("hide");
+          $("#buyersTable").DataTable().ajax.reload();
+          toastr.success('Buyer Edited')
+        } else {
+          toastr.error('Something went wrong!')
+        }
       },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
+      }
     });
   });
 

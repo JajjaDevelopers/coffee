@@ -190,45 +190,7 @@ $(document).ready(function () {
     $("#addBuyerModal").modal("show");
   });
 
-  // Save Buyer
-  $(document).on("click", ".saveBuyerBtn", function (e) {
-    e.preventDefault();
-    $.ajax({
-      type: "post",
-      url: "/buyers/addBuyer",
-      data: {
-        buyerInfo: {
-          name: $("#addBuyerName").val(),
-          contact_person: $("#addBuyerContactPerson").val(),
-          telephone_1: $("#addBuyerTel1").val(),
-          telephone_2: $("#addBuyerTel2").val(),
-          email_1: $("#addBuyerEmail").val(),
-          category_id: $("#addBuyerCategory").val(),
-          currency_id: $("#addBuyerCurrency").val(),
-          role: $("#addBuyerRole").val(),
-          country_id: $("#addBuyerCurrency").val(),
-          city: $("#addBuyerCity").val(),
-          street: $("#addBuyerCurrency").val(),
-        },
-      },
-      dataType: "json",
-      success: function (response) {
-        alert('Hi')
-        var status = response.sms;
-        if(status == "success") {
-          $("#addBuyerModal").modal("hide");
-          $("#buyersTable").DataTable().ajax.reload();
-          toastr.success('Buyer Added')
-        } else {
-          toastr.error('Something went wrong!')
-        }
-        
-      },
-      error: function (xhr) {
-        toastr.error(xhr.responseJSON.error);
-      }
-    });
-  });
+ 
 
   // Add new Sales Report
   $(document).on("click", ".addSalesReportBtn", function (e) {

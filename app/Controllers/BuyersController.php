@@ -132,6 +132,11 @@ class BuyersController extends BaseController
     // Edit buyer
     public function editBuyer()
     {
+        if(!$this->validate(Services::validation()->getRuleGroup("buyerUpdateInfoValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
         $newInfo = $this->request->getPost("info");
         $buyer = $this->request->getPost("buyer");
         $editBuyer = $this->buyersModel->editBuyer($buyer, $newInfo);
