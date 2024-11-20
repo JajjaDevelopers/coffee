@@ -3,15 +3,16 @@
 namespace App\Controllers;
 
 
-use App\Controllers\Traits\CommonData;
-use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
-use App\Models\GradesModel;
-use App\Models\SuppliersModal;
-use App\Controllers\SuppliersController;
 use CodeIgniter\I18n\Time;
-use App\Models\GeneralModal;
 use App\Models\BuyersModel;
+use App\Models\GradesModel;
+use App\Models\GeneralModal;
+use App\Models\SuppliersModal;
+use CodeIgniter\Config\Services;
+use App\Controllers\BaseController;
+use App\Controllers\Traits\CommonData;
+use CodeIgniter\HTTP\ResponseInterface;
+use App\Controllers\SuppliersController;
 
 
 class BuyersController extends BaseController
@@ -110,6 +111,11 @@ class BuyersController extends BaseController
     // Add buyer
     public function addBuyer()
     {
+        if(!$this->validate(Services::validation()->getRuleGroup("buyerInfoValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
         $buyerData = $this->request->getPost("buyerInfo");
         $buyerData["fpo"] = $this->fpo;
         $buyerData["client_type"] = "B";
@@ -148,6 +154,13 @@ class BuyersController extends BaseController
     // Save new sales report
     public function newSalesReport()
     {
+
+        if(!$this->validate(Services::validation()->getRuleGroup("salesReportValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } 
+        
         $salesReportNo = $this->request->getPost("salesReportNo");
         $date = $this->request->getPost("date");
         $buyer = $this->request->getPost("buyer");
@@ -244,6 +257,11 @@ class BuyersController extends BaseController
     // Save adjusted sales report
     public function saveAdjustedSalesReport()
     {
+        if(!$this->validate(Services::validation()->getRuleGroup("salesUpdateReportValidationRules"))) {
+            $validationErrors = $this->validator->listErrors();
+            $this->response->setStatusCode(422);
+            return $this->response->setJSON(["error" => $validationErrors]);
+        } ;
         $salesId = $this->request->getPost("salesId");
         $salesReportNo = $this->request->getPost("salesNo");
         $ref = $this->request->getPost("ref");
