@@ -7737,13 +7737,18 @@ a.text-dark:hover, a.text-dark:focus {
     border-radius: 0;
     padding: 10px 15px;
     line-height: 1.428;
-    color: #596882; }
+    color: #596882;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
     @media (min-width: 768px) {
       .nav-tabs .nav-link {
-        padding: 10px 20px; } }
+        padding: 10px 20px;
+      background-color: brown;
+    color:white } }
     .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
       background-color: rgba(255, 255, 255, 0.5);
-      color: #1c273c; }
+      color: #1c273c;
+     }
     .nav-tabs .nav-link + .nav-link {
       margin-left: 3px; }
     .nav-tabs .nav-link.active {
@@ -7972,7 +7977,7 @@ a.text-dark:hover, a.text-dark:focus {
       font-weight: 500; }
   .table th,
   .table td {
-    padding: 9px 15px;
+    padding: 2px 5px;
     line-height: 1.462; }
 
 .table-striped tbody tr:nth-of-type(2n+1) {
@@ -8190,7 +8195,8 @@ table.dataTable {
     .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current:focus {
       border: 0;
       background-image: none;
-      background-color: #5b47fb;
+      background-color: green;
+      border-radius: 5px;
       color: #fff !important; }
 
 /* ###### 3.2 Datepicker ###### */

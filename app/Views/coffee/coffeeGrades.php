@@ -8,7 +8,7 @@
 <div class="az-content-body">
   <br>
   <div class="card bd-0 ">
-    <div class="card-header bg-gray-400 bd-b-0-f pd-b-0">
+    <div class="card-header bg-gray-400 bd-b-0-f pd-b-0" style="background-color: green;">
       <nav class="nav nav-tabs">
         <a class="nav-link active" data-toggle="tab" href="#grades">Grades</a>
         <a class="nav-link" data-toggle="tab" href="#categories">Categories</a>

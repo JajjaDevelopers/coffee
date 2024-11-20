@@ -484,7 +484,7 @@ $(document).ready(function () {
         if (rowNo == 1) {
           var rowRemoveBtn = "";
         } else {
-          var rowRemoveBtn = `<button rowNo="${salesItemsNo}" type="button" class="form-control form-control-sm btn-danger salesRowRemoveBtn" title="Remove Item">-</button>`;
+          var rowRemoveBtn = `<input rowNo="${salesItemsNo}" type="button" value="-" class="form-control form-control-sm btn-danger salesRowRemoveBtn" title="Remove Item">`;
         }
         rowStr += `<tr rowNo="${salesItemsNo}" id="salesReportRow${salesItemsNo}">
                     <td><input rowNo="${salesItemsNo}" id="salesCode${salesItemsNo}" value="${grdCode}" class="form-control form-control-xs" readonly></td>
