@@ -213,20 +213,19 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        alert('Hi')
+        alert("Hi");
         var status = response.sms;
-        if(status == "success") {
+        if (status == "success") {
           $("#addBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
-          toastr.success('Buyer Added')
+          toastr.success("Buyer Added");
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error("Something went wrong!");
         }
-        
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-      }
+      },
     });
   });
 
@@ -376,18 +375,17 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var sms = response.sms;
-        if (sms == 'Success') {
+        if (sms == "Success") {
           $("#newSalesReportModal").modal("hide");
-          toastr.success('Report Added!');
-        $("#salesReportsTable").DataTable().ajax.reload();
+          toastr.success("Report Added!");
+          $("#salesReportsTable").DataTable().ajax.reload();
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error("Something went wrong!");
         }
-        
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-      }
+      },
     });
   });
 
@@ -559,19 +557,17 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        if (response.sms == 'Success')
-        {
+        if (response.sms == "Success") {
           $("#editSalesReportModal").modal("hide");
-          toastr.success('Sales Report Updated!');
+          toastr.success("Sales Report Updated!");
           $("#salesReportsTable").DataTable().ajax.reload();
         } else {
-          toastr.error('Something went wrong')
+          toastr.error("Something went wrong");
         }
       },
-      error: function (xhr)
-      {
+      error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-        }
+      },
     });
   });
 

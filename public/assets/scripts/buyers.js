@@ -84,11 +84,18 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        alert("Hi");
         var status = response.sms;
         if (status == "success") {
           $("#addBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
+          toastr.success("Buyer Added");
+        } else {
+          toastr.error("Something went wrong!");
         }
+      },
+      error: function (xhr) {
+        toastr.error(xhr.responseJSON.error);
       },
     });
   });
