@@ -89,7 +89,7 @@ class SuppliersController extends BaseController
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
+        }
         $data = [
             "fpo" => $this->fpo,
             "client_type" => "S",
@@ -121,7 +121,7 @@ class SuppliersController extends BaseController
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
+        }
         $supplier = $this->request->getPost("supplier");
         // Adjusted details
         $details = [
@@ -300,7 +300,8 @@ class SuppliersController extends BaseController
         $data["summary"] = $summaryData;
         $data["inventory"] = $inventoryDetails;
         $edit = $this->suppliersModel->editValuation($valuationId, $data);
-        return $this->response->setJSON($edit);
+        $response["sms"] = $edit;
+        return $this->response->setJSON($response);
     }
 
 

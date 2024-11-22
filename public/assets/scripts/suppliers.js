@@ -1,7 +1,10 @@
 $(document).ready(function () {
+  const addSupplierFormHtml = $("#addSupplierForm").html();
   // Adding supplier
   $(document).on("click", "#addSupplierBtn", function (e) {
     e.preventDefault();
+    $("#addSupplierForm").html(addSupplierFormHtml);
+    $("#saveSupplierBtn").prop("disabled", false);
     $("#addSupplierModal").modal("show");
   });
   function suppliersList() {
@@ -50,6 +53,7 @@ $(document).ready(function () {
   // Save Supplier
   $(document).on("click", "#saveSupplierBtn", function (e) {
     e.preventDefault();
+    $(this).prop("disabled", true);
     $.ajax({
       type: "post",
       url: "/suppliers/addSupplier",
@@ -73,12 +77,15 @@ $(document).ready(function () {
           $("#suppliersListTable").DataTable().ajax.reload();
           $("#addSupplierModal").modal("hide");
           toastr.success("Supplier Added");
+          $("#addSupplierForm").html(addSupplierFormHtml);
         } else {
           toastr.error("Something went wrong!");
+          $(this).prop("disabled", false);
         }
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
+        $(this).prop("disabled", false);
       },
     });
   });
@@ -161,12 +168,12 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        if (response.sms == 'success') {
+        if (response.sms == "success") {
           $("#suppliersListTable").DataTable().ajax.reload();
           $("#editSupplierModal").modal("hide");
-          toastr.success('Supplier Updated!')
+          toastr.success("Supplier Updated!");
         } else {
-          toastr.error('Something went wrong!');
+          toastr.error("Something went wrong!");
         }
       },
       error: function (xhr) {
