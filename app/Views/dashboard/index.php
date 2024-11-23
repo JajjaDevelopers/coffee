@@ -120,9 +120,9 @@
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
               </div>
-              <span id="compositeline2">
+              <!-- <span id="compositeline2">
                 5,9,5,6,4,12,18,14,10,15,12,5
-              </span>
+              </span> -->
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label green-bg" style="color: white;">Total Revenue</label>
@@ -131,10 +131,14 @@
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
               </div>
-              <span id="compositeline">
+              <!-- <span id="compositeline">
                 3,2,4,6,12,14,8,7,14,16,12,7,8,4
-              </span>
+              </span> -->
             </div><!-- col -->
+          </div>
+          <div class="row" style="padding: 0px 5px;">
+            <div id="month1Bar" class="col-sm-6" style="background-color: green;">current</div>
+            <div id="month0Bar" class="col-sm-6" style="background-color: blue;">last</div>
           </div>
         </div>
         <div class="col-md-6">
@@ -334,6 +338,11 @@
   /* Dashboard content */
 
   $(document).ready(function() {
+    // Number formater
+    function numberFormat(number) {
+      var n = number.toFixed(1);
+      return n;
+    }
 
     //ajax request to pick sales data
     let salesData = null;
@@ -915,17 +924,17 @@
     //function to create total sales and total bulked
     const totalSalesAndBulked = (totalBulkedQty, totalBulkedValue, totalSalesQty, totalSalesValue) => {
       // const totalSales = totalSalesQty.toLocaleString()
-      $('#salesTotalQty').html(`${(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesValue').html(`<span><sub>UGX</sub></span>${(totalSalesValue/1000000).toLocaleString()}${"M"}`)
-      $('#totalBulkedQty').html(`${(totalBulkedQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
+      $('#salesTotalQty').html(`${numberFormat(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalSalesValue/1000000).toLocaleString()}${"M"}`)
+      $('#totalBulkedQty').html(`${(numberFormat(totalBulkedQty/1000)).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
     }
     //function to create total coffee type quantity and values
     const coffeeTypes = (totalRobQty, totalRobVal, totalAraQty, totalAraVal) => {
-      $('#salesRobTotalQty').html(`${(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${(totalRobVal/1000000).toLocaleString()}${"M"}`)
-      $('#totalAraQty').html(`${(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#araValue').html(`<span><sub>UGX</sub></span>${(totalAraVal/1000000).toLocaleString()}${"M"}`)
+      $('#salesRobTotalQty').html(`${numberFormat(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalRobVal/1000000).toLocaleString()}${"M"}`)
+      $('#totalAraQty').html(`${numberFormat(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#araValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalAraVal/1000000).toLocaleString()}${"M"}`)
     }
 
     //pie charts 
