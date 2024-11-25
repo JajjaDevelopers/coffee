@@ -48,8 +48,8 @@ class Validation extends BaseConfig
     public $updateSupplierValidationRules = [];
     public $salesReportValidationRules = [];
     public $salesUpdateReportValidationRules = [];
-    public $buyerInfoValidationRules=[];
-    public $buyerUpdateInfoValidationRules=[];
+    public $buyerInfoValidationRules = [];
+    public $buyerUpdateInfoValidationRules = [];
     public function __construct()
     {
         $this->setCoffeeGradesRules();
@@ -146,12 +146,13 @@ class Validation extends BaseConfig
             ],
             'quantities.*' => [
                 'label' => 'Quantities',
-                'rules' => 'required|is_natural_no_zero',
+                'rules' => 'required|regex_match[/^\d+(\.\d+)?$/]',
                 'errors' => [
                     'required' => 'Each quantity is required.',
-                    'is_natural_no_zero' => 'Quantity must be a positive number.',
+                    'regex_match' => 'Quantity must be a positive number (integer or decimal).',
                 ],
             ],
+
             'prices.*' => [
                 'label' => 'Prices',
                 'rules' => 'required|decimal',
@@ -584,7 +585,7 @@ class Validation extends BaseConfig
         ];
     }
 
-     /**
+    /**
      * Set Buyers Edit Validation Rules
      *
      * @return void
