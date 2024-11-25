@@ -336,19 +336,27 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+<<<<<<< HEAD
         var sms = response.status;
         if (sms === 'Success') {
+=======
+        var sms = response.sms;
+        if (sms == "Success") {
+>>>>>>> ad694b2c8e5895796f5949d7b38cbdb5e374af3f
           $("#newSalesReportModal").modal("hide");
-          toastr.success('Report Added!');
-        $("#salesReportsTable").DataTable().ajax.reload();
+          toastr.success("Report Added!");
+          $("#salesReportsTable").DataTable().ajax.reload();
         } else {
+<<<<<<< HEAD
           toastr.error('Something went wrong!');
+=======
+          toastr.error("Something went wrong!");
+>>>>>>> ad694b2c8e5895796f5949d7b38cbdb5e374af3f
         }
-        
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-      }
+      },
     });
   });
 
@@ -520,19 +528,17 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        if (response.sms == 'Success')
-        {
+        if (response.sms == "Success") {
           $("#editSalesReportModal").modal("hide");
-          toastr.success('Sales Report Updated!');
+          toastr.success("Sales Report Updated!");
           $("#salesReportsTable").DataTable().ajax.reload();
         } else {
-          toastr.error('Something went wrong')
+          toastr.error("Something went wrong");
         }
       },
-      error: function (xhr)
-      {
+      error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-        }
+      },
     });
   });
 

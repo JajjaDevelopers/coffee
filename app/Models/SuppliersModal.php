@@ -73,7 +73,8 @@ class SuppliersModal extends Model
             LEFT JOIN valuations ON inventory.transaction_id = valuations.valuation_id
             WHERE transaction_type_id = '1' AND valuations.fpo = '{$fpo}'
             {$supplierFilter} {$dateFilter}
-            {$groupBy}");
+            {$groupBy} 
+            ORDER BY grn DESC");
         return $query->getResultArray();
     }
 

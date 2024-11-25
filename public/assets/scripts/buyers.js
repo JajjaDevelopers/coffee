@@ -1,5 +1,6 @@
 $(document).ready(function () {
   //select country
+  const buyerFormHttml = $("#addBuyerForm").html();
   function searchCountry(inputId, parentId) {
     $(`#${inputId}`).select2({
       dropdownParent: $(`#${parentId}`),
@@ -57,6 +58,7 @@ $(document).ready(function () {
   // Add new buyer
   $(document).on("click", ".addBuyerBtn", function (e) {
     e.preventDefault();
+    $("#addBuyerForm").html(buyerFormHttml);
     searchCountry("addBuyerCountry", "addBuyerModal");
     $("#addBuyerModal").modal("show");
   });
@@ -64,6 +66,7 @@ $(document).ready(function () {
   // Save Buyer
   $(document).on("click", ".saveBuyerBtn", function (e) {
     e.preventDefault();
+    $("#saveBuyerBtn").prop("disabled", true);
     $.ajax({
       type: "post",
       url: "/buyers/addBuyer",
@@ -85,18 +88,20 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var status = response.sms;
-        if(status == "success") {
+        if (status == "success") {
           $("#addBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
-          toastr.success('Buyer Added')
+          toastr.success("Buyer Added");
+          $("#addBuyerForm").empty();
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error("Something went wrong!");
         }
-        
+        $("#saveBuyerBtn").prop("disabled", false);
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-      }
+        $("#saveBuyerBtn").prop("disabled", false);
+      },
     });
   });
 
@@ -183,18 +188,17 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var status = response.sms;
-        if (status == 'Success')
-        {
+        if (status == "Success") {
           $("#editBuyerModal").modal("hide");
           $("#buyersTable").DataTable().ajax.reload();
-          toastr.success('Buyer Edited')
+          toastr.success("Buyer Edited");
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error("Something went wrong!");
         }
       },
       error: function (xhr) {
         toastr.error(xhr.responseJSON.error);
-      }
+      },
     });
   });
 

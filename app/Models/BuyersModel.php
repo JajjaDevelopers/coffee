@@ -73,7 +73,7 @@ class BuyersModel extends Model
             LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
             WHERE transaction_type_id = '2' AND sales.fpo = '{$fpo}'
             {$buyerFilter} {$dateFilter}
-            GROUP BY transaction_id");
+            GROUP BY transaction_id ORDER BY sales_report_no DESC");
         return $query->getResultArray();
     }
 
@@ -113,7 +113,8 @@ class BuyersModel extends Model
             LEFT JOIN grades ON grades.grade_id = inventory.grade_id
             LEFT JOIN currencies ON currencies.currency_id = inventory.currency_id
             LEFT JOIN contract_types ON sales.contract_nature = contract_types.contract_type_id
-            WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}");
+            WHERE sales.fpo = '{$fpo}' AND inventory.transaction_type_id = 2 {$salesIdFilter} {$buyerFilter} {$dateFilter}
+            ORDER BY sales_report_no DESC");
         return $query->getResultArray();
     }
 

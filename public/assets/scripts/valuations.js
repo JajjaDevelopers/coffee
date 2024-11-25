@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const addValuationFormHtml = $("#addValuationForm").html();
   //initial date range
   //date range settings
   var startDate = moment().subtract(1, "months").startOf("month");
@@ -46,11 +47,13 @@ $(document).ready(function () {
   // New valuation
   $(document).on("click", "#addValuationBtn", function (e) {
     e.preventDefault();
+    $("#addValuationForm").html(addValuationFormHtml);
+    $("#saveValuationBtn").prop("disabled", false);
     valuationItemIds = [];
     valuationTotal = 0; //Reset total
     $(".valuationTotal").val(valuationTotal);
     $("#editValTBody").html("");
-    numberOfRows = 0; // Rest number of rows
+    numberOfRows = 0; // Reset number of rows
     numberOfRows += 1; //Increment by 1
     valuationItemIds.push(numberOfRows);
     $("#valTBody").html(`
@@ -262,24 +265,6 @@ $(document).ready(function () {
     });
   }
 
-  //select supplier
-  // $("#addDeliverySupplier").select2({
-  //   dropdownParent: $("#newValuationModal"),
-  //   ajax: {
-  //     delay: 250,
-  //     url: "/suppliers/list",
-  //     data: function (params) {
-  //       var query = {
-  //         search: params.term,
-  //       };
-  //       return query;
-  //     },
-  //     dataType: "json",
-  //     placeholder: "Search for supplier",
-  //     minimumInputLength: 3,
-  //   },
-  // });
-
   // Grade name selection
   function searchGrade(inputClass, parentContainer) {
     $(`.${inputClass}`).select2({
@@ -299,22 +284,6 @@ $(document).ready(function () {
       },
     });
   }
-  // $(".valGradeName").select2({
-  //   dropdownParent: $("#newValuationModal"),
-  //   ajax: {
-  //     delay: 250,
-  //     url: "/grades/search",
-  //     data: function (params) {
-  //       var query = {
-  //         search: params.term,
-  //       };
-  //       return query;
-  //     },
-  //     dataType: "json",
-  //     placeholder: "Select Grade",
-  //     minimumInputLength: 3,
-  //   },
-  // });
 
   // Selected grade details
   $(document).on("change", ".valGradeName", function (e) {
@@ -351,6 +320,7 @@ $(document).ready(function () {
   // Save Valuation
   $(document).on("click", "#saveValuationBtn", function (e) {
     e.preventDefault();
+    $(this).prop("disabled", true);
     var gradeIds = [];
     var gradeQtys = [];
     var gradePxs = [];
@@ -375,16 +345,18 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         // console.log(response.status);
-        if (response.status == 'Success')
-        {
-          toastr.success('Valuation Added Successfully')
+        if (response.status == "Success") {
+          toastr.success("Valuation Added Successfully");
           valuationReportslist();
           $("#newValuationModal").modal("hide");
+        } else {
+          $(this).prop("disabled", false);
         }
       },
       error: function (xhr) {
         // console.log(xhr);
         toastr.error(xhr.responseJSON.error);
+        $(this).prop("disabled", false);
       },
     });
   });
@@ -444,6 +416,7 @@ $(document).ready(function () {
     valuationItemIds = [];
     var confrmEdit = confirm("Click OK to confirm this valuation editing:");
     if (confrmEdit) {
+      $("#saveEditValuationBtn").prop("disabled", false);
       $("#valTBody").html("");
       $(".valuationTotal").val(0); //Reset total
       const vId = $("#valuationEditBtn").attr("vId");
@@ -504,6 +477,7 @@ $(document).ready(function () {
   // Save adjusted valuation
   $(document).on("click", "#saveEditValuationBtn", function (e) {
     e.preventDefault();
+    $(this).prop("disabled", true);
     console.log(valuationItemIds);
     const editItems = valuationItemIds;
     var itemIds = [];
@@ -527,9 +501,14 @@ $(document).ready(function () {
         itemPxs: itemPxs,
       },
       dataType: "json",
-      success: function (response) {},
+      success: function (response) {
+        var sms = response.sms;
+        if (sms == "success") {
+          $("#editValuationModal").modal("hide");
+          $(this).prop("disabled", false);
+        }
+      },
     });
-    $("#editValuationModal").modal("hide");
   });
 
   //

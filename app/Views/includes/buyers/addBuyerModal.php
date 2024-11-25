@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
+        <form action="#" method="post" id='addBuyerForm' enctype="multipart/form-data">
           <h6>Buyer Details</h6>
           <div class="row">
             <div class="col-sm-12">
