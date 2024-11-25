@@ -190,7 +190,6 @@ $(document).ready(function () {
     $("#addBuyerModal").modal("show");
   });
 
- 
 
   // Add new Sales Report
   $(document).on("click", ".addSalesReportBtn", function (e) {
@@ -337,13 +336,13 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        var sms = response.sms;
-        if (sms == 'Success') {
+        var sms = response.status;
+        if (sms === 'Success') {
           $("#newSalesReportModal").modal("hide");
           toastr.success('Report Added!');
         $("#salesReportsTable").DataTable().ajax.reload();
         } else {
-          toastr.error('Something went wrong!')
+          toastr.error('Something went wrong!');
         }
         
       },
