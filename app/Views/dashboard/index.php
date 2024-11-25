@@ -136,9 +136,9 @@
               </span> -->
             </div><!-- col -->
           </div>
-          <div class="row" style="padding: 0px 5px;">
-            <div id="month1Bar" class="col-sm-6" style="background-color: green;">current</div>
-            <div id="month0Bar" class="col-sm-6" style="background-color: blue;">last</div>
+          <div class="row sales-bar" style="padding: 0px 0px;">
+            <div id="month1Bar" class="month-1-bar" style="background-color: green; height:40px"></div>
+            <div id="month0Bar" style="text-align: center; height:40px"></div>
           </div>
         </div>
         <div class="col-md-6">
@@ -151,9 +151,9 @@
                 <i class="icon ion-md-stats"></i>
                 <span><strong>0.51%</strong> (30 days)</span>
               </div>
-              <span id="compositeline4">
+              <!-- <span id="compositeline4">
                 5,9,5,6,4,12,18,14,10,15,12,5,8,5
-              </span>
+              </span> -->
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label brown-bg" style="color: white;">Valuations</label>
@@ -162,10 +162,14 @@
                 <i class="icon ion-md-stats"></i>
                 <span><strong>5.32%</strong> (30 days)</span>
               </div>
-              <span id="compositeline3">
+              <!-- <span id="compositeline3">
                 5,10,5,20,22,12,15,18,20,15,8,12,22,5
-              </span>
+              </span> -->
             </div><!-- col -->
+          </div>
+          <div class="row valuations-bar" style="padding: 0px 0px;">
+            <div id="month1ValBar" class="month-1-val-bar" style="background-color: brown; height:40px"></div>
+            <div id="month0ValBar" style="text-align: center; height:40px"></div>
           </div>
         </div>
       </div><!-- row -->
@@ -352,18 +356,9 @@
       data: "data",
       dataType: "json",
       success: function(response) {
-        console.log(response);
         data = response;
         salesData = data.allMonthSales
         quarterlySalesData = data.quarters
-        // Extract month, actualSalesQty, and actualPurchaseQty into a new data array
-        // var actualSalesVsProjectedData = salesData.map(function(item) {
-        //   return {
-        //     month: item.month,
-        //     actualSalesQty: item.actualSalesQty,
-        //     actualPurchaseQty: item.actualPurchaseQty
-        //   };
-        // });
         exportLocalQty(data.exportQty, data.localQty)
         exportLocalValue(data.exportValue, data.localValue)
         actualSalesVsProjected(salesData);
@@ -372,6 +367,59 @@
         quarterlySales(quarterlySalesData);
         totalSalesAndBulked(data.totalBulkedQty, data.totalBulkedValue, data.totalSalesQty, data.totalSalesValue);
         coffeeTypes(data.robustaQty, data.robustaValue, data.arabicaQty, data.arabicaValue)
+
+        // Month sales comparison
+        var salesBarWidth = $(".sales-bar").width();
+        var month1Qty = data.month1Qty;
+        var month0Qty = data.month0Qty;
+        var total2Qty = month1Qty + month0Qty;
+        var month1Width = (month1Qty / total2Qty) * salesBarWidth;
+        var month0Width = (month0Qty / total2Qty) * salesBarWidth;
+        $("#month1Bar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1Qty)/1000} MT</strong></h6>`).width(`fit-content`);
+        $("#month0Bar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0Qty)/1000} MT</strong></h6>`).width(`fit-content`);
+
+        var initialMonth1Width = $("#month1Bar").width();
+        var initialMonth0Width = $("#month0Bar").width();
+        if (initialMonth1Width < month1Width) {
+          $("#month1Bar").width(month1Width);
+          if (initialMonth0Width < month0Width) {
+            $("#month0Bar").width(month0Width);
+            $("#month1Bar").width(salesBarWidth - month0Width);
+          } else {
+            $("#month0Bar").width(initialMonth0Width);
+            $("#month1Bar").width(salesBarWidth - initialMonth0Width);
+          }
+        } else {
+          $("#month1Bar").width(initialMonth1Width);
+          $("#month0Bar").width(salesBarWidth - initialMonth0Width);
+        }
+
+        // Month valuations comparisons
+        var valBarWidth = $(".valuations-bar").width();
+        var month1ValQty = data.month1ValQty;
+        var month0ValQty = data.month0ValQty;
+        var total2ValQty = month1ValQty + month0ValQty;
+        var month1ValWidth = (month1ValQty / total2ValQty) * valBarWidth;
+        var month0ValWidth = (month0ValQty / total2ValQty) * valBarWidth;
+
+        $("#month1ValBar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
+        $("#month0ValBar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
+
+        var month1FitWidth = $("#month1ValBar").width();
+        var month0FitWidth = $("#month0ValBar").width();
+        if (month1FitWidth < month1ValWidth) {
+          $("#month1ValBar").width(month1ValWidth);
+          if (month0FitWidth < month0ValWidth) {
+            $("#month0ValBar").width(month0ValWidth);
+            $("#month1ValBar").width(valBarWidth - month0ValWidth);
+          } else {
+            $("#month0ValBar").width(month0FitWidth);
+            $("#month1ValBar").width(valBarWidth - month0FitWidth);
+          }
+        } else {
+          $("#month1ValBar").width(month1FitWidth);
+          $("#month0ValBar").width(valBarWidth - month1FitWidth);
+        }
       },
     });
 

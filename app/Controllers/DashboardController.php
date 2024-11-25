@@ -58,6 +58,8 @@ class DashboardController extends BaseController
         $totalSalesValue = 0;
         $month1Qty = 0; //Current month qty
         $month0Qty = 0; //Previous month qty
+        $month1ValQty = 0;
+        $month0ValQty = 0;
         for ($x = 0; $x < 12; $x++) {
             $monthNumber = $dateFrom->addMonths($x)->getMonth();
             $monthStr = substr($this->generalFunctions->monthNames()[$monthNumber], 0, 3)  . " " . substr($dateFrom->addMonths($x)->getYear(), 2, 2);
@@ -74,12 +76,7 @@ class DashboardController extends BaseController
                 $sQty += $monthSales[$i]["salesQty"];
                 $sValue += $monthSales[$i]["salesValue"];
             }
-            // Current month details
-            if ($monthStr == $month1) {
-                $month1Qty += $sQty;
-            } else if ($monthStr == $month0) {
-                $month0Qty += $sQty;
-            }
+
 
             $details['actualSalesQty'] = $sQty; //monthly sales qty 
             $details['actualSalesValue'] = $sValue; //monthly sales value 
@@ -118,6 +115,15 @@ class DashboardController extends BaseController
             $details["projMonthSales"] = $projMonthSales;
             $details["projMonthPurchases"] = $projMonthPurchases;
             array_push($monthlySales, $details);
+
+            // Current month sales details
+            if ($monthStr == $month1) {
+                $month1Qty += $sQty;
+                $month1ValQty += $pQty;
+            } else if ($monthStr == $month0) {
+                $month0Qty += $sQty;
+                $month0ValQty += $pQty;
+            }
         }
         $data["currentDate"] = $secondMonth->toDateString();
         $data["allMonthSales"] = $monthlySales;
@@ -217,11 +223,14 @@ class DashboardController extends BaseController
         $data["exportQty"] = $exportQty;
         $data["exportValue"] = $exportValue;
         $data["quarters"] = $allQuarterSales;
-        // Month comparison
+        // Month sales comparison
         $data["month1Str"] = $month1;
         $data["month1Qty"] = $month1Qty;
         $data["month0Str"] = $month0;
         $data["month0Qty"] = $month0Qty;
+        // Month valuation comparisons
+        $data["month1ValQty"] = $month1ValQty;
+        $data["month0ValQty"] = $month0ValQty;
         return $this->response->setJSON($data);
     }
 
