@@ -56,10 +56,10 @@ class DashboardController extends BaseController
         $totalBulkedValue = 0;
         $totalSalesQty = 0;
         $totalSalesValue = 0;
-        $month1Qty = 0; //Current month qty
-        $month0Qty = 0; //Previous month qty
-        $month1ValQty = 0;
-        $month0ValQty = 0;
+        $month1Qty = 0; //Current month qty sales
+        $month0Qty = 0; //Previous month qty sales
+        $month1ValQty = 0; //Current month qty valuations
+        $month0ValQty = 0; //Previous month qty valuations
         for ($x = 0; $x < 12; $x++) {
             $monthNumber = $dateFrom->addMonths($x)->getMonth();
             $monthStr = substr($this->generalFunctions->monthNames()[$monthNumber], 0, 3)  . " " . substr($dateFrom->addMonths($x)->getYear(), 2, 2);
@@ -120,9 +120,13 @@ class DashboardController extends BaseController
             if ($monthStr == $month1) {
                 $month1Qty += $sQty;
                 $month1ValQty += $pQty;
+                $month1SalesValue = $sValue;
+                $month1ValuationValue = $pValue;
             } else if ($monthStr == $month0) {
                 $month0Qty += $sQty;
                 $month0ValQty += $pQty;
+                $month0SalesValue = $sValue;
+                $month0ValuationValue = $pValue;
             }
         }
         $data["currentDate"] = $secondMonth->toDateString();
@@ -231,8 +235,18 @@ class DashboardController extends BaseController
         // Month valuation comparisons
         $data["month1ValQty"] = $month1ValQty;
         $data["month0ValQty"] = $month0ValQty;
+        // Monthly Changes
+        $data["salesQtyChange"] = $this->periodChange($month1Qty, $month0Qty);
+        $data["valuationsQtyChange"] = $this->periodChange($month1ValQty, $month0ValQty);
+        $data["salesValueChange"] = $this->periodChange($month1SalesValue, $month0SalesValue);
+        $data["valuationValueChange"] = $this->periodChange($month1ValuationValue, $month0ValuationValue);
         return $this->response->setJSON($data);
     }
 
-    // 
+    // Calculate Change in percentage
+    public function periodChange($value1, $value0)
+    {
+        $change = ($value1 - $value0) * 100 / $value0;
+        return $change;
+    }
 }

@@ -158,9 +158,11 @@
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label brown-bg" style="color: white;">Valuations</label>
               <h2 id='bulkedValue' style="color:brown"><span>UGX</span>0</h2>
-              <div class="desc up">
-                <i class="icon ion-md-stats"></i>
-                <span><strong>5.32%</strong> (30 days)</span>
+              <div id="valuationValueTrend">
+                <!-- <span class="material-symbols-outlined">
+                  trending_up
+                </span>
+                <span><strong>5.32%</strong> (30 days)</span>-->
               </div>
               <!-- <span id="compositeline3">
                 5,10,5,20,22,12,15,18,20,15,8,12,22,5
@@ -348,6 +350,23 @@
       return n;
     }
 
+    // Trend analysis
+    function trendAnalysis(divId, value) {
+      var change = numberFormat(value);
+      if (value < 0) {
+        var trend = `<strong><span class="material-symbols-outlined" style="color: red; font-size:50px">
+                  trending_down
+                </span></strong>
+                <span><strong>${change}%</strong> (30 days)</span>`;
+      } else {
+        var trend = `<strong><span class="material-symbols-outlined" style="color: green; font-size:30px">
+                  trending_up
+                </span></strong>
+                <span style="color: green"><strong>${change}%</strong> (30 days)</span>`;
+      }
+      $(`${divId}`).html(trend);
+    }
+
     //ajax request to pick sales data
     let salesData = null;
     $.ajax({
@@ -420,6 +439,9 @@
           $("#month1ValBar").width(month1FitWidth);
           $("#month0ValBar").width(valBarWidth - month1FitWidth);
         }
+
+        // Trends
+        trendAnalysis("#valuationValueTrend", data.valuationValueChange);
       },
     });
 
