@@ -72,3 +72,26 @@ label.valuationValue{
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+
+.sales-bar{
+  margin: 5px;
+  color: white;
+  text-align: center;
+  border-radius: 0px;
+  background-color: rgba(165, 205, 5, 0.729);
+}
+.month-1-bar{
+  border-radius: 0px;
+}
+
+.valuations-bar{
+  margin: 5px;
+  color: white;
+  text-align: center;
+  border-radius: 0px;
+  background-color: rgb(203, 150, 70);
+}
+
+.month-1-val-bar{
+  border-radius: 0px
+}

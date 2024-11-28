@@ -49,8 +49,8 @@ class GeneralController extends BaseController
     public function currentAccountingPeriod()
     {
         $builder = $this->db->query("SELECT acc_year_id, fpo, start_date, end_date
-                    FROM accounting_years WHERE acc_year_id =(SELECT max(acc_year_id))
-                    AND fpo = '{$this->fpo}'");
+                    FROM accounting_years 
+                    WHERE acc_year_id = (SELECT max(acc_year_id) FROM accounting_years WHERE fpo = '{$this->fpo}') ");
         $currentPeriod = $builder->getResultArray()[0];
         $dateFrom = new Time($currentPeriod["start_date"]);
         $dateTo = new Time($currentPeriod["end_date"]);

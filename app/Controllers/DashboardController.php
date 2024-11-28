@@ -40,9 +40,14 @@ class DashboardController extends BaseController
     // Annual Sales by coffee type
     public function previousSales()
     {
+        $timeNow = new Time();
+        $currentMonth = $timeNow->getMonth(); //Current Month number
+        $previousMonth = $timeNow->subMonths(1)->getMonth(); //Current Month number
         $currentPeriod = $this->generalFunctions->currentAccountingPeriod();
         $dateFrom = new Time($currentPeriod["start_date"]);
         $dateTo = new Time($currentPeriod["end_date"]);
+        $month1 = substr($this->generalFunctions->monthNames()[$currentMonth], 0, 3)  . " " . substr($timeNow->getYear(), 2, 2); //Current month
+        $month0 = substr($this->generalFunctions->monthNames()[$previousMonth], 0, 3)  . " " . substr($timeNow->subMonths(1)->getYear(), 2, 2); //Previous month
         // Getting months
         $secondMonth = $dateFrom->addMonths(0);
         $monthlySales = [];
@@ -51,9 +56,14 @@ class DashboardController extends BaseController
         $totalBulkedValue = 0;
         $totalSalesQty = 0;
         $totalSalesValue = 0;
+        $month1Qty = 0; //Current month qty sales
+        $month0Qty = 0; //Previous month qty sales
+        $month1ValQty = 0; //Current month qty valuations
+        $month0ValQty = 0; //Previous month qty valuations
         for ($x = 0; $x < 12; $x++) {
             $monthNumber = $dateFrom->addMonths($x)->getMonth();
-            $details["month"] = substr($this->generalFunctions->monthNames()[$monthNumber], 0, 3)  . " " . substr($dateFrom->addMonths($x)->getYear(), 2, 2);
+            $monthStr = substr($this->generalFunctions->monthNames()[$monthNumber], 0, 3)  . " " . substr($dateFrom->addMonths($x)->getYear(), 2, 2);
+            $details["month"] = $monthStr;
             // Query starting date
             $monthStart = $dateFrom->addMonths($x)->toDateString();
             // Query ending date
@@ -66,6 +76,8 @@ class DashboardController extends BaseController
                 $sQty += $monthSales[$i]["salesQty"];
                 $sValue += $monthSales[$i]["salesValue"];
             }
+
+
             $details['actualSalesQty'] = $sQty; //monthly sales qty 
             $details['actualSalesValue'] = $sValue; //monthly sales value 
             $totalSalesQty += $sQty; // Add to total sales qty
@@ -103,6 +115,19 @@ class DashboardController extends BaseController
             $details["projMonthSales"] = $projMonthSales;
             $details["projMonthPurchases"] = $projMonthPurchases;
             array_push($monthlySales, $details);
+
+            // Current month sales details
+            if ($monthStr == $month1) {
+                $month1Qty += $sQty;
+                $month1ValQty += $pQty;
+                $month1SalesValue = $sValue;
+                $month1ValuationValue = $pValue;
+            } else if ($monthStr == $month0) {
+                $month0Qty += $sQty;
+                $month0ValQty += $pQty;
+                $month0SalesValue = $sValue;
+                $month0ValuationValue = $pValue;
+            }
         }
         $data["currentDate"] = $secondMonth->toDateString();
         $data["allMonthSales"] = $monthlySales;
@@ -202,9 +227,26 @@ class DashboardController extends BaseController
         $data["exportQty"] = $exportQty;
         $data["exportValue"] = $exportValue;
         $data["quarters"] = $allQuarterSales;
-        // $data["sales"] = $allSales;
+        // Month sales comparison
+        $data["month1Str"] = $month1;
+        $data["month1Qty"] = $month1Qty;
+        $data["month0Str"] = $month0;
+        $data["month0Qty"] = $month0Qty;
+        // Month valuation comparisons
+        $data["month1ValQty"] = $month1ValQty;
+        $data["month0ValQty"] = $month0ValQty;
+        // Monthly Changes
+        $data["salesQtyChange"] = $this->periodChange($month1Qty, $month0Qty);
+        $data["valuationsQtyChange"] = $this->periodChange($month1ValQty, $month0ValQty);
+        $data["salesValueChange"] = $this->periodChange($month1SalesValue, $month0SalesValue);
+        $data["valuationValueChange"] = $this->periodChange($month1ValuationValue, $month0ValuationValue);
         return $this->response->setJSON($data);
     }
 
-    // 
+    // Calculate Change in percentage
+    public function periodChange($value1, $value0)
+    {
+        $change = ($value1 - $value0) * 100 / $value0;
+        return $change;
+    }
 }

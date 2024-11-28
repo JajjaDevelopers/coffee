@@ -116,25 +116,35 @@
             <div class="col-6 col-lg-6">
               <label class="az-content-label green-bg" style="color: white;">Total Quantity</label>
               <h2 id='salesTotalQty' style="color: green;">0<span>Kgs</span></h2>
-              <div class="desc up">
+              <div id="salesQtyTrend">
+
+              </div>
+              <!-- <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>2.00%</strong> (30 days)</span>
-              </div>
-              <span id="compositeline2">
+              </div> -->
+              <!-- <span id="compositeline2">
                 5,9,5,6,4,12,18,14,10,15,12,5
-              </span>
+              </span> -->
             </div><!-- col -->
             <div class="col-6 col-lg-6">
               <label class="az-content-label green-bg" style="color: white;">Total Revenue</label>
               <h2 id='salesValue' style="color: green;"><span>UGX</span>0</h2>
-              <div class="desc up">
+              <div id="salesValueTrend">
+
+              </div>
+              <!-- <div class="desc up">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>12.09%</strong> (30 days)</span>
-              </div>
-              <span id="compositeline">
+              </div> -->
+              <!-- <span id="compositeline">
                 3,2,4,6,12,14,8,7,14,16,12,7,8,4
-              </span>
+              </span> -->
             </div><!-- col -->
+          </div>
+          <div class="row sales-bar" style="padding: 0px 0px;">
+            <div id="month1Bar" class="month-1-bar" style="background-color: green; height:40px"></div>
+            <div id="month0Bar" style="text-align: center; height:40px"></div>
           </div>
         </div>
         <div class="col-md-6">
@@ -143,25 +153,34 @@
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label brown-bg" style="color: white;">Total Quantity</label>
               <h2 id='totalBulkedQty' style="color:brown">0</h2>
-              <div class="desc down">
+              <div id="valQtyTrend">
+
+              </div>
+              <!-- <div class="desc down">
                 <i class="icon ion-md-stats"></i>
                 <span><strong>0.51%</strong> (30 days)</span>
-              </div>
-              <span id="compositeline4">
+              </div> -->
+              <!-- <span id="compositeline4">
                 5,9,5,6,4,12,18,14,10,15,12,5,8,5
-              </span>
+              </span> -->
             </div><!-- col -->
             <div class="col-6 col-lg-6 mg-t-20 mg-lg-t-0">
               <label class="az-content-label brown-bg" style="color: white;">Valuations</label>
               <h2 id='bulkedValue' style="color:brown"><span>UGX</span>0</h2>
-              <div class="desc up">
-                <i class="icon ion-md-stats"></i>
-                <span><strong>5.32%</strong> (30 days)</span>
+              <div id="valuationValueTrend">
+                <!-- <span class="material-symbols-outlined">
+                  trending_up
+                </span>
+                <span><strong>5.32%</strong> (30 days)</span>-->
               </div>
-              <span id="compositeline3">
+              <!-- <span id="compositeline3">
                 5,10,5,20,22,12,15,18,20,15,8,12,22,5
-              </span>
+              </span> -->
             </div><!-- col -->
+          </div>
+          <div class="row valuations-bar" style="padding: 0px 0px;">
+            <div id="month1ValBar" class="month-1-val-bar" style="background-color: brown; height:40px"></div>
+            <div id="month0ValBar" style="text-align: center; height:40px"></div>
           </div>
         </div>
       </div><!-- row -->
@@ -334,6 +353,30 @@
   /* Dashboard content */
 
   $(document).ready(function() {
+    // Number formater
+    function numberFormat(number) {
+      var n = number.toFixed(1);
+      return n;
+    }
+
+    // Trend analysis
+    function trendAnalysis(divId, value, month0Str) {
+      var change = numberFormat(value);
+      if (value < 0) {
+        trendTitle = `title="Dropping Trend"`;
+        var trend = `<strong><span class="material-symbols-outlined" style="color: red; font-size:30px" ${trendTitle}>
+                  trending_down
+                </span>
+                <span style="color: red" ${trendTitle}>${change}%</strong> (comparing ${month0Str})</span>`;
+      } else {
+        trendTitle = `title="Rising Trend"`;
+        var trend = `<strong><span class="material-symbols-outlined" style="color: green; font-size:30px" ${trendTitle}>
+                  trending_up
+                </span>
+                <span style="color: green" ${trendTitle}>${change}%</strong> (comparing ${month0Str})</span>`;
+      }
+      $(`${divId}`).html(trend);
+    }
 
     //ajax request to pick sales data
     let salesData = null;
@@ -343,18 +386,9 @@
       data: "data",
       dataType: "json",
       success: function(response) {
-        console.log(response);
         data = response;
         salesData = data.allMonthSales
         quarterlySalesData = data.quarters
-        // Extract month, actualSalesQty, and actualPurchaseQty into a new data array
-        // var actualSalesVsProjectedData = salesData.map(function(item) {
-        //   return {
-        //     month: item.month,
-        //     actualSalesQty: item.actualSalesQty,
-        //     actualPurchaseQty: item.actualPurchaseQty
-        //   };
-        // });
         exportLocalQty(data.exportQty, data.localQty)
         exportLocalValue(data.exportValue, data.localValue)
         actualSalesVsProjected(salesData);
@@ -363,6 +397,65 @@
         quarterlySales(quarterlySalesData);
         totalSalesAndBulked(data.totalBulkedQty, data.totalBulkedValue, data.totalSalesQty, data.totalSalesValue);
         coffeeTypes(data.robustaQty, data.robustaValue, data.arabicaQty, data.arabicaValue)
+
+        // Month sales comparison
+        var salesBarWidth = $(".sales-bar").width();
+        var month1Qty = data.month1Qty;
+        var month0Qty = data.month0Qty;
+        var total2Qty = month1Qty + month0Qty;
+        var month1Width = (month1Qty / total2Qty) * 100;
+        var month0Width = (month0Qty / total2Qty) * 100;
+        $("#month1Bar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1Qty/1000)} MT</strong></h6>`).width(`fit-content`);
+        $("#month0Bar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0Qty/1000)} MT</strong></h6>`).width(`fit-content`);
+
+        var initialMonth1Width = $("#month1Bar").width() * 100 / salesBarWidth;
+        var initialMonth0Width = $("#month0Bar").width() * 100 / salesBarWidth;
+        if (initialMonth1Width < month1Width) {
+          $("#month1Bar").width(month1Width);
+          if (initialMonth0Width < month0Width) {
+            $("#month0Bar").width(`${month0Width}%`);
+            $("#month1Bar").width(`${100 - month0Width}%`);
+          } else {
+            $("#month0Bar").width(`${initialMonth0Width}%`);
+            $("#month1Bar").width(`${100 - initialMonth0Width}%`);
+          }
+        } else {
+          $("#month1Bar").width(`${initialMonth1Width}%`);
+          $("#month0Bar").width(`${100 - initialMonth0Width}%`);
+        }
+
+        // Month valuations comparisons
+        var valBarWidth = $(".valuations-bar").width();
+        var month1ValQty = data.month1ValQty;
+        var month0ValQty = data.month0ValQty;
+        var total2ValQty = month1ValQty + month0ValQty;
+        var month1ValWidth = (month1ValQty / total2ValQty) * 100;
+        var month0ValWidth = (month0ValQty / total2ValQty) * 100;
+
+        $("#month1ValBar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
+        $("#month0ValBar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
+
+        var month1FitWidth = $("#month1ValBar").width() * 100 / valBarWidth;
+        var month0FitWidth = $("#month0ValBar").width() * 100 / valBarWidth;
+        if (month1FitWidth < month1ValWidth) {
+          $("#month1ValBar").width(month1ValWidth);
+          if (month0FitWidth < month0ValWidth) {
+            $("#month0ValBar").width(`${month0ValWidth}%`);
+            $("#month1ValBar").width(`${100 - month0ValWidth}%`);
+          } else {
+            $("#month0ValBar").width(`${month0FitWidth}%`);
+            $("#month1ValBar").width(`${100 - month0FitWidth}%`);
+          }
+        } else {
+          $("#month1ValBar").width(`${month1FitWidth}%`);
+          $("#month0ValBar").width(`${100 - month1FitWidth}%`);
+        }
+
+        // Trends
+        trendAnalysis("#valuationValueTrend", data.valuationValueChange, data.month0Str);
+        trendAnalysis("#valQtyTrend", data.valuationsQtyChange, data.month0Str);
+        trendAnalysis("#salesValueTrend", data.salesValueChange, data.month0Str);
+        trendAnalysis("#salesQtyTrend", data.salesQtyChange, data.month0Str);
       },
     });
 
@@ -915,17 +1008,17 @@
     //function to create total sales and total bulked
     const totalSalesAndBulked = (totalBulkedQty, totalBulkedValue, totalSalesQty, totalSalesValue) => {
       // const totalSales = totalSalesQty.toLocaleString()
-      $('#salesTotalQty').html(`${(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesValue').html(`<span><sub>UGX</sub></span>${(totalSalesValue/1000000).toLocaleString()}${"M"}`)
-      $('#totalBulkedQty').html(`${(totalBulkedQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
+      $('#salesTotalQty').html(`${numberFormat(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalSalesValue/1000000).toLocaleString()}${"M"}`)
+      $('#totalBulkedQty').html(`${(numberFormat(totalBulkedQty/1000)).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
     }
     //function to create total coffee type quantity and values
     const coffeeTypes = (totalRobQty, totalRobVal, totalAraQty, totalAraVal) => {
-      $('#salesRobTotalQty').html(`${(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${(totalRobVal/1000000).toLocaleString()}${"M"}`)
-      $('#totalAraQty').html(`${(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#araValue').html(`<span><sub>UGX</sub></span>${(totalAraVal/1000000).toLocaleString()}${"M"}`)
+      $('#salesRobTotalQty').html(`${numberFormat(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalRobVal/1000000).toLocaleString()}${"M"}`)
+      $('#totalAraQty').html(`${numberFormat(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
+      $('#araValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalAraVal/1000000).toLocaleString()}${"M"}`)
     }
 
     //pie charts 
