@@ -66,3 +66,7 @@ $routes->get('/admin/countriesList', 'BuyersController::countriesList');
 
 // Dashboard Metrics
 $routes->post('/sales/salesByType', 'DashboardController::previousSales');
+
+// Reports
+$routes->get('/customers/sales', 'BuyersController::customerSalesReportFilter'); //Sales report filter
+$routes->post('/customers/sales', 'BuyersController::customerSalesReport');

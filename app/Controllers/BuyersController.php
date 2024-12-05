@@ -111,11 +111,11 @@ class BuyersController extends BaseController
     // Add buyer
     public function addBuyer()
     {
-        if(!$this->validate(Services::validation()->getRuleGroup("buyerInfoValidationRules"))) {
+        if (!$this->validate(Services::validation()->getRuleGroup("buyerInfoValidationRules"))) {
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
+        }
         $buyerData = $this->request->getPost("buyerInfo");
         $buyerData["fpo"] = $this->fpo;
         $buyerData["client_type"] = "B";
@@ -132,11 +132,11 @@ class BuyersController extends BaseController
     // Edit buyer
     public function editBuyer()
     {
-        if(!$this->validate(Services::validation()->getRuleGroup("buyerUpdateInfoValidationRules"))) {
+        if (!$this->validate(Services::validation()->getRuleGroup("buyerUpdateInfoValidationRules"))) {
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
+        }
         $newInfo = $this->request->getPost("info");
         $buyer = $this->request->getPost("buyer");
         $editBuyer = $this->buyersModel->editBuyer($buyer, $newInfo);
@@ -160,12 +160,12 @@ class BuyersController extends BaseController
     public function newSalesReport()
     {
 
-        if(!$this->validate(Services::validation()->getRuleGroup("salesReportValidationRules"))) {
+        if (!$this->validate(Services::validation()->getRuleGroup("salesReportValidationRules"))) {
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } 
-        
+        }
+
         $salesReportNo = $this->request->getPost("salesReportNo");
         $date = $this->request->getPost("date");
         $buyer = $this->request->getPost("buyer");
@@ -262,11 +262,11 @@ class BuyersController extends BaseController
     // Save adjusted sales report
     public function saveAdjustedSalesReport()
     {
-        if(!$this->validate(Services::validation()->getRuleGroup("salesUpdateReportValidationRules"))) {
+        if (!$this->validate(Services::validation()->getRuleGroup("salesUpdateReportValidationRules"))) {
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
-        } ;
+        };
         $salesId = $this->request->getPost("salesId");
         $salesReportNo = $this->request->getPost("salesNo");
         $ref = $this->request->getPost("ref");
@@ -317,6 +317,14 @@ class BuyersController extends BaseController
             $data["sms"] = "Fail";
         }
         return $this->response->setJSON($data);
+    }
+
+    // Reports
+    public function customerSalesReportFilter()
+    {
+        $commonData = $this->commonData();
+        $page_title = "Customer | Sales Report";
+        return view('reports/greenUnit/customerSalesReportView', compact('page_title', 'commonData'));
     }
 
 
