@@ -59,6 +59,7 @@ $routes->post('/sales/saveSalesReport', 'BuyersController::newSalesReport');
 $routes->post('/sales/salesReports', 'BuyersController::salesReports');
 $routes->post('/saleReport/editData', 'BuyersController::editSalesReportData');
 $routes->post('/salesReport/saveAdjusted', 'BuyersController::saveAdjustedSalesReport');
+$routes->get('/sales/report/(:num)', 'BuyersController::salesReport/$1');
 
 
 // General

@@ -361,6 +361,9 @@ $(document).ready(function () {
     $("#salesTBody").html("");
     const salesId = $(this).attr("sId");
     $("#salesReportEditId").val(salesId);
+
+    //attach salesreport id to the print button
+    $('#salesReportPrintBtn').attr('href',`/sales/report/${salesId}`)
     // Get sales report infomation
     $.ajax({
       type: "post",
