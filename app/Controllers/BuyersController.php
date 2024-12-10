@@ -319,6 +319,34 @@ class BuyersController extends BaseController
         return $this->response->setJSON($data);
     }
 
+    public function salesReport($salesReportId)
+    {
+        $salesData = $this->buyersModel->salesReportData($this->fpo, $salesReportId, "", "", "");
+        $items = [];
+        $grandTotal = 0;
+        for ($x = 0; $x < count($salesData); $x++) {
+            $qty = $salesData[$x]["qty_out"];
+            $price = $salesData[$x]["price"];
+            $amount = $qty * $price;
+            $itm = [
+                "rowNo" => $x + 1,
+                "code" => $salesData[$x]["grade_code"],
+                "gradeId" => $salesData[$x]["grade_id"],
+                "gradeName" => $salesData[$x]["grade_name"],
+                "qty" => $qty,
+                "unit" => $salesData[$x]["unit"],
+                "price" => $price,
+                "amount" => $amount,
+            ];
+            $grandTotal += $amount;
+            array_push($items, $itm);
+        }
+        $data["items"] = $items;
+        $data["salesTotal"] = $grandTotal;
+        return $this->response->setJSON($data);
+        return view('reports/sales_report');
+    }
+
     // Reports
     public function customerSalesReportFilter()
     {
