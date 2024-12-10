@@ -511,5 +511,7 @@ $(document).ready(function () {
     });
   });
 
+  // Open valuation report
+
   //
 });

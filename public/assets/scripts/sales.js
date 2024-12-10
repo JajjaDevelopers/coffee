@@ -335,7 +335,7 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        var sms = response.sms;
+        var sms = response.status;
         if (sms == "Success") {
           $("#newSalesReportModal").modal("hide");
           toastr.success("Report Added!");
