@@ -126,9 +126,9 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-clipboard"></i>Green Coffee</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per Sales Report">Sales Summary</a></li>
+            <li class="nav-sub-item"><a href="/customers/sales" class="nav-sub-link" title="Sales to customers">Customer Sales</a></li>
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of sales value per grade">Sales Details</a></li>
-            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per Valuation Report">Valuations Summary</a></li>
+            <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per Valuation Report">Valuations</a></li>
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per grade">Detailed Valuations</a></li>
             <li class="nav-sub-item"><a href="#" class="nav-sub-link" title="Summary of valuations per grade">Offers Summary</a></li>
           </ul>

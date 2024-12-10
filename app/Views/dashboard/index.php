@@ -355,7 +355,7 @@
   $(document).ready(function() {
     // Number formater
     function numberFormat(number) {
-      var n = number.toFixed(1);
+      var n = Number((number).toFixed(2)).toLocaleString();
       return n;
     }
 
