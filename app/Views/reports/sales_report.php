@@ -1,92 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SALES Report</title>
+    <!-- Include Azia Admin Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/azia-admin/1.0.0/css/azia.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
             margin: 20px;
         }
+
         .header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        th, td {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
+
+        .logo img {
+            height: 80px;
+            width: auto;
         }
-        th {
-            background-color: #f4f4f4;
+
+        .print-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-        .signature-section {
-            margin-top: 20px;
+
+        h1, h2 {
+            font-size: 1.2rem;
+            margin: 0;
         }
-        .signature-line {
-            margin: 15px 0;
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+        @media print {
+            .print-icon {
+                display: none;
+            }
         }
     </style>
 </head>
+
 <body>
-<div class="header">
-    <div style="display: flex; align-items: center; gap: 15px;">
-        <!-- Logo Section -->
-        <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" style="height: 80px; width: auto;">
-        <!-- <img src="" width="170px" height="80px"> -->
-        
-        <!-- Text Section -->
-        <div>
-            <h1>National Union of Coffee Agribusinesses and Farm Enterprises</h1>
-            <h2>The Coffee Farmers’ Organisation</h2>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <!-- Logo Section -->
+            <div class="logo">
+                <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo">
+                <div>
+                    <h1>National Union of Coffee Agribusinesses and Farm Enterprises</h1>
+                    <h2>The Coffee Farmers’ Organisation</h2>
+                </div>
+            </div>
+            <!-- Print Icon -->
+             <div>
+                <span class="print-icon" onclick="handlePrint()">
+                    <i class="fas fa-print"></i>
+                </span>
+            </div>
         </div>
+
+        <!-- Sales Report Table -->
+        <table class="table table-bordered">
+            <thead class='thead-light'>
+                <tr>
+                    <th colspan="6" class="text-center">SALES REPORT NO.<?= $data['reportNo'] ?></th>
+                </tr>
+                <tr>
+                    <th>CODE</th>
+                    <th>GRADE</th>
+                    <th>QTY</th>
+                    <th>UNIT</th>
+                    <th>UNIT PRICE (UGX)</th>
+                    <th>AMOUNT (UGX)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['items'] as $item) : ?>
+                    <tr>
+                        <td><?= $item['code'] ?></td>
+                        <td><?= $item['gradeName'] ?></td>
+                        <td><?= number_format($item['qty'], 2) ?></td>
+                        <td><?= $item['unit'] ?></td>
+                        <td><?= number_format($item['price'], 2) ?></td>
+                        <td><?= number_format($item['amount']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-right font-weight-bold">Total</td>
+                    <td class="font-weight-bold"><?= number_format($data['salesTotal'], 2) ?></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- Signature Table -->
+        <table class="table table-bordered mt-4">
+            <thead class="thead-light">
+                <tr>
+                    <th>Action by</th>
+                    <th>Date Performed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Buyer:</strong> <?= $data['buyerName'] ?></td>
+                    <td><?= $data["salesDate"] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Prepared By:</strong> <?= $data['preparedBy'] ?></td>
+                    <td><?= $data['time_prepared'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Verified By:</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Approved By:</strong> <?= $data['preparedBy'] ?></td>
+                    <td><?= $data['time_prepared'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Finance By:</strong></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
 
-    <h3>SALES Report No. <span>_______________</span></h3>
-
-    <table>
-        <thead>
-            <tr>
-                <th>GRADE</th>
-                <th>QTY (KGS)</th>
-                <th>UNIT PRICE (UGX)</th>
-                <th>AMOUNT (UGX)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Add rows dynamically here -->
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3"><strong>Total</strong></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <p><strong>Buyer:</strong> ______________________________</p>
-    <p><strong>Date:</strong> ______________________________</p>
-
-    <div class="signature-section">
-        <p><strong>Prepared By:</strong> ______________________________________________</p>
-        <p><strong>Verified By:</strong> ______________________________________________</p>
-        <p><strong>Approved By:</strong> ______________________________________________</p>
-        <p><strong>Finance By:</strong> ______________________________________________</p>
-        <p>Date: ____________________</p>
-    </div>
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        function handlePrint() {
+            const printIcon = document.querySelector('.print-icon');
+            printIcon.style.display = 'none';
+            window.print();
+            setTimeout(() => {
+                printIcon.style.display = 'inline-block';
+            }, 1000);
+        }
+    </script>
 </body>
+
 </html>

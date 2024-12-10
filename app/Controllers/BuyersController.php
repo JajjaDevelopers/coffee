@@ -322,6 +322,11 @@ class BuyersController extends BaseController
     public function salesReport($salesReportId)
     {
         $salesData = $this->buyersModel->salesReportData($this->fpo,$salesReportId, "", "", "");
+        $data["reportNo"] = $salesData[0]["sales_report_no"];
+        $data["salesDate"] = $salesData[0]["date"];
+        $data["buyerName"] = $salesData[0]["name"];
+        $data["preparedBy"] = $salesData[0]["fname"].' '.$salesData[0]["lname"];
+        $data['time_prepared']=$salesData[0]['time_prepared'];
         $items = [];
         $grandTotal = 0;
         for ($x = 0; $x < count($salesData); $x++) {
@@ -343,8 +348,7 @@ class BuyersController extends BaseController
         }
         $data["items"] = $items;
         $data["salesTotal"] = $grandTotal;
-        return $this->response->setJSON($data);
-        return view('reports/sales_report');
+        return view('reports/sales_report',compact('data'));
     }
 
 
