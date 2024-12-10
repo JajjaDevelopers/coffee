@@ -304,6 +304,12 @@ class SuppliersController extends BaseController
         return $this->response->setJSON($response);
     }
 
+    // Print valuation Report
+    public function printValuationReport()
+    {
+        return view('includes/suppliers/valuationReport');
+    }
+
 
     // 
 }

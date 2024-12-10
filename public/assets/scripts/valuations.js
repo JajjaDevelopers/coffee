@@ -511,7 +511,17 @@ $(document).ready(function () {
     });
   });
 
-  // Open valuation report
+  // Print valuation report
+  // $(document).on("click", "#valuationPrintBtn", function (e) {
+  //   e.preventDefault();
+  //   $.ajax({
+  //     type: "get",
+  //     url: "/valuation/print",
+  //     data: "data",
+  //     dataType: "dataType",
+  //     success: function (response) {},
+  //   });
+  // });
 
   //
 });
