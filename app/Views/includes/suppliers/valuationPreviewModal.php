@@ -103,7 +103,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <a id='valuationPrintBtn' href="/valuation/print" target="_blank">
+        <a id='valuationPrintBtn' href="/valuation/print?v=<?= 2 ?>" target="_blank">
           <button type="button" valId="" class="btn btn-primary">Print</button>
         </a>
         <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>

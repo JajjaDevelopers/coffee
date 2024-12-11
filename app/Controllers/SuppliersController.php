@@ -307,7 +307,7 @@ class SuppliersController extends BaseController
     // Print valuation Report
     public function printValuationReport()
     {
-        return view('includes/suppliers/valuationReport');
+        return view('reports/greenUnit/valuationReport');
     }
 
 
