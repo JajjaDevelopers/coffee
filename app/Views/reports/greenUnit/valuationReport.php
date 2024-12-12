@@ -91,7 +91,7 @@
             <div>
                 <label><strong>Delivery Date:</strong> 01-Dec-2024</label>
             </div>
-            <!-- Sales Report Table -->
+            <br>
 
             <table class="table table-sm table-bordered" style="width: 27.2cm; margin:auto;">
                 <thead>
@@ -107,9 +107,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
+                    <?php for ($x = 0; $x < count($items); $x++) {
+                        $qty = $items[$x]["qty"];
+                        $px = $items[$x]["price"];
+                        $ugxAmt = $qty * $px;
+                        $fx = 3700;
+                        $usPx = $px / $fx;
+                        $usAmt = $usPx * $qty;
+                        $deliveryQty = 1520;
+                        $yied = $qty * 100 / $deliveryQty;
+                    ?>
+                        <tr>
+                            <td><?= $items[$x]["grade_name"] ?></td>
+                            <td><?= $yied ?></td>
+                            <td><?= $qty ?></td>
+                            <td><?= $usPx ?></td>
+                            <td></td>
+                            <td><?= $px ?></td>
+                            <td><?= $usAmt ?></td>
+                            <td><?= $ugxAmt ?></td>
+                        </tr>
+                    <?php
+                    } ?>
+
                     <tr>
                         <th colspan="2">Actual Total Value Before costs</th>
                         <th>total_qty</th>
@@ -158,6 +178,16 @@
             }, 1000);
         }
     </script>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: solid black 1px;
+            border-collapse: collapse;
+
+        }
+    </style>
 </body>
 
 </html>
