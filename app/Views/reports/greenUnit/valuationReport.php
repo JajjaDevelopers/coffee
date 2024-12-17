@@ -80,20 +80,20 @@
             </div>
             <h5 style="text-align: center;"><strong>Valuation Schedule</strong></h5>
             <div style="text-align: right;">
-                <label><strong>Date:</strong> 15-Dec-2024</label>
+                <label><strong>Date:</strong> <?= $summary["date"] ?></label>
             </div>
             <div>
-                <label><strong>Supplier:</strong> Kabonera Coffee Farmers Association</label>
+                <label><strong>Supplier:</strong><?= $summary["supplier"] ?></label>
             </div>
             <div>
-                <label><strong>GRN:</strong> 256412</label>
+                <label><strong>GRN:</strong> <?= $summary["grn"] ?></label>
             </div>
             <div>
-                <label><strong>Delivery Date:</strong> 01-Dec-2024</label>
+                <label><strong>Delivery Date:</strong> </label>
             </div>
             <br>
 
-            <table class="table table-sm table-bordered" style="width: 27.2cm; margin:auto;">
+            <table class="table table-sm table-bordered" style="width: 27.2cm; margin:auto; font-size: 15px; border: 1px solid balck">
                 <thead>
                     <tr>
                         <th>Grade/Screen</th>
@@ -107,37 +107,49 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($x = 0; $x < count($items); $x++) {
+                    <?php
+                    $totalValQty = 0;
+                    $totalValUsd = 0;
+                    $totalValUgx = 0;
+                    // Get total Qty
+                    for ($i = 0; $i < count($items); $i++) {
+                        $qty = $items[$i]["qty"];
+                        $totalValQty += $qty;
+                    }
+                    for ($x = 0; $x < count($items); $x++) {
                         $qty = $items[$x]["qty"];
                         $px = $items[$x]["price"];
                         $ugxAmt = $qty * $px;
                         $fx = 3700;
                         $usPx = $px / $fx;
                         $usAmt = $usPx * $qty;
-                        $deliveryQty = 1520;
-                        $yied = $qty * 100 / $deliveryQty;
+                        $yied = $qty * 100 / $totalValQty;
+                        $pxCtsLb = $usPx * 100 * 2.204623;
+                        // Aggregate
+                        $totalValUsd += $usAmt;
+                        $totalValUgx += $ugxAmt;
                     ?>
                         <tr>
                             <td><?= $items[$x]["grade_name"] ?></td>
-                            <td><?= $yied ?></td>
-                            <td><?= $qty ?></td>
-                            <td><?= $usPx ?></td>
-                            <td></td>
-                            <td><?= $px ?></td>
-                            <td><?= $usAmt ?></td>
-                            <td><?= $ugxAmt ?></td>
+                            <td style="text-align: center;"><?= number_format($yied, 1) ?></td>
+                            <td style="text-align: right;"><?= number_format($qty, 1) ?></td>
+                            <td style="text-align: right;"><?= number_format($usPx, 4) ?></td>
+                            <td style="text-align: right;"><?= number_format($pxCtsLb, 0) ?></td>
+                            <td style="text-align: right;"><?= number_format($px, 0) ?></td>
+                            <td style="text-align: right;"><?= number_format($usAmt, 2) ?></td>
+                            <td style="text-align: right;"><?= number_format($ugxAmt, 0) ?></td>
                         </tr>
                     <?php
                     } ?>
 
                     <tr>
                         <th colspan="2">Actual Total Value Before costs</th>
-                        <th>total_qty</th>
+                        <th style="text-align: right;"><?= number_format($totalValQty) ?></th>
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th>amount_usd</th>
-                        <th>amount_ugx</th>
+                        <th style="text-align: right;"><?= number_format($totalValUsd, 2) ?></th>
+                        <th style="text-align: right;"><?= number_format($totalValUgx, 0) ?></th>
                     </tr>
                     <tr>
                         <td colspan="7">Less 1% Sustainability Contribution Fund</td>

@@ -406,6 +406,8 @@ $(document).ready(function () {
           `<strong>${valTotal.toLocaleString()}</strong>`
         );
         $("#valPrevTBody").html(gradeItemsHtml);
+        // Activate printing
+        $("#valuationPrintBtn").attr("href", `/valuation/print?v=${vId}`);
       },
     });
   });

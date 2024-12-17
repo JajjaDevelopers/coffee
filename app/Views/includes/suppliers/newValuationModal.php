@@ -52,8 +52,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-
+            <div class="col-sm-12 col-md-2"></div>
+            <div class="col-sm-12 col-md-3">
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-6 col-md-6">
+                  <label for="addDeliveryFx" class="form-label" style="text-align: right;">Exc. Rate:</label>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  <input type="number" class="form-control form-control-sm" id='addDeliveryFx'>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
@@ -94,6 +102,27 @@
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
                       <td><input id="valTotal" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Deductions:</h6>
+                <table class="table table-sm table-bordered">
+                  <tbody id="valTBody">
+                    <tr rowNo="1">
+                      <td>Sustainability Fund 1%</td>
+                      <td style="width: 150px;"><input id="sustDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                    </tr>
+                    <tr rowNo="1">
+                      <td>Processing Fees</td>
+                      <td><input id="processingDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                    </tr>
+                    <tr rowNo="1">
+                      <th>Total Deductions</th>
+                      <th><input id="sustDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></th>
                     </tr>
                   </tbody>
                 </table>
