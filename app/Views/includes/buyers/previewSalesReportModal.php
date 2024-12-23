@@ -141,7 +141,7 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <a id='salesReportPrintBtn' href="" class="btn btn-primary">Print</a>
+        <a id='salesReportPrintBtn' href="" target="_blank" class="btn btn-primary">Print</a>
         <button type="button" data-dismiss="modal" class="btn btn-outline-light">Close</button>
       </div>
     </div>
