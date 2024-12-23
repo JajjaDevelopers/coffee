@@ -406,6 +406,8 @@ $(document).ready(function () {
           `<strong>${valTotal.toLocaleString()}</strong>`
         );
         $("#valPrevTBody").html(gradeItemsHtml);
+        // Activate printing
+        $("#valuationPrintBtn").attr("href", `/valuation/print?v=${vId}`);
       },
     });
   });
@@ -514,10 +516,14 @@ $(document).ready(function () {
   // Print valuation report
   // $(document).on("click", "#valuationPrintBtn", function (e) {
   //   e.preventDefault();
+  //   var valId = $(this).attr("valId");
+  //   alert(valId);
   //   $.ajax({
   //     type: "get",
   //     url: "/valuation/print",
-  //     data: "data",
+  //     data: {
+  //       valId: valId,
+  //     },
   //     dataType: "dataType",
   //     success: function (response) {},
   //   });

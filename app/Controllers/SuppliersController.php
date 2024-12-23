@@ -307,7 +307,11 @@ class SuppliersController extends BaseController
     // Print valuation Report
     public function printValuationReport()
     {
-        return view('includes/suppliers/valuationReport');
+        $vId = $this->request->getGet("v");
+        $valuationData = $this->suppliersModel->valuationPreview($vId);
+        $data["items"] = $valuationData["items"];
+        $data["summary"] = $valuationData["summary"];
+        return view('reports/greenUnit/valuationReport', $data);
     }
 
 

@@ -348,6 +348,7 @@
 <?= $this->section('scripts') ?>
 <!-- Metrics Data -->
 <script src="<?= base_url('assets/scripts/dashboard.js') ?>"></script>
+<script src="<?= base_url('assets/scripts/generalScripts.js') ?>"></script>
 <script>
   /* ----------------------------------- */
   /* Dashboard content */
@@ -1009,16 +1010,16 @@
     const totalSalesAndBulked = (totalBulkedQty, totalBulkedValue, totalSalesQty, totalSalesValue) => {
       // const totalSales = totalSalesQty.toLocaleString()
       $('#salesTotalQty').html(`${numberFormat(totalSalesQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalSalesValue/1000000).toLocaleString()}${"M"}`)
+      $('#salesValue').html(`<span><sub>UGX</sub></span>${currecnyFormat(totalSalesValue)}`)
       $('#totalBulkedQty').html(`${(numberFormat(totalBulkedQty/1000)).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalBulkedValue/1000000).toLocaleString()}${"M"}`)
+      $('#bulkedValue').html(`<span><sub>UGX</sub></span>${currecnyFormat(totalBulkedValue)}`)
     }
     //function to create total coffee type quantity and values
     const coffeeTypes = (totalRobQty, totalRobVal, totalAraQty, totalAraVal) => {
       $('#salesRobTotalQty').html(`${numberFormat(totalRobQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalRobVal/1000000).toLocaleString()}${"M"}`)
+      $('#salesRobValue').html(`<span><sub>UGX</sub></span>${currecnyFormat(totalRobVal)}`)
       $('#totalAraQty').html(`${numberFormat(totalAraQty/1000).toLocaleString()}<span><sub>MT</sub></span>`)
-      $('#araValue').html(`<span><sub>UGX</sub></span>${numberFormat(totalAraVal/1000000).toLocaleString()}${"M"}`)
+      $('#araValue').html(`<span><sub>UGX</sub></span>${currecnyFormat(totalAraVal)}`)
     }
 
     //pie charts 
