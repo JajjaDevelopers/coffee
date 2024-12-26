@@ -3,6 +3,7 @@
 use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\PasswordReset;
+use App\Controllers\StaffController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -72,3 +73,6 @@ $routes->post('/sales/salesByType', 'DashboardController::previousSales');
 // Reports
 $routes->get('/customers/sales', 'BuyersController::customerSalesReportFilter'); //Sales report filter
 $routes->post('/customers/sales', 'BuyersController::customerSalesReport');
+//staff
+$routes->get('/staff/view',[StaffController::class,'index']);
+$routes->post('/staff/store',[StaffController::class,'store']);

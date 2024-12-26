@@ -8,55 +8,81 @@ class CreateUsersTable extends Migration
 {
     public function up()
     {
-        //
-          $this->forge->addField([
-          'id' => [
-          'type' => 'INT',
-          'unsigned' => true,
-          'auto_increment' => true,
-          ],
-          'title' => [
-          'type' => 'VARCHAR',
-          'constraint' => '100',
-          ],
-          'fname' => [
-          'type' => 'VARCHAR',
-          'constraint' => '100',
-          ],
-          'lname' => [
-          'type' => 'VARCHAR',
-          'constraint' => '100',
-          ],
-          'email' => [
-          'type' => 'VARCHAR',
-          'constraint' => '100',
-          'unique' => true,
-          ],
-          'password' => [
-          'type' => 'VARCHAR',
-          'constraint' => '255',
-          ],
-          'created_at' => [
-          'type' => 'DATETIME',
-          'null' => true,
-          ],
-          'updated_at' => [
-          'type' => 'DATETIME',
-          'null' => true,
-          ],
-          'deleted_at' => [
-          'type' => 'DATETIME',
-          'null' => true,
-          ],
-          ]);
+        $password = password_hash('coffee123', PASSWORD_BCRYPT);
+        $this->forge->addField([
+            'id' => [
+                'type'           => 'INT',
+                'unsigned'       => true,
+                'auto_increment' => true,
+            ],
+            'title' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '10',
+            ],
+            'company_id'=>[
+                'type' => 'INT',
+                'default'=>0,
+            ],
+            'fname' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => false,
+            ],
+            'lname' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => false,
+            ],
+            'middle_name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => true,
+            ],
+            'email' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => false,
+                'unique'     => true,
+            ],
+            'phone' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '15',
+                'null'       => true,
+                'unique' => true,
+            ],
+            'address' => [
+                'type'       => 'TEXT',
+                'null'       => true,
+            ],
+            'role' => [
+                'type'       => 'VARCHAR',
+                'constraint' =>'255',
+            ],
+            'password' => [
+                'type'       => 'VARCHAR',
+                'constraint' =>'255',
+                'default' =>$password,
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+        ]);
 
-          $this->forge->addKey('id', true);
-          $this->forge->createTable('users');
+        $this->forge->addPrimaryKey('id');
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        //
-         $this->forge->dropTable('users');
+        $this->forge->dropTable('users');
     }
 }
