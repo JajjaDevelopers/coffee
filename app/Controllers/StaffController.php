@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Password;
 use App\Models\StaffModel;
 use CodeIgniter\Config\Services;
 use App\Controllers\BaseController;
@@ -41,8 +42,24 @@ class StaffController extends BaseController
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["error" => $validationErrors]);
         }
-        $staffInformation =$this->request->getJsonVar();
-        return $this->response->setJSON($staffInformation);
+
+        $staffInformation = $this->request->getPost();
+        unset($staffInformation['csrf_test_name']);
+        $staffInformation['password'] = Password::hash($staffInformation['password']);
+        if ($this->staff->insert($staffInformation)) {
+            return $this->response->setStatusCode(201) // 201 Created
+                ->setJSON([
+                    'status' => true,
+                    'message' => 'Staff member saved successfully!',
+                ]);
+        } else {
+            return $this->response->setStatusCode(400) // 400 Bad Request
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => 'Failed to save staff member.',
+                    'errors' => $this->staff->errors(),
+                ]);
+        }
     }
     public function edit($staffId)
     {

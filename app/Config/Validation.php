@@ -682,6 +682,13 @@ class Validation extends BaseConfig
     public function setAddStaffRules(): void
     {
         $this->addStaffRules = [
+            'title' => [
+                'rules' => 'required|alpha_space|max_length[10]',
+                'errors' => [
+                    'required' => 'Title is required.',
+                    'max_length' => 'Title must be at most 10 characters long.',
+                ],
+            ],
             'fname' => [
                 'rules' => 'required|alpha_space|min_length[2]',
                 'errors' => [
@@ -705,7 +712,7 @@ class Validation extends BaseConfig
                 ],
             ],
             'email' => [
-                'rules' => 'required|valid_email|is_unique[staff.email]',
+                'rules' => 'required|valid_email|is_unique[users.email]',
                 'errors' => [
                     'required' => 'Email address is required.',
                     'valid_email' => 'Please provide a valid email address.',

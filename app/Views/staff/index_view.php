@@ -65,10 +65,8 @@
     $(document).ready(function() {
         $('#addStaffForm').on('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
-
             // Gather form data
             const formData = $(this).serialize();
-
             // AJAX request
             $.ajax({
                 url: '/staff/store', // The URL specified in the form action
@@ -80,26 +78,29 @@
                     $('.addStaff').prop('disabled', true).text('Submitting...');
                 },
                 success: function(response) {
-                    if (response.success) {
-                        // Display success notification
+                    console.log(response);
+                    if (response.status) {
                         toastr.success('Staff added successfully!', 'Success');
-                        // Reset the form
                         $('#addStaffForm')[0].reset();
+                        $('#staffModal').modal('hide')
                     } else {
-                        // Display validation errors or failure messages
-                        if (response.errors) {
-                            for (const field in response.errors) {
-                                toastr.error(response.errors[field], 'Validation Error');
-                            }
-                        } else {
-                            toastr.error(response.message || 'An error occurred.', 'Error');
-                        }
+                        toastr.error('Something went wrong!');
                     }
+
+
                 },
                 error: function(xhr, status, error) {
+                    console.log(xhr.status)
                     // Handle unexpected errors
-                    toastr.error('An unexpected error occurred. Please try again.', 'Error');
-                    console.error('Error:', error);
+                    if (xhr.status === 422) {
+                        const errors = xhr.responseJSON.error;
+                        toastr.error(errors);
+                    } else if(xhr.status === 500) {
+                        toastr.error(xhr.responseJSON.message);
+                    }else{
+                        toastr.error('Something went wrong!');
+                    }
+
                 },
                 complete: function() {
                     // Re-enable the button and reset the text

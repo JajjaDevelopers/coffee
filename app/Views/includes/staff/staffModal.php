@@ -1,4 +1,3 @@
-
 <!-- Modal Structure -->
 <div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="staffModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -13,15 +12,20 @@
                 <form action="/staff/store" method="POST" id='addStaffForm'>
                     <!-- CSRF Token -->
                     <?= csrf_field() ?>
-
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="e.g Mr, Mrs, etc">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
                                 <input type="text" id="fname" name="fname" class="form-control" placeholder="Enter first name">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="surname">Last Name</label>
                                 <input type="text" id="lname" name="lname" class="form-control" placeholder="Enter surname">
@@ -54,7 +58,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="position">Position</label>
-                                <input type="text" id="role" name="role" class="form-control" placeholder="Enter position" >
+                                <input type="text" id="role" name="role" class="form-control" placeholder="Enter position">
                             </div>
                         </div>
                     </div>
