@@ -246,7 +246,13 @@ class DashboardController extends BaseController
     // Calculate Change in percentage
     public function periodChange($value1, $value0)
     {
-        $change = ($value1 - $value0) * 100 / $value0;
+        if ($value0 == 0 && $value1 == 0) {
+            $change = 0;
+        } else if ($value0 == 0) {
+            $change = 100;
+        } else {
+            $change = ($value1 - $value0) * 100 / $value0;
+        }
         return $change;
     }
 }

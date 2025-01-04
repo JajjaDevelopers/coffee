@@ -59,7 +59,7 @@
                   <label for="addDeliveryFx" class="form-label" style="text-align: right;">Exc. Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-6">
-                  <input type="number" class="form-control form-control-sm" id='addDeliveryFx'>
+                  <input type="number" class="form-control form-control-sm" id='addDeliveryFx' step="0.0001">
                 </div>
               </div>
             </div>
@@ -107,22 +107,28 @@
                 </table>
               </div>
             </div>
-            <div class="row">
+            <!-- Deduction function pending implementation -->
+            <div class="row" style="display: none;">
+              <div class="col-md-6"></div>
               <div class="col-md-6">
                 <h6>Deductions:</h6>
                 <table class="table table-sm table-bordered">
                   <tbody id="valTBody">
                     <tr rowNo="1">
                       <td>Sustainability Fund 1%</td>
-                      <td style="width: 150px;"><input id="sustDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                      <td style="width: 150px;"><input type="number" id="sustDeduction" class="form-control form-control-xs text-end tableAmount" value="0"></td>
                     </tr>
                     <tr rowNo="1">
                       <td>Processing Fees</td>
-                      <td><input id="processingDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                      <td><input type="number" id="processingDeduction" class="form-control form-control-xs text-end tableAmount" value="0"></td>
                     </tr>
                     <tr rowNo="1">
                       <th>Total Deductions</th>
-                      <th><input id="sustDeduction" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></th>
+                      <th><input type="number" id="sustDeduction" class="form-control form-control-xs text-end tableAmount" value="0" readonly></th>
+                    </tr>
+                    <tr rowNo="1">
+                      <th>Total Value after Deductions</th>
+                      <th><input type="number" id="valAftDeductions" class="form-control form-control-xs text-end tableAmount" value="0" readonly></th>
                     </tr>
                   </tbody>
                 </table>

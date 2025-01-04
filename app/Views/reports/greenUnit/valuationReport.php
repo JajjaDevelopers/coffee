@@ -97,7 +97,7 @@
                 <thead>
                     <tr>
                         <th>Grade/Screen</th>
-                        <th>Actual Yield (%)</th>
+                        <th>Actual Yield<br>(%)</th>
                         <th>QTY (KG)</th>
                         <th>Price (US$)/Kilo</th>
                         <th>Price (Cts/lb)</th>
@@ -144,7 +144,7 @@
 
                     <tr>
                         <th colspan="2">Actual Total Value Before costs</th>
-                        <th style="text-align: right;"><?= number_format($totalValQty) ?></th>
+                        <th style="text-align: right;"><?= number_format($totalValQty, 1) ?></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -152,21 +152,24 @@
                         <th style="text-align: right;"><?= number_format($totalValUgx, 0) ?></th>
                     </tr>
                     <tr>
-                        <td colspan="7">Less 1% Sustainability Contribution Fund</td>
-                        <td>sust_fund</td>
+                        <td colspan="6">Less 1% Sustainability Contribution Fund</td>
+                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
+                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
                     </tr>
                     <tr>
-                        <td colspan="7">FAQ Processing Invoice IN-........</td>
-                        <td>processing_total</td>
+                        <td colspan="6">FAQ Processing Invoice IN-........</td>
+                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
+                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
                     </tr>
                     <tr>
-                        <td colspan="7">Subtotal Costs</td>
-                        <td>costs</td>
+                        <th colspan="6">Subtotal Costs</th>
+                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
+                        <th style="text-align: right;"><?= number_format(0, 0) ?></th>
                     </tr>
                     <tr>
                         <th colspan="6">Total Value After Costs</th>
-                        <th>value_usd</th>
-                        <th>value_ugx</th>
+                        <th style="text-align: right;"><?= number_format($totalValUsd, 2) ?></th>
+                        <th style="text-align: right;"><?= number_format($totalValUgx, 0) ?></th>
                     </tr>
                 </tbody>
             </table>

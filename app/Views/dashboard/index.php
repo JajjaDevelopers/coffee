@@ -368,13 +368,13 @@
         var trend = `<strong><span class="material-symbols-outlined" style="color: red; font-size:30px" ${trendTitle}>
                   trending_down
                 </span>
-                <span style="color: red" ${trendTitle}>${change}%</strong> (comparing ${month0Str})</span>`;
+                <span style="color: red" ${trendTitle}>${change}%</strong> (from ${month0Str})</span>`;
       } else {
         trendTitle = `title="Rising Trend"`;
         var trend = `<strong><span class="material-symbols-outlined" style="color: green; font-size:30px" ${trendTitle}>
                   trending_up
                 </span>
-                <span style="color: green" ${trendTitle}>${change}%</strong> (comparing ${month0Str})</span>`;
+                <span style="color: green" ${trendTitle}>${change}%</strong> (from ${month0Str})</span>`;
       }
       $(`${divId}`).html(trend);
     }
