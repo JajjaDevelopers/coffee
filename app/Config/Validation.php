@@ -50,10 +50,13 @@ class Validation extends BaseConfig
     public $salesUpdateReportValidationRules = [];
     public $buyerInfoValidationRules = [];
     public $buyerUpdateInfoValidationRules = [];
+    public $addStaffRules = [];
     public function __construct()
     {
         $this->setCoffeeGradesRules();
         $this->setValuationRules();
+        $this->setAddStaffRules();
+
         $this->setSupplierValidationRules();
         $this->setUpdateSupplierValidationRules();
         $this->setSalesReportValidationRules();
@@ -667,6 +670,82 @@ class Validation extends BaseConfig
                 'errors' => [
                     'string' => 'Street must be a valid string.',
                     'max_length' => 'Street cannot exceed 255 characters.',
+                ],
+            ],
+        ];
+    }
+    /**
+     * Set Staff Addition Validation rules
+     *
+     * @return void
+     */
+    public function setAddStaffRules(): void
+    {
+        $this->addStaffRules = [
+            'title' => [
+                'rules' => 'required|alpha_space|max_length[10]',
+                'errors' => [
+                    'required' => 'Title is required.',
+                    'max_length' => 'Title must be at most 10 characters long.',
+                ],
+            ],
+            'fname' => [
+                'rules' => 'required|alpha_space|min_length[2]',
+                'errors' => [
+                    'required' => 'First name is required.',
+                    'alpha_space' => 'First name can only contain alphabetic characters and spaces.',
+                    'min_length' => 'First name must be at least 2 characters long.',
+                ],
+            ],
+            'lname' => [
+                'rules' => 'required|alpha_space|min_length[2]',
+                'errors' => [
+                    'required' => 'Last name is required.',
+                    'alpha_space' => 'Last name can only contain alphabetic characters and spaces.',
+                    'min_length' => 'Last name must be at least 2 characters long.',
+                ],
+            ],
+            'middle_name' => [
+                'rules' => 'permit_empty|alpha_space',
+                'errors' => [
+                    'alpha_space' => 'Middle name can only contain alphabetic characters and spaces.',
+                ],
+            ],
+            'email' => [
+                'rules' => 'required|valid_email|is_unique[users.email]',
+                'errors' => [
+                    'required' => 'Email address is required.',
+                    'valid_email' => 'Please provide a valid email address.',
+                    'is_unique' => 'The email address is already in use.',
+                ],
+            ],
+            'phone' => [
+                'rules' => 'required|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'required' => 'Phone number is required.',
+                    'numeric' => 'Phone number must contain only digits.',
+                    'min_length' => 'Phone number must be at least 10 digits long.',
+                    'max_length' => 'Phone number cannot exceed 15 digits.',
+                ],
+            ],
+            'role' => [
+                'rules' => 'required|alpha_space',
+                'errors' => [
+                    'required' => 'Position is required.',
+                    'alpha_space' => 'Position can only contain alphabetic characters and spaces.',
+                ],
+            ],
+            'address' => [
+                'rules' => 'permit_empty|string',
+                'errors' => [
+                    'string' => 'Address must be a valid text.',
+                ],
+            ],
+            'password' => [
+                'rules' => 'required|min_length[8]',
+                'errors' => [
+                    'required' => 'Password is required.',
+                    'min_length' => 'Password must be at least 8 characters long.',
                 ],
             ],
         ];
