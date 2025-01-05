@@ -103,7 +103,8 @@
         </form>
       </div><!-- modal-body -->
       <div class="modal-footer">
-        <a id='valuationPrintBtn' href="#" target="_blank">
+        <!-- Print function disabled and to be implemented later -->
+        <a id='valuationPrintBtn' href="#" target="_blank" style="display: none;">
           <button type="button" valId="" class="btn btn-primary">Print</button>
         </a>
         <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>

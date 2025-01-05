@@ -71,8 +71,9 @@ $routes->get('/admin/countriesList', 'BuyersController::countriesList');
 $routes->post('/sales/salesByType', 'DashboardController::previousSales');
 
 // Reports
-$routes->get('/customers/sales', 'BuyersController::customerSalesReportFilter'); //Sales report filter
+$routes->get('/reports/sales/customers', 'BuyersController::customerSalesReportFilter'); //Sales report filter
 $routes->post('/customers/sales', 'BuyersController::customerSalesReport');
+$routes->get('/reports/sales/monthly', 'BuyersController::monthlySalesReportView'); //Sales report filter
 //staff
-$routes->get('/staff/view',[StaffController::class,'index']);
-$routes->post('/staff/store',[StaffController::class,'store']);
+$routes->get('/staff/view', [StaffController::class, 'index']);
+$routes->post('/staff/store', [StaffController::class, 'store']);

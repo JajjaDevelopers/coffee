@@ -210,7 +210,10 @@ class SuppliersController extends BaseController
         $supplier = $this->request->getPost("supplier");
         $grn = $this->request->getPost("grn");
         $moisture = $this->request->getPost("moisture");
-        $items = $this->request->getPost("items");
+        $valFx = $this->request->getPost("valFx");
+        $sustDeduction = $this->request->getPost("sustDeduction");
+        $processDeduction = $this->request->getPost("processDeduction");
+        $$items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
         $valuationSummaryData = [
