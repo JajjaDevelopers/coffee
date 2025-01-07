@@ -367,4 +367,13 @@ class BuyersController extends BaseController
         $commonData = $this->commonData();
         return view('reports/greenUnit/monthlySalesView', compact('page_title', 'commonData'));
     }
+
+    // Generate monthly sales report
+    public function monthlySalesReport()
+    {
+        $monthFrom = $this->request->getPost("monthFrom"); //yyyy-mm
+        $monthTo = $this->request->getPost("monthTo"); //yyyy-mm
+        $data["monthlySales"] = $this->buyersModel->monthlySalesReport($monthFrom, $monthTo);
+        return $this->response->setJSON($data);
+    }
 }

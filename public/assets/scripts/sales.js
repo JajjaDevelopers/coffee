@@ -363,7 +363,7 @@ $(document).ready(function () {
     $("#salesReportEditId").val(salesId);
 
     //attach salesreport id to the print button
-    $('#salesReportPrintBtn').attr('href',`/sales/report/${salesId}`)
+    $("#salesReportPrintBtn").attr("href", `/sales/report/${salesId}`);
     // Get sales report infomation
     $.ajax({
       type: "post",
@@ -540,5 +540,46 @@ $(document).ready(function () {
     e.preventDefault();
     $("#editBuyerModal").modal("show");
   });
+
+  //Run monthly sales report
+  $(document).on("click", "#monthlySalesRunBtn", function (e) {
+    e.preventDefault();
+    var monthFrom = $("#monthlySalesRepFrm").val();
+    var monthTo = $("#monthlySalesRepTo").val();
+    alert(monthFrom);
+    $("#monthlySalesRepTable").show();
+    $.ajax({
+      type: "post",
+      url: "/reports/sales/monthly",
+      data: {
+        monthFrom: monthFrom,
+        monthTo: monthTo,
+      },
+      dataType: "json",
+      success: function (response) {
+        var sales = response.monthlySales;
+        var totalSales = 0;
+        for (var i = 0; i < sales.length; i++) {
+          totalSales += Number(sales[i].value);
+        }
+        var tBody = "";
+        for (var x = 0; x < sales.length; x++) {
+          var value = sales[x].value;
+          var ratio = (value * 100) / totalSales;
+          tBody += `<tr>
+                      <td>${x + 1}</td>
+                      <td>${sales[x].month}</td>
+                      <td>${sales[x].qty}</td>
+                      <td>${sales[x].price}</td>
+                      <td>${value}</td>
+                      <td>${ratio}%</td>
+                    </tr>`;
+        }
+        $("#monthlySalesTBody").html(tBody);
+        $("#monthlySalesRepTable").show();
+      },
+    });
+  });
+
   //
 });

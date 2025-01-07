@@ -4,6 +4,7 @@ use App\Controllers\AuthController;
 use App\Controllers\DashboardController;
 use App\Controllers\PasswordReset;
 use App\Controllers\StaffController;
+use App\Controllers\BuyersController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -74,6 +75,7 @@ $routes->post('/sales/salesByType', 'DashboardController::previousSales');
 $routes->get('/reports/sales/customers', 'BuyersController::customerSalesReportFilter'); //Sales report filter
 $routes->post('/customers/sales', 'BuyersController::customerSalesReport');
 $routes->get('/reports/sales/monthly', 'BuyersController::monthlySalesReportView'); //Sales report filter
+$routes->post('/reports/sales/monthly', [BuyersController::class, 'monthlySalesReport']); //Sales report filter
 //staff
 $routes->get('/staff/view', [StaffController::class, 'index']);
 $routes->post('/staff/store', [StaffController::class, 'store']);

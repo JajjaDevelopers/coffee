@@ -202,6 +202,25 @@ class BuyersModel extends Model
         return $builder->get()->getResultArray();
     }
 
+    public function monthlySalesReport($monthFrom, $monthTo) //yyyy-mm
+    {
+        $yrFrm = substr($monthFrom, 0, 4); //Get year of the starting month
+        $yrTo = substr($monthTo, 0, 4); //Get year of the end month
+        $mthFrm = substr($monthFrom, 5, 2); //Get month of the start month 2024-1
+        $mthTo = substr($monthTo, 5, 2); //Get month of the end month
+        $sql = $this->db->query("SELECT concat_ws('-', year(inventory.trans_date), month(inventory.trans_date)) AS month , 
+                SUM(qty_out) AS qty, SUM(price*qty_out*exch_rate)/SUM(qty_out) AS price, SUM(price*qty_out*exch_rate) AS value 
+                FROM inventory
+                JOIN sales on sales.sales_id = inventory.transaction_id
+                WHERE sales.fpo = 1 AND transaction_type_id = 2 
+                AND (year(trans_date)>={$yrFrm} AND (month(trans_date)>={$mthFrm}) OR year(trans_date)>{$yrFrm})
+                AND (year(trans_date)<={$yrTo} AND (month(trans_date)<={$mthTo}) OR year(trans_date)<{$yrTo})
+                GROUP BY concat_ws('-', year(inventory.trans_date), month(inventory.trans_date))
+                ORDER BY concat_ws('-', year(inventory.trans_date), month(inventory.trans_date))");
+        return $sql->getResultArray();
+    }
+
+
 
 
     // 
