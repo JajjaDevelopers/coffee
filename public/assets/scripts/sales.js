@@ -546,8 +546,12 @@ $(document).ready(function () {
     e.preventDefault();
     var monthFrom = $("#monthlySalesRepFrm").val();
     var monthTo = $("#monthlySalesRepTo").val();
-    alert(monthFrom);
-    $("#monthlySalesRepTable").show();
+    // Check whether months are not empty
+    if (monthFrom == "" || monthTo == "") {
+      alert("Please select both the start month and the end month!");
+      return;
+    }
+    // Get monthly sales
     $.ajax({
       type: "post",
       url: "/reports/sales/monthly",
@@ -559,23 +563,45 @@ $(document).ready(function () {
       success: function (response) {
         var sales = response.monthlySales;
         var totalSales = 0;
+        var totalQty = 0;
         for (var i = 0; i < sales.length; i++) {
           totalSales += Number(sales[i].value);
+          totalQty += Number(sales[i].qty);
         }
+        var avgPrice = totalSales / totalQty;
         var tBody = "";
         for (var x = 0; x < sales.length; x++) {
           var value = sales[x].value;
+          var qty = numberFormat(sales[x].qty);
+          var price = numberFormat(sales[x].price);
+          var val = numberFormat(value);
+          if (x == 0) {
+            var prevValue = 0;
+          } else {
+            var prevValue = sales[x - 1].value;
+          }
           var ratio = (value * 100) / totalSales;
           tBody += `<tr>
-                      <td>${x + 1}</td>
+                      <td class="text-center">${x + 1}</td>
                       <td>${sales[x].month}</td>
-                      <td>${sales[x].qty}</td>
-                      <td>${sales[x].price}</td>
-                      <td>${value}</td>
-                      <td>${ratio}%</td>
+                      <td class="text-right">${qty}</td>
+                      <td class="text-center">${price}</td>
+                      <td class="text-right">${val}</td>
+                      <td class="text-center">${ratio.toFixed(0)}%</td>
+                      <td class="text-center">
+                      ${tableTrend(prevValue, value)}</td>
                     </tr>`;
         }
+        tBody += `<tr>
+                      <th class="text-center" colspan="2">Total</th>
+                      <th class="text-right">${numberFormat(totalQty)}</th>
+                      <th class="text-center">${numberFormat(avgPrice)}</th>
+                      <th class="text-right">${numberFormat(totalSales)}</th>
+                      <th class="text-center"></th>
+                      <th class="text-center"></th>
+                    </tr>`;
         $("#monthlySalesTBody").html(tBody);
+        $("#monthlySalesRange").text(response.range);
         $("#monthlySalesRepTable").show();
       },
     });

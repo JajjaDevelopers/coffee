@@ -13,6 +13,7 @@ use App\Controllers\BaseController;
 use App\Controllers\Traits\CommonData;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Controllers\SuppliersController;
+use App\Controllers\GeneralController;
 
 
 class BuyersController extends BaseController
@@ -26,6 +27,7 @@ class BuyersController extends BaseController
     public $userData;
     public $dtNow; //DateTime now
     public $suppliersController;
+    public $generalController;
 
     public function __construct()
     {
@@ -37,6 +39,7 @@ class BuyersController extends BaseController
         $this->generalModel = new GeneralModal;
         $this->buyersModel = new BuyersModel;
         $this->suppliersController = new SuppliersController;
+        $this->generalController = new GeneralController;
         $this->userData = $this->CommonData()["user"];
     }
     public function buyers()
@@ -373,7 +376,20 @@ class BuyersController extends BaseController
     {
         $monthFrom = $this->request->getPost("monthFrom"); //yyyy-mm
         $monthTo = $this->request->getPost("monthTo"); //yyyy-mm
-        $data["monthlySales"] = $this->buyersModel->monthlySalesReport($monthFrom, $monthTo);
+        $salesData = $this->buyersModel->monthlySalesReport($monthFrom, $monthTo);
+        for ($x = 0; $x < count($salesData); $x++) {
+            $month = $salesData[$x]["month"];
+            $yearNum = substr($month, 0, 4);
+            $monthNum = substr($month, 5, 2);
+            $salesData[$x]["month"] = $this->generalController->shortMonth($monthNum, $yearNum);
+        }
+        // Month Parameter strings
+        $from = $this->generalController->monthNames()[intval(substr($monthFrom, 5, 2))];
+        $to = $this->generalController->monthNames()[intval(substr($monthTo, 5, 2))];
+        $yrFrm = substr($monthFrom, 0, 4);
+        $yrTo = substr($monthTo, 0, 4);
+        $data["range"] = "From {$from}-{$yrFrm} to {$to}-{$yrTo}";
+        $data["monthlySales"] = $salesData;
         return $this->response->setJSON($data);
     }
 }

@@ -41,23 +41,31 @@
             </div>
           </div>
         </div>
+        <hr>
         <!-- Report table -->
+        <br>
         <div id="monthlySalesRepTable" class="row" style="display: none;">
-          <table class="table table-sm">
-            <thead>
-              <tr>
-                <th>SN</th>
-                <th>Month</th>
-                <th>Quatntiy (Kg)</th>
-                <th>Avg Price</th>
-                <th>Total Value</th>
-                <th>Ratio</th>
-              </tr>
-            </thead>
-            <tbody id="monthlySalesTBody">
+          <div class="col-sm-9 col-md-6">
+            <h5 class="text-center">Monthly Sales Summary</h5>
+            <h6 id="monthlySalesRange" class="text-center"></h6>
+            <hr>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th class="text-center">SN</th>
+                  <th>Month</th>
+                  <th class="text-right">Quatntiy (Kg)</th>
+                  <th class="text-center">Avg Price</th>
+                  <th class="text-right">Total Value</th>
+                  <th class="text-center">Ratio</th>
+                  <th class="text-center">Direction</th>
+                </tr>
+              </thead>
+              <tbody id="monthlySalesTBody">
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div><!-- card-body -->
     </div><!-- card -->
@@ -66,5 +74,7 @@
   <!---scripts-->
   <?= $this->section('scripts') ?>
   <script src="<?= base_url('assets/scripts/sales.js')
+                ?>"></script>
+  <script src="<?= base_url('assets/scripts/generalScripts.js')
                 ?>"></script>
   <?= $this->endSection() ?>

@@ -16,33 +16,41 @@ class GeneralController extends BaseController
     protected $fpo;
     protected $db;
     public $buyersModel;
-    public $monthNames;
+    public $monthNamesList;
 
     public function __construct()
     {
         $this->fpo = 1;
         $this->db = \Config\Database::connect();
         $this->buyersModel = new BuyersModel;
-        $this->monthNames = [
-            "1" => "January",
-            "2" => "February",
-            "3" => "March",
-            "4" => "April",
-            "5" => "May",
-            "6" => "June",
-            "7" => "July",
-            "8" => "August",
-            "9" => "September",
-            "10" => "October",
-            "11" => "November",
-            "12" => "December"
+        $this->monthNamesList = [
+            1 => "January",
+            2 => "February",
+            3 => "March",
+            4 => "April",
+            5 => "May",
+            6 => "June",
+            7 => "July",
+            8 => "August",
+            9 => "September",
+            10 => "October",
+            11 => "November",
+            12 => "December"
         ];
     }
 
     // Month Names
     public function monthNames()
     {
-        return $this->monthNames;
+        return $this->monthNamesList;
+    }
+
+    // Short month string - $mmm-yy
+    public function shortMonth($month, $year)
+    {
+        $monthName = substr($this->monthNames()[$month], 0, 3);
+        $shortYear = substr($year, 2, 2);
+        return $monthName . "-" . $shortYear;
     }
 
     // Current accounting period for the fpo
@@ -89,9 +97,7 @@ class GeneralController extends BaseController
         return $query->getResultArray();
     }
 
-    // 
-
-
+    //
 
 
 
