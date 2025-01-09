@@ -108,7 +108,7 @@
               </div>
             </div>
             <!-- Deduction function pending implementation -->
-            <div class="row" style="display: none;">
+            <div class="row" style="display: block;">
               <div class="col-md-6"></div>
               <div class="col-md-6">
                 <h6>Deductions:</h6>

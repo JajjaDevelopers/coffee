@@ -432,9 +432,10 @@
         var total2ValQty = month1ValQty + month0ValQty;
         var month1ValWidth = (month1ValQty / total2ValQty) * 100;
         var month0ValWidth = (month0ValQty / total2ValQty) * 100;
-
-        $("#month1ValBar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
-        $("#month0ValBar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0ValQty)/1000} MT</strong></h6>`).width(`fit-content`);
+        console.log(month0ValQty);
+        console.log(month1ValQty);
+        $("#month1ValBar").html(`<small>${data.month1Str}</small> <h6><strong>${numberFormat(month1ValQty/1000)} MT</strong></h6>`).width(`fit-content`);
+        $("#month0ValBar").html(`<small>${data.month0Str}</small> <h6><strong>${numberFormat(month0ValQty/1000)} MT</strong></h6>`).width(`fit-content`);
 
         var month1FitWidth = $("#month1ValBar").width() * 100 / valBarWidth;
         var month0FitWidth = $("#month0ValBar").width() * 100 / valBarWidth;

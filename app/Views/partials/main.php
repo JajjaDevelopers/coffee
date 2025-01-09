@@ -114,7 +114,7 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-user"></i>Staff</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="/staff/view" class="nav-sub-link">View</a></li>
+            <li class="nav-sub-item"><a href="#/staff/view" class="nav-sub-link">View</a></li>
           </ul>
         </li><!-- nav-item -->
         <li class="nav-item">

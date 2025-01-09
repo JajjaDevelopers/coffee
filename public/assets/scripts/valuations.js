@@ -330,6 +330,7 @@ $(document).ready(function () {
       gradeQtys.push($(`#valQty${valuationItemIds[x]}`).val());
       gradePxs.push($(`#valPx${valuationItemIds[x]}`).val());
     }
+
     $.ajax({
       type: "post",
       url: "/delivery/saveValuation",
@@ -353,13 +354,14 @@ $(document).ready(function () {
           valuationReportslist();
           $("#newValuationModal").modal("hide");
         } else {
-          $(this).prop("disabled", false);
+          $("#saveValuationBtn").prop("disabled", false);
+          toastr.error("Something went wrong");
         }
       },
       error: function (xhr) {
         // console.log(xhr);
         toastr.error(xhr.responseJSON.error);
-        $(this).prop("disabled", false);
+        $("#saveValuationBtn").prop("disabled", false);
       },
     });
   });
@@ -515,22 +517,6 @@ $(document).ready(function () {
       },
     });
   });
-
-  // Print valuation report
-  // $(document).on("click", "#valuationPrintBtn", function (e) {
-  //   e.preventDefault();
-  //   var valId = $(this).attr("valId");
-  //   alert(valId);
-  //   $.ajax({
-  //     type: "get",
-  //     url: "/valuation/print",
-  //     data: {
-  //       valId: valId,
-  //     },
-  //     dataType: "dataType",
-  //     success: function (response) {},
-  //   });
-  // });
 
   //
 });

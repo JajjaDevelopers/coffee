@@ -9,7 +9,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Create a password hash
-        $password = password_hash('nucafe123', PASSWORD_BCRYPT);
+        $password = password_hash('password123', PASSWORD_BCRYPT);
 
         // Define the data
         $data = [
@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
                 'title' => 'Mr.',
                 'fname' => 'Jajja',
                 'lname' => 'Guga',
-                'phone' =>'0786644987',
-                'address'=>'Kasubi',
-                'role' =>'Admin',
+                'phone' => '0786644987',
+                'address' => 'Kasubi',
+                'role' => 'Admin',
                 'email' => 'devjajja@gmail.com',
                 'password' => password_hash('password123', PASSWORD_BCRYPT),
                 'created_at' => date('Y-m-d H:i:s'),

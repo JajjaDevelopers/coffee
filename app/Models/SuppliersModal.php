@@ -157,6 +157,7 @@ class SuppliersModal extends Model
     // Valuation Details for preview
     public function valuationPreview($vId)
     {
+
         // Inventory Items
         $itemsSql = $this->db->table("inventory");
         $itemsSql->select("grade_id, grade_code, grade_name, unit, qty_in AS qty, price, exch_rate, moisture");
@@ -170,7 +171,6 @@ class SuppliersModal extends Model
         $summary->join("clients", "client_id");
         $summary->where("valuation_id", $vId);
         $data["summary"] = $summary->get()->getResultArray()[0];
-
         return $data;
     }
 
