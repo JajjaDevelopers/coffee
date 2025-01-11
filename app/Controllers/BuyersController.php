@@ -327,6 +327,7 @@ class BuyersController extends BaseController
         $salesData = $this->buyersModel->salesReportData($this->fpo, $salesReportId, "", "", "");
         $data["reportNo"] = $salesData[0]["sales_report_no"];
         $data["salesDate"] = $salesData[0]["date"];
+        $data["currency"] = $salesData[0]["curency_code"];
         $data["buyerName"] = $salesData[0]["name"];
         $data["preparedBy"] = $salesData[0]["fname"] . ' ' . $salesData[0]["lname"];
         $data['time_prepared'] = $salesData[0]['time_prepared'];
@@ -390,6 +391,24 @@ class BuyersController extends BaseController
         $yrTo = substr($monthTo, 0, 4);
         $data["range"] = "From {$from}-{$yrFrm} to {$to}-{$yrTo}";
         $data["monthlySales"] = $salesData;
+        return $this->response->setJSON($data);
+    }
+
+    // Generate customer sales report
+    public function customerSalesReport()
+    {
+        $dateFrom = $this->request->getPost("dateFrom");
+        $dateTo = $this->request->getPost("dateTo");
+        $salesData = [];
+        $customersList = $this->buyersModel->salesReportCustomerList($dateFrom, $dateTo);
+        for ($x = 0; $x < count($customersList); $x++) {
+            $customerId = $customersList[$x]["client_id"];
+            $customerName = $customersList[$x]["name"];
+            $customerSales = $this->buyersModel->customerSalesReport($dateFrom, $dateTo, $customerId);
+            $customerSalesData = [$customerName, $customerSales];
+            array_push($salesData, $customerSalesData);
+        }
+        $data["sales"] = $salesData;
         return $this->response->setJSON($data);
     }
 }

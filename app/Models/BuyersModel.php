@@ -220,6 +220,44 @@ class BuyersModel extends Model
         return $sql->getResultArray();
     }
 
+    // Generate customer sales report
+
+    // Customers list
+    public function salesReportCustomerList($datefrom, $dateTo)
+    {
+        $customersSql = $this->db->query("SELECT client_id, name FROM inventory
+        JOIN grades USING (grade_id)
+        JOIN clients USING (client_id)
+        WHERE transaction_type_id=2
+        AND (trans_date BETWEEN '{$datefrom}' AND '{$dateTo}')
+        GROUP BY client_id");
+        return $customersSql->getResultArray();
+    }
+
+    // Sales reports
+    public function customerSalesReport($dateFrom, $dateTo, $customer = "")
+    {
+        if ($customer == "") {
+            $customerFilter = "";
+        } else {
+            $customerFilter = "AND client_id='{$customer}'";
+        }
+
+        // Get sales data
+        $salesSql = $this->db->query(
+            "SELECT grade_code AS code, grade_name AS item, unit, count(grade_code) AS transactions, sum(qty_out) AS qty, 
+            sum(price*exch_rate*qty_out) AS value
+            FROM inventory
+            JOIN grades USING (grade_id)
+            JOIN clients USING (client_id)
+            WHERE transaction_type_id=2 AND client_id='{$customer}'
+            AND (trans_date BETWEEN '{$dateFrom}' AND '{$dateTo}')
+            GROUP BY grade_id
+            ORDER BY grade_id"
+        );
+        return $salesSql->getResultArray();
+    }
+
 
 
 

@@ -73,7 +73,7 @@ $routes->post('/sales/salesByType', 'DashboardController::previousSales');
 
 // Reports
 $routes->get('/reports/sales/customers', 'BuyersController::customerSalesReportFilter'); //Sales report filter
-$routes->post('/customers/sales', 'BuyersController::customerSalesReport');
+$routes->post('/reports/sales/customers', 'BuyersController::customerSalesReport');
 $routes->get('/reports/sales/monthly', 'BuyersController::monthlySalesReportView'); //Sales report filter
 $routes->post('/reports/sales/monthly', [BuyersController::class, 'monthlySalesReport']); //Sales report filter
 //staff

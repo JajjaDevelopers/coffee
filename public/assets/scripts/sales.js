@@ -607,5 +607,98 @@ $(document).ready(function () {
     });
   });
 
+  // Run customer sales report
+  $("#customerSalesRunBtn").on("click", function (e) {
+    e.preventDefault();
+    var dateFrom = $("#custSalesRepDateFrom").val();
+    var dateTo = $("#custSalesRepDateTo").val();
+    // Check date parameters
+    if (dateFrom == "" || dateTo == "") {
+      alert("Please specify the dates");
+      return;
+    }
+    $.ajax({
+      type: "post",
+      url: "/reports/sales/customers",
+      data: {
+        dateFrom: dateFrom,
+        dateTo: dateTo,
+      },
+      dataType: "json",
+      success: function (response) {
+        var sales = response.sales;
+        var td = "";
+        var grandTotalValue = 0;
+        var grandTotalQty = 0;
+        for (var x = 0; x < sales.length; x++) {
+          var custName = sales[x][0];
+          var items = sales[x][1];
+          td += `<tr>
+              <th colspan="8">${custName}</th>
+            </tr>
+            <tr>
+              <th style="width: 50px"></th>
+              <th>Code</th>
+              <th>Item Name</th>
+              <th>Unit</th>
+              <th>Freq</th>
+              <th class="text-right">Quantity</th>
+              <th class="text-right">Avg Price Ugx</th>
+              <th class="text-right">Amount Ugx</th>
+            </tr>`;
+          var subTotalValue = 0;
+          var subTotalQty = 0;
+          for (var i = 0; i < items.length; i++) {
+            var qty = items[i].qty;
+            subTotalQty += Number(qty);
+            var value = items[i].value;
+            subTotalValue += Number(value);
+            var px = value / qty;
+            td += `<tr>
+            <th></th>
+            <td>${items[i].code}</td>
+            <td>${items[i].item}</td>
+            <td>${items[i].unit}</td>
+            <td>${items[i].transactions}</td>
+            <td class="text-right">${qty}</td>
+            <td class="text-right">${Number(px).toLocaleString()}</td>
+            <td class="text-right">${Number(value).toLocaleString()}</td>
+          <tr>`;
+          }
+          grandTotalQty += subTotalQty;
+          grandTotalValue += subTotalValue;
+          td += `<tr>
+              <th></th>
+              <th colspan="2">Subtotal</th>
+              <td colspan="2"></td>
+              <th class="text-right">
+                ${Number(subTotalQty).toLocaleString()}
+              </th>
+              <td></td>
+              <th class="text-right">
+                ${Number(subTotalValue).toLocaleString()}
+              </th>
+            </tr>
+            <tr><td><br></td></tr>
+            `;
+        }
+        td += `
+            <tr>
+              <th></th>
+              <th colspan="2">Grand Total</th>
+              <td colspan="2"></td>
+              <th class="text-right">
+                ${Number(grandTotalQty).toLocaleString()}
+              </th>
+              <td></td>
+              <th class="text-right">
+                ${Number(grandTotalValue).toLocaleString()}
+              </th>
+            </tr>`;
+        $("#customersalesReportTbody").html(td);
+      },
+    });
+  });
+
   //
 });
