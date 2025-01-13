@@ -137,6 +137,25 @@
                 </table>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-4 text-center">
+                <p><strong>Prepared By:</strong></p>
+                <p id="salesPreparedName"></p>
+                <p id="salaesPreparedTime">
+
+                </p>
+              </div>
+              <div class="col-sm-4 text-center">
+                <h6><strong>Verified By:</strong></h6>
+                <h6></h6>
+                <h6></small></h6>
+              </div>
+              <div class="col-sm-4 text-center">
+                <h6><strong>Approved By:</strong></h6>
+                <h6></h6>
+                <h6></h6>
+              </div>
+            </div>
           </div>
         </form>
       </div><!-- modal-body -->

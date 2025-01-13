@@ -211,8 +211,7 @@ class SuppliersController extends BaseController
         $grn = $this->request->getPost("grn");
         $moisture = $this->request->getPost("moisture");
         $valFx = $this->request->getPost("valFx");
-        $sustDeduction = $this->request->getPost("sustDeduction");
-        $processDeduction = $this->request->getPost("processDeduction");
+        $deductions = $this->request->getPost("deductions");
         $items = $this->request->getPost("items");
         $quantities = $this->request->getPost("quantities");
         $prices = $this->request->getPost("prices");
@@ -220,6 +219,7 @@ class SuppliersController extends BaseController
             "valuation_date" => $date,
             "client_id" => $supplier,
             "grn" => $grn,
+            "deductions" => $deductions,
             "fpo" => $this->fpo,
             "prepared_by" => $this->commonData()["user"]["id"], //To be changed to reflect the current user
         ];
@@ -240,7 +240,7 @@ class SuppliersController extends BaseController
                     "qty_in" => $quantities[$x],
                     "currency_id" => 1, //To be updated to capture the actual currency
                     "price" => $prices[$x],
-                    "exch_rate" => 1, //To be updated to capture the actual rate
+                    "exch_rate" => $valFx, //To be updated to capture the actual rate
                     "moisture" => $moisture,
                 ];
                 array_push($inventoryData, $itemData);

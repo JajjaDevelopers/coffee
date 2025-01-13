@@ -119,9 +119,11 @@ $(document).ready(function () {
   $(document).on("click", ".rowRemoveBtn", function (e) {
     var rowNo = Number($(this).attr("rowNo"));
     var total = Number($(`#valAmt${rowNo}`).val()); //Removed item total
+
     valuationTotal -= total;
     $(`#valRow${rowNo}`).remove();
     $(".valuationTotal").val(valuationTotal);
+    calcNetValuationValue();
     // Remove from the item id list
     var temporaryItemIds = [];
     var removedItem = rowNo;
@@ -315,6 +317,18 @@ $(document).ready(function () {
     valuationTotal += total;
     $(`#valAmt${rowNo}`).val(total);
     $(".valuationTotal").val(valuationTotal);
+    calcNetValuationValue();
+  });
+
+  // Change total deductions
+  function calcNetValuationValue() {
+    var valTotal = Number($(".valuationTotal").val());
+    var deductions = Number($("#invoiceDeductions").val());
+    $("#netValuationValue").val(valTotal - deductions);
+  }
+
+  $(document).on("change", "#invoiceDeductions", function (e) {
+    calcNetValuationValue();
   });
 
   // Save Valuation
@@ -340,8 +354,7 @@ $(document).ready(function () {
         grn: $("#newValuationGrn").val(),
         moisture: $("#newValuationMc").val(),
         valFx: $("#addDeliveryFx").val(),
-        sustDeduction: $("#sustDeduction").val(),
-        processDeduction: $("#processingDeduction").val(),
+        deductions: $("#invoiceDeductions").val(),
         items: gradeIds,
         quantities: gradeQtys,
         prices: gradePxs,

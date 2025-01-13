@@ -60,20 +60,32 @@
 <body>
     <div class="container">
         <!-- Header Section -->
-        <div class="header">
-            <!-- Logo Section -->
-            <div class="logo">
-                <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo">
-                <div>
-                    <h1>National Union of Coffee Agribusinesses and Farm Enterprises</h1>
-                    <h2>The Coffee Farmers’ Organisation</h2>
+        <div>
+            <span class="print-icon" onclick="handlePrint()">
+                <i class="fas fa-print"></i>Print
+            </span>
+        </div>
+        <div>
+            <br>
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="logo">
+                        <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo">
+                    </div>
+                </div>
+                <div class="col-sm-11">
+                    <h4 class="text-center"><strong>National Union of Coffee Agribusinesses and Farm Enterprises</strong></h4>
+                    <h6 class="text-center">The Coffee Farmers’ Organisation</h6>
                 </div>
             </div>
+            <!-- </div> -->
+            <!-- </div> -->
             <!-- Print Icon -->
-            <div>
-                <span class="print-icon" onclick="handlePrint()">
-                    <i class="fas fa-print"></i>
-                </span>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-center"><strong></strong>SALES REPORT</strong></h4>
             </div>
         </div>
         <div class="row">
@@ -138,13 +150,13 @@
             </div>
             <div class="col-sm-4 text-center">
                 <h6><strong>Verified By:</strong></h6>
-                <h6><?= $data['preparedBy'] ?></h6>
-                <h6><small><?= $data['time_prepared'] ?></small></h6>
+                <h6></h6>
+                <h6></small></h6>
             </div>
             <div class="col-sm-4 text-center">
                 <h6><strong>Approved By:</strong></h6>
-                <h6><?= $data['preparedBy'] ?></h6>
-                <h6><small><?= $data['time_prepared'] ?><small></h6>
+                <h6></h6>
+                <h6></h6>
             </div>
         </div>
         <!-- <table class="table table-bordered mt-4">

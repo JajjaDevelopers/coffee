@@ -227,6 +227,10 @@ class BuyersController extends BaseController
     {
         $sId = $this->request->getPost("sId");
         $salesData = $this->buyersModel->salesReportData($this->fpo, $sId, "", "", "");
+        $data["prepared"] = [
+            "name" => $salesData[0]["fname"] . " " . $salesData[0]["lname"],
+            "time" => $salesData[0]["time_prepared"]
+        ];
         $data["reportNo"] = $salesData[0]["sales_report_no"];
         $data["salesDate"] = $salesData[0]["date"];
         $data["buyerId"] = $salesData[0]["client_id"];

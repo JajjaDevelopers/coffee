@@ -408,6 +408,11 @@ $(document).ready(function () {
                     <td class="tableAmount">${amt.toLocaleString()}</td>
                   </tr>`;
         }
+        // Authorisaztion
+        var prepared = response.prepared;
+        $("#salesPreparedName").text(prepared.name);
+        $("#salaesPreparedTime").html(`<small>${prepared.time}</small>`);
+        //
         $("#previewSalesTBody").append(rowStr);
         // setGradeNameInput("salesGradeName", "editSalesReportModal");
         // Sales Id in for adjusting

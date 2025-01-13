@@ -206,7 +206,7 @@
     <!-- Footer -->
     <div class="az-footer ht-40">
       <div class="container-fluid pd-t-0-f ht-100p">
-        <span>&copy; Coffee Enterprise Management System (CEMS) | Version 1.1</span>
+        <span>&copy; Coffee Enterprise Management System (CEMS) | Version 1.2</span>
         <span>Developed by: Guuga Consults</span>
       </div><!-- container -->
     </div><!-- az-footer -->
