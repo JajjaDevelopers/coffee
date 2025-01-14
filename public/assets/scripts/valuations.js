@@ -396,12 +396,16 @@ $(document).ready(function () {
         const items = response.items;
         const summary = response.summary;
         // Update Summary
+        var valUsdRate = Number(summary.usd_rate);
+        var valDeductions = Number(summary.deductions);
         $("#valuationEditBtn").attr("vId", vId);
         $("#valPrevDate").val(summary.date);
         $("#valPrevSupplier").val(summary.supplier);
         // $("#valPrevGrn").val(summary.grn);
         $("#valPrevMc").val(items[0].moisture);
         $("#valPrevGrn").val(summary.grn);
+        $("#valPrevFx").val(valUsdRate);
+        $("#valPrevDeductions").html(`${valDeductions.toLocaleString()}`);
         $("#valuationPreviewModal").modal("show");
         // Upadte Valuation items
         var gradeItemsHtml = "";
@@ -422,6 +426,10 @@ $(document).ready(function () {
         }
         $("#valPrevTotal").html(
           `<strong>${valTotal.toLocaleString()}</strong>`
+        );
+        var valNetValue = valTotal - valDeductions;
+        $("#valPrevNetValue").html(
+          `<strong>${valNetValue.toLocaleString()}</strong>`
         );
         $("#valPrevTBody").html(gradeItemsHtml);
         // Activate printing

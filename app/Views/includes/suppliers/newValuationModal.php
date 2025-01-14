@@ -56,7 +56,7 @@
             <div class="col-sm-12 col-md-3">
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-6">
-                  <label for="addDeliveryFx" class="form-label text-danger" style="text-align: right;">Exc. Rate:</label>
+                  <label for="addDeliveryFx" class="form-label text-danger" style="text-align: right;">Exchange Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-6">
                   <input type="number" class="form-control form-control-sm text-danger" id='addDeliveryFx' step="0.0001" value="1" min="0.0001">
@@ -115,25 +115,6 @@
                 </table>
               </div>
             </div>
-            <!-- Deduction function pending implementation -->
-            <!-- <div class="row" style="display: block;">
-              <div class="col-md-6"></div>
-              <div class="col-md-6">
-                <h6>Deductions:</h6>
-                <table class="table table-sm table-bordered">
-                  <tbody id="valTBody">
-                    <tr rowNo="1">
-                      <th>Total Invoice</th>
-                      <th><input type="number" id="sustDeduction" class="form-control form-control-xs text-end tableAmount" value="0"></th>
-                    </tr>
-                    <tr rowNo="1">
-                      <th>Total Value after Deductions</th>
-                      <th><input type="number" id="valAftDeductions" class="form-control form-control-xs text-end tableAmount" value="0" readonly></th>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> -->
           </div>
         </form>
       </div><!-- modal-body -->

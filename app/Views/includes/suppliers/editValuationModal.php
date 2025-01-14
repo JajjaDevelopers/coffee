@@ -52,8 +52,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-
+            <div class="col-sm-12 col-md-2"></div>
+            <div class="col-sm-12 col-md-3">
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-6 col-md-6">
+                  <label for="addDeliveryFx" class="form-label text-danger" style="text-align: right;">Exchange Rate:</label>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  <input type="number" class="form-control form-control-sm text-danger" id='addDeliveryFx' step="0.0001" value="1" min="0.0001">
+                </div>
+              </div>
             </div>
           </div>
           <hr>
@@ -86,13 +94,21 @@
           </table>
           <div id="valuationSummary">
             <div class="row">
-              <div class="col-md-9"></div>
-              <div class="col-sm-12 col-md-3">
+              <div class="col-md-7"></div>
+              <div class="col-sm-12 col-md-5">
                 <table class="table table-sm table-bordered">
                   <tbody id="valTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
-                      <td><input id="editValTotal" class="form-control form-control-xs text-end valuationTotal" value="0" readonly></td>
+                      <td><input id="editValTotal" class="form-control form-control-xs text-end tableAmount valuationTotal" value="0" readonly></td>
+                    </tr>
+                    <tr rowNo="1">
+                      <td class="text-danger">Total Invoice</td>
+                      <td><input type="number" id="editValDeductions" class="form-control form-control-xs text-end tableAmount text-danger" value="0"></td>
+                    </tr>
+                    <tr rowNo="1">
+                      <th>Net Value</th>
+                      <th><input type="number" id="editNetValuationValue" class="form-control form-control-xs text-end tableAmount" value="0" readonly></th>
                     </tr>
                   </tbody>
                 </table>

@@ -221,7 +221,7 @@ class SuppliersController extends BaseController
             "grn" => $grn,
             "deductions" => $deductions,
             "fpo" => $this->fpo,
-            "prepared_by" => $this->commonData()["user"]["id"], //To be changed to reflect the current user
+            "prepared_by" => $this->commonData()["user"]["id"],
         ];
         // Save summary and obtain valuation Id
         $valuationId = $this->suppliersModel->newValuationSummary($valuationSummaryData);

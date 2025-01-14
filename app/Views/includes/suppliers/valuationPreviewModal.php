@@ -60,8 +60,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-
+            <div class="col-sm-12 col-md-2"></div>
+            <div class="col-sm-12 col-md-3">
+              <div class="row" style="margin-top: 10px;">
+                <div class="col-sm-6 col-md-6">
+                  <label for="valPrevFx" class="form-label text-danger" style="text-align: right;">Exchange Rate:</label>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  <input class="form-control form-control-sm text-danger text-end" id='valPrevFx' step="0.0001" value="1" min="0.0001" readonly>
+                </div>
+              </div>
             </div>
           </div>
           <hr>
@@ -77,8 +85,8 @@
                 <th>Grade</th>
                 <th>Quantity</th>
                 <th>Unit</th>
-                <th>Price</th>
-                <th>Amount</th>
+                <th>Price (UGX)</th>
+                <th>Amount (UGX)</th>
               </tr>
             </thead>
             <tbody id="valPrevTBody">
@@ -87,13 +95,21 @@
           </table>
           <div id="valuationSummary">
             <div class="row">
-              <div class="col-md-9"></div>
-              <div class="col-sm-12 col-md-3">
+              <div class="col-md-7"></div>
+              <div class="col-sm-12 col-md-5">
                 <table class="table table-sm table-bordered">
                   <tbody id="valTBody">
                     <tr rowNo="1" id="valrow1">
-                      <td><strong>Total:</strong></td>
-                      <td id="valPrevTotal" style="text-align: right"><strong>0</strong></td>
+                      <th>Gross Value:</th>
+                      <th id="valPrevTotal" style="text-align: right"><strong>0</strong></th>
+                    </tr>
+                    <tr rowNo="1">
+                      <td class="text-danger">Total Invoice</td>
+                      <td id="valPrevDeductions" class="text-danger tableAmount"></td>
+                    </tr>
+                    <tr rowNo="1">
+                      <th>Net Value</th>
+                      <th id="valPrevNetValue" class="text-end tableAmount"></th>
                     </tr>
                   </tbody>
                 </table>

@@ -167,7 +167,8 @@ class SuppliersModal extends Model
         $data["items"] = $itemsSql->get()->getResultArray();
         // Valuation Summary
         $summary = $this->db->table("valuations");
-        $summary->select("valuation_date AS date, client_id AS supplier_id, name AS supplier, grn, prepared_by, time_prepared, approved_by, time_approved");
+        $summary->select("valuation_date AS date, client_id AS supplier_id, name AS supplier, grn, deductions, usd_rate,
+        prepared_by, time_prepared, approved_by, time_approved");
         $summary->join("clients", "client_id");
         $summary->where("valuation_id", $vId);
         $data["summary"] = $summary->get()->getResultArray()[0];
