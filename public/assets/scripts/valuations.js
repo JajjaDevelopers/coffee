@@ -124,6 +124,7 @@ $(document).ready(function () {
     $(`#valRow${rowNo}`).remove();
     $(".valuationTotal").val(valuationTotal);
     calcNetValuationValue();
+    calcEditNetValuationValue();
     // Remove from the item id list
     var temporaryItemIds = [];
     var removedItem = rowNo;
@@ -318,6 +319,7 @@ $(document).ready(function () {
     $(`#valAmt${rowNo}`).val(total);
     $(".valuationTotal").val(valuationTotal);
     calcNetValuationValue();
+    calcEditNetValuationValue();
   });
 
   // Change total deductions
@@ -329,6 +331,17 @@ $(document).ready(function () {
 
   $(document).on("change", "#invoiceDeductions", function (e) {
     calcNetValuationValue();
+  });
+
+  // Change total deductions for valuation editing
+  function calcEditNetValuationValue() {
+    var valTotal = Number($("#editValTotal").val());
+    var deductions = Number($("#editValDeductions").val());
+    $("#editNetValuationValue").val(valTotal - deductions);
+  }
+
+  $(document).on("change", "#editValDeductions", function (e) {
+    calcEditNetValuationValue();
   });
 
   // Save Valuation
@@ -459,7 +472,9 @@ $(document).ready(function () {
       $("#editDeliverySupplier").val(summary.supplier);
       $("#editValuationGrn").val(summary.grn);
       $("#editValuationMc").val(items[0].moisture);
-      // $("#valPrevGrn").val(items[0].grn);
+      $("#editValFx").val(summary.usd_rate);
+      var deductions = summary.deductions;
+      $("#editValDeductions").val(deductions);
       // Current Items
       // Upadte Valuation items
       var gradeItemsHtml = "";
@@ -494,6 +509,7 @@ $(document).ready(function () {
         valuationItemIds.push(rowNo);
       }
       valuationTotal += valTotal;
+      $("#editNetValuationValue").val(valuationTotal - deductions);
       $("#editValTBody").html(gradeItemsHtml);
       $(".valuationTotal").val(valuationTotal);
       searchGrade("valGradeName", "editValuationModal");
@@ -524,6 +540,8 @@ $(document).ready(function () {
         valId: $("#valuationEditId").val(),
         valGrn: $("#editValuationGrn").val(),
         valMc: $("#editValuationMc").val(),
+        valFx: $("#editValFx").val(),
+        deductions: $("#editValDeductions").val(),
         itemIds: itemIds,
         itemQtys: itemQtys,
         itemPxs: itemPxs,

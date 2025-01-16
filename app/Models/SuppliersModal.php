@@ -171,7 +171,13 @@ class SuppliersModal extends Model
         prepared_by, time_prepared, approved_by, time_approved");
         $summary->join("clients", "client_id");
         $summary->where("valuation_id", $vId);
-        $data["summary"] = $summary->get()->getResultArray()[0];
+        $summaryData = $summary->get()->getResultArray()[0];
+        $data["summary"] = $summaryData;
+        $users = $this->db->table("users");
+        $users->select("fname, lname");
+        $users->where("id", $summaryData["prepared_by"]);
+        $preparedBy = $users->get()->getResultArray()[0];
+        $data["summary"]["preparedBy"] = $preparedBy["fname"] . " " . $preparedBy["lname"];
         return $data;
     }
 

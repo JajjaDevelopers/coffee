@@ -269,6 +269,8 @@ class SuppliersController extends BaseController
     {
         $valuationId = $this->request->getPost("valId");
         $mc = $this->request->getPost("valMc");
+        $valFx = $this->request->getPost("valFx");
+        $deductions = $this->request->getPost("deductions");
         $itemIds = $this->request->getPost("itemIds");
         $itemQtys = $this->request->getPost("itemQtys");
         $itemPxs = $this->request->getPost("itemPxs");
@@ -280,6 +282,8 @@ class SuppliersController extends BaseController
             "grn" => $this->request->getPost("valGrn"),
             "prepared_by" => $this->commonData()["user"]["id"],
             "time_prepared" => $this->dateTimeNow,
+            "usd_rate" => $valFx,
+            "deductions" => $deductions,
         ];
         // Inventory details
         $inventoryDetails = [];

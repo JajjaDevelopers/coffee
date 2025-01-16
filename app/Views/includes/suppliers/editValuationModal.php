@@ -56,10 +56,10 @@
             <div class="col-sm-12 col-md-3">
               <div class="row" style="margin-top: 10px;">
                 <div class="col-sm-6 col-md-6">
-                  <label for="addDeliveryFx" class="form-label text-danger" style="text-align: right;">Exchange Rate:</label>
+                  <label for="editValFx" class="form-label text-danger" style="text-align: right;">Exchange Rate:</label>
                 </div>
                 <div class="col-sm-6 col-md-6">
-                  <input type="number" class="form-control form-control-sm text-danger" id='addDeliveryFx' step="0.0001" value="1" min="0.0001">
+                  <input id='editValFx' type="number" class="form-control form-control-sm text-danger" step="0.0001" value="1" min="0.0001">
                 </div>
               </div>
             </div>
@@ -84,8 +84,8 @@
                 <th>Grade</th>
                 <th style="width: 150px;">Quantity</th>
                 <th style="width: 100px;">Unit</th>
-                <th style="width: 150px;">Price</th>
-                <th style="width: 200px;">Amount</th>
+                <th style="width: 150px;">Price (UGX)</th>
+                <th style="width: 200px;">Amount (UGX)</th>
                 <th style="width: 20px;">Action</th>
               </tr>
             </thead>
@@ -100,7 +100,7 @@
                   <tbody id="valTBody">
                     <tr rowNo="1" id="valrow1">
                       <td>Total:</td>
-                      <td><input id="editValTotal" class="form-control form-control-xs text-end tableAmount valuationTotal" value="0" readonly></td>
+                      <td><input type="number" id="editValTotal" class="form-control form-control-xs text-end tableAmount valuationTotal" value="0" readonly></td>
                     </tr>
                     <tr rowNo="1">
                       <td class="text-danger">Total Invoice</td>

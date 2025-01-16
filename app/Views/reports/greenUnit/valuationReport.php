@@ -1,3 +1,11 @@
+<?php
+$fx = intval($summary["usd_rate"]);
+$deductions = intval($summary["deductions"]);
+
+if ($fx <= 0) {
+    $fx = 1;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,14 +65,14 @@
     </style>
 </head>
 
-<body>
-    <div class="container" style="width: 30cm;">
+<body style=" background-color: whitesmoke">
+    <div class="container" style="width: 30cm; background-color: white">
         <div>
             <span class="print-icon" onclick="handlePrint()">
                 <i class="fas fa-print"></i>
             </span>
         </div>
-        <div style="padding: 2.5cm 0px">
+        <div style="padding: 0cm 0px">
             <!-- Header Section -->
             <div class="header">
                 <!-- Logo Section -->
@@ -89,21 +97,21 @@
                 <label><strong>GRN:</strong> <?= $summary["grn"] ?></label>
             </div>
             <div>
-                <label><strong>Delivery Date:</strong> </label>
+                <label><strong>Exchange Rate:</strong> <?= number_format($fx, 2) ?> </label>
             </div>
             <br>
 
-            <table class="table table-sm table-bordered" style="width: 27.2cm; margin:auto; font-size: 15px; border: 1px solid balck">
+            <table class="table table-sm table-bordered" style="margin:auto; font-size: 15px; border: 1px solid black">
                 <thead>
-                    <tr>
+                    <tr style="text-align:center">
                         <th>Grade/Screen</th>
-                        <th>Actual Yield<br>(%)</th>
-                        <th>QTY (KG)</th>
-                        <th>Price (US$)/Kilo</th>
-                        <th>Price (Cts/lb)</th>
-                        <th>Price (Ugx/kg)</th>
-                        <th>Amount (US$)</th>
-                        <th>Amount (UGX.)</th>
+                        <th style="width: 80px;">Actual <br>Yield (%)</th>
+                        <th style="width: 100px;">QTY (KG)</th>
+                        <th style="width: 80px;">Price<br>(US$/Kg)</th>
+                        <th style="width: 70px;">Price<br>(Cts/lb)</th>
+                        <th style="width: 90px;">Price<br>(Ugx/kg)</th>
+                        <th style="width: 100px;">Amount(US$)</th>
+                        <th style="width: 120px;">Amount (UGX)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,7 +128,7 @@
                         $qty = $items[$x]["qty"];
                         $px = $items[$x]["price"];
                         $ugxAmt = $qty * $px;
-                        $fx = 3700;
+                        // $fx = 3700;
                         $usPx = $px / $fx;
                         $usAmt = $usPx * $qty;
                         $yied = $qty * 100 / $totalValQty;
@@ -152,29 +160,39 @@
                         <th style="text-align: right;"><?= number_format($totalValUgx, 0) ?></th>
                     </tr>
                     <tr>
-                        <td colspan="6">Less 1% Sustainability Contribution Fund</td>
-                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
-                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">FAQ Processing Invoice IN-........</td>
-                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
-                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
-                    </tr>
-                    <tr>
-                        <th colspan="6">Subtotal Costs</th>
-                        <td style="text-align: right;"><?= number_format(0, 0) ?></td>
-                        <th style="text-align: right;"><?= number_format(0, 0) ?></th>
+                        <td colspan="6">Less Total Deductions</td>
+                        <td style="text-align: right;"><?= number_format($deductions / $fx, 2) ?></td>
+                        <td style="text-align: right;"><?= number_format($deductions, 0) ?></td>
                     </tr>
                     <tr>
                         <th colspan="6">Total Value After Costs</th>
-                        <th style="text-align: right;"><?= number_format($totalValUsd, 2) ?></th>
-                        <th style="text-align: right;"><?= number_format($totalValUgx, 0) ?></th>
+                        <th style="text-align: right;"><?= number_format($totalValUsd - ($deductions / $fx), 2) ?></th>
+                        <th style="text-align: right;"><?= number_format($totalValUgx - $deductions, 0) ?></th>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        <br>
+        <div class="row" style="margin-top: 1cm; margin-bottom: 2cm">
+            <div class="col-sm-4 text-center">
+                <h6><strong>Prepared By:</strong></h6>
+                <h6><?= $summary['preparedBy'] ?></h6>
+                <h6>
+                    <small><?= $summary['time_prepared'] ?></small>
+                </h6>
+            </div>
+            <div class="col-sm-4 text-center">
+                <h6><strong>Verified By:</strong></h6>
+                <h6></h6>
+                <h6></small></h6>
+            </div>
+            <div class="col-sm-4 text-center">
+                <h6><strong>Approved By:</strong></h6>
+                <h6></h6>
+                <h6></h6>
+            </div>
+        </div>
+        <br>
         <!-- Signature Table -->
 
     </div>
