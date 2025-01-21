@@ -220,6 +220,7 @@ class SuppliersController extends BaseController
             "client_id" => $supplier,
             "grn" => $grn,
             "deductions" => $deductions,
+            "usd_rate" => $valFx,
             "fpo" => $this->fpo,
             "prepared_by" => $this->commonData()["user"]["id"],
         ];
@@ -240,7 +241,7 @@ class SuppliersController extends BaseController
                     "qty_in" => $quantities[$x],
                     "currency_id" => 1, //To be updated to capture the actual currency
                     "price" => $prices[$x],
-                    "exch_rate" => $valFx, //To be updated to capture the actual rate
+                    "exch_rate" => 1, //Valuation prices are in UGX, but an exchange rate is required for usd price conversions
                     "moisture" => $moisture,
                 ];
                 array_push($inventoryData, $itemData);

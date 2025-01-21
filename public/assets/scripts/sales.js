@@ -44,6 +44,7 @@ $(document).ready(function () {
   function salesReportsList() {
     $("#salesReportsTable").DataTable({
       destroy: true,
+      order: [[0, "des"]],
       ajax: {
         method: "post",
         url: "/sales/salesReports",

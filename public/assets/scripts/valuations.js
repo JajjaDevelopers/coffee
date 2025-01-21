@@ -170,6 +170,7 @@ $(document).ready(function () {
     var exportTitle = "Valuations Summary";
     $("#valuationsTable").DataTable({
       destroy: true,
+      order: [[0, "des"]],
       ajax: {
         method: "post",
         url: "/suppliers/deliveryValuations",
