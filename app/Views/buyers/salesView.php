@@ -32,7 +32,7 @@
               <th>Buyer</th>
               <th>Contract</th>
               <th style="width: 150px;">Total Qty (Kg)</th>
-              <th style="width: 200px;">Total Value</th>
+              <th style="width: 200px;">Total Value (UGX)</th>
             </tr>
           </thead>
           <tbody>

@@ -107,7 +107,7 @@
         <li class="nav-item">
           <a href="" class="nav-link with-sub main-menu-item"><i class="typcn typcn-home"></i>Stores</a>
           <ul class="nav-sub">
-            <li class="nav-sub-item"><a href="#grn" class="nav-sub-link">Goods Received Note</a></li>
+            <li class="nav-sub-item"><a href="/inventory/grn" class="nav-sub-link">Goods Received Note</a></li>
             <li class="nav-sub-item"><a href="#dispatch" class="nav-sub-link">Goods Dispatch</a></li>
           </ul>
         </li><!-- nav-item -->

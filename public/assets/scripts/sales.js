@@ -74,9 +74,7 @@ $(document).ready(function () {
             var currency = row.currency;
             return `<label sId="${
               row.sales_id
-            }" class="salesReportValue tableAmount" style="text-align: end; color: blue"> ${
-              currency + " " + value.toLocaleString()
-            }
+            }" class="salesReportValue tableAmount" style="text-align: end; color: blue"> ${value.toLocaleString()}
             </label>`;
           },
         },

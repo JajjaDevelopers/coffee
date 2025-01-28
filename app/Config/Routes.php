@@ -5,6 +5,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\PasswordReset;
 use App\Controllers\StaffController;
 use App\Controllers\BuyersController;
+use App\Controllers\InventoryController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -35,6 +36,7 @@ $routes->post('/coffee/addCategory', 'CoffeeGradesController::addCategory');
 $routes->post('/grades/gradesList', 'CoffeeGradesController::getGrades');
 $routes->post('/grades/addGrade', 'CoffeeGradesController::addGrade');
 $routes->get('/grades/search', 'CoffeeGradesController::searchGrades');
+$routes->post('/grades/preview', 'CoffeeGradesController::gradePreview');
 // Groups
 $routes->post('/grades/groupsList', 'CoffeeGradesController::gradeGroupsList');
 
@@ -79,3 +81,7 @@ $routes->post('/reports/sales/monthly', [BuyersController::class, 'monthlySalesR
 //staff
 $routes->get('/staff/view', [StaffController::class, 'index']);
 $routes->post('/staff/store', [StaffController::class, 'store']);
+
+
+// Inventory
+$routes->get('/inventory/grn', [InventoryController::class, 'grns']);

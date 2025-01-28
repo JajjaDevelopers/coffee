@@ -3,39 +3,37 @@
 <?= $page_title ?>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-<?= $this->include('/includes/grades/addCategoryModal.php'); ?>
-<?= $this->include('/includes/grades/addGradeModal.php'); ?>
-<?= $this->include('/includes/grades/previewGradeModal.php'); ?>
+<?= $this->include('/includes/inventory/addGrnModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0 ">
-    <div class="card-header bg-gray-400 bd-b-0-f pd-b-0" style="background-color: green;">
-      <nav class="nav nav-tabs">
-        <a class="nav-link active" data-toggle="tab" href="#grades">Grades</a>
-        <a class="nav-link" data-toggle="tab" href="#categories">Categories</a>
-        <a class="nav-link" data-toggle="tab" href="#groups">Groups</a>
-      </nav>
+    <div class="card-header bg-gray-400 bd-b-0-f pd-b-0" style="background-color: green; color: white">
+      <h4>Goods Received</h4>
     </div><!-- card-header -->
     <div class="card-body bd bd-t-0 tab-content">
       <div id="grades" class="tab-pane active show">
-        <h5><strong>Coffee Grades</strong></h5>
-        <div class="row">
-          <div style='display:flex;justify-content:flex-end'>
-            <button class="btn btn-sm" style='background-color:green;color:white' id='addGradeBtn'>
-              <strong>+ New Grade </strong>
+        <div class="row d-flex justify-content-between align-items-center">
+          <!-- Date Range Filter -->
+          <?= $this->include('includes/filters/daterange_filter.php') ?>
+
+          <!-- Button aligned to the right -->
+          <div>
+            <button id="addGrnBtn" class="btn btn-sm" style='background-color:green;color:white'>
+              <strong>+ New GRN</strong>
             </button>
           </div>
         </div>
         <br>
         <div class="dataTables_wrapper no-footer">
-          <table id="gradesListTable" class='table table-sm table-hover'>
+          <table id="grnsTable" class='table table-sm table-hover'>
             <thead>
               <tr>
-                <th>Code</th>
-                <th>Grade Name</th>
-                <th>Group</th>
-                <th>Available</th>
-                <th>Unit</th>
+                <th>Date</th>
+                <th>Supplier</th>
+                <th>GRN</th>
+                <th>Vehicle Reg No.</th>
+                <th>Item Description</th>
+                <th>Quantity (Kg)</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -98,5 +96,5 @@
 <?= $this->endSection() ?>
 <!---scripts-->
 <?= $this->section('scripts') ?>
-<script src="<?= base_url('assets/scripts/grades.js') ?>"></script>
+<script src="<?= base_url('assets/scripts/inventory.js') ?>"></script>
 <?= $this->endSection() ?>

@@ -95,3 +95,12 @@ label.valuationValue{
 .month-1-val-bar{
   border-radius: 0px
 }
+
+.btn-action{
+  border-width: 0;
+  line-height: 1.538;
+  padding: 5px 10px;
+  border-radius: 0;
+  transition: none;
+  min-height: 20px;
+}

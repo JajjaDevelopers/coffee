@@ -108,7 +108,7 @@ class CoffeeGradesController extends BaseController
             $validationErrors = $this->validator->listErrors();
             $this->response->setStatusCode(422);
             return $this->response->setJSON(["sms" => $validationErrors]);
-        } 
+        }
         $grdData = [
             "grade_code" => $this->request->getPost("grdCode"),
             "grade_name" => $this->request->getPost("grdName"),
@@ -122,6 +122,14 @@ class CoffeeGradesController extends BaseController
         } else {
             $data["sms"] = "fail";
         }
+        return $this->response->setJSON($data);
+    }
+
+    // Preview Grades
+    public function gradePreview()
+    {
+        $grdId = $this->request->getPost("grdId");
+        $data["grade"] = $this->gradesModel->gradeDetails($grdId)[0];
         return $this->response->setJSON($data);
     }
 

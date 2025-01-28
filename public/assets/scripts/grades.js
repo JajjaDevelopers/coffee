@@ -56,7 +56,7 @@ $(document).ready(function () {
         { data: "qty" },
         {
           render: function (data, type, row, meta) {
-            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-md btn-info">
+            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-sm btn-success">
                             <i class="la la-eye"></i>
                         </button>`;
           },
@@ -148,7 +148,8 @@ $(document).ready(function () {
         { data: "unit" },
         {
           render: function (data, type, row, meta) {
-            return `<button type="button" title='Receipt Preview' id="viewBtn" class="btn btn-sm btn-info">
+            return `<button type="button" title='Grade Preview' class="btn-sm btn-success gradePreviewBtn" btn-action"
+                      gradePrevId="${row.grade_id}">
                         <i class="fas fa-eye"></i>
                     </button>`;
           },
@@ -203,6 +204,24 @@ $(document).ready(function () {
       error: function (xhr) {
         // console.log(xhr);
         toastr.error(xhr.responseJSON.sms);
+      },
+    });
+  });
+
+  // Previewing grades
+  var prevGradeData = [];
+  $(document).on("click", ".gradePreviewBtn", function (e) {
+    e.preventDefault();
+    var grdId = $(this).attr("gradePrevId");
+    $.ajax({
+      type: "post",
+      url: "/grades/preview",
+      data: {
+        grdId: grdId,
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#previewGradeModal").modal("show");
       },
     });
   });

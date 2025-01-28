@@ -116,6 +116,20 @@ class GradesModel extends Model
         return $builder->insert($data);
     }
 
+    // Get grade details
+    public function gradeDetails($gradeId = "")
+    {
+        // $gradeId="" returns all the grades
+        $sql = $this->db->table("grades");
+        $sql->select("grade_id, grade_code, grade_name, category_id, unit, group_id, category_name, type_name");
+        $sql->join("coffee_category", "category_id");
+        $sql->join("coffee_types", "type_id");
+        if ($gradeId != "") {
+            $sql->where("grade_id", $gradeId);
+        }
+        return $sql->get()->getResultArray();
+    }
+
 
 
     // 
