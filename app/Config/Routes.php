@@ -85,3 +85,4 @@ $routes->post('/staff/store', [StaffController::class, 'store']);
 
 // Inventory
 $routes->get('/inventory/grn', [InventoryController::class, 'grns']);
+$routes->post('/grn/new', [InventoryController::class, 'saveNewGrn']);

@@ -13,10 +13,6 @@
     <div class="card-body bd bd-t-0 tab-content">
       <div id="grades" class="tab-pane active show">
         <div class="row d-flex justify-content-between align-items-center">
-          <!-- Date Range Filter -->
-          <?= $this->include('includes/filters/daterange_filter.php') ?>
-
-          <!-- Button aligned to the right -->
           <div>
             <button id="addGrnBtn" class="btn btn-sm" style='background-color:green;color:white'>
               <strong>+ New GRN</strong>

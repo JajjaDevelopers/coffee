@@ -39,9 +39,23 @@ $(document).ready(function () {
       },
     });
   }
+  // Change truck size
+  $(document).on("change", "#addGrnVSize", function (e) {
+    e.preventDefault();
+    var size = $(this).val();
+    if (size == 1) {
+      fees = 10000;
+    } else if (size == 2) {
+      fees = 20000;
+    } else if (size == 3) {
+      fees = 30000;
+    } else {
+      fees = 0;
+    }
+    $("#addGrnWeighFees").val(fees);
+  });
 
   // Grade groups options
-
   function getGrns() {
     $("#gradesListTable").DataTable({
       destroy: true,
@@ -94,6 +108,33 @@ $(document).ready(function () {
     $("#addGrnModal").modal("show");
     setGradeNameInput("grnItemField", "addGrnModal");
     searchSupplier("addGrnSupplier", "addGrnModal");
+  });
+
+  // Save new GRN
+  $(document).on("click", "#saveNewGrnBtn", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/grn/new",
+      data: {
+        grnNo: $("#addGrnNo").val(),
+        date: $("#addGrnDate").val(),
+        supplier: $("#addGrnSupplier").val(),
+        item: $("#addGrnItem").val(),
+        qty: $("#addGrnQty").val(),
+        bags: $("#addGrnBags").val(),
+        purpose: $("#addGrnPurpose").val(),
+        origin: $("#addGrnOrigin").val(),
+        vehicleNo: $("#addGrnVNo").val(),
+        vehicleSize: $("#addGrnVSize").val(),
+        weighingFees: $("#addGrnWeighFees").val(),
+        deliveredBy: $("#addGrnDeliveredBy").val(),
+        ticketNo: $("#addGrnTicket").val(),
+        remarks: $("#addGrnRemarks").val(),
+      },
+      dataType: "json",
+      success: function (response) {},
+    });
   });
 
   //
