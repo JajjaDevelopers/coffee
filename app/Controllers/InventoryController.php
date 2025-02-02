@@ -82,6 +82,23 @@ class InventoryController extends BaseController
         }
     }
 
+    // GRNs list
+    public function grnList()
+    {
+        $startDate = $this->request->getPost("startDate");
+        $endDate = $this->request->getPost("endDate");
+        $supplier = $this->request->getPost("supplier");
+        $data["grns"] = $this->inventoryModel->grnList($startDate, $endDate, $supplier);
+        return $this->response->setJSON($data);
+    }
+
+    // Check GRN existence
+    public function getGrnDetails()
+    {
+        $grnNo = $this->request->getPost("grn");
+        $data["grnDetails"] = $this->inventoryModel->getGrnDetails($grnNo)[0];
+        return $this->response->setJSON($data);
+    }
 
 
     // 

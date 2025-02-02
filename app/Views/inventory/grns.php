@@ -4,6 +4,7 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <?= $this->include('/includes/inventory/addGrnModal.php'); ?>
+<?= $this->include('/includes/inventory/previewGrnModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0 ">
@@ -21,20 +22,20 @@
         </div>
         <br>
         <div class="dataTables_wrapper no-footer">
-          <table id="grnsTable" class='table table-sm table-hover'>
-            <thead>
-              <tr>
+          <table id="grnsListTable" class='table table-sm table-hover'>
+            <thead style="background-color:burlywood;">
+              <tr style="color: white;">
                 <th>Date</th>
                 <th>Supplier</th>
                 <th>GRN</th>
                 <th>Vehicle Reg No.</th>
                 <th>Item Description</th>
-                <th>Quantity (Kg)</th>
-                <th>Action</th>
+                <th style="width: 120px;">Quantity (Kg)</th>
               </tr>
             </thead>
 
           </table>
+          <label class="text-danger"><small>GRNs in Red are pending approval!</small></label>
         </div>
       </div><!-- tab-pane -->
       <div id="categories" class="tab-pane">

@@ -77,9 +77,9 @@
               <label for="addGrnVSize" class="form-label">Vehicle Size</label>
               <select class="form-control form-control-sm form-select" id='addGrnVSize' style="width: 100%;">
                 <option value="">--Select--</option>
-                <option value="1">SMALL</option>
-                <option value="2">MEDIUM</option>
-                <option value="3">LARGE</option>
+                <option value="SMALL">SMALL</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LARGE">LARGE</option>
               </select>
             </div>
             <div class="col-sm-12 col-md-3">

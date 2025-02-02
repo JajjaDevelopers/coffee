@@ -133,7 +133,140 @@ $(document).ready(function () {
         remarks: $("#addGrnRemarks").val(),
       },
       dataType: "json",
-      success: function (response) {},
+      success: function (response) {
+        $("#addGrnModal").modal("hide");
+        $("#grnsListTable").DataTable().ajax.reload();
+      },
+    });
+  });
+
+  // Get grn list
+  function grnsList() {
+    $("#grnsListTable").DataTable({
+      destroy: true,
+      order: [[0, "des"]],
+      ajax: {
+        method: "post",
+        url: "/grns/list",
+        data: {
+          startDate: "",
+          endDate: "",
+          supplier: "",
+        },
+        dataSrc: "grns",
+      },
+      columns: [
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            if (status == 1) {
+              color = "red";
+            } else {
+              color = "";
+            }
+            return `<label style="color: ${color}">
+          ${row.trans_date}
+          </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            if (status == 1) {
+              color = "red";
+            } else {
+              color = "";
+            }
+            return `<label style="color: ${color}">
+          ${row.name}
+          </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            if (status == 1) {
+              color = "red";
+            } else {
+              color = "";
+            }
+            return `<label style="color: ${color}">
+          ${row.grn_no}
+          </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            if (status == 1) {
+              color = "red";
+            } else {
+              color = "";
+            }
+            return `<label style="color: ${color}">
+          ${row.reg_no}
+          </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            if (status == 1) {
+              color = "red";
+            } else {
+              color = "";
+            }
+            return `<label style="color: ${color}">
+          ${row.item}
+          </label>`;
+          },
+        },
+        {
+          render: function (data, type, row, meta) {
+            var status = row.status;
+            var value = Number(row.qty);
+            return `<label grnNo="${
+              row.grn_id
+            }" class="tableAmount grnListQty" style="text-align: end; color: blue">
+            ${value.toLocaleString()}
+            </label>`;
+          },
+        },
+      ],
+    });
+  }
+  grnsList();
+
+  // Preview GRN
+  $(document).on("click", ".grnListQty", function (e) {
+    e.preventDefault();
+    var grnId = $(this).attr("grnNo");
+    $.ajax({
+      type: "post",
+      url: "/grn/details",
+      data: {
+        grn: grnId,
+      },
+      dataType: "json",
+      success: function (response) {
+        var grn = response.grnDetails;
+        $("#prevGrnNo").val(grn.grn_no);
+        $("#prevGrnDate").val(grn.trans_date);
+        $("#prevGrnSupplier").val(grn.name);
+        $("#prevGrnItmCode").val(grn.grade_code);
+        $("#prevGrnItem").val(grn.item);
+        $("#prevGrnQty").val(grn.qty);
+        $("#prevGrnBags").val(grn.bags);
+        $("#prevGrnPurpose").val(grn.purpose);
+        $("#prevGrnOrigin").val(grn.items_origin);
+        $("#prevGrnVNo").val(grn.reg_no);
+        $("#prevGrnVSize").val(grn.vehicle_size);
+        $("#prevGrnWeighFees").val(grn.weighing_fees);
+        $("#prevGrnDeliveredBy").val(grn.delivered_by);
+        $("#prevGrnTicket").val(grn.wb_ticket_no);
+        $("#prevGrnRemarks").val(grn.remarks);
+        $("#previewGrnModal").modal("show");
+      },
     });
   });
 
