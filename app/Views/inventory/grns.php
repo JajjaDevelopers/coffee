@@ -5,6 +5,7 @@
 <?= $this->section('content') ?>
 <?= $this->include('/includes/inventory/addGrnModal.php'); ?>
 <?= $this->include('/includes/inventory/previewGrnModal.php'); ?>
+<?= $this->include('/includes/inventory/editGrnModal.php'); ?>
 <div class="az-content-body">
   <br>
   <div class="card bd-0 ">

@@ -11,6 +11,15 @@
       <div class="modal-body">
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
           <div class="row">
+            <div class="col-11"></div>
+            <div class="col-1">
+              <button id='grnEditBtn' type="button" grnId="" class="form-control form-control-sm btn-warning"
+                style="color:white; background-color:brown; margin-right:1opx">
+                Edit
+              </button>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-sm-12 col-md-2">
               <label for="prevGrnNo" class="form-label text-danger">GRN No.</label>
               <input class="form-control form-control-sm text-danger" id='prevGrnNo' readonly>
@@ -66,7 +75,7 @@
             </div>
             <div class="col-sm-12 col-md-3">
               <label for="prevGrnVSize" class="form-label">Vehicle Size</label>
-              <input class="form-control form-control-sm form-select" id='prevGrnVSize' style="width: 100%;">
+              <input class="form-control form-control-sm form-select" id='prevGrnVSize' style="width: 100%;" readonly>
             </div>
             <div class="col-sm-12 col-md-3">
               <label for="prevGrnWeighFees" class="form-label">Weighing Fees</label>

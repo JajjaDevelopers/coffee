@@ -250,6 +250,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var grn = response.grnDetails;
+        $("#grnEditBtn").attr("grnId", grnId);
         $("#prevGrnNo").val(grn.grn_no);
         $("#prevGrnDate").val(grn.trans_date);
         $("#prevGrnSupplier").val(grn.name);
@@ -268,6 +269,20 @@ $(document).ready(function () {
         $("#previewGrnModal").modal("show");
       },
     });
+  });
+
+  // Editing the grn
+  $(document).on("click", "#grnEditBtn", function (e) {
+    e.preventDefault();
+    // Confirm editing
+    var confirmEdit = confirm(
+      "You are about to edit this GRN. Click OK to proceed..."
+    );
+    if (!confirmEdit) {
+      return;
+    }
+    $("#previewGrnModal").modal("hide");
+    $("#editGrnModal").modal("show");
   });
 
   //
