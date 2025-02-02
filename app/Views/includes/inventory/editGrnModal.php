@@ -12,19 +12,19 @@
         <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-12 col-md-2">
-              <label for="addGrnNo" class="form-label text-danger">GRN No.</label>
-              <strong><input class="form-control form-control-sm text-danger" id='addGrnNo'></strong>
+              <label for="editGrnNo" class="form-label text-danger">GRN No.</label>
+              <strong><input class="form-control form-control-sm text-danger" id='editGrnNo' readonly></strong>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnDate" class="form-label">Date</label>
-              <input type="date" class="form-control form-control-sm" id='addGrnDate'>
+              <label for="editGrnDate" class="form-label">Date</label>
+              <input type="date" class="form-control form-control-sm" id='editGrnDate'>
             </div>
             <div class="col-sm-12 col-md-7">
-              <label for="addGrnSupplier" class="form-label">Supplier</label>
-              <select class="form-control form-control-sm" id='addGrnSupplier' style="width: 100%;">
+              <label for="editGrnSupplier" class="form-label">Supplier</label>
+              <select class="form-control form-control-sm" id='editGrnSupplier' style="width: 100%;">
 
               </select>
             </div>
@@ -32,28 +32,28 @@
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnItmCode" class="form-label">Item Code</label>
-              <input class="form-control form-control-sm" id='addGrnItmCode' readonly>
+              <label for="editGrnItmCode" class="form-label">Item Code</label>
+              <input class="form-control form-control-sm" id='editGrnItmCode' readonly>
             </div>
             <div class="col-sm-12 col-md-6">
-              <label for="addGrnItem" class="form-label">Item Description</label>
-              <select class="form-control form-control-sm form-select grnItemField" id='addGrnItem' style="width: 100%;">
+              <label for="editGrnItem" class="form-label">Item Description</label>
+              <select class="form-control form-control-sm form-select grnItemField" id='editGrnItem' style="width: 100%;">
               </select>
             </div>
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnQty" class="form-label">Weight (Kg)</label>
-              <input type="number" class="form-control form-control-sm" id='addGrnQty'>
+              <label for="editGrnQty" class="form-label">Weight (Kg)</label>
+              <input type="number" class="form-control form-control-sm" id='editGrnQty'>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnBags" class="form-label">No. of Bags</label>
-              <input type="number" class="form-control form-control-sm" id='addGrnBags'>
+              <label for="editGrnBags" class="form-label">No. of Bags</label>
+              <input type="number" class="form-control form-control-sm" id='editGrnBags'>
             </div>
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnPurpose" class="form-label">Purpose</label>
-              <select type="number" class="form-control form-control-sm" id='addGrnPurpose'>
+              <label for="editGrnPurpose" class="form-label">Purpose</label>
+              <select type="number" class="form-control form-control-sm" id='editGrnPurpose'>
                 <option value="">--select--</option>
                 <option value="1">Processing</option>
                 <option value="2">Roastery</option>
@@ -66,16 +66,16 @@
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnOrigin" class="form-label">Items Origin</label>
-              <input class="form-control form-control-sm" id='addGrnOrigin'>
+              <label for="editGrnOrigin" class="form-label">Items Origin</label>
+              <input class="form-control form-control-sm" id='editGrnOrigin'>
             </div>
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnVNo" class="form-label">Vehicle Reg. No</label>
-              <input class="form-control form-control-sm" id='addGrnVNo'>
+              <label for="editGrnVNo" class="form-label">Vehicle Reg. No</label>
+              <input class="form-control form-control-sm" id='editGrnVNo'>
             </div>
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnVSize" class="form-label">Vehicle Size</label>
-              <select class="form-control form-control-sm form-select" id='addGrnVSize' style="width: 100%;">
+              <label for="editGrnVSize" class="form-label">Vehicle Size</label>
+              <select class="form-control form-control-sm form-select" id='editGrnVSize' style="width: 100%;">
                 <option value="">--Select--</option>
                 <option value="SMALL">SMALL</option>
                 <option value="MEDIUM">MEDIUM</option>
@@ -83,26 +83,26 @@
               </select>
             </div>
             <div class="col-sm-12 col-md-3">
-              <label for="addGrnWeighFees" class="form-label">Weighing Fees</label>
-              <input type="number" class="form-control form-control-sm text-right" id='addGrnWeighFees' value="0" readonly>
+              <label for="editGrnWeighFees" class="form-label">Weighing Fees</label>
+              <input type="number" class="form-control form-control-sm text-right" id='editGrnWeighFees' value="0">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-6">
-              <label for="addGrnDeliveredBy" class="form-label">Delivered by:</label>
-              <input class="form-control form-control-sm" id='addGrnDeliveredBy'>
+              <label for="editGrnDeliveredBy" class="form-label">Delivered by:</label>
+              <input class="form-control form-control-sm" id='editGrnDeliveredBy'>
             </div>
             <div class="col-sm-12 col-md-6">
-              <label for="addGrnTicket" class="form-label">WB Ticket No</label>
-              <input class="form-control form-control-sm" id='addGrnTicket'>
+              <label for="editGrnTicket" class="form-label">WB Ticket No</label>
+              <input class="form-control form-control-sm" id='editGrnTicket'>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-12 col-md-12">
-              <label for="addGrnRemarks" class="form-label">Remarks</label>
-              <input class="form-control form-control-sm" id='addGrnRemarks'>
+              <label for="editGrnRemarks" class="form-label">Remarks</label>
+              <input class="form-control form-control-sm" id='editGrnRemarks'>
             </div>
           </div>
         </form>

@@ -56,8 +56,9 @@ class InventoryModel extends Model
     // Check GRN existence
     public function getGrnDetails($grn)
     {
-        $list = $this->db->query("SELECT trans_date, name, grn_no, vehicle_reg_no AS reg_no, grade_name AS item, qty_in AS qty,
-        bags, grade_code, status, purpose_id, purpose, items_origin, vehicle_size, weighing_fees, delivered_by, wb_ticket_no, remarks
+        $list = $this->db->query("SELECT trans_date, inventory.client_id AS supplierId, name, grn_no, vehicle_reg_no AS reg_no, 
+        grade_id, grade_name AS item, qty_in AS qty, bags, grade_code, status, purpose_id, purpose, items_origin, vehicle_size,
+        weighing_fees, delivered_by, wb_ticket_no, remarks
         FROM inventory
         JOIN grns ON inventory.transaction_id = grns.grn_id
         JOIN clients ON inventory.client_id = clients.client_id
@@ -65,6 +66,14 @@ class InventoryModel extends Model
         JOIN delivery_purposes USING (purpose_id)
         WHERE transaction_type_id = 3 AND grn_id = '{$grn}' ");
         return $list->getResultArray();
+    }
+
+    // Delivery Purposes List
+    public function deliveryPurposes()
+    {
+        $purposeList = $this->db->table("delivery_purposes");
+        $purposeList->select();
+        return $purposeList->get()->getResultArray();
     }
 
 

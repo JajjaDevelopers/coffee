@@ -97,6 +97,7 @@ class InventoryController extends BaseController
     {
         $grnNo = $this->request->getPost("grn");
         $data["grnDetails"] = $this->inventoryModel->getGrnDetails($grnNo)[0];
+        $data["deliveryPurposes"] = $this->inventoryModel->deliveryPurposes();
         return $this->response->setJSON($data);
     }
 

@@ -238,6 +238,8 @@ $(document).ready(function () {
   grnsList();
 
   // Preview GRN
+  var previewGrnDetails = [];
+  var deliveryPurposes = [];
   $(document).on("click", ".grnListQty", function (e) {
     e.preventDefault();
     var grnId = $(this).attr("grnNo");
@@ -250,6 +252,9 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         var grn = response.grnDetails;
+        var delPurposes = response.deliveryPurposes;
+        previewGrnDetails = grn;
+        deliveryPurposes = delPurposes;
         $("#grnEditBtn").attr("grnId", grnId);
         $("#prevGrnNo").val(grn.grn_no);
         $("#prevGrnDate").val(grn.trans_date);
@@ -281,6 +286,41 @@ $(document).ready(function () {
     if (!confirmEdit) {
       return;
     }
+    //Current grn details
+    var grn = previewGrnDetails;
+    $("#editGrnNo").val(grn.grn_no);
+    $("#editGrnDate").val(grn.trans_date);
+    $("#editGrnItmCode").val(grn.grade_code);
+    $("#editGrnQty").val(grn.qty);
+    $("#editGrnBags").val(grn.bags);
+    $("#editGrnOrigin").val(grn.items_origin);
+    $("#editGrnVNo").val(grn.reg_no);
+    $("#editGrnVSize").val(grn.vehicle_size);
+    $("#editGrnWeighFees").val(grn.weighing_fees);
+    $("#editGrnDeliveredBy").val(grn.delivered_by);
+    $("#editGrnTicket").val(grn.wb_ticket_no);
+    $("#editGrnRemarks").val(grn.remarks);
+    $("#editGrnSupplier").html(
+      `<option value="${grn.supplierId}">${grn.name}</option>`
+    );
+    $("#editGrnItem").html(
+      `<option value="${grn.grade_id}">${grn.item}</option>`
+    );
+    // select purpose
+    var purposeOptions = "";
+    var currentOption = grn.purpose_id;
+    for (var x = 0; x < deliveryPurposes.length; x++) {
+      var optionId = deliveryPurposes[x].purpose_id;
+      var optionName = deliveryPurposes[x].purpose;
+      if (optionId == currentOption) {
+        purposeOptions += `<option value="${optionId}" selected>${optionName}</option>`;
+      } else {
+        purposeOptions += `<option value="${optionId}">${optionName}</option>`;
+      }
+    }
+    $("#editGrnPurpose").html(purposeOptions);
+
+    // Switch models
     $("#previewGrnModal").modal("hide");
     $("#editGrnModal").modal("show");
   });
