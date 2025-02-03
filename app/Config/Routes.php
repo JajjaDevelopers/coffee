@@ -88,3 +88,4 @@ $routes->get('/inventory/grn', [InventoryController::class, 'grns']);
 $routes->post('/grn/new', [InventoryController::class, 'saveNewGrn']);
 $routes->post('/grns/list', [InventoryController::class, 'grnList']);
 $routes->post('/grn/details', [InventoryController::class, 'getGrnDetails']);
+$routes->post('/grn/edit', [InventoryController::class, 'saveGrnEdit']);

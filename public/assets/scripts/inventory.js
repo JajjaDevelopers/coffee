@@ -113,6 +113,10 @@ $(document).ready(function () {
   // Save new GRN
   $(document).on("click", "#saveNewGrnBtn", function (e) {
     e.preventDefault();
+    var confirmSave = confirm("Click OK to confirm Saving the GRN!");
+    if (!confirmSave) {
+      return;
+    }
     $.ajax({
       type: "post",
       url: "/grn/new",
@@ -251,6 +255,7 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        $("#editGrnForm").attr("grnId", grnId);
         var grn = response.grnDetails;
         var delPurposes = response.deliveryPurposes;
         previewGrnDetails = grn;
@@ -286,6 +291,8 @@ $(document).ready(function () {
     if (!confirmEdit) {
       return;
     }
+    setGradeNameInput("grnEditItemField", "editGrnModal");
+    searchSupplier("editGrnSupplier", "editGrnModal");
     //Current grn details
     var grn = previewGrnDetails;
     $("#editGrnNo").val(grn.grn_no);
@@ -319,10 +326,44 @@ $(document).ready(function () {
       }
     }
     $("#editGrnPurpose").html(purposeOptions);
-
     // Switch models
     $("#previewGrnModal").modal("hide");
     $("#editGrnModal").modal("show");
+  });
+
+  // Save the edited GRN
+  $(document).on("click", "#saveEditGrnBtn", function (e) {
+    e.preventDefault();
+    var confirmEdit = confirm("Click OK to confirm saving the GRN adjustment!");
+    if (!confirmEdit) {
+      return;
+    }
+    $.ajax({
+      type: "post",
+      url: "/grn/edit",
+      data: {
+        grnId: $("#editGrnForm").attr("grnId"),
+        grnNo: $("#editGrnNo").val(),
+        date: $("#editGrnDate").val(),
+        supplier: $("#editGrnSupplier").val(),
+        item: $("#editGrnItem").val(),
+        qty: $("#editGrnQty").val(),
+        bags: $("#editGrnBags").val(),
+        purpose: $("#editGrnPurpose").val(),
+        origin: $("#editGrnOrigin").val(),
+        vehicleNo: $("#editGrnVNo").val(),
+        vehicleSize: $("#editGrnVSize").val(),
+        weighingFees: $("#editGrnWeighFees").val(),
+        deliveredBy: $("#editGrnDeliveredBy").val(),
+        ticketNo: $("#editGrnTicket").val(),
+        remarks: $("#editGrnRemarks").val(),
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#grnsListTable").DataTable().ajax.reload();
+        $("#editGrnModal").modal("hide");
+      },
+    });
   });
 
   //

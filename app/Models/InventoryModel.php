@@ -76,6 +76,19 @@ class InventoryModel extends Model
         return $purposeList->get()->getResultArray();
     }
 
+    // Save GRN Edit
+    public function saveGrnEdit($grnId, $summaryData, $inventoryData)
+    {
+        $saveEdit = $this->db->table("grns");
+        $saveEdit->where("grn_id", $grnId);
+        $saveSummary = $saveEdit->update($summaryData);
+        if ($saveSummary) {
+            $saveInventory = $this->db->table("inventory");
+            $saveInventory->where("transaction_type_id", 3);
+            $saveInventory->where("transaction_id", $grnId);
+        }
+    }
+
 
     // 
 }

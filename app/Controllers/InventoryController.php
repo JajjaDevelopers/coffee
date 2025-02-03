@@ -101,6 +101,46 @@ class InventoryController extends BaseController
         return $this->response->setJSON($data);
     }
 
+    // Save GRN Edit
+    public function saveGrnEdit()
+    {
+        // summary in the grns table
+        $grnId = $this->request->getPost("grnId");
+        $grnDate = $this->request->getPost("date");
+        $supplier = $this->request->getPost("supplier");
+        $summaryData = [
+            "grn_date" => $grnDate,
+            "grn_no" => $this->request->getPost("grnNo"),
+            "client_id" => $supplier,
+            "vehicle_reg_no" => $this->request->getPost("vehicleNo"),
+            "vehicle_size" => $this->request->getPost("vehicleSize"),
+            "weighing_fees" => $this->request->getPost("weighingFees"),
+            "delivered_by" => $this->request->getPost("deliveredBy"),
+            "wb_ticket_no" => $this->request->getPost("ticketNo"),
+            "remarks" => $this->request->getPost("remarks"),
+            "items_origin" => $this->request->getPost("origin"),
+            "bags" => $this->request->getPost("bags"),
+            "purpose_id" => $this->request->getPost("purpose"),
+            "prepared_by" => $this->userData["id"],
+        ];
+        // Inventory details in the inventory table
+        $inventoryData = [
+            "trans_date" => $grnDate,
+            "client_id" => $supplier,
+            "item_no" => 1,
+            "grade_id" => $this->request->getPost("item"),
+            "store_id" => 1,
+            "qty_in" => $this->request->getPost("qty"),
+        ];
+        $saveGrnEdit = $this->inventoryModel->saveGrnEdit($grnId, $summaryData, $inventoryData);
+        if ($saveGrnEdit) {
+            $sms["status"] = "Success";
+        } else {
+            $sms["status"] = "Fail";
+        }
+        return $this->response->setJSON($sms);
+    }
+
 
     // 
 }

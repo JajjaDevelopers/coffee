@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
               <label for="prevGrnItem" class="form-label">Item Description</label>
-              <input class="form-control form-control-sm form-select grnItemField" id='prevGrnItem' style="width: 100%;" readonly>
+              <input class="form-control form-control-sm" id='prevGrnItem' style="width: 100%;" readonly>
             </div>
             <div class="col-sm-12 col-md-3">
               <label for="prevGrnQty" class="form-label">Weight (Kg)</label>

@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="post" id='addTypeForm' enctype="multipart/form-data">
+        <form action="#" method="post" id='editGrnForm' grnId="" enctype="multipart/form-data">
           <div class="row">
             <div class="col-sm-12 col-md-2">
               <label for="editGrnNo" class="form-label text-danger">GRN No.</label>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
               <label for="editGrnItem" class="form-label">Item Description</label>
-              <select class="form-control form-control-sm form-select grnItemField" id='editGrnItem' style="width: 100%;">
+              <select class="form-control form-control-sm form-select grnEditItemField" id='editGrnItem' style="width: 100%;">
               </select>
             </div>
             <div class="col-sm-12 col-md-3">
@@ -108,7 +108,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button id='saveNewGrnBtn' type="button" class="btn btn-success">Save</button>
+        <button id='saveEditGrnBtn' type="button" class="btn btn-success">Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
