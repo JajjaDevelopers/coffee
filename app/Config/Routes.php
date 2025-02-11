@@ -6,6 +6,7 @@ use App\Controllers\PasswordReset;
 use App\Controllers\StaffController;
 use App\Controllers\BuyersController;
 use App\Controllers\InventoryController;
+use App\Controllers\RoasteryController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -89,3 +90,10 @@ $routes->post('/grn/new', [InventoryController::class, 'saveNewGrn']);
 $routes->post('/grns/list', [InventoryController::class, 'grnList']);
 $routes->post('/grn/details', [InventoryController::class, 'getGrnDetails']);
 $routes->post('/grn/edit', [InventoryController::class, 'saveGrnEdit']);
+
+
+// Roastery Unit
+$routes->get('/roastery/receive', [RoasteryController::class, 'receiveGoods']);
+$routes->post('/roastery/grns', [RoasteryController::class, 'roasteryReceivingItems']);
+$routes->post('/roastery/saveGrn', [RoasteryController::class, 'saveRoasteryItemReceiving']);
+$routes->post('/roastery/availableRoasteryGrns', [RoasteryController::class, 'availableRoasteryGrns']);
