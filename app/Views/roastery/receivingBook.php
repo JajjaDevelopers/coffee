@@ -34,7 +34,6 @@
             </thead>
 
           </table>
-          <label class="text-danger"><small>GRNs in Red are pending approval!</small></label>
         </div>
       </div><!-- tab-pane -->
     </div><!-- card-body -->

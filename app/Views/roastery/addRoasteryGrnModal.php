@@ -2,9 +2,9 @@
 <div id="addRoasteryGrnModal" class="modal">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
-      <div class="modal-header">
-        <h6 class="modal-title">Receiving Book - New</h6>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header" style="background-color: green; ">
+        <h6 class="modal-title" style="color: white">Receiving Book - New</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-8">
               <label for="addRoasteryGrnSupplier" class="form-label">Supplier</label>
-              <select class="form-control form-control-sm" id='addRoasteryGrnSupplier' style="width: 100%;">
+              <select class="form-control form-control-sm" id="addRoasteryGrnSupplier" style="width: 100%;">
 
               </select>
             </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
               <label for="addRoasteryGrnItem" class="form-label">Item Description</label>
-              <input class="form-control form-control-sm form-select grnItemField" id='addRoasteryGrnItem' style="width: 100%;" readonly>
+              <input class="form-control form-control-sm" id='addRoasteryGrnItem' style="width: 100%;" readonly>
             </div>
             <div class="col-sm-12 col-md-3">
               <label for="addRoasteryGrnQty" class="form-label">Qty in (Kg)</label>

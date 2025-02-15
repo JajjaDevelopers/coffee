@@ -45,6 +45,7 @@ $(document).ready(function () {
   function getRoasteryGrns() {
     $("#roasteryGrnsTable").DataTable({
       destroy: true,
+      ordering: false,
       ajax: {
         method: "post",
         url: "/roastery/grns",
@@ -52,14 +53,14 @@ $(document).ready(function () {
         dataSrc: "grnsList",
       },
       columns: [
-        { data: "trans_date" },
+        { data: "date" },
         { data: "name" },
         { data: "book_no" },
         { data: "grn_no" },
         { data: "item" },
         {
           render: function (data, type, row, meta) {
-            return `<label style="color: ${color}">
+            return `<label style="color: blue">
             ${row.qty_in}
           </label>`;
           },
@@ -108,14 +109,15 @@ $(document).ready(function () {
       url: "/roastery/saveGrn",
       data: {
         bookNo: $("#addRoasteryBookNo").val(),
+        grn: $("#addRoasteryGrnNo").val(),
         date: $("#addRoasteryGrnDate").val(),
-        supplier: $("#addRoasteryGrnSupplier").val(),
         moisture: $("#addRoasteryMoisture").val(),
+        remarks: $("#addRoasteryGrnRemarks").val(),
       },
       dataType: "json",
       success: function (response) {
-        $("#addGrnModal").modal("hide");
-        $("#grnsListTable").DataTable().ajax.reload();
+        $("#addRoasteryGrnModal").modal("hide");
+        $("#roasteryGrnsTable").DataTable().ajax.reload();
       },
     });
   });
@@ -142,6 +144,23 @@ $(document).ready(function () {
           }
         }
         $("#addRoasteryGrnNo").html(grnList);
+      },
+    });
+  });
+
+  // GRN details
+  $(document).on("change", "#addRoasteryGrnNo", function (e) {
+    var selectedGrn = $(this).val();
+    $.ajax({
+      type: "post",
+      url: "/grn/details",
+      data: { grn: selectedGrn },
+      dataType: "json",
+      success: function (response) {
+        var grn = response.grnDetails;
+        $("#addRoasteryGrnItmCode").val(grn.grade_code);
+        $("#addRoasteryGrnItem").val(grn.item);
+        $("#addRoasteryGrnQty").val(grn.qty);
       },
     });
   });
